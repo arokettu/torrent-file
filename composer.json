@@ -1,0 +1,23 @@
+{
+    "name": "sandfoxme/torrent-file",
+    "description": "A class to work with torrent files",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anton Smirnov",
+            "email": "sandfox@sandfox.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SandFoxMe\\Torrent\\": "src"
+        }
+    },
+    "require": {
+        "sandfoxme/bencode": "~1.0"
+    },
+    "require-dev": {
+        "psy/psysh": "^0.8.3"
+    }
+}
