@@ -6,10 +6,12 @@ class SingleFileData extends FileData
 {
     protected function process()
     {
+        $file = new \SplFileObject($this->path);
+
         $data = [
             'piece length'  => $this->options['pieceLength'],
-            'name'          => basename($this->path),
-            'length'        => filesize($this->path),
+            'name'          => $file->getBasename(),
+            'length'        => $file->getSize(),
         ];
 
         $this->reportProgress($data['length'], 0, $data['name']);
@@ -22,11 +24,9 @@ class SingleFileData extends FileData
 
         $chunkHashes = [];
 
-        $file = fopen($this->path, 'r');
-
-        while ($chunk = fread($file, $chunkSize)) {
+        while ($chunk = $file->fread($chunkSize)) {
             $chunkHashes []= $this->hashChunk($chunk);
-            $this->reportProgress($data['length'], ftell($file), $data['name']);
+            $this->reportProgress($data['length'], $file->ftell(), $data['name']);
         }
 
         $data['pieces'] = implode($chunkHashes);
