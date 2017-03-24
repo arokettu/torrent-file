@@ -15,7 +15,10 @@
         }
     },
     "require": {
-        "sandfoxme/bencode": "~1.0"
+        "sandfoxme/bencode":    "~1.0",
+        "symfony/finder":       "~2.7|~3.0",
+
+        "php": ">= 7.0"
     },
     "require-dev": {
         "psy/psysh": "^0.8.3"
