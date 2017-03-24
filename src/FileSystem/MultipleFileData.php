@@ -6,7 +6,7 @@ use Symfony\Component\Finder\Finder;
 
 class MultipleFileData extends FileData
 {
-    protected function process()
+    protected function process(): void
     {
         $data = [
             'piece length'  => $this->options['pieceLength'],

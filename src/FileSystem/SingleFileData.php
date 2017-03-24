@@ -4,7 +4,7 @@ namespace SandFoxMe\Torrent\FileSystem;
 
 class SingleFileData extends FileData
 {
-    protected function process()
+    protected function process(): void
     {
         $file = new \SplFileObject($this->path);
 

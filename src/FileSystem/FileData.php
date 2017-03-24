@@ -14,13 +14,13 @@ abstract class FileData
      */
     protected $progress;
 
-    const DEFAULT_OPTIONS = [
+    public const DEFAULT_OPTIONS = [
         'pieceLength'   => 512 * 1024, // 512 KB
         'md5sum'        => false,
         'sortFiles'     => true,
     ];
 
-    public static function forPath(string $path, array $options = [])
+    public static function forPath(string $path, array $options = []): self
     {
         $path = realpath($path);
 
@@ -40,7 +40,7 @@ abstract class FileData
         $this->options = array_merge(self::DEFAULT_OPTIONS, $options);
     }
 
-    public function generateData(FileDataProgress $progress = null)
+    public function generateData(?FileDataProgress $progress = null): void
     {
         $this->progress = $progress;
 
@@ -52,14 +52,14 @@ abstract class FileData
         return $this->data;
     }
 
-    abstract protected function process();
+    abstract protected function process(): void;
 
     protected function hashChunk(string $chunk): string
     {
         return sha1($chunk, true);
     }
 
-    protected function reportProgress(int $total, int $done, string $fileName)
+    protected function reportProgress(int $total, int $done, string $fileName): void
     {
         if ($this->progress) {
             $this->progress->setCurrentData($total, $done, $fileName);
