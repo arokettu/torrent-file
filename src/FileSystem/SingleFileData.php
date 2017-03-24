@@ -16,7 +16,7 @@ class SingleFileData extends FileData
 
         $this->reportProgress($data['length'], 0, $data['name']);
 
-        if ($this->options['md5']) {
+        if ($this->options['md5sum']) {
             $data['md5sum'] = md5_file($this->path);
         }
 

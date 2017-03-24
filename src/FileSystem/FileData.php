@@ -16,7 +16,8 @@ abstract class FileData
 
     const DEFAULT_OPTIONS = [
         'pieceLength'   => 512 * 1024, // 512 KB
-        'md5'           => false,
+        'md5sum'        => false,
+        'sortFiles'     => true,
     ];
 
     public static function forPath(string $path, array $options = [])
