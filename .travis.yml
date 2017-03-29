@@ -1,0 +1,15 @@
+language: php
+php:
+  - '7.1'
+  - nightly
+install:
+  - composer install
+script:
+  # test on latest libs
+  - vendor/bin/phpunit tests --bootstrap vendor/autoload.php --coverage-clover reports/coverage/clover.xml --whitelist src
+  # test on earliest libs
+  - composer update --prefer-lowest
+  - vendor/bin/phpunit tests --bootstrap vendor/autoload.php
+after_script:
+  # only if generated
+- if [ -f reports/coverage/clover.xml ]; then vendor/bin/test-reporter --coverage-report reports/coverage/clover.xml; fi
