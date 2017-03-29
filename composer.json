@@ -21,6 +21,7 @@
         "php": ">= 7.1"
     },
     "require-dev": {
-        "psy/psysh": "^0.8.3"
+        "phpunit/phpunit":  "^6.0.0",
+        "psy/psysh":        "^0.8.3"
     }
 }
