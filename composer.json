@@ -15,7 +15,7 @@
         }
     },
     "require": {
-        "sandfoxme/bencode":    "dev-master",
+        "sandfoxme/bencode":    "~1.1",
         "symfony/finder":       "~2.7|~3.0",
 
         "php": ">= 7.1"
