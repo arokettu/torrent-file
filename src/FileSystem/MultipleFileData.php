@@ -34,8 +34,6 @@ class MultipleFileData extends FileData
             $totalSize += $file->getSize();
         }
 
-        var_dump($this->options['sortFiles']);
-
         $this->reportProgress($totalSize, 0, $data['name']);
 
         if ($this->options['sortFiles']) {
