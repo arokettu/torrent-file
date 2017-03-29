@@ -21,7 +21,7 @@
         "php": ">= 7.1"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter":    "*",
+        "codeclimate/php-test-reporter":    "^0.4.0",
         "phpunit/phpunit":                  "^6.0.0",
         "psy/psysh":                        "^0.8.3"
     }
