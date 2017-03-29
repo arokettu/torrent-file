@@ -1,5 +1,12 @@
 # PHP Torrent File Library
 
+[![Packagist](https://img.shields.io/packagist/v/sandfoxme/torrent-file.svg?maxAge=2592000)](https://packagist.org/packages/sandfoxme/torrent-file)
+[![Packagist](https://img.shields.io/packagist/l/sandfoxme/torrent-file.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
+[![Travis](https://img.shields.io/travis/sandfoxme/torrent-file.svg?maxAge=2592000)](https://travis-ci.org/sandfoxme/torrent-file)
+[![Code Climate](https://img.shields.io/codeclimate/coverage/github/sandfoxme/torrent-file.svg?maxAge=2592000)](https://codeclimate.com/github/sandfoxme/torrent-file/coverage)
+[![Code Climate](https://img.shields.io/codeclimate/github/sandfoxme/torrent-file.svg?maxAge=2592000)](https://codeclimate.com/github/sandfoxme/torrent-file)
+
+
 *Work in progress*
 
 A PHP Class to work with torrent files
