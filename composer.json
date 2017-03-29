@@ -1,6 +1,7 @@
 {
     "name": "sandfoxme/torrent-file",
     "description": "A class to work with torrent files",
+    "keywords": ["bittorrent", "torrent", "torrent-file"],
     "type": "library",
     "license": "MIT",
     "authors": [
