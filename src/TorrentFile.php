@@ -87,10 +87,6 @@ class TorrentFile
 
     public function setAnnounceList(array $announceList): self
     {
-        foreach ($announceList as &$url) {
-            $url = strval($url);
-        }
-
         $this->data['announce-list'] = $announceList;
 
         return $this;
