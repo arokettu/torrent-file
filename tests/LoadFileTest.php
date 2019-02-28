@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use SandFoxMe\Torrent\TorrentFile;
+use SandFox\Torrent\TorrentFile;
 
 class LoadFileTest extends TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace SandFoxMe\Torrent;
+namespace SandFox\Torrent;
 
-use SandFoxMe\Bencode\Bencode;
-use SandFoxMe\Torrent\FileSystem\FileData;
-use SandFoxMe\Torrent\FileSystem\FileDataProgress;
+use SandFox\Bencode\Bencode;
+use SandFox\Torrent\FileSystem\FileData;
+use SandFox\Torrent\FileSystem\FileDataProgress;
 
 class TorrentFile
 {

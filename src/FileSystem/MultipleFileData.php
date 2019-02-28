@@ -1,6 +1,6 @@
 <?php
 
-namespace SandFoxMe\Torrent\FileSystem;
+namespace SandFox\Torrent\FileSystem;
 
 use Symfony\Component\Finder\Finder;
 

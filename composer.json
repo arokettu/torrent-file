@@ -12,11 +12,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "SandFoxMe\\Torrent\\": "src"
+            "SandFox\\Torrent\\": "src"
         }
     },
     "require": {
-        "sandfoxme/bencode":    "~1.1",
+        "sandfoxme/bencode":    "~1.3",
         "symfony/finder":       "~2.7|~3.0|~4.0",
 
         "php": ">= 7.1"

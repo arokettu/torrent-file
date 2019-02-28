@@ -1,5 +1,5 @@
 <?php
 
-namespace SandFoxMe\Torrent\Exception;
+namespace SandFox\Torrent\Exception;
 
 class RuntimeException extends \RuntimeException implements TorrentFileException {}

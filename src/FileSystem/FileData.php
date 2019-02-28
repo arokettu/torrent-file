@@ -1,8 +1,8 @@
 <?php
 
-namespace SandFoxMe\Torrent\FileSystem;
+namespace SandFox\Torrent\FileSystem;
 
-use SandFoxMe\Torrent\Exception\PathNotFoundException;
+use SandFox\Torrent\Exception\PathNotFoundException;
 
 abstract class FileData
 {

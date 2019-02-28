@@ -1,5 +1,5 @@
 <?php
 
-namespace SandFoxMe\Torrent\Exception;
+namespace SandFox\Torrent\Exception;
 
 interface TorrentFileException {}

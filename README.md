@@ -19,7 +19,7 @@ A PHP Class to work with torrent files
 ```php
 <?php
 
-use SandFoxMe\Torrent\TorrentFile; 
+use SandFox\Torrent\TorrentFile; 
 
 $torrent = TorrentFile::load('debian.torrent');
 ```
@@ -29,7 +29,7 @@ $torrent = TorrentFile::load('debian.torrent');
 ```php
 <?php
 
-use SandFoxMe\Torrent\TorrentFile; 
+use SandFox\Torrent\TorrentFile; 
 
 $torrent = TorrentFile::fromPath('/home/user/ISO/Debian');
 ```
