@@ -16,9 +16,6 @@ PHP Torrent File Library
 .. image::  https://img.shields.io/codeclimate/maintainability/sandfoxme/torrent-file.svg?maxAge=2592000
    :target: https://codeclimate.com/github/sandfoxme/torrent-file
    :alt:    Code Climate
-.. image::  https://img.shields.io/gemnasium/sandfoxme/torrent-file.svg?maxAge=2592000
-   :target: https://gemnasium.com/github.com/sandfoxme/torrent-file
-   :alt:    Dependency Status
 
 *Work in progress*
 
@@ -30,7 +27,7 @@ Done:
 Torrent loading from file
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: php
+.. code-block:: php
 
     <?php
 
@@ -41,7 +38,7 @@ Torrent loading from file
 Creating torrent for existing directory or file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: php
+.. code-block:: php
 
     <?php
 
@@ -52,7 +49,7 @@ Creating torrent for existing directory or file
 Saving torrent file
 ~~~~~~~~~~~~~~~~~~~
 
-.. code:: php
+.. code-block:: php
 
     <?php
 
@@ -61,7 +58,7 @@ Saving torrent file
 Basic fields manipulation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: php
+.. code-block:: php
 
     <?php 
 
@@ -84,7 +81,7 @@ Installation
 
 Add this to your ``composer.json``:
 
-.. code:: json
+.. code-block:: json
 
     {
         "require": {
