@@ -131,18 +131,6 @@ class TorrentFile
         return $this->data['created by'];
     }
 
-    public function setEncoding(string $encoding): self
-    {
-        $this->data['encoding'] = $encoding;
-        return $this;
-    }
-
-    public function getEncoding(): ?string
-    {
-        return $this->data['encoding'] ?? null;
-    }
-
-
     public function setPrivate(bool $isPrivate): self
     {
         if ($isPrivate) {
