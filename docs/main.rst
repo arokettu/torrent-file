@@ -1,5 +1,5 @@
-PHP Torrent File Library
-########################
+Torrent File
+############
 
 |Packagist| |GitHub| |Gitlab| |Bitbucket|
 
