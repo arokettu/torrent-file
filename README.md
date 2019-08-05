@@ -19,7 +19,7 @@ Run ``composer require 'sandfoxme/torrent-file:^1.0'``
 
 ## Documentation
 
-Read full documentation here: <https://sandfox.dev/torrent-file.html>
+Read full documentation here: <https://sandfox.dev/php/torrent-file.html>
 
 ## License
 
