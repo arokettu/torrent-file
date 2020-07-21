@@ -6,7 +6,7 @@ _Apr 19, 2019_
 
 * Force announce list to be List
 * Remove encoding field
-* Release as 1.0.0 because it it quite stable
+* Release as 1.0.0 because it is quite stable
 
 # 0.1.1
 
