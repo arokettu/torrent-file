@@ -1,7 +1,7 @@
 Torrent File
 ############
 
-|Packagist| |GitHub| |Gitlab| |Bitbucket|
+|Packagist| |GitLab| |GitHub| |Bitbucket| |Gitea|
 
 A PHP Class to work with torrent files
 
@@ -94,9 +94,11 @@ The library is available as open source under the terms of the `MIT License`_.
 
 .. |Packagist|  image:: https://img.shields.io/packagist/v/sandfoxme/torrent-file.svg
    :target: https://packagist.org/packages/sandfoxme/torrent-file
-.. |GitHub|     image:: https://img.shields.io/badge/GitHub-torrent--file-informational.svg?logo=github
-   :target: https://github.com/sandfoxme/torrent-file
-.. |Gitlab|     image:: https://img.shields.io/badge/Gitlab-torrent--file-informational.svg?logo=gitlab
-   :target: https://gitlab.com/sandfox/torrent-file
-.. |Bitbucket|  image:: https://img.shields.io/badge/Bitbucket-torrent--file-informational.svg?logo=bitbucket
-   :target: https://bitbucket.org/sandfox/torrent-file
+.. |GitHub|     image:: https://img.shields.io/badge/get%20on-GitHub-informational.svg?logo=github
+   :target:     https://github.com/arokettu/torrent-file
+.. |GitLab|     image:: https://img.shields.io/badge/get%20on-GitLab-informational.svg?logo=gitlab
+   :target:     https://gitlab.com/sandfox/torrent-file
+.. |Bitbucket|  image:: https://img.shields.io/badge/get%20on-Bitbucket-informational.svg?logo=bitbucket
+   :target:     https://bitbucket.org/sandfox/torrent-file
+.. |Gitea|      image:: https://img.shields.io/badge/get%20on-Gitea-informational.svg
+   :target:     https://sandfox.org/sandfox/torrent-file
