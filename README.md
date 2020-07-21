@@ -19,6 +19,10 @@ Run ``composer require 'sandfoxme/torrent-file:^1.0'``
 
 Read full documentation here: <https://sandfox.dev/php/torrent-file.html>
 
+## Support
+
+Please file issues on our main repo at GitLab: <https://gitlab.com/sandfox/torrent-file/-/issues>
+
 ## License
 
 The library is available as open source under the terms of the [MIT License].
