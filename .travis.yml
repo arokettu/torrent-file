@@ -12,7 +12,7 @@ install:
   - composer install
 script:
   # test on latest libs
-  - vendor/bin/phpunit tests --bootstrap vendor/autoload.php
+  - vendor/bin/phpunit
   # test on earliest libs
   - composer update --prefer-lowest
-  - vendor/bin/phpunit tests --bootstrap vendor/autoload.php
+  - vendor/bin/phpunit
