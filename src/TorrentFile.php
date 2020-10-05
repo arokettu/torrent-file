@@ -4,7 +4,6 @@ namespace SandFox\Torrent;
 
 use ArrayObject;
 use SandFox\Bencode\Bencode;
-use SandFox\Bencode\Types\ListType;
 use SandFox\Torrent\FileSystem\FileData;
 use SandFox\Torrent\FileSystem\FileDataProgress;
 
@@ -89,14 +88,18 @@ class TorrentFile
 
     public function setAnnounceList(array $announceList): self
     {
-        $this->data['announce-list'] = new ListType($announceList);
+        if (count($announceList)) {
+            $this->data['announce-list'] = array_values($announceList);
+        } else {
+            unset($this->data['announce-list']);
+        }
 
         return $this;
     }
 
-    public function getAnnounceList(): ?array
+    public function getAnnounceList(): array
     {
-        return $this->data['announce-list'] ?? null;
+        return $this->data['announce-list'] ?? [];
     }
 
     public function setCreationDate(int $timestamp): self
