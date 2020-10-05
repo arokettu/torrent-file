@@ -19,6 +19,11 @@
             "SandFox\\Torrent\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "SandFox\\Torrent\\Tests\\All\\": "tests/all"
+        }
+    },
     "require": {
         "php": "^7.1 || ^8.0",
         "sandfoxme/bencode": "^1.3 || ^2.0",

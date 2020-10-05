@@ -1,5 +1,7 @@
 <?php
 
+namespace SandFox\Torrent\Tests\All;
+
 use PHPUnit\Framework\TestCase;
 use SandFox\Torrent\TorrentFile;
 
@@ -7,7 +9,7 @@ class LoadFileTest extends TestCase
 {
     public function testLoadFields()
     {
-        $torrent = TorrentFile::load(__DIR__ . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
+        $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 
         $this->assertEquals('http://torrent.centos.org:6969/announce', $torrent->getAnnounce());
         $this->assertEquals([
