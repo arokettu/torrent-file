@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2
+
+_Oct 6, 2020_
+
+* Fix torrent creation
+* Fix info hash calculation
+
 ## 1.0.1
 
 _Jul 21, 2020_
