@@ -2,6 +2,7 @@
 
 namespace SandFox\Torrent;
 
+use ArrayObject;
 use SandFox\Bencode\Bencode;
 use SandFox\Bencode\Types\ListType;
 use SandFox\Torrent\FileSystem\FileData;
@@ -150,6 +151,6 @@ class TorrentFile
 
     public function getInfoHash(): string
     {
-        return Bencode::encode(new \ArrayObject($this->data['info'] ?? []));
+        return sha1(Bencode::encode(new ArrayObject($this->data['info'] ?? [])));
     }
 }
