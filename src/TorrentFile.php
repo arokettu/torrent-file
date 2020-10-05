@@ -9,7 +9,7 @@ use SandFox\Torrent\FileSystem\FileDataProgress;
 
 class TorrentFile
 {
-    public const CREATED_BY = 'PHP Torrent File by Sand Fox https://github.com/sandfoxme/torrent-file';
+    public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
     private $data;
 
