@@ -1,5 +1,14 @@
+# ide
 /.idea
+
+# composer
 /vendor
 /composer.lock
+
+# phpunit
+/tests/data/files
 /reports
+/.phpunit.result.cache
+
+# docs
 /docs/*.html
