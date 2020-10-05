@@ -34,14 +34,15 @@ class TorrentFile
      * Create torrent file for specified path
      *
      * @param string $path to file or directory
+     * @param array $options
      * @param FileDataProgress|null $progress Progress object to get hashing progress in a callback
      * @return TorrentFile
      */
-    public static function fromPath($path, ?FileDataProgress $progress = null): self
+    public static function fromPath(string $path, array $options = [], ?FileDataProgress $progress = null): self
     {
         // generate data for files
 
-        $dataGenerator = FileData::forPath($path);
+        $dataGenerator = FileData::forPath($path, $options);
 
         $dataGenerator->generateData($progress);
 
