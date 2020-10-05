@@ -5,9 +5,11 @@ namespace SandFox\Torrent\Tests\All;
 use PHPUnit\Framework\TestCase;
 use SandFox\Torrent\TorrentFile;
 
+use const SandFox\Torrent\Tests\TEST_ROOT;
+
 class LoadFileTest extends TestCase
 {
-    public function testLoadFields()
+    public function testLoadFields(): void
     {
         $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 

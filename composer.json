@@ -22,7 +22,10 @@
     "autoload-dev": {
         "psr-4": {
             "SandFox\\Torrent\\Tests\\All\\": "tests/all"
-        }
+        },
+        "files": [
+            "tests/functions.php"
+        ]
     },
     "require": {
         "php": "^7.1 || ^8.0",
