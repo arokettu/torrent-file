@@ -52,7 +52,6 @@ class TorrentFile
 
         $torrent->setCreatedBy(self::CREATED_BY);
         $torrent->setCreationDate(time());
-        $torrent->setEncoding('UTF-8');
 
         return $torrent;
     }
