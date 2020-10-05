@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+
+_Oct 6, 2020_
+
+* Expose options array to `fromFile()` call
+* Fix `getAnnounceList()` is broken after `setAnnounceList()` is used 
+
 ## 1.0.2
 
 _Oct 6, 2020_
