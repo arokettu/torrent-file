@@ -22,6 +22,6 @@ class LoadFileTest extends TestCase
         $this->assertEquals('mktorrent 1.0', $torrent->getCreatedBy());
         $this->assertEquals(1481207147, $torrent->getCreationDate());
         $this->assertFalse($torrent->isPrivate());
-        $this->assertEquals('5ff001f9f7501a7e4eee21465ffacda4', md5($torrent->getInfoHash()));
+        $this->assertEquals('54259d2fafb1de5b794e449777748eba36236f8c', $torrent->getInfoHash());
     }
 }
