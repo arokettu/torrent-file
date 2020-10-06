@@ -27,9 +27,7 @@ function generate_files(): void
             for ($j = 0; $j < 983; $j++) {
                 $index = ($index + $randomizer) % count($words);
                 fwrite($file, $words[$index]);
-                if ($j !== 999) {
-                    fwrite($file, ' ');
-                }
+                fwrite($file, ' ');
             }
             fwrite($file, "\n\n");
         }
