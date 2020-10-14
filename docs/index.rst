@@ -102,5 +102,5 @@ The library is available as open source under the terms of the `MIT License`_.
    :target:     https://gitlab.com/sandfox/torrent-file
 .. |Bitbucket|  image:: https://img.shields.io/badge/get%20on-Bitbucket-informational.svg?logo=bitbucket
    :target:     https://bitbucket.org/sandfox/torrent-file
-.. |Gitea|      image:: https://img.shields.io/badge/get%20on-Gitea-informational.svg
+.. |Gitea|      image:: https://img.shields.io/badge/get%20on-Gitea-informational.svg?logo=gitea
    :target:     https://sandfox.org/sandfox/torrent-file
