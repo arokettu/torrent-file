@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SandFox\Torrent\FileSystem;
 
 use Symfony\Component\Finder\Finder;
@@ -25,7 +27,7 @@ class MultipleFileData extends FileData
 
         foreach ($finder->files()->in($this->path) as $file) {
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
-            $filePaths []= [
+            $filePaths[] = [
                 'fullPath'      => realpath($file->getPathname()),
                 'relativePath'  => $file->getRelativePathname(),
                 'explodedPath'  => explode(DIRECTORY_SEPARATOR, $file->getRelativePathname()),
@@ -57,7 +59,7 @@ class MultipleFileData extends FileData
         }
 
         // now process files
-        $files  = [];
+        $files = [];
         $chunkHashes = [];
 
         $chunkSize = $this->options['pieceLength'];
@@ -78,7 +80,7 @@ class MultipleFileData extends FileData
                 $fileData['md5sum'] = md5_file($filePath['fullPath']);
             }
 
-            $files []= $fileData;
+            $files[] = $fileData;
 
             // create chunk hashes
             $chunkReadSize = $chunkSize - strlen($currentChunk);
@@ -91,7 +93,7 @@ class MultipleFileData extends FileData
                 }
 
                 // we have complete chunk here
-                $chunkHashes []= $this->hashChunk($currentChunk);
+                $chunkHashes[] = $this->hashChunk($currentChunk);
 
                 $doneSize += strlen($currentChunk);
                 $this->reportProgress($totalSize, $doneSize, $filePath['relativePath']);
@@ -103,7 +105,7 @@ class MultipleFileData extends FileData
 
         // hash last chunk
         if (strlen($currentChunk) > 0) {
-            $chunkHashes []= $this->hashChunk($currentChunk);
+            $chunkHashes[] = $this->hashChunk($currentChunk);
 
             $doneSize += strlen($currentChunk);
 

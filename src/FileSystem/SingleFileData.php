@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SandFox\Torrent\FileSystem;
 
 class SingleFileData extends FileData
@@ -25,7 +27,7 @@ class SingleFileData extends FileData
         $chunkHashes = [];
 
         while ($chunk = $file->fread($chunkSize)) {
-            $chunkHashes []= $this->hashChunk($chunk);
+            $chunkHashes[] = $this->hashChunk($chunk);
             $this->reportProgress($data['length'], $file->ftell(), $data['name']);
         }
 
