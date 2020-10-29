@@ -15,8 +15,8 @@ Installation
 Usage
 =====
 
-Torrent loading from file
--------------------------
+Load existing torrent file
+--------------------------
 
 .. code-block:: php
 
@@ -24,10 +24,13 @@ Torrent loading from file
 
     use SandFox\Torrent\TorrentFile;
 
+    // from file
     $torrent = TorrentFile::load('debian.torrent');
+    // from string
+    $torrent = TorrentFile::loadFromString(file_get_contents('debian.torrent'));
 
-Creating torrent for existing directory or file
------------------------------------------------
+Create torrent file for existing directory or file
+--------------------------------------------------
 
 .. code-block:: php
 
@@ -37,14 +40,18 @@ Creating torrent for existing directory or file
 
     $torrent = TorrentFile::fromPath('/home/user/ISO/Debian');
 
-Saving torrent file
--------------------
+Save torrent file
+-----------------
 
 .. code-block:: php
 
     <?php
 
+    // to file
     $torrent->store('debian.torrent');
+    // to string. for example, for downloading
+    header('Content-Type: application/x-bittorrent');
+    echo $torrent->storeToString();
 
 Basic fields manipulation
 -------------------------
@@ -59,8 +66,14 @@ Basic fields manipulation
 
     // additional announce urls
     $announces = $torrent->getAnnounceList();
+    // plain ordered list
     $torrent->setAnnounceList([
         'https://example.net/tracker',
+        'https://example.org/tracker',
+    ]);
+    // or with tier grouping
+    $torrent->setAnnounceList([
+        ['https://example.com/tracker', 'https://example.net/tracker'],
         'https://example.org/tracker',
     ]);
 
