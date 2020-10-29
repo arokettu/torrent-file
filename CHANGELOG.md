@@ -1,11 +1,14 @@
 # Changelog
 
+[//]: <> (Contributor list:)
+[@renan-s-oliveira]: https://github.com/renan-s-oliveira
+
 ## 1.1.1
 
 _Oct 29, 2020_
 
-* Fix notice on getComment() if comment is not set [[gh#5]]
-* Fix `announce-list` not conforming to spec [[gh#4]]
+* Fix notice on getComment() if comment is not set [[gh#5]] by [@renan-s-oliveira]
+* Fix `announce-list` not conforming to spec [[gh#4]] by [@renan-s-oliveira]
 
 [gh#4]: https://github.com/arokettu/torrent-file/pull/4/
 [gh#5]: https://github.com/arokettu/torrent-file/pull/5/
