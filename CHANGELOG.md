@@ -3,6 +3,15 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 1.2.0
+
+* Add saving and loading torrent from bencoded string
+* Deprecate direct use of TorrentFile constructor
+* Clean up internal data structure to avoid potentially invalid torrent file
+* Make library work in PHP strict mode
+* Allow unsetting comment
+* Fix Announce List behavior so it allows an arbitrary composition for groups
+
 ## 1.1.1
 
 _Oct 29, 2020_
