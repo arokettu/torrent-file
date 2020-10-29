@@ -13,6 +13,10 @@ class TorrentFile
 
     private $data;
 
+    /**
+     * @param array $data
+     * @internal Use named constructors instead
+     */
     public function __construct(array $data = [])
     {
         $this->data = $data;
