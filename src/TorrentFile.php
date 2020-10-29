@@ -80,7 +80,7 @@ class TorrentFile
      */
     public function store($fileName): bool
     {
-        return Bencode::dump($fileName, $this->data);
+        return Bencode::dump($fileName, $this->getRawData());
     }
 
     /**
@@ -90,12 +90,20 @@ class TorrentFile
      */
     public function storeToString(): string
     {
-        return Bencode::encode($this->data);
+        return Bencode::encode($this->getRawData());
     }
 
     public function getRawData()
     {
-        return $this->data;
+        $filter = function ($value): bool {
+            return $value !== null && $value !== [];
+        };
+
+        $rawData = $this->data;
+        $rawData['info'] = array_filter($rawData['info'] ?? [], $filter);
+        $rawData = array_filter($rawData, $filter);
+
+        return $rawData;
     }
 
     /* Torrent file fields */
