@@ -121,7 +121,7 @@ class TorrentFile
 
     public function getComment(): ?string
     {
-        return $this->data['comment'];
+        return $this->data['comment'] ?? null;
     }
 
     public function setCreatedBy(string $comment): self
