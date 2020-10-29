@@ -6,6 +6,7 @@ namespace SandFox\Torrent;
 
 use ArrayObject;
 use SandFox\Bencode\Bencode;
+use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
 use SandFox\Torrent\FileSystem\FileDataProgress;
 
@@ -121,17 +122,41 @@ class TorrentFile
         return $this->data['announce'] ?? null;
     }
 
+    /**
+     * @param string[]|string[][] $announceList
+     * @return $this
+     */
     public function setAnnounceList(array $announceList): self
     {
-        if (count($announceList)) {
-            $this->data['announce-list'] =  array_chunk($announceList, 1);
-        } else {
-            unset($this->data['announce-list']);
+        foreach ($announceList as &$group) {
+            if (is_string($group)) {
+                $group = [$group];
+                continue;
+            }
+
+            if (!is_array($group)) {
+                throw new InvalidArgumentException(
+                    'announce-list should be an array of strings or an array of arrays of strings'
+                );
+            }
+
+            foreach ($group as $announce) {
+                if (!is_string($announce)) {
+                    throw new InvalidArgumentException(
+                        'announce-list should be an array of strings or an array of arrays of strings'
+                    );
+                }
+            }
         }
+
+        $this->data['announce-list'] = array_values(array_filter($announceList, 'count'));
 
         return $this;
     }
 
+    /**
+     * @return string[][]
+     */
     public function getAnnounceList(): array
     {
         return $this->data['announce-list'] ?? [];
