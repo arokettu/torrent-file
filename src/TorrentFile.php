@@ -30,6 +30,17 @@ class TorrentFile
     }
 
     /**
+     * Load data from bencoded string
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function loadFromString(string $string): string
+    {
+        return new self(Bencode::decode($string));
+    }
+
+    /**
      * Create torrent file for specified path
      *
      * @param string $path to file or directory
@@ -66,6 +77,16 @@ class TorrentFile
     public function store($fileName): bool
     {
         return Bencode::dump($fileName, $this->data);
+    }
+
+    /**
+     * Return torrent file as a string
+     *
+     * @return string
+     */
+    public function storeToString(): string
+    {
+        return Bencode::encode($this->data);
     }
 
     public function getRawData()
