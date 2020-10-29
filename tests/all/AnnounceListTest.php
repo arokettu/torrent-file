@@ -1,0 +1,95 @@
+<?php
+
+declare(strict_types=1);
+
+namespace SandFox\Torrent\Tests\All;
+
+use PHPUnit\Framework\TestCase;
+use SandFox\Torrent\Exception\InvalidArgumentException;
+use SandFox\Torrent\TorrentFile;
+
+class AnnounceListTest extends TestCase
+{
+    public function testEmpty()
+    {
+        $torrent = TorrentFile::loadFromString('de');
+
+        // no warning if not set
+        $this->assertEquals([], $torrent->getAnnounceList());
+
+        // allow unset
+        $torrent->setAnnounceList(['http://localhost']);
+        $torrent->setAnnounceList([]);
+        $this->assertEquals([], $torrent->getAnnounceList());
+
+        // setting empty groups is empty set
+        $torrent->setAnnounceList([[], [], [], []]);
+        $this->assertEquals([], $torrent->getAnnounceList());
+    }
+
+    public function testPlainList()
+    {
+        $torrent = TorrentFile::loadFromString('de');
+
+        $torrent->setAnnounceList(['https://example.com/tracker', 'https://example.org/tracker']);
+
+        // trackers should form groups
+        $this->assertEquals([
+            ['https://example.com/tracker'],
+            ['https://example.org/tracker'],
+        ], $torrent->getAnnounceList());
+    }
+
+    public function testGroupList()
+    {
+        $torrent = TorrentFile::loadFromString('de');
+
+        $torrent->setAnnounceList([['https://example.com/tracker', 'https://example.org/tracker']]);
+
+        $this->assertEquals([
+            ['https://example.com/tracker', 'https://example.org/tracker']
+        ], $torrent->getAnnounceList());
+    }
+
+    public function testMixedGrouping()
+    {
+        $torrent = TorrentFile::loadFromString('de');
+
+        $torrent->setAnnounceList([
+            ['https://example.com/tracker', 'https://example.org/tracker'],
+            [], // empty group will be unset
+            'https://example.net/tracker', // will be converted to a group
+            ['https://example.info/tracker'],
+        ]);
+
+        $this->assertEquals([
+            ['https://example.com/tracker', 'https://example.org/tracker'],
+            ['https://example.net/tracker'],
+            ['https://example.info/tracker'],
+        ], $torrent->getAnnounceList());
+    }
+
+    public function testInvalidNesting()
+    {
+        $torrent = TorrentFile::loadFromString('de');
+
+        $this->expectException(InvalidArgumentException::class);
+        $torrent->setAnnounceList([[['http://localhost']]]);
+    }
+
+    public function testInvalidTypeOn1stLvl()
+    {
+        $torrent = TorrentFile::loadFromString('de');
+
+        $this->expectException(InvalidArgumentException::class);
+        $torrent->setAnnounceList([123]);
+    }
+
+    public function testInvalidTypeOn2ndLvl()
+    {
+        $torrent = TorrentFile::loadFromString('de');
+
+        $this->expectException(InvalidArgumentException::class);
+        $torrent->setAnnounceList([[123]]);
+    }
+}
