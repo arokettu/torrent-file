@@ -9,7 +9,7 @@ cache:
 .test:
   before_script:
     # install composer
-    - wget -q -O /tmp/composer.sig https://composer.github.io/installer.sig
+    - php -r "copy('https://composer.github.io/installer.sig', '/tmp/composer.sig');
     - php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
     - php -r '$expected = file_get_contents("/tmp/composer.sig"); $actual = hash_file("sha384", "/tmp/composer-setup.php"); exit(intval(!hash_equals($expected, $actual)));'
     - php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
