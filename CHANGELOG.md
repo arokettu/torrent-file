@@ -16,7 +16,7 @@
 
 _Oct 29, 2020_
 
-* Fix notice on getComment() if comment is not set [[gh#5]] by [@renan-s-oliveira]
+* Fix notice on `getComment()` if comment is not set [[gh#5]] by [@renan-s-oliveira]
 * Fix `announce-list` not conforming to spec [[gh#4]] by [@renan-s-oliveira]
 
 [gh#4]: https://github.com/arokettu/torrent-file/pull/4/
