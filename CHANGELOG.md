@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.1
+
+_Oct 29, 2020_
+
+* Fix notice on getComment() if comment is not set [[gh#5]]
+* Fix `announce-list` not conforming to spec [[gh#4]]
+
+[gh#4]: https://github.com/arokettu/torrent-file/pull/4/
+[gh#5]: https://github.com/arokettu/torrent-file/pull/5/
+
 ## 1.1.0
 
 _Oct 6, 2020_
