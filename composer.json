@@ -33,7 +33,10 @@
         "symfony/finder": ">= 2.7 < 6"
     },
     "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "*",
+        "phpcompatibility/php-compatibility": "*",
         "phpunit/phpunit": ">= 6 < 10",
-        "psy/psysh": "*"
+        "psy/psysh": "*",
+        "slevomat/coding-standard": "*"
     }
 }
