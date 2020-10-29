@@ -124,7 +124,7 @@ class TorrentFile
     public function setAnnounceList(array $announceList): self
     {
         if (count($announceList)) {
-            $this->data['announce-list'] = array_values($announceList);
+            $this->data['announce-list'] =  array_chunk($announceList, 1);
         } else {
             unset($this->data['announce-list']);
         }
