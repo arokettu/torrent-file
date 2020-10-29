@@ -39,9 +39,9 @@ class TorrentFile
      * Load data from bencoded string
      *
      * @param string $string
-     * @return string
+     * @return TorrentFile
      */
-    public static function loadFromString(string $string): string
+    public static function loadFromString(string $string): self
     {
         return new self(Bencode::decode($string));
     }
@@ -148,7 +148,7 @@ class TorrentFile
         return $this->data['creation date'] ?? null;
     }
 
-    public function setComment(string $comment): self
+    public function setComment(?string $comment): self
     {
         $this->data['comment'] = $comment;
         return $this;
