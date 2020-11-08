@@ -6,11 +6,12 @@ namespace SandFox\Torrent;
 
 use ArrayObject;
 use SandFox\Bencode\Bencode;
+use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
 use SandFox\Torrent\FileSystem\FileDataProgress;
 
-class TorrentFile
+class TorrentFile implements BencodeSerializable
 {
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
@@ -83,7 +84,7 @@ class TorrentFile
      */
     public function store($fileName): bool
     {
-        return Bencode::dump($fileName, $this->getRawData());
+        return Bencode::dump($fileName, $this);
     }
 
     /**
@@ -93,7 +94,7 @@ class TorrentFile
      */
     public function storeToString(): string
     {
-        return Bencode::encode($this->getRawData());
+        return Bencode::encode($this);
     }
 
     public function getRawData()
@@ -107,6 +108,11 @@ class TorrentFile
         $rawData = array_filter($rawData, $filter);
 
         return $rawData;
+    }
+
+    public function bencodeSerialize()
+    {
+        return $this->getRawData();
     }
 
     /* Torrent file fields */
