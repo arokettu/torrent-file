@@ -17,6 +17,9 @@ class TorrentFile implements BencodeSerializable
 
     private $data;
 
+    // info hash cache
+    private $infoHash = null;
+
     /**
      * @param array $data
      * @internal Use named constructors instead
@@ -203,6 +206,8 @@ class TorrentFile implements BencodeSerializable
 
     public function setPrivate(bool $isPrivate): self
     {
+        $this->infoHash = null;
+
         if ($isPrivate) {
             $this->data['info']['private'] = 1;
         } else {
@@ -221,6 +226,6 @@ class TorrentFile implements BencodeSerializable
 
     public function getInfoHash(): string
     {
-        return sha1(Bencode::encode(new ArrayObject($this->data['info'] ?? [])));
+        return $this->infoHash ?? $this->infoHash = sha1(Bencode::encode(new ArrayObject($this->data['info'] ?? [])));
     }
 }
