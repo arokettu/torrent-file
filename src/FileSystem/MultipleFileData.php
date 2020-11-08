@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace SandFox\Torrent\FileSystem;
 
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
-class MultipleFileData extends FileData
+/**
+ * @internal
+ */
+final class MultipleFileData extends FileData
 {
     protected function process(): void
     {
@@ -26,7 +30,7 @@ class MultipleFileData extends FileData
         $totalSize = 0;
 
         foreach ($finder->files()->in($this->path) as $file) {
-            /** @var \Symfony\Component\Finder\SplFileInfo $file */
+            /** @var SplFileInfo $file */
             $filePaths[] = [
                 'fullPath'      => realpath($file->getPathname()),
                 'relativePath'  => $file->getRelativePathname(),

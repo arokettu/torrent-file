@@ -6,6 +6,9 @@ namespace SandFox\Torrent\FileSystem;
 
 use SandFox\Torrent\Exception\PathNotFoundException;
 
+/**
+ * @internal
+ */
 abstract class FileData
 {
     protected $data;

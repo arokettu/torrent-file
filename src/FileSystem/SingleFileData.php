@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\FileSystem;
 
-class SingleFileData extends FileData
+/**
+ * @internal
+ */
+final class SingleFileData extends FileData
 {
     protected function process(): void
     {
