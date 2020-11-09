@@ -249,7 +249,6 @@ class TorrentFile implements BencodeSerializable
         return $this->getDisplayName() . '.torrent';
     }
 
-
     public function getMagnetLink(): string
     {
         $pairs = [];
