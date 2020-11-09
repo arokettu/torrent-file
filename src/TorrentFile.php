@@ -10,6 +10,7 @@ use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
 use SandFox\Torrent\FileSystem\FileDataProgress;
+use SandFox\Torrent\Helpers\QueryStringHelper;
 
 class TorrentFile implements BencodeSerializable
 {
@@ -246,5 +247,40 @@ class TorrentFile implements BencodeSerializable
     public function getFileName(): string
     {
         return $this->getDisplayName() . '.torrent';
+    }
+
+
+    public function getMagnetLink(): string
+    {
+        $pairs = [];
+
+        $dn = $this->data['info']['name'] ?? '';
+        if ($dn !== '') {
+            $pairs[] = ['dn', rawurlencode($this->getDisplayName())];
+        }
+
+        $pairs[] = ['xt', 'urn:btih:' . strtoupper($this->getInfoHash())];
+
+        $trackers = [];
+
+        $rootTracker = $this->getAnnounce();
+
+        if ($rootTracker) {
+            $trackers[] = $rootTracker;
+        }
+
+        foreach ($this->getAnnounceList() as $trGroup) {
+            foreach ($trGroup as $tracker) {
+                $trackers[] = $tracker;
+            }
+        }
+
+        foreach (array_unique($trackers) as $tr) {
+            $pairs[] = ['tr', rawurlencode($tr)];
+        }
+
+        $query = QueryStringHelper::build($pairs);
+
+        return 'magnet:?' . strval($query);
     }
 }
