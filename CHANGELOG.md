@@ -3,7 +3,18 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 1.3.0
+
+_Nov 9, 2020_
+
+* Add `getDisplayName()`
+* Add `getFileName()`
+* Add `getMagnetLink()`
+* Filter announce list from duplicates
+
 ## 1.2.0
+
+_Oct 29, 2020_
 
 * Add saving and loading torrent from bencoded string
 * Deprecate direct use of TorrentFile constructor
