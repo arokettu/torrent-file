@@ -102,7 +102,7 @@ Magnet Link
 
     <?php
     // generate magnet link
-    $torrent->getMagnetLink(); // 'magnet:?xn=urn:btih:...'
+    $torrent->getMagnetLink(); // 'magnet:?xt=urn:btih:...'
 
 Possible future features
 ------------------------
