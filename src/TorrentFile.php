@@ -149,6 +149,8 @@ class TorrentFile implements BencodeSerializable
                 );
             }
 
+            $group = array_unique($group);
+
             foreach ($group as $announce) {
                 if (!is_string($announce)) {
                     throw new InvalidArgumentException(
@@ -158,7 +160,12 @@ class TorrentFile implements BencodeSerializable
             }
         }
 
-        $this->data['announce-list'] = array_values(array_filter($announceList, 'count'));
+        $this->data['announce-list'] = array_values(
+            array_unique(
+                array_filter($announceList, 'count'),
+                SORT_REGULAR
+            )
+        );
 
         return $this;
     }

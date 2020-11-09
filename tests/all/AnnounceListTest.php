@@ -92,4 +92,27 @@ class AnnounceListTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $torrent->setAnnounceList([[123]]);
     }
+
+    public function testUnique()
+    {
+        $torrent = TorrentFile::loadFromString('de');
+
+        $torrent->setAnnounceList([
+            'http://example.com/announce',
+            [
+                'http://example.org/announce',
+                'udp://example.org/announce',
+                'http://example.org/announce', // in-group repeats are filtered
+            ],
+            ['http://example.com/announce'], // group repeats are filtered
+            ['http://example.net/announce', 'udp://example.net/announce'],
+            ['http://example.net/announce', 'udp://example.net/announce'], // more complex group test
+            ['http://example.org/announce', 'udp://example.org/announce'], // groups are compared after in-group removal
+        ]);
+        $this->assertEquals([
+            ['http://example.com/announce'],
+            ['http://example.org/announce', 'udp://example.org/announce'],
+            ['http://example.net/announce', 'udp://example.net/announce'],
+        ], $torrent->getAnnounceList());
+    }
 }
