@@ -3,6 +3,13 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 1.3.1
+
+_Nov 9, 2020_
+
+* Use saner url encoder for `getMagnetLink()`
+* Bump PHP requirement from 7.1.0 to 7.1.3 to match dependencies
+
 ## 1.3.0
 
 _Nov 9, 2020_
