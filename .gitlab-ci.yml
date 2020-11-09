@@ -21,7 +21,7 @@ cache:
     - composer config -g cache-dir "$(pwd)/.composer-cache"
   script:
     # test on latest libs
-    - composer install
+    - composer update
     - vendor/bin/phpunit
     # test on lowest libs
     - composer update --prefer-lowest
