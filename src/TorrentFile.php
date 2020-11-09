@@ -235,4 +235,16 @@ class TorrentFile implements BencodeSerializable
     {
         return $this->infoHash ?? $this->infoHash = sha1(Bencode::encode(new ArrayObject($this->data['info'] ?? [])));
     }
+
+    public function getDisplayName(): ?string
+    {
+        $infoName = $this->data['info']['name'] ?? '';
+
+        return $infoName === '' ? $this->getInfoHash() : $infoName;
+    }
+
+    public function getFileName(): string
+    {
+        return $this->getDisplayName() . '.torrent';
+    }
 }
