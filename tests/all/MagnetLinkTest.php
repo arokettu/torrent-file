@@ -44,7 +44,7 @@ class MagnetLinkTest extends TestCase
         $torrent->setAnnounce('http://example.com');
         $this->assertEquals(
             'magnet:?dn=my%20test%20torrent&xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE' .
-                '&tr=http%3A%2F%2Fexample.com',
+                '&tr=http://example.com',
             $torrent->getMagnetLink()
         );
 
@@ -57,9 +57,9 @@ class MagnetLinkTest extends TestCase
         ]);
         $this->assertEquals(
             'magnet:?dn=my%20test%20torrent&xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE' .
-                '&tr=http%3A%2F%2Fexample.net' .
-                '&tr=udp%3A%2F%2Fexample.org%3A4321' .
-                '&tr=http%3A%2F%2Fexample.org',
+                '&tr=http://example.net' .
+                '&tr=udp://example.org:4321' .
+                '&tr=http://example.org',
             $torrent->getMagnetLink()
         );
 
@@ -74,10 +74,10 @@ class MagnetLinkTest extends TestCase
         ]);
         $this->assertEquals(
             'magnet:?dn=my%20test%20torrent&xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE' .
-                '&tr=http%3A%2F%2Fexample.com' .
-                '&tr=http%3A%2F%2Fexample.net' .
-                '&tr=udp%3A%2F%2Fexample.org%3A4321' .
-                '&tr=http%3A%2F%2Fexample.org',
+                '&tr=http://example.com' .
+                '&tr=http://example.net' .
+                '&tr=udp://example.org:4321' .
+                '&tr=http://example.org',
             $torrent->getMagnetLink()
         );
     }

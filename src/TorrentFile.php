@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent;
 
+use Arokettu\Uri\QueryStringProxy;
 use ArrayObject;
 use SandFox\Bencode\Bencode;
 use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
 use SandFox\Torrent\FileSystem\FileDataProgress;
-use SandFox\Torrent\Helpers\QueryStringHelper;
 
 class TorrentFile implements BencodeSerializable
 {
@@ -255,7 +255,7 @@ class TorrentFile implements BencodeSerializable
 
         $dn = $this->data['info']['name'] ?? '';
         if ($dn !== '') {
-            $pairs[] = ['dn', rawurlencode($this->getDisplayName())];
+            $pairs[] = ['dn', $this->getDisplayName()];
         }
 
         $pairs[] = ['xt', 'urn:btih:' . strtoupper($this->getInfoHash())];
@@ -275,10 +275,10 @@ class TorrentFile implements BencodeSerializable
         }
 
         foreach (array_unique($trackers) as $tr) {
-            $pairs[] = ['tr', rawurlencode($tr)];
+            $pairs[] = ['tr', $tr];
         }
 
-        $query = QueryStringHelper::build($pairs);
+        $query = QueryStringProxy::build($pairs);
 
         return 'magnet:?' . strval($query);
     }

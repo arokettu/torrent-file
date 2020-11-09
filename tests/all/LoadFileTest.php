@@ -32,8 +32,8 @@ class LoadFileTest extends TestCase
 
         $this->assertEquals(
             'magnet:?dn=CentOS-7-x86_64-NetInstall-1611&xt=urn:btih:54259D2FAFB1DE5B794E449777748EBA36236F8C' .
-                '&tr=http%3A%2F%2Ftorrent.centos.org%3A6969%2Fannounce' .
-                '&tr=http%3A%2F%2Fipv6.torrent.centos.org%3A6969%2Fannounce',
+                '&tr=http://torrent.centos.org:6969/announce' .
+                '&tr=http://ipv6.torrent.centos.org:6969/announce',
             $torrent->getMagnetLink()
         );
 
