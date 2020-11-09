@@ -2,7 +2,7 @@
 
 [![Packagist](https://img.shields.io/packagist/v/sandfoxme/torrent-file.svg?maxAge=2592000)](https://packagist.org/packages/sandfoxme/torrent-file)
 [![Packagist](https://img.shields.io/packagist/l/sandfoxme/torrent-file.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
-[![Travis](https://img.shields.io/travis/arokettu/torrent-file.svg?maxAge=2592000)](https://travis-ci.org/arokettu/torrent-file)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/sandfox/torrent-file/master.svg)](https://gitlab.com/sandfox/torrent-file/-/pipelines)
 
 A PHP Class to work with torrent files
 
