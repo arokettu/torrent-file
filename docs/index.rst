@@ -49,8 +49,10 @@ Save torrent file
 
     // to file
     $torrent->store('debian.torrent');
+
     // to string. for example, for downloading
     header('Content-Type: application/x-bittorrent');
+    header('Content-Disposition: attachment; filename="' . urlencode($torrent->getFileName()) . '"');
     echo $torrent->storeToString();
 
 Basic fields manipulation
@@ -92,6 +94,14 @@ Basic fields manipulation
     // private marker
     $private = $torrent->isPrivate();
     $torrent->setPrivate(true);
+
+Magnet Link
+-----------
+
+.. code-block:: php
+
+    // generate magnet link
+    $torrent->getMagnetLink(); // 'magnet:?xn=urn:btih:...'
 
 Possible future features
 ------------------------
