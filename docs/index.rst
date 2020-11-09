@@ -100,6 +100,7 @@ Magnet Link
 
 .. code-block:: php
 
+    <?php
     // generate magnet link
     $torrent->getMagnetLink(); // 'magnet:?xn=urn:btih:...'
 
