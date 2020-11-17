@@ -6,11 +6,11 @@ namespace SandFox\Torrent;
 
 use ArrayObject;
 use League\Uri\QueryString;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Bencode\Bencode;
 use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
-use SandFox\Torrent\FileSystem\FileDataProgress;
 
 class TorrentFile implements BencodeSerializable
 {
@@ -57,16 +57,19 @@ class TorrentFile implements BencodeSerializable
      *
      * @param string $path to file or directory
      * @param array $options
-     * @param FileDataProgress|null $progress Progress object to get hashing progress in a callback
+     * @param EventDispatcherInterface|null $eventDispatcher Event Dispatcher to monitor hashing progress
      * @return TorrentFile
      */
-    public static function fromPath(string $path, array $options = [], ?FileDataProgress $progress = null): self
-    {
+    public static function fromPath(
+        string $path,
+        array $options = [],
+        ?EventDispatcherInterface $eventDispatcher = null
+    ): self {
         // generate data for files
 
         $dataGenerator = FileData::forPath($path, $options);
 
-        $dataGenerator->generateData($progress);
+        $dataGenerator->generateData($eventDispatcher);
 
         $torrent = new self([
             'info' => $dataGenerator->getData(),

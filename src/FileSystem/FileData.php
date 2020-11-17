@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\FileSystem;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Torrent\Exception\PathNotFoundException;
 
 /**
@@ -14,10 +15,8 @@ abstract class FileData
     protected array $data;
     protected string $path;
     protected array $options;
-    /**
-     * @var FileDataProgress
-     */
-    protected $progress;
+
+    private ?EventDispatcherInterface $eventDispatcher = null;
 
     public const DEFAULT_OPTIONS = [
         'pieceLength'   => 512 * 1024, // 512 KB
@@ -45,9 +44,9 @@ abstract class FileData
         $this->options = array_merge(self::DEFAULT_OPTIONS, $options);
     }
 
-    public function generateData(?FileDataProgress $progress = null): void
+    public function generateData(?EventDispatcherInterface $eventDispatcher = null): void
     {
-        $this->progress = $progress;
+        $this->eventDispatcher = $eventDispatcher;
 
         $this->process();
     }
@@ -66,8 +65,8 @@ abstract class FileData
 
     protected function reportProgress(int $total, int $done, string $fileName): void
     {
-        if ($this->progress) {
-            $this->progress->setCurrentData($total, $done, $fileName);
+        if ($this->eventDispatcher) {
+            $this->eventDispatcher->dispatch(new FileDataProgressEvent($total, $done, $fileName));
         }
     }
 }
