@@ -48,4 +48,17 @@ class LoadFileTest extends TestCase
             stream_get_meta_data($tmpfile)['uri']
         );
     }
+
+    public function testStore(): void
+    {
+        $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
+
+        $tmpName = tempnam('/tmp', 'tf-test');
+
+        $torrent->store($tmpName);
+
+        $this->assertFileEquals(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', $tmpName);
+
+        unlink($tmpName);
+    }
 }
