@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\FileSystem;
 
+use SplFileObject;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -72,7 +73,7 @@ final class MultipleFileData extends FileData
         $doneSize = 0;
 
         foreach ($filePaths as $filePath) {
-            $file = new \SplFileObject($filePath['fullPath']);
+            $file = new SplFileObject($filePath['fullPath']);
 
             // create file metadata
             $fileData = [

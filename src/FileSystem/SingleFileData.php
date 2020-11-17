@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\FileSystem;
 
+use SplFileObject;
+
 /**
  * @internal
  */
@@ -11,7 +13,7 @@ final class SingleFileData extends FileData
 {
     protected function process(): void
     {
-        $file = new \SplFileObject($this->path);
+        $file = new SplFileObject($this->path);
 
         $data = [
             'piece length'  => $this->options['pieceLength'],

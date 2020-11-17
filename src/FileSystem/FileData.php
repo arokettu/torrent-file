@@ -11,9 +11,9 @@ use SandFox\Torrent\Exception\PathNotFoundException;
  */
 abstract class FileData
 {
-    protected $data;
-    protected $path;
-    protected $options;
+    protected array $data;
+    protected string $path;
+    protected array $options;
     /**
      * @var FileDataProgress
      */

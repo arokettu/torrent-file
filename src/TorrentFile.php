@@ -16,10 +16,10 @@ class TorrentFile implements BencodeSerializable
 {
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
-    private $data;
+    private array $data;
 
     // info hash cache
-    private $infoHash = null;
+    private ?string $infoHash = null;
 
     /**
      * @param array $data
