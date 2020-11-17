@@ -47,6 +47,7 @@
         "phpcompatibility/php-compatibility": "*",
         "phpunit/phpunit": ">= 6 < 10",
         "psy/psysh": "*",
-        "slevomat/coding-standard": "*"
+        "slevomat/coding-standard": "*",
+        "squizlabs/php_codesniffer": "*"
     }
 }
