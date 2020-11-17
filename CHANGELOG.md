@@ -53,7 +53,7 @@ _Oct 29, 2020_
 _Oct 6, 2020_
 
 * Expose options array to `fromFile()` call
-* Fix `getAnnounceList()` is broken after `setAnnounceList()` is used 
+* Fix `getAnnounceList()` is broken after `setAnnounceList()` is used
 
 ## 1.0.2
 
@@ -89,4 +89,4 @@ _Mar 30, 2017_
 Initial release
 Basic work with torrent files
 
-[PSR-14]: https://www.php-fig.org/psr/psr-14/ 
+[PSR-14]: https://www.php-fig.org/psr/psr-14/
