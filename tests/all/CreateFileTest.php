@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SandFox\Torrent\Tests\All;
 
 use PHPUnit\Framework\TestCase;
+use SandFox\Torrent\Exception\PathNotFoundException;
 use SandFox\Torrent\TorrentFile;
 
 use const SandFox\Torrent\Tests\TEST_ROOT;
@@ -56,5 +57,11 @@ class CreateFileTest extends TestCase
             'magnet:?dn=files&xt=urn:btih:5AF63CDFB9CDCC9A09BDE3FA4B7A9266D8528B7A',
             $torrent->getMagnetLink()
         );
+    }
+
+    public function testNotFoundException(): void
+    {
+        $this->expectException(PathNotFoundException::class);
+        TorrentFile::fromPath(TEST_ROOT . '/data/files/nosuchfile.txt');
     }
 }

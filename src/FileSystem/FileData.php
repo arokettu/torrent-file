@@ -26,13 +26,11 @@ abstract class FileData
 
     public static function forPath(string $path, array $options = []): self
     {
-        $path = realpath($path);
-
         if (is_file($path)) {
-            return new SingleFileData($path, $options);
+            return new SingleFileData(realpath($path), $options);
         }
         if (is_dir($path)) {
-            return new MultipleFileData($path, $options);
+            return new MultipleFileData(realpath($path), $options);
         }
 
         throw new PathNotFoundException("Path '{$path}' doesn't exist or is not regular file or directory");
