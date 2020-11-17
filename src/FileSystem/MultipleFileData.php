@@ -45,7 +45,7 @@ final class MultipleFileData extends FileData
 
         if ($this->options['sortFiles']) {
             // sort files by binary comparing exploded parts
-            usort($filePaths, function ($path1, $path2) {
+            usort($filePaths, function ($path1, $path2): int {
                 $exploded1 = $path1['explodedPath'];
                 $exploded2 = $path2['explodedPath'];
 
@@ -59,7 +59,8 @@ final class MultipleFileData extends FileData
                     }
                 }
 
-                return 0; // this however should never happen
+                // this should never happen
+                return 0; // @codeCoverageIgnore
             });
         }
 
