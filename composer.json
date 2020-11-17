@@ -35,8 +35,8 @@
         ]
     },
     "require": {
-        "php": "^7.1.3 || ^8.0",
-        "arokettu/query-string-proxy": "^1.0",
+        "php": "^7.4 || ^8.0",
+        "league/uri-components": "^2.0",
         "sandfoxme/bencode": "^1.3 || ^2.0",
         "symfony/finder": ">= 2.7 < 6"
     },
