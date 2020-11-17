@@ -3,6 +3,14 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 2.0.0
+
+_Nov 17, 2020_
+
+* Bump PHP requirement to PHP 7.4
+* Replace `FileDataProgress` with Event Dispatcher ([PSR-14]) + `FileDataProgressEvent`
+* 100% test coverage
+
 ## 1.3.1
 
 _Nov 9, 2020_
@@ -80,3 +88,5 @@ _Mar 30, 2017_
 
 Initial release
 Basic work with torrent files
+
+[PSR-14]: https://www.php-fig.org/psr/psr-14/ 
