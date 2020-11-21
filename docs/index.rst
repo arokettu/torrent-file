@@ -8,9 +8,17 @@ A PHP Class to work with torrent files
 Installation
 ============
 
+PHP 7.1+:
+
 .. code-block:: bash
 
-    composer require sandfoxme/torrent-file
+    composer require 'sandfoxme/torrent-file:^1.0 || ^2.0'
+
+PHP 7.4+:
+
+.. code-block:: bash
+
+    composer require 'sandfoxme/torrent-file:^2.0'
 
 Usage
 =====
@@ -38,7 +46,16 @@ Create torrent file for existing directory or file
 
     use SandFox\Torrent\TorrentFile;
 
-    $torrent = TorrentFile::fromPath('/home/user/ISO/Debian');
+    $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', [
+        'pieceLength' => 512 * 1024,    // torrent chunk size (default: 512 KiB)
+        'md5sum' => false,              // generate md5 sums for files (default: false)
+        'sortFiles' => true,            // sort files in info dictionary by name (default: true)
+    ]);
+
+    // pass an instance of PSR-14 event dispatcher to receive progress events:
+    $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', [], $eventDispatcher);
+    // dispatcher will receive instances of \SandFox\Torrent\FileSystem\FileDataProgressEvent
+    //    only in 2.0 and later
 
 Save torrent file
 -----------------
@@ -110,6 +127,14 @@ Possible future features
 - Files model (chunks and offsets for files)
 - Chunks model (files and their offsets, chunk data validation)
 - Info verification for existing files on disk
+
+Upgrade from 1.x
+================
+
+Breaking changes:
+
+* PHP 7.4 is now required.
+* Custom event system based on ``FileDataProgress`` is removed. It was never documented anyway.
 
 License
 =======

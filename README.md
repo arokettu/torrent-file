@@ -8,8 +8,16 @@ A PHP Class to work with torrent files
 
 ## Installation
 
+PHP 7.1:
+
 ```bash
-composer require sandfoxme/torrent-file
+composer require 'sandfoxme/torrent-file:^1.0 || ^2.0'
+```
+
+PHP 7.4:
+
+```bash
+composer require 'sandfoxme/torrent-file:^2.0'
 ```
 
 ## Features
