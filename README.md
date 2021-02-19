@@ -1,25 +1,16 @@
 # PHP Torrent File Library
 
-[![Packagist](https://img.shields.io/packagist/v/sandfoxme/torrent-file.svg)](https://packagist.org/packages/sandfoxme/torrent-file)
-[![PHP](https://img.shields.io/packagist/php-v/sandfoxme/torrent-file/1.x-dev.svg?label=php%20for%201.x)](https://packagist.org/packages/sandfoxme/torrent-file)
-[![PHP](https://img.shields.io/packagist/php-v/sandfoxme/torrent-file/2.x-dev.svg?label=php%20for%202.x)](https://packagist.org/packages/sandfoxme/torrent-file)
-[![License](https://img.shields.io/packagist/l/sandfoxme/torrent-file.svg)](https://opensource.org/licenses/MIT)
-[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/sandfox/torrent-file/2.x.svg)](https://gitlab.com/sandfox/torrent-file/-/pipelines)
+[![Packagist](https://img.shields.io/packagist/v/sandfoxme/torrent-file.svg?style=flat-square)](https://packagist.org/packages/sandfoxme/torrent-file)
+[![License](https://img.shields.io/packagist/l/sandfoxme/torrent-file.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/sandfox/torrent-file/master.svg?style=flat-square)](https://gitlab.com/sandfox/torrent-file/-/pipelines)
+[![Codecov](https://img.shields.io/codecov/c/gl/sandfox/torrent-file?style=flat-square)](https://codecov.io/gl/sandfox/torrent-file/)
 
 A PHP Class to work with torrent files
 
 ## Installation
 
-PHP 7.1:
-
 ```bash
-composer require 'sandfoxme/torrent-file:^1.0 || ^2.0'
-```
-
-PHP 7.4:
-
-```bash
-composer require 'sandfoxme/torrent-file:^2.0'
+composer require sandfoxme/torrent-file
 ```
 
 ## Features
