@@ -3,6 +3,13 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 2.1.0
+
+_Feb 19, 2021_
+
+* Add Stream API from Bencode 1.5/2.5
+* Add big integer support from Bencode 1.6/2.6
+
 ## 2.0.0
 
 _Nov 17, 2020_

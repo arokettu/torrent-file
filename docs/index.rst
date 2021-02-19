@@ -28,6 +28,8 @@ Load existing torrent file
     $torrent = TorrentFile::load('debian.torrent');
     // from string
     $torrent = TorrentFile::loadFromString(file_get_contents('debian.torrent'));
+    // from stream
+    $torrent = TorrentFile::loadFromStream(fopen('debian.torrent', 'r'));
 
 Create torrent file for existing directory or file
 --------------------------------------------------
@@ -63,6 +65,11 @@ Save torrent file
     header('Content-Type: application/x-bittorrent');
     header('Content-Disposition: attachment; filename="' . urlencode($torrent->getFileName()) . '"');
     echo $torrent->storeToString();
+
+    // to stream. useful for psr-7
+    $response
+        ->withHeader('Content-Type', 'application/x-bittorrent')
+        ->withBody($streamFactory->createStreamFromResource($torrent->storeToStream()));
 
 Basic fields manipulation
 -------------------------
