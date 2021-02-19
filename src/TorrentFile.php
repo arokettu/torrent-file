@@ -38,7 +38,7 @@ class TorrentFile implements BencodeSerializable
      */
     public static function load(string $fileName): self
     {
-        return new self(Bencode::load($fileName));
+        return new self(Bencode::load($fileName, ['bigInt' => Bencode\BigInt::INTERNAL]));
     }
 
     /**
@@ -49,7 +49,18 @@ class TorrentFile implements BencodeSerializable
      */
     public static function loadFromString(string $string): self
     {
-        return new self(Bencode::decode($string));
+        return new self(Bencode::decode($string, ['bigInt' => Bencode\BigInt::INTERNAL]));
+    }
+
+    /**
+     * Load data from bencoded stream
+     *
+     * @param resource $stream
+     * @return TorrentFile
+     */
+    public static function loadFromStream($stream): self
+    {
+        return new self(Bencode::decodeStream($stream, ['bigInt' => Bencode\BigInt::INTERNAL]));
     }
 
     /**
@@ -102,6 +113,17 @@ class TorrentFile implements BencodeSerializable
     public function storeToString(): string
     {
         return Bencode::encode($this);
+    }
+
+    /**
+     * Save torrent to a stream
+     *
+     * @param resource|null $stream
+     * @return string
+     */
+    public function storeToStream($stream = null)
+    {
+        return Bencode::encodeToStream($this, $stream);
     }
 
     public function getRawData()
