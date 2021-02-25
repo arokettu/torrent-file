@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\FileSystem;
 
-class FileDataProgressEvent
+final class FileDataProgressEvent
 {
     private int $total;
     private int $done;

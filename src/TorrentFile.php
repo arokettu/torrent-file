@@ -12,7 +12,7 @@ use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
 
-class TorrentFile implements BencodeSerializable
+final class TorrentFile implements BencodeSerializable
 {
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
@@ -23,9 +23,8 @@ class TorrentFile implements BencodeSerializable
 
     /**
      * @param array $data
-     * @internal Use named constructors instead
      */
-    public function __construct(array $data = [])
+    private function __construct(array $data = [])
     {
         $this->data = $data;
     }
