@@ -3,6 +3,13 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 2.1.1
+
+_Feb 25, 2021_
+
+* Fixed deprecated behavior not removed in 2.0.0:
+  `TorrentFile::__construct()` is now private
+
 ## 2.1.0
 
 _Feb 19, 2021_
