@@ -46,3 +46,8 @@ function get_words(): array
 
     return array_filter(explode("\n", $words));
 }
+
+function build_magnet_link(array $components = []): string
+{
+    return 'magnet:?' . implode('&', $components);
+}
