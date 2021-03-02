@@ -6,15 +6,14 @@ namespace SandFox\Torrent\Tests\All;
 
 use PHPUnit\Framework\TestCase;
 use SandFox\Torrent\Exception\PathNotFoundException;
+use SandFox\Torrent\Tests as t;
 use SandFox\Torrent\TorrentFile;
-
-use const SandFox\Torrent\Tests\TEST_ROOT;
 
 class CreateFileTest extends TestCase
 {
     public function testSingleFile(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
+        $torrent = TorrentFile::fromPath(t\TEST_ROOT . '/data/files/file1.txt', [
             'md5sum' => true,
         ]); // approx 6 mb
 
@@ -24,14 +23,17 @@ class CreateFileTest extends TestCase
         $this->assertEquals('file1.txt.torrent', $torrent->getFileName());
 
         $this->assertEquals(
-            'magnet:?dn=file1.txt&xt=urn:btih:6092CFE0E10D639229CDB76A1375AF37E45C0DF7',
+            t\build_magnet_link([
+                'xt=urn:btih:6092CFE0E10D639229CDB76A1375AF37E45C0DF7',
+                'dn=file1.txt',
+            ]),
             $torrent->getMagnetLink()
         );
     }
 
     public function testMultipleFiles(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files', [
+        $torrent = TorrentFile::fromPath(t\TEST_ROOT . '/data/files', [
             'md5sum' => true,
         ]); // approx 19 mb
 
@@ -41,14 +43,17 @@ class CreateFileTest extends TestCase
         $this->assertEquals('files.torrent', $torrent->getFileName());
 
         $this->assertEquals(
-            'magnet:?dn=files&xt=urn:btih:0C8AF23BEB533D29FE210137439E6C1FCE8ACABA',
+            t\build_magnet_link([
+                'xt=urn:btih:0C8AF23BEB533D29FE210137439E6C1FCE8ACABA',
+                'dn=files',
+            ]),
             $torrent->getMagnetLink()
         );
     }
 
     public function testMultipleFiles1MB(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files', [
+        $torrent = TorrentFile::fromPath(t\TEST_ROOT . '/data/files', [
             'md5sum' => true,
             'pieceLength' => 1024 * 1024, // 1mb chunk
         ]); // approx 19 mb
@@ -59,7 +64,10 @@ class CreateFileTest extends TestCase
         $this->assertEquals('files.torrent', $torrent->getFileName());
 
         $this->assertEquals(
-            'magnet:?dn=files&xt=urn:btih:7F71B004D89E823B7800E9F27C893C3A97562CEA',
+            t\build_magnet_link([
+                'xt=urn:btih:7F71B004D89E823B7800E9F27C893C3A97562CEA',
+                'dn=files',
+            ]),
             $torrent->getMagnetLink()
         );
     }
@@ -67,6 +75,6 @@ class CreateFileTest extends TestCase
     public function testNotFoundException(): void
     {
         $this->expectException(PathNotFoundException::class);
-        TorrentFile::fromPath(TEST_ROOT . '/data/files/nosuchfile.txt');
+        TorrentFile::fromPath(t\TEST_ROOT . '/data/files/nosuchfile.txt');
     }
 }

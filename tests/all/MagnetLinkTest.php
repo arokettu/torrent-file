@@ -6,9 +6,8 @@ namespace SandFox\Torrent\Tests\All;
 
 use PHPUnit\Framework\TestCase;
 use SandFox\Bencode\Bencode;
+use SandFox\Torrent\Tests as t;
 use SandFox\Torrent\TorrentFile;
-
-use function SandFox\Torrent\Tests\build_magnet_link;
 
 class MagnetLinkTest extends TestCase
 {
@@ -18,9 +17,9 @@ class MagnetLinkTest extends TestCase
 
         $torrent = TorrentFile::loadFromString(Bencode::encode(['info' => ['name' => 'my test torrent']]));
         $this->assertEquals(
-            build_magnet_link([
-                'dn=my%20test%20torrent',
+            t\build_magnet_link([
                 'xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE',
+                'dn=my%20test%20torrent',
             ]),
             $torrent->getMagnetLink()
         );
@@ -29,9 +28,9 @@ class MagnetLinkTest extends TestCase
 
         $torrent = TorrentFile::loadFromString(Bencode::encode(['info' => ['name' => 'トレント']]));
         $this->assertEquals(
-            build_magnet_link([
-                'dn=%E3%83%88%E3%83%AC%E3%83%B3%E3%83%88',
+            t\build_magnet_link([
                 'xt=urn:btih:F8A6EF35F6B70E8E599CEB2CE3DE920111524FBA',
+                'dn=%E3%83%88%E3%83%AC%E3%83%B3%E3%83%88',
             ]),
             $torrent->getMagnetLink()
         );
@@ -51,9 +50,9 @@ class MagnetLinkTest extends TestCase
         $torrent = clone $base;
         $torrent->setAnnounce('http://example.com');
         $this->assertEquals(
-            build_magnet_link([
-                'dn=my%20test%20torrent',
+            t\build_magnet_link([
                 'xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE',
+                'dn=my%20test%20torrent',
                 'tr=http://example.com',
             ]),
             $torrent->getMagnetLink()
@@ -67,9 +66,9 @@ class MagnetLinkTest extends TestCase
             ['udp://example.org:4321', 'http://example.org']
         ]);
         $this->assertEquals(
-            build_magnet_link([
-                'dn=my%20test%20torrent',
+            t\build_magnet_link([
                 'xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE',
+                'dn=my%20test%20torrent',
                 'tr=http://example.net',
                 'tr=udp://example.org:4321',
                 'tr=http://example.org',
@@ -87,9 +86,9 @@ class MagnetLinkTest extends TestCase
             ['udp://example.org:4321', 'http://example.org', 'http://example.net']
         ]);
         $this->assertEquals(
-            build_magnet_link([
-                'dn=my%20test%20torrent',
+            t\build_magnet_link([
                 'xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE',
+                'dn=my%20test%20torrent',
                 'tr=http://example.com',
                 'tr=http://example.net',
                 'tr=udp://example.org:4321',

@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace SandFox\Torrent\Tests\All;
 
 use PHPUnit\Framework\TestCase;
+use SandFox\Torrent\Tests as t;
 use SandFox\Torrent\TorrentFile;
-
-use const SandFox\Torrent\Tests\TEST_ROOT;
 
 class LoadFileTest extends TestCase
 {
     public function testLoadFields(): void
     {
-        $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
+        $torrent = TorrentFile::load(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 
         $this->assertEquals('http://torrent.centos.org:6969/announce', $torrent->getAnnounce());
         $this->assertEquals([
@@ -31,9 +30,12 @@ class LoadFileTest extends TestCase
         // magnet link
 
         $this->assertEquals(
-            'magnet:?dn=CentOS-7-x86_64-NetInstall-1611&xt=urn:btih:54259D2FAFB1DE5B794E449777748EBA36236F8C' .
-                '&tr=http://torrent.centos.org:6969/announce' .
-                '&tr=http://ipv6.torrent.centos.org:6969/announce',
+            t\build_magnet_link([
+                'xt=urn:btih:54259D2FAFB1DE5B794E449777748EBA36236F8C',
+                'dn=CentOS-7-x86_64-NetInstall-1611',
+                'tr=http://torrent.centos.org:6969/announce',
+                'tr=http://ipv6.torrent.centos.org:6969/announce',
+            ]),
             $torrent->getMagnetLink()
         );
 
@@ -44,20 +46,20 @@ class LoadFileTest extends TestCase
         fflush($tmpfile);
 
         $this->assertFileEquals(
-            TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent',
+            t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent',
             stream_get_meta_data($tmpfile)['uri']
         );
     }
 
     public function testStore(): void
     {
-        $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
+        $torrent = TorrentFile::load(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 
         $tmpName = tempnam('/tmp', 'tf-test');
 
         $torrent->store($tmpName);
 
-        $this->assertFileEquals(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', $tmpName);
+        $this->assertFileEquals(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', $tmpName);
 
         unlink($tmpName);
     }

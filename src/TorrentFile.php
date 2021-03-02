@@ -275,14 +275,12 @@ final class TorrentFile implements BencodeSerializable
 
     public function getMagnetLink(): string
     {
-        $pairs = [];
+        $pairs = [['xt', 'urn:btih:' . strtoupper($this->getInfoHash())]];
 
         $dn = $this->data['info']['name'] ?? '';
         if ($dn !== '') {
             $pairs[] = ['dn', $this->getDisplayName()];
         }
-
-        $pairs[] = ['xt', 'urn:btih:' . strtoupper($this->getInfoHash())];
 
         $trackers = [];
 
