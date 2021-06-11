@@ -51,7 +51,7 @@ final class MultipleFileData extends FileData
 
                 $partsCount = min(count($exploded1), count($exploded2));
 
-                for ($i = 0; $i < $partsCount; $i++) {
+                for ($i = 0; $i < $partsCount; ++$i) {
                     $result = strcmp($exploded1[$i], $exploded2[$i]);
 
                     if ($result !== 0) {
