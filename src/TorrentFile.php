@@ -8,6 +8,7 @@ use ArrayObject;
 use League\Uri\QueryString;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Bencode\Bencode;
+use SandFox\Bencode\Encoder;
 use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
@@ -101,7 +102,13 @@ final class TorrentFile implements BencodeSerializable
      */
     public function store(string $fileName): bool
     {
-        return Bencode::dump($fileName, $this);
+        if (class_exists(Encoder::class)) {
+            // bencode v3
+            return (new Encoder())->dump($this, $fileName);
+        } else {
+            // bencode v1/v2
+            return Bencode::dump($fileName, $this);
+        }
     }
 
     /**
@@ -138,7 +145,7 @@ final class TorrentFile implements BencodeSerializable
         return $rawData;
     }
 
-    public function bencodeSerialize(): mixed
+    public function bencodeSerialize(): array
     {
         return $this->getRawData();
     }
