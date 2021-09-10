@@ -42,12 +42,9 @@
         "symfony/finder": ">= 2.7 < 6"
     },
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "*",
         "league/event": "^3.0",
-        "phpcompatibility/php-compatibility": "*",
         "phpunit/phpunit": "^9.5",
         "psy/psysh": "*",
-        "slevomat/coding-standard": "*",
-        "squizlabs/php_codesniffer": "*"
+        "sandfox.dev/code-standard": "7.4.*@dev"
     }
 }
