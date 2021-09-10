@@ -15,16 +15,17 @@ class AnnounceListTest extends TestCase
         $torrent = TorrentFile::loadFromString('de');
 
         // no warning if not set
-        $this->assertEquals([], $torrent->getAnnounceList());
+        self::assertEquals([], $torrent->getAnnounceList());
 
         // allow unset
         $torrent->setAnnounceList(['http://localhost']);
         $torrent->setAnnounceList([]);
-        $this->assertEquals([], $torrent->getAnnounceList());
+        self::assertEquals([], $torrent->getAnnounceList());
 
         // setting empty groups is empty set
         $torrent->setAnnounceList([[], [], [], []]);
-        $this->assertEquals([], $torrent->getAnnounceList());
+        self::assertEquals([], $torrent->getAnnounceList());
+        self::assertNull($torrent->getRawData()['announce-list'] ?? null);
     }
 
     public function testPlainList()
@@ -34,7 +35,7 @@ class AnnounceListTest extends TestCase
         $torrent->setAnnounceList(['https://example.com/tracker', 'https://example.org/tracker']);
 
         // trackers should form groups
-        $this->assertEquals([
+        self::assertEquals([
             ['https://example.com/tracker'],
             ['https://example.org/tracker'],
         ], $torrent->getAnnounceList());
@@ -46,7 +47,7 @@ class AnnounceListTest extends TestCase
 
         $torrent->setAnnounceList([['https://example.com/tracker', 'https://example.org/tracker']]);
 
-        $this->assertEquals([
+        self::assertEquals([
             ['https://example.com/tracker', 'https://example.org/tracker']
         ], $torrent->getAnnounceList());
     }
@@ -62,7 +63,7 @@ class AnnounceListTest extends TestCase
             ['https://example.info/tracker'],
         ]);
 
-        $this->assertEquals([
+        self::assertEquals([
             ['https://example.com/tracker', 'https://example.org/tracker'],
             ['https://example.net/tracker'],
             ['https://example.info/tracker'],
@@ -109,7 +110,7 @@ class AnnounceListTest extends TestCase
             ['http://example.net/announce', 'udp://example.net/announce'], // more complex group test
             ['http://example.org/announce', 'udp://example.org/announce'], // groups are compared after in-group removal
         ]);
-        $this->assertEquals([
+        self::assertEquals([
             ['http://example.com/announce'],
             ['http://example.org/announce', 'udp://example.org/announce'],
             ['http://example.net/announce', 'udp://example.net/announce'],

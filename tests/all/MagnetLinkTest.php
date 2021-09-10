@@ -16,7 +16,7 @@ class MagnetLinkTest extends TestCase
         // simple
 
         $torrent = TorrentFile::loadFromString(Bencode::encode(['info' => ['name' => 'my test torrent']]));
-        $this->assertEquals(
+        self::assertEquals(
             t\build_magnet_link([
                 'xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE',
                 'dn=my%20test%20torrent',
@@ -27,7 +27,7 @@ class MagnetLinkTest extends TestCase
         // unicode
 
         $torrent = TorrentFile::loadFromString(Bencode::encode(['info' => ['name' => 'トレント']]));
-        $this->assertEquals(
+        self::assertEquals(
             t\build_magnet_link([
                 'xt=urn:btih:F8A6EF35F6B70E8E599CEB2CE3DE920111524FBA',
                 'dn=%E3%83%88%E3%83%AC%E3%83%B3%E3%83%88',
@@ -38,7 +38,7 @@ class MagnetLinkTest extends TestCase
         // empty
 
         $torrent = TorrentFile::loadFromString('de');
-        $this->assertEquals('magnet:?xt=urn:btih:600CCD1B71569232D01D110BC63E906BEAB04D8C', $torrent->getMagnetLink());
+        self::assertEquals('magnet:?xt=urn:btih:600CCD1B71569232D01D110BC63E906BEAB04D8C', $torrent->getMagnetLink());
     }
 
     public function testTR()
@@ -49,7 +49,7 @@ class MagnetLinkTest extends TestCase
 
         $torrent = clone $base;
         $torrent->setAnnounce('http://example.com');
-        $this->assertEquals(
+        self::assertEquals(
             t\build_magnet_link([
                 'xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE',
                 'dn=my%20test%20torrent',
@@ -65,7 +65,7 @@ class MagnetLinkTest extends TestCase
             'http://example.net',
             ['udp://example.org:4321', 'http://example.org']
         ]);
-        $this->assertEquals(
+        self::assertEquals(
             t\build_magnet_link([
                 'xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE',
                 'dn=my%20test%20torrent',
@@ -85,7 +85,7 @@ class MagnetLinkTest extends TestCase
             'http://example.com', // removes duplicates that are allowed in base class
             ['udp://example.org:4321', 'http://example.org', 'http://example.net']
         ]);
-        $this->assertEquals(
+        self::assertEquals(
             t\build_magnet_link([
                 'xt=urn:btih:BF88DD1FDFDD0E8B596E6AA39EBEA83D536F1DDE',
                 'dn=my%20test%20torrent',

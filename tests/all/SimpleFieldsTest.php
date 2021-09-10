@@ -14,14 +14,14 @@ class SimpleFieldsTest extends TestCase
         $torrent = TorrentFile::loadFromString('de');
 
         // no warning if not set
-        $this->assertEquals(null, $torrent->getComment());
+        self::assertEquals(null, $torrent->getComment());
 
         // check set
         $torrent->setComment('I am comment');
-        $this->assertEquals('I am comment', $torrent->getComment());
+        self::assertEquals('I am comment', $torrent->getComment());
 
         // check unset
         $torrent->setComment(null);
-        $this->assertEquals(null, $torrent->getComment());
+        self::assertEquals(null, $torrent->getComment());
     }
 }

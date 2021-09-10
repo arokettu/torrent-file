@@ -18,9 +18,9 @@ class PrivateTest extends TestCase
 
         $torrent->setPrivate(true);
 
-        $this->assertNotEquals($sha, $torrent->getInfoHash()); // changing private value must change info hash
+        self::assertNotEquals($sha, $torrent->getInfoHash()); // changing private value must change info hash
 
-        $this->assertEquals(1, $torrent->getRawData()['info']['private']);
+        self::assertEquals(1, $torrent->getRawData()['info']['private']);
     }
 
     public function testUnsetPrivate(): void
@@ -33,8 +33,8 @@ class PrivateTest extends TestCase
 
         $torrent->setPrivate(false);
 
-        $this->assertNotEquals($sha, $torrent->getInfoHash()); // changing private value must change info hash
+        self::assertNotEquals($sha, $torrent->getInfoHash()); // changing private value must change info hash
 
-        $this->assertNull($torrent->getRawData()['info']['private'] ?? null);
+        self::assertNull($torrent->getRawData()['info']['private'] ?? null);
     }
 }

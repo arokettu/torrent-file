@@ -14,22 +14,22 @@ class LoadFileTest extends TestCase
     {
         $torrent = TorrentFile::load(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 
-        $this->assertEquals('http://torrent.centos.org:6969/announce', $torrent->getAnnounce());
-        $this->assertEquals([
+        self::assertEquals('http://torrent.centos.org:6969/announce', $torrent->getAnnounce());
+        self::assertEquals([
             ['http://torrent.centos.org:6969/announce'],
             ['http://ipv6.torrent.centos.org:6969/announce'],
         ], $torrent->getAnnounceList());
-        $this->assertEquals('CentOS x86_64 NetInstall ISO', $torrent->getComment());
-        $this->assertEquals('mktorrent 1.0', $torrent->getCreatedBy());
-        $this->assertEquals(1481207147, $torrent->getCreationDate());
-        $this->assertFalse($torrent->isPrivate());
-        $this->assertEquals('54259d2fafb1de5b794e449777748eba36236f8c', $torrent->getInfoHash());
-        $this->assertEquals('CentOS-7-x86_64-NetInstall-1611', $torrent->getDisplayName());
-        $this->assertEquals('CentOS-7-x86_64-NetInstall-1611.torrent', $torrent->getFileName());
+        self::assertEquals('CentOS x86_64 NetInstall ISO', $torrent->getComment());
+        self::assertEquals('mktorrent 1.0', $torrent->getCreatedBy());
+        self::assertEquals(1481207147, $torrent->getCreationDate());
+        self::assertFalse($torrent->isPrivate());
+        self::assertEquals('54259d2fafb1de5b794e449777748eba36236f8c', $torrent->getInfoHash());
+        self::assertEquals('CentOS-7-x86_64-NetInstall-1611', $torrent->getDisplayName());
+        self::assertEquals('CentOS-7-x86_64-NetInstall-1611.torrent', $torrent->getFileName());
 
         // magnet link
 
-        $this->assertEquals(
+        self::assertEquals(
             t\build_magnet_link([
                 'xt=urn:btih:54259D2FAFB1DE5B794E449777748EBA36236F8C',
                 'dn=CentOS-7-x86_64-NetInstall-1611',
@@ -45,7 +45,7 @@ class LoadFileTest extends TestCase
         fwrite($tmpfile, $torrent->storeToString());
         fflush($tmpfile);
 
-        $this->assertFileEquals(
+        self::assertFileEquals(
             t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent',
             stream_get_meta_data($tmpfile)['uri']
         );
@@ -59,7 +59,7 @@ class LoadFileTest extends TestCase
 
         $torrent->store($tmpName);
 
-        $this->assertFileEquals(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', $tmpName);
+        self::assertFileEquals(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', $tmpName);
 
         unlink($tmpName);
     }
