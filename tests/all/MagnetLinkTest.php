@@ -11,7 +11,7 @@ use SandFox\Torrent\TorrentFile;
 
 class MagnetLinkTest extends TestCase
 {
-    public function testDN()
+    public function testDN(): void
     {
         // simple
 
@@ -41,7 +41,7 @@ class MagnetLinkTest extends TestCase
         self::assertEquals('magnet:?xt=urn:btih:600CCD1B71569232D01D110BC63E906BEAB04D8C', $torrent->getMagnetLink());
     }
 
-    public function testTR()
+    public function testTR(): void
     {
         $base = TorrentFile::loadFromString(Bencode::encode(['info' => ['name' => 'my test torrent']]));
 

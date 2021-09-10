@@ -9,7 +9,7 @@ use SandFox\Torrent\TorrentFile;
 
 class SimpleFieldsTest extends TestCase
 {
-    public function testComment()
+    public function testComment(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 

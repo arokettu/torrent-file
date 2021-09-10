@@ -10,7 +10,7 @@ use SandFox\Torrent\TorrentFile;
 
 class AnnounceListTest extends TestCase
 {
-    public function testEmpty()
+    public function testEmpty(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 
@@ -28,7 +28,7 @@ class AnnounceListTest extends TestCase
         self::assertNull($torrent->getRawData()['announce-list'] ?? null);
     }
 
-    public function testPlainList()
+    public function testPlainList(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 
@@ -41,7 +41,7 @@ class AnnounceListTest extends TestCase
         ], $torrent->getAnnounceList());
     }
 
-    public function testGroupList()
+    public function testGroupList(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 
@@ -52,7 +52,7 @@ class AnnounceListTest extends TestCase
         ], $torrent->getAnnounceList());
     }
 
-    public function testMixedGrouping()
+    public function testMixedGrouping(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 
@@ -70,7 +70,7 @@ class AnnounceListTest extends TestCase
         ], $torrent->getAnnounceList());
     }
 
-    public function testInvalidNesting()
+    public function testInvalidNesting(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 
@@ -78,7 +78,7 @@ class AnnounceListTest extends TestCase
         $torrent->setAnnounceList([[['http://localhost']]]);
     }
 
-    public function testInvalidTypeOn1stLvl()
+    public function testInvalidTypeOn1stLvl(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 
@@ -86,7 +86,7 @@ class AnnounceListTest extends TestCase
         $torrent->setAnnounceList([123]);
     }
 
-    public function testInvalidTypeOn2ndLvl()
+    public function testInvalidTypeOn2ndLvl(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 
@@ -94,7 +94,7 @@ class AnnounceListTest extends TestCase
         $torrent->setAnnounceList([[123]]);
     }
 
-    public function testUnique()
+    public function testUnique(): void
     {
         $torrent = TorrentFile::loadFromString('de');
 

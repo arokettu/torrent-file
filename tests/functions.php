@@ -27,7 +27,7 @@ function generate_files(): void
 
         for ($i = 0; $i < 1153; ++$i) {
             for ($j = 0; $j < 983; ++$j) {
-                $index = ($index + $randomizer) % count($words);
+                $index = ($index + $randomizer) % \count($words);
                 fwrite($file, $words[$index]);
                 fwrite($file, ' ');
             }

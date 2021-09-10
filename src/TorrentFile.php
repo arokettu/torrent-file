@@ -96,10 +96,10 @@ final class TorrentFile implements BencodeSerializable
     /**
      * Save torrent to file
      *
-     * @param $fileName
+     * @param string $fileName
      * @return bool
      */
-    public function store($fileName): bool
+    public function store(string $fileName): bool
     {
         return Bencode::dump($fileName, $this);
     }
@@ -118,14 +118,14 @@ final class TorrentFile implements BencodeSerializable
      * Save torrent to a stream
      *
      * @param resource|null $stream
-     * @return string
+     * @return resource
      */
     public function storeToStream($stream = null)
     {
         return Bencode::encodeToStream($this, $stream);
     }
 
-    public function getRawData()
+    public function getRawData(): array
     {
         $filter = function ($value): bool {
             return $value !== null && $value !== [];
@@ -138,7 +138,7 @@ final class TorrentFile implements BencodeSerializable
         return $rawData;
     }
 
-    public function bencodeSerialize()
+    public function bencodeSerialize(): mixed
     {
         return $this->getRawData();
     }
@@ -163,12 +163,12 @@ final class TorrentFile implements BencodeSerializable
     public function setAnnounceList(array $announceList): self
     {
         foreach ($announceList as &$group) {
-            if (is_string($group)) {
+            if (\is_string($group)) {
                 $group = [$group];
                 continue;
             }
 
-            if (!is_array($group)) {
+            if (!\is_array($group)) {
                 throw new InvalidArgumentException(
                     'announce-list should be an array of strings or an array of arrays of strings'
                 );
@@ -177,7 +177,7 @@ final class TorrentFile implements BencodeSerializable
             $group = array_unique($group);
 
             foreach ($group as $announce) {
-                if (!is_string($announce)) {
+                if (!\is_string($announce)) {
                     throw new InvalidArgumentException(
                         'announce-list should be an array of strings or an array of arrays of strings'
                     );
@@ -302,6 +302,6 @@ final class TorrentFile implements BencodeSerializable
 
         $query = QueryString::build($pairs);
 
-        return 'magnet:?' . strval($query);
+        return 'magnet:?' . $query;
     }
 }

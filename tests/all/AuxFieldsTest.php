@@ -10,7 +10,7 @@ use SandFox\Torrent\TorrentFile;
 
 class AuxFieldsTest extends TestCase
 {
-    public function testDisplayName()
+    public function testDisplayName(): void
     {
         // basic
 

@@ -18,7 +18,7 @@ class CreateFileTest extends TestCase
         ]); // approx 6 mb
 
         self::assertEquals('6092cfe0e10d639229cdb76a1375af37e45c0df7', $torrent->getInfoHash());
-        self::assertEquals(260, strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
+        self::assertEquals(260, \strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
 
@@ -38,7 +38,7 @@ class CreateFileTest extends TestCase
         ]); // approx 19 mb
 
         self::assertEquals('0c8af23beb533d29fe210137439e6c1fce8acaba', $torrent->getInfoHash());
-        self::assertEquals(760, strlen($torrent->getRawData()['info']['pieces'])); // 38 chunks
+        self::assertEquals(760, \strlen($torrent->getRawData()['info']['pieces'])); // 38 chunks
         self::assertEquals('files', $torrent->getDisplayName());
         self::assertEquals('files.torrent', $torrent->getFileName());
 
@@ -59,7 +59,7 @@ class CreateFileTest extends TestCase
         ]); // approx 19 mb
 
         self::assertEquals('7f71b004d89e823b7800e9f27c893c3a97562cea', $torrent->getInfoHash());
-        self::assertEquals(380, strlen($torrent->getRawData()['info']['pieces'])); // 19 chunks
+        self::assertEquals(380, \strlen($torrent->getRawData()['info']['pieces'])); // 19 chunks
         self::assertEquals('files', $torrent->getDisplayName());
         self::assertEquals('files.torrent', $torrent->getFileName());
 
