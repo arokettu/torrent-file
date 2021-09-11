@@ -192,6 +192,8 @@ final class TorrentFile implements BencodeSerializable
             }
         }
 
+        /** @var string[][] $announceList - string[] is converted to string[][] by now */
+
         $this->data['announce-list'] = array_values(
             array_unique(
                 array_filter($announceList, 'count'),
