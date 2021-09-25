@@ -7,7 +7,8 @@ namespace SandFox\Torrent;
 use ArrayObject;
 use League\Uri\QueryString;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use SandFox\Bencode\Bencode;
+use SandFox\Bencode\Bencode\BigInt;
+use SandFox\Bencode\Decoder;
 use SandFox\Bencode\Encoder;
 use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
@@ -30,6 +31,11 @@ final class TorrentFile implements BencodeSerializable
         $this->data = $data;
     }
 
+    private static function decoder(): Decoder
+    {
+        return new Decoder(['bigInt' => BigInt::INTERNAL]);
+    }
+
     /**
      * Load data from torrent file
      *
@@ -38,7 +44,7 @@ final class TorrentFile implements BencodeSerializable
      */
     public static function load(string $fileName): self
     {
-        return new self(Bencode::load($fileName, ['bigInt' => Bencode\BigInt::INTERNAL]));
+        return new self(self::decoder()->load($fileName));
     }
 
     /**
@@ -49,7 +55,7 @@ final class TorrentFile implements BencodeSerializable
      */
     public static function loadFromString(string $string): self
     {
-        return new self(Bencode::decode($string, ['bigInt' => Bencode\BigInt::INTERNAL]));
+        return new self(self::decoder()->decode($string));
     }
 
     /**
@@ -60,7 +66,7 @@ final class TorrentFile implements BencodeSerializable
      */
     public static function loadFromStream($stream): self
     {
-        return new self(Bencode::decodeStream($stream, ['bigInt' => Bencode\BigInt::INTERNAL]));
+        return new self(self::decoder()->decodeStream($stream));
     }
 
     /**
@@ -102,13 +108,7 @@ final class TorrentFile implements BencodeSerializable
      */
     public function store(string $fileName): bool
     {
-        if (class_exists(Encoder::class)) {
-            // bencode v3
-            return (new Encoder())->dump($this, $fileName);
-        } else {
-            // bencode v1/v2
-            return Bencode::dump($fileName, $this);
-        }
+        return (new Encoder())->dump($this, $fileName);
     }
 
     /**
@@ -118,7 +118,7 @@ final class TorrentFile implements BencodeSerializable
      */
     public function storeToString(): string
     {
-        return Bencode::encode($this);
+        return (new Encoder())->encode($this);
     }
 
     /**
@@ -129,7 +129,7 @@ final class TorrentFile implements BencodeSerializable
      */
     public function storeToStream($stream = null)
     {
-        return Bencode::encodeToStream($this, $stream);
+        return (new Encoder())->encodeToStream($this, $stream);
     }
 
     public function getRawData(): array
@@ -267,7 +267,7 @@ final class TorrentFile implements BencodeSerializable
 
     public function getInfoHash(): string
     {
-        return $this->infoHash ?? $this->infoHash = sha1(Bencode::encode(new ArrayObject($this->data['info'] ?? [])));
+        return $this->infoHash ??= sha1((new Encoder())->encode(new ArrayObject($this->data['info'] ?? [])));
     }
 
     public function getDisplayName(): ?string
