@@ -3,6 +3,12 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 2.1.2
+
+*Sep 25, 2021*
+
+* Allow bencode 3.0, bump requirements to bencode 1.7+/2.7+/3.0+
+
 ## 2.1.1
 
 *Feb 25, 2021*
