@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SandFox\Bencode\Bencode;
 use SandFox\Torrent\TorrentFile;
 
-class AuxFieldsTest extends TestCase
+class FileNameSuggestionTest extends TestCase
 {
     public function testDisplayName(): void
     {
