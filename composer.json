@@ -38,7 +38,7 @@
         ]
     },
     "require": {
-        "php": "^7.4 | ^8.0",
+        "php": "^8.0",
         "league/uri-components": "^2.0",
         "nikic/iter": "^2.0",
         "psr/event-dispatcher": "^1.0",
