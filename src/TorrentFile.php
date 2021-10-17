@@ -351,4 +351,17 @@ final class TorrentFile implements BencodeSerializable
 
         return 'magnet:?' . $query;
     }
+
+    // handle serialization
+
+    public function __serialize(): array
+    {
+        // normalize data on serialization
+        return ['data' => $this->getRawData()];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        ['data' => $this->data] = $data;
+    }
 }
