@@ -10,7 +10,6 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Bencode\Decoder;
 use SandFox\Bencode\Encoder;
 use SandFox\Bencode\Types\BencodeSerializable;
-use SandFox\Torrent\DataTypes\DateTimeWrapper;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
 
@@ -21,6 +20,7 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\StoreMethods;
     // fields
     use TorrentFile\Fields\Announce;
+    use TorrentFile\Fields\CreationDate;
 
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
@@ -28,7 +28,6 @@ final class TorrentFile implements BencodeSerializable
 
     // info hash cache
     private ?string $infoHash = null;
-    private ?DateTimeWrapper $creationDate = null;
 
     /**
      * @param array $data
@@ -143,43 +142,6 @@ final class TorrentFile implements BencodeSerializable
     public function getAnnounceList(): array
     {
         return $this->data['announce-list'] ?? [];
-    }
-
-    // creation date
-
-    /**
-     * @param int|\DateTimeInterface|null $timestamp
-     * @return $this
-     */
-    public function setCreationDate($timestamp): self
-    {
-        $this->creationDate = DateTimeWrapper::fromExternalValue($timestamp);
-        $this->data['creation date'] = $this->creationDate;
-        return $this;
-    }
-
-    /**
-     * @deprecated Alias of getCreationDateAsTimestamp(). In 3.0 it will be an alias of getCreationDateAsDateTime()
-     * @return int|null
-     */
-    public function getCreationDate(): ?int
-    {
-        return $this->getCreationDateAsTimestamp();
-    }
-
-    private function getCreationDateWrapper(): DateTimeWrapper
-    {
-        return $this->creationDate ??= DateTimeWrapper::fromDataValue($this->data['creation date'] ?? null);
-    }
-
-    public function getCreationDateAsDateTime(): ?\DateTimeImmutable
-    {
-        return $this->getCreationDateWrapper()->getDateTime();
-    }
-
-    public function getCreationDateAsTimestamp(): ?int
-    {
-        return $this->getCreationDateWrapper()->getTimestamp();
     }
 
     // comment
