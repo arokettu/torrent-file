@@ -9,7 +9,7 @@ namespace SandFox\Torrent\TorrentFile\Fields;
  */
 trait StringFields
 {
-    public function setAnnounce(string $announce): self
+    public function setAnnounce(?string $announce): self
     {
         $this->data['announce'] = $announce;
         return $this;
@@ -31,14 +31,14 @@ trait StringFields
         return $this->data['comment'] ?? null;
     }
 
-    public function setCreatedBy(string $comment): self
+    public function setCreatedBy(?string $comment): self
     {
         $this->data['created by'] = $comment;
         return $this;
     }
 
-    public function getCreatedBy(): string
+    public function getCreatedBy(): ?string
     {
-        return $this->data['created by'];
+        return $this->data['created by'] ?? null;
     }
 }
