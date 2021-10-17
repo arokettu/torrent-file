@@ -10,7 +10,6 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Bencode\Decoder;
 use SandFox\Bencode\Encoder;
 use SandFox\Bencode\Types\BencodeSerializable;
-use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
 
 final class TorrentFile implements BencodeSerializable
@@ -20,6 +19,7 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\StoreMethods;
     // fields
     use TorrentFile\Fields\StringFields;
+    use TorrentFile\Fields\AnnounceList;
     use TorrentFile\Fields\CreationDate;
 
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
@@ -89,59 +89,6 @@ final class TorrentFile implements BencodeSerializable
         $data = array_filter($data, $filter);
 
         return $data;
-    }
-
-    /* Torrent file fields */
-
-    // announce list BEP-0012
-
-    /**
-     * @param string[]|string[][] $announceList
-     * @return $this
-     */
-    public function setAnnounceList(array $announceList): self
-    {
-        foreach ($announceList as &$group) {
-            if (\is_string($group)) {
-                $group = [$group];
-                continue;
-            }
-
-            if (!\is_array($group)) {
-                throw new InvalidArgumentException(
-                    'announce-list should be an array of strings or an array of arrays of strings'
-                );
-            }
-
-            $group = array_values(array_unique($group));
-
-            foreach ($group as $announce) {
-                if (!\is_string($announce)) {
-                    throw new InvalidArgumentException(
-                        'announce-list should be an array of strings or an array of arrays of strings'
-                    );
-                }
-            }
-        }
-
-        /** @var string[][] $announceList - string[] is converted to string[][] by now */
-
-        $this->data['announce-list'] = array_values(
-            array_unique(
-                array_filter($announceList, fn ($v) => $v !== []),
-                SORT_REGULAR
-            )
-        );
-
-        return $this;
-    }
-
-    /**
-     * @return string[][]
-     */
-    public function getAnnounceList(): array
-    {
-        return $this->data['announce-list'] ?? [];
     }
 
     // private flag BEP-0027
