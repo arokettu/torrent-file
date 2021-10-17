@@ -16,21 +16,13 @@ abstract class FileData
 {
     private const PIECE_LENGTH_MIN = 16 * 1024;
 
-    protected string $path;
-    protected int $pieceLength;
-    protected bool $detectExec;
-    protected bool $detectSymlinks;
-    protected int $pieceAlign;
-
-    private ?EventDispatcherInterface $eventDispatcher;
-
     public static function forPath(
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
         int $pieceLength,
         int $pieceAlign,
         bool $detectExec,
-        bool $detectSymlinks
+        bool $detectSymlinks,
     ): self {
         $params = [
             realpath($path),
@@ -52,20 +44,13 @@ abstract class FileData
     }
 
     protected function __construct(
-        string $path,
-        ?EventDispatcherInterface $eventDispatcher,
-        int $pieceLength,
-        int $pieceAlign,
-        bool $detectExec,
-        bool $detectSymlinks
+        protected string $path,
+        private ?EventDispatcherInterface $eventDispatcher,
+        protected int $pieceLength,
+        protected int $pieceAlign,
+        protected bool $detectExec,
+        protected bool $detectSymlinks,
     ) {
-        $this->path = $path;
-        $this->eventDispatcher = $eventDispatcher;
-        $this->pieceLength = $pieceLength;
-        $this->detectExec = $detectExec;
-        $this->detectSymlinks = $detectSymlinks;
-        $this->pieceAlign = $pieceAlign;
-
         if ($pieceLength < self::PIECE_LENGTH_MIN || ($pieceLength & ($pieceLength - 1)) !== 0) {
             throw new InvalidArgumentException(
                 'pieceLength must be a power of 2 and at least ' . self::PIECE_LENGTH_MIN
@@ -82,9 +67,7 @@ abstract class FileData
 
     protected function reportProgress(int $total, int $done, string $fileName): void
     {
-        if ($this->eventDispatcher) {
-            $this->eventDispatcher->dispatch(new FileDataProgressEvent($total, $done, $fileName));
-        }
+        $this->eventDispatcher?->dispatch(new FileDataProgressEvent($total, $done, $fileName));
     }
 
     protected function detectSymlink(string $path): ?array

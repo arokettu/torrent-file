@@ -22,7 +22,7 @@ class ReportEventTest extends TestCase implements ListenerProviderInterface
 
         $this->done = 0;
 
-        TorrentFile::fromPath(TEST_ROOT . '/data/files', [], $eventDispatcher);
+        TorrentFile::fromPath(TEST_ROOT . '/data/files', eventDispatcher:  $eventDispatcher);
     }
 
     public function getListenersForEvent(object $event): iterable

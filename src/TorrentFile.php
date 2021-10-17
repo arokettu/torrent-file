@@ -29,67 +29,34 @@ final class TorrentFile implements BencodeSerializable
 
     private const CREATED_BY = 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
-    private array $data;
-
-    /**
-     * @param array $data
-     */
-    private function __construct(array $data = [])
-    {
-        $this->data = $data;
-    }
+    private function __construct(
+        private array $data,
+    ) {}
 
     /**
      * Create torrent file for specified path
-     *
-     * @param string $path to file or directory
-     * @param array $options
-     * @param EventDispatcherInterface|null $eventDispatcher Event Dispatcher to monitor hashing progress
-     * @return TorrentFile
      */
     public static function fromPath(
         string $path,
-        array $options = [],
-        ?EventDispatcherInterface $eventDispatcher = null
+        ?EventDispatcherInterface $eventDispatcher = null,
+        int $pieceLength = 512 * 1024, // 512 KB
+        bool|int $pieceAlign = false,
+        bool $detectExec = true,
+        bool $detectSymlinks = false,
     ): self {
         // generate data for files
 
-        // @codeCoverageIgnoreStart
-        if (isset($options['sortFiles'])) {
-            trigger_deprecation(
-                'sandfoxme/torrent-file',
-                '2.2',
-                'sortFiles option is deprecated. Files are always sorted now',
-            );
-        }
-
-        if (isset($options['md5sum'])) {
-            trigger_deprecation(
-                'sandfoxme/torrent-file',
-                '2.2',
-                'sortFiles option is deprecated. Files are always sorted now',
-            );
-        }
-        // @codeCoverageIgnoreEnd
-
-        $options = array_merge([
-            'pieceLength'       => 512 * 1024, // 512 KB
-            'pieceAlign'        => false,
-            'detectExec'        => true,
-            'detectSymlinks'    => false,
-        ], $options);
-
-        if (\is_bool($options['pieceAlign'])) {
-            $options['pieceAlign'] = $options['pieceAlign'] ? 0 : PHP_INT_MAX;
+        if (\is_bool($pieceAlign)) {
+            $pieceAlign = $pieceAlign ? 0 : PHP_INT_MAX;
         }
 
         $dataGenerator = FileData::forPath(
             $path,
             $eventDispatcher,
-            $options['pieceLength'],
-            $options['pieceAlign'],
-            $options['detectExec'],
-            $options['detectSymlinks'],
+            $pieceLength,
+            $pieceAlign,
+            $detectExec,
+            $detectSymlinks,
         );
 
         $torrent = new self($dataGenerator->process());
