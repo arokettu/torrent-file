@@ -16,8 +16,11 @@ use SandFox\Torrent\FileSystem\FileData;
 
 final class TorrentFile implements BencodeSerializable
 {
+    // save & load
     use TorrentFile\LoadMethods;
     use TorrentFile\StoreMethods;
+    // fields
+    use TorrentFile\Fields\Announce;
 
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
@@ -90,19 +93,6 @@ final class TorrentFile implements BencodeSerializable
     }
 
     /* Torrent file fields */
-
-    // announce
-
-    public function setAnnounce(string $announce): self
-    {
-        $this->data['announce'] = $announce;
-        return $this;
-    }
-
-    public function getAnnounce(): ?string
-    {
-        return $this->data['announce'] ?? null;
-    }
 
     // announce list BEP-0012
 

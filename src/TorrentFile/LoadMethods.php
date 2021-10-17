@@ -12,9 +12,6 @@ use SandFox\Bencode\Decoder;
  */
 trait LoadMethods
 {
-    // TODO: PHP 8.0: abstract private
-    abstract protected function __construct(array $data = []);
-
     private static function decoder(): Decoder
     {
         return new Decoder(['bigInt' => BigInt::INTERNAL]);
