@@ -7,7 +7,6 @@ namespace SandFox\Torrent;
 use ArrayObject;
 use League\Uri\QueryString;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use SandFox\Bencode\Bencode\BigInt;
 use SandFox\Bencode\Decoder;
 use SandFox\Bencode\Encoder;
 use SandFox\Bencode\Types\BencodeSerializable;
@@ -17,6 +16,9 @@ use SandFox\Torrent\FileSystem\FileData;
 
 final class TorrentFile implements BencodeSerializable
 {
+    use TorrentFile\LoadMethods;
+    use TorrentFile\StoreMethods;
+
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
     private array $data;
@@ -31,44 +33,6 @@ final class TorrentFile implements BencodeSerializable
     private function __construct(array $data = [])
     {
         $this->data = $data;
-    }
-
-    private static function decoder(): Decoder
-    {
-        return new Decoder(['bigInt' => BigInt::INTERNAL]);
-    }
-
-    /**
-     * Load data from torrent file
-     *
-     * @param string $fileName
-     * @return TorrentFile
-     */
-    public static function load(string $fileName): self
-    {
-        return new self(self::decoder()->load($fileName));
-    }
-
-    /**
-     * Load data from bencoded string
-     *
-     * @param string $string
-     * @return TorrentFile
-     */
-    public static function loadFromString(string $string): self
-    {
-        return new self(self::decoder()->decode($string));
-    }
-
-    /**
-     * Load data from bencoded stream
-     *
-     * @param resource $stream
-     * @return TorrentFile
-     */
-    public static function loadFromStream($stream): self
-    {
-        return new self(self::decoder()->decodeStream($stream));
     }
 
     /**
@@ -100,38 +64,6 @@ final class TorrentFile implements BencodeSerializable
         $torrent->setCreationDate(new \DateTimeImmutable('now'));
 
         return $torrent;
-    }
-
-    /**
-     * Save torrent to file
-     *
-     * @param string $fileName
-     * @return bool
-     */
-    public function store(string $fileName): bool
-    {
-        return (new Encoder())->dump($this, $fileName);
-    }
-
-    /**
-     * Return torrent file as a string
-     *
-     * @return string
-     */
-    public function storeToString(): string
-    {
-        return (new Encoder())->encode($this);
-    }
-
-    /**
-     * Save torrent to a stream
-     *
-     * @param resource|null $stream
-     * @return resource
-     */
-    public function storeToStream($stream = null)
-    {
-        return (new Encoder())->encodeToStream($this, $stream);
     }
 
     public function getRawData(): array
