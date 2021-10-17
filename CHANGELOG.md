@@ -3,6 +3,16 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 2.next
+
+* Fixed possible announce list corruption if deduplication of trackers happened
+* Fixed `null` handling on `announce` and `created by` 
+* `getRawData()` now always returns the representation as it would appear in the saved file
+* `TorrentFile` now serializes in cross version compatible manner
+* Added 2 temporary methods: `getCreationDateAsDateTime()` and `getCreationDateAsTimestamp()`
+  to simplify future migration to 3.x.
+  In 3.x `getCreationDate()` will return `DateTimeImmutable` instead of `int`
+
 ## 2.1.2
 
 *Sep 25, 2021*
