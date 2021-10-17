@@ -63,4 +63,19 @@ class LoadFileTest extends TestCase
 
         unlink($tmpName);
     }
+
+    public function testStream(): void
+    {
+        $torrent = TorrentFile::loadFromStream(
+            fopen(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', 'r')
+        );
+
+        $stream = $torrent->storeToStream();
+        rewind($stream);
+
+        self::assertEquals(
+            file_get_contents(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent'),
+            stream_get_contents($stream)
+        );
+    }
 }
