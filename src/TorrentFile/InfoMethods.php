@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SandFox\Torrent\TorrentFile;
 
 use SandFox\Bencode\Encoder;
+use SandFox\Bencode\Types\DictType;
 
 /**
  * @internal
@@ -29,6 +30,6 @@ trait InfoMethods
 
     public function getInfoHash(): string
     {
-        return $this->infoHash ??= sha1((new Encoder())->encode(new \ArrayObject($this->data['info'] ?? [])));
+        return $this->infoHash ??= sha1((new Encoder())->encode(new DictType($this->data['info'] ?? [])));
     }
 }
