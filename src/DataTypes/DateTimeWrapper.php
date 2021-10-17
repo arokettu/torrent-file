@@ -22,9 +22,8 @@ final class DateTimeWrapper implements BencodeSerializable
 
     /**
      * From the value that is hinted in setCreationDate()
-     * @param int|\DateTimeInterface|null $value
      */
-    public static function fromExternalValue($value): self
+    public static function fromExternalValue(int|\DateTimeInterface|null $value): self
     {
         if (\is_integer($value)) {
             return self::fromTimestamp($value);
@@ -40,8 +39,7 @@ final class DateTimeWrapper implements BencodeSerializable
 
     public static function fromDateTime(?\DateTimeInterface $dateTime): self
     {
-        // TODO: PHP 8.0: return new self($dateTime ? \DateTimeImmutable::createFromInterface($dateTime) : null);
-        return self::fromTimestamp($dateTime ? $dateTime->getTimestamp() : null);
+        return new self($dateTime ? \DateTimeImmutable::createFromInterface($dateTime) : null);
     }
 
     public function getDateTime(): ?\DateTimeImmutable
@@ -51,7 +49,7 @@ final class DateTimeWrapper implements BencodeSerializable
 
     public function getTimestamp(): ?int
     {
-        return $this->dateTime ? $this->dateTime->getTimestamp() : null;
+        return $this->dateTime?->getTimestamp();
     }
 
     public function bencodeSerialize(): ?int
