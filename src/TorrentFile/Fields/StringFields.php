@@ -19,4 +19,26 @@ trait StringFields
     {
         return $this->data['announce'] ?? null;
     }
+
+    public function setComment(?string $comment): self
+    {
+        $this->data['comment'] = $comment;
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->data['comment'] ?? null;
+    }
+
+    public function setCreatedBy(string $comment): self
+    {
+        $this->data['created by'] = $comment;
+        return $this;
+    }
+
+    public function getCreatedBy(): string
+    {
+        return $this->data['created by'];
+    }
 }

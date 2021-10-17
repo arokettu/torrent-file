@@ -144,32 +144,6 @@ final class TorrentFile implements BencodeSerializable
         return $this->data['announce-list'] ?? [];
     }
 
-    // comment
-
-    public function setComment(?string $comment): self
-    {
-        $this->data['comment'] = $comment;
-        return $this;
-    }
-
-    public function getComment(): ?string
-    {
-        return $this->data['comment'] ?? null;
-    }
-
-    // created by
-
-    public function setCreatedBy(string $comment): self
-    {
-        $this->data['created by'] = $comment;
-        return $this;
-    }
-
-    public function getCreatedBy(): string
-    {
-        return $this->data['created by'];
-    }
-
     // private flag BEP-0027
 
     public function setPrivate(bool $isPrivate): self
