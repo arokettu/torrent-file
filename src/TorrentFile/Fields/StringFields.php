@@ -7,7 +7,7 @@ namespace SandFox\Torrent\TorrentFile\Fields;
 /**
  * @internal
  */
-trait Announce
+trait StringFields
 {
     public function setAnnounce(string $announce): self
     {

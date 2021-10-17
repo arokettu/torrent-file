@@ -19,7 +19,7 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\LoadMethods;
     use TorrentFile\StoreMethods;
     // fields
-    use TorrentFile\Fields\Announce;
+    use TorrentFile\Fields\StringFields;
     use TorrentFile\Fields\CreationDate;
 
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
