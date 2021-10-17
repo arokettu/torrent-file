@@ -35,17 +35,17 @@
         ]
     },
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^7.4 | ^8.0",
         "league/uri-components": "^2.0",
         "psr/event-dispatcher": "^1.0",
-        "sandfoxme/bencode": "^1.7 || ^2.7 || ^3.0",
+        "sandfoxme/bencode": "^1.7 | ^2.7 | ^3.0",
         "symfony/finder": ">= 2.7 < 6"
     },
     "require-dev": {
         "league/event": "^3.0",
         "phpunit/phpunit": "^9.5",
         "psy/psysh": "*",
-        "sandfox.dev/code-standard": "7.4.*@dev",
+        "sandfox.dev/code-standard": "^10@dev",
         "squizlabs/php_codesniffer": "*",
         "vimeo/psalm": "^4.10"
     }
