@@ -11,6 +11,7 @@ use SandFox\Bencode\Bencode\BigInt;
 use SandFox\Bencode\Decoder;
 use SandFox\Bencode\Encoder;
 use SandFox\Bencode\Types\BencodeSerializable;
+use SandFox\Torrent\DataTypes\DateTimeWrapper;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\FileSystem\FileData;
 
@@ -22,6 +23,7 @@ final class TorrentFile implements BencodeSerializable
 
     // info hash cache
     private ?string $infoHash = null;
+    private ?DateTimeWrapper $creationDate = null;
 
     /**
      * @param array $data
@@ -95,7 +97,7 @@ final class TorrentFile implements BencodeSerializable
         // set some defaults
 
         $torrent->setCreatedBy(self::CREATED_BY);
-        $torrent->setCreationDate(time());
+        $torrent->setCreationDate(new \DateTimeImmutable('now'));
 
         return $torrent;
     }
@@ -159,6 +161,8 @@ final class TorrentFile implements BencodeSerializable
 
     /* Torrent file fields */
 
+    // announce
+
     public function setAnnounce(string $announce): self
     {
         $this->data['announce'] = $announce;
@@ -169,6 +173,8 @@ final class TorrentFile implements BencodeSerializable
     {
         return $this->data['announce'] ?? null;
     }
+
+    // announce list BEP-0012
 
     /**
      * @param string[]|string[][] $announceList
@@ -219,16 +225,44 @@ final class TorrentFile implements BencodeSerializable
         return $this->data['announce-list'] ?? [];
     }
 
-    public function setCreationDate(int $timestamp): self
+    // creation date
+
+    /**
+     * @param int|\DateTimeInterface|null $timestamp
+     * @return $this
+     */
+    public function setCreationDate($timestamp): self
     {
-        $this->data['creation date'] = $timestamp;
+        $this->creationDate = DateTimeWrapper::fromExternalValue($timestamp);
+        $this->data['creation date'] = $this->creationDate;
         return $this;
     }
 
+    /**
+     * @deprecated Alias of getCreationDateAsTimestamp(). In 3.0 it will be an alias of getCreationDateAsDateTime()
+     * @return int|null
+     */
     public function getCreationDate(): ?int
     {
-        return $this->data['creation date'] ?? null;
+        return $this->getCreationDateAsTimestamp();
     }
+
+    private function getCreationDateWrapper(): DateTimeWrapper
+    {
+        return $this->creationDate ??= DateTimeWrapper::fromDataValue($this->data['creation date'] ?? null);
+    }
+
+    public function getCreationDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return $this->getCreationDateWrapper()->getDateTime();
+    }
+
+    public function getCreationDateAsTimestamp(): ?int
+    {
+        return $this->getCreationDateWrapper()->getTimestamp();
+    }
+
+    // comment
 
     public function setComment(?string $comment): self
     {
@@ -241,6 +275,8 @@ final class TorrentFile implements BencodeSerializable
         return $this->data['comment'] ?? null;
     }
 
+    // created by
+
     public function setCreatedBy(string $comment): self
     {
         $this->data['created by'] = $comment;
@@ -251,6 +287,8 @@ final class TorrentFile implements BencodeSerializable
     {
         return $this->data['created by'];
     }
+
+    // private flag BEP-0027
 
     public function setPrivate(bool $isPrivate): self
     {
