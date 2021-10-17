@@ -293,19 +293,14 @@ final class TorrentFile implements BencodeSerializable
     public function setPrivate(bool $isPrivate): self
     {
         $this->infoHash = null;
-
-        if ($isPrivate) {
-            $this->data['info']['private'] = 1;
-        } else {
-            unset($this->data['info']['private']);
-        }
+        $this->data['info']['private'] = $isPrivate;
 
         return $this;
     }
 
     public function isPrivate(): bool
     {
-        return isset($this->data['info']['private']) && $this->data['info']['private'] === 1;
+        return \boolval($this->data['info']['private'] ?? false);
     }
 
     /* service functions */
