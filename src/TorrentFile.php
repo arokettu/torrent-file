@@ -134,20 +134,27 @@ final class TorrentFile implements BencodeSerializable
 
     public function getRawData(): array
     {
-        $filter = function ($value): bool {
-            return $value !== null && $value !== [];
-        };
-
-        $rawData = $this->data;
-        $rawData['info'] = array_filter($rawData['info'] ?? [], $filter);
-        $rawData = array_filter($rawData, $filter);
+        $stream = fopen('php://temp', 'r+');
+        $this->storeToStream($stream);
+        rewind($stream);
+        $rawData = (new Decoder())->decodeStream($stream);
+        fclose($stream);
 
         return $rawData;
     }
 
     public function bencodeSerialize(): array
     {
-        return $this->getRawData();
+        // clean data from empty arrays
+        $filter = function ($value): bool {
+            return $value !== [];
+        };
+
+        $data = $this->data;
+        $data['info'] = array_filter($data['info'] ?? [], $filter);
+        $data = array_filter($data, $filter);
+
+        return $data;
     }
 
     /* Torrent file fields */
