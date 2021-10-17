@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent;
 
-use League\Uri\QueryString;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Bencode\Decoder;
 use SandFox\Bencode\Types\BencodeSerializable;
@@ -21,6 +20,10 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\Fields\CreationDate;
     // info manipulation
     use TorrentFile\InfoMethods;
+    // file name suggestions
+    use TorrentFile\NameMethods;
+    // magnet link
+    use TorrentFile\MagnetMethods;
 
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
@@ -87,52 +90,6 @@ final class TorrentFile implements BencodeSerializable
 
         return $data;
     }
-
-    public function getDisplayName(): ?string
-    {
-        $infoName = $this->data['info']['name'] ?? '';
-
-        return $infoName === '' ? $this->getInfoHash() : $infoName;
-    }
-
-    public function getFileName(): string
-    {
-        return $this->getDisplayName() . '.torrent';
-    }
-
-    public function getMagnetLink(): string
-    {
-        $pairs = [['xt', 'urn:btih:' . strtoupper($this->getInfoHash())]];
-
-        $dn = $this->data['info']['name'] ?? '';
-        if ($dn !== '') {
-            $pairs[] = ['dn', $this->getDisplayName()];
-        }
-
-        $trackers = [];
-
-        $rootTracker = $this->getAnnounce();
-
-        if ($rootTracker) {
-            $trackers[] = $rootTracker;
-        }
-
-        foreach ($this->getAnnounceList() as $trGroup) {
-            foreach ($trGroup as $tracker) {
-                $trackers[] = $tracker;
-            }
-        }
-
-        foreach (array_unique($trackers) as $tr) {
-            $pairs[] = ['tr', $tr];
-        }
-
-        $query = QueryString::build($pairs);
-
-        return 'magnet:?' . $query;
-    }
-
-    // handle serialization
 
     public function __serialize(): array
     {
