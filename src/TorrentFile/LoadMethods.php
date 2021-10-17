@@ -12,6 +12,8 @@ use SandFox\Bencode\Decoder;
  */
 trait LoadMethods
 {
+    abstract private function __construct(array $data = []);
+
     private static function decoder(): Decoder
     {
         return new Decoder(['bigInt' => BigInt::INTERNAL]);

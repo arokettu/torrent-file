@@ -129,36 +129,22 @@ final class TorrentFile implements BencodeSerializable
         ['data' => $this->data] = $data;
     }
 
-    /**
-     * @param mixed $default
-     * @return mixed
-     */
-    private function getField(string $key, $default = null)
+    private function getField(string $key, mixed $default = null): mixed
     {
         return $this->data[$key] ?? $default;
     }
 
-    /**
-     * @param mixed $value
-     */
-    private function setField(string $key, $value): void
+    private function setField(string $key, mixed $value): void
     {
         $this->data[$key] = $value;
     }
 
-    /**
-     * @param mixed $default
-     * @return mixed
-     */
-    private function getInfoField(string $key, $default = null)
+    private function getInfoField(string $key, mixed $default = null): mixed
     {
         return $this->data['info'][$key] ?? $default;
     }
 
-    /**
-     * @param mixed $value
-     */
-    private function setInfoField(string $key, $value): void
+    private function setInfoField(string $key, mixed $value): void
     {
         $this->infoHash = null;
         $this->data['info'][$key] = $value;
