@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SandFox\Torrent\DataTypes;
 
 use SandFox\Bencode\Types\BencodeSerializable;
@@ -37,7 +39,7 @@ final class DateTimeWrapper implements BencodeSerializable
      */
     public static function fromExternalValue($value): self
     {
-        if (is_integer($value)) {
+        if (\is_integer($value)) {
             return self::fromTimestamp($value);
         }
 
