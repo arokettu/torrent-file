@@ -148,9 +148,7 @@ final class TorrentFile implements BencodeSerializable
     public function bencodeSerialize(): array
     {
         // clean data from empty arrays
-        $filter = function ($value): bool {
-            return $value !== [];
-        };
+        $filter = fn ($v) => $v !== [];
 
         $data = $this->data;
         $data['info'] = array_filter($data['info'] ?? [], $filter);
@@ -209,7 +207,7 @@ final class TorrentFile implements BencodeSerializable
 
         $this->data['announce-list'] = array_values(
             array_unique(
-                array_filter($announceList, 'count'),
+                array_filter($announceList, fn ($v) => $v !== []),
                 SORT_REGULAR
             )
         );
