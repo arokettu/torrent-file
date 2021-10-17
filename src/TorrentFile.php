@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent;
 
-use ArrayObject;
 use League\Uri\QueryString;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Bencode\Decoder;
-use SandFox\Bencode\Encoder;
 use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\FileSystem\FileData;
 
@@ -21,13 +19,12 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\Fields\StringFields;
     use TorrentFile\Fields\AnnounceList;
     use TorrentFile\Fields\CreationDate;
+    // info manipulation
+    use TorrentFile\InfoMethods;
 
     public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
     private array $data;
-
-    // info hash cache
-    private ?string $infoHash = null;
 
     /**
      * @param array $data
@@ -89,28 +86,6 @@ final class TorrentFile implements BencodeSerializable
         $data = array_filter($data, $filter);
 
         return $data;
-    }
-
-    // private flag BEP-0027
-
-    public function setPrivate(bool $isPrivate): self
-    {
-        $this->infoHash = null;
-        $this->data['info']['private'] = $isPrivate;
-
-        return $this;
-    }
-
-    public function isPrivate(): bool
-    {
-        return \boolval($this->data['info']['private'] ?? false);
-    }
-
-    /* service functions */
-
-    public function getInfoHash(): string
-    {
-        return $this->infoHash ??= sha1((new Encoder())->encode(new ArrayObject($this->data['info'] ?? [])));
     }
 
     public function getDisplayName(): ?string
