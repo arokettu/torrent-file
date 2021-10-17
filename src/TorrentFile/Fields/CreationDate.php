@@ -33,6 +33,11 @@ trait CreationDate
      */
     public function getCreationDateAsDateTime(): ?\DateTimeImmutable
     {
+        trigger_deprecation(
+            'sandfoxme/torrent-file',
+            '3.0.0',
+            'Use getCreationDate() instead of getCreationDateAsDateTime()',
+        );
         return $this->getCreationDate();
     }
 
@@ -41,6 +46,11 @@ trait CreationDate
      */
     public function getCreationDateAsTimestamp(): ?int
     {
+        trigger_deprecation(
+            'sandfoxme/torrent-file',
+            '3.0.0',
+            'Use getCreationDate()->getTimestamp() instead of getCreationDateAsTimestamp()',
+        );
         return $this->getCreationDate()?->getTimestamp();
     }
 }
