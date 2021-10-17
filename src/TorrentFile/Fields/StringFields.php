@@ -9,6 +9,9 @@ namespace SandFox\Torrent\TorrentFile\Fields;
  */
 trait StringFields
 {
+    abstract private function getField(string $key, mixed $default = null): mixed;
+    abstract private function setField(string $key, mixed $value): void;
+
     public function setAnnounce(?string $announce): self
     {
         $this->setField('announce', $announce);
