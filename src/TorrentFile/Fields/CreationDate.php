@@ -13,37 +13,34 @@ trait CreationDate
 {
     private ?DateTimeWrapper $creationDate = null;
 
-    /**
-     * @param \DateTimeInterface|int|null $timestamp
-     */
-    public function setCreationDate($timestamp): self
+    abstract private function getField(string $key, mixed $default = null): mixed;
+    abstract private function setField(string $key, mixed $value): void;
+
+    public function setCreationDate(\DateTimeInterface|int|null $timestamp): self
     {
         $this->creationDate = DateTimeWrapper::fromExternalValue($timestamp);
         $this->setField('creation date', $this->creationDate);
         return $this;
     }
 
-    /**
-     * @deprecated Alias of getCreationDateAsTimestamp(). In 3.0 it will be an alias of getCreationDateAsDateTime()
-     * @return int|null
-     */
-    public function getCreationDate(): ?int
+    public function getCreationDate(): ?\DateTimeImmutable
     {
         return $this->getCreationDateAsTimestamp();
     }
 
-    private function getCreationDateWrapper(): DateTimeWrapper
-    {
-        return $this->creationDate ??= DateTimeWrapper::fromTimestamp($this->getField('creation date'));
-    }
-
+    /**
+     * @deprecated use getCreationDate()
+     */
     public function getCreationDateAsDateTime(): ?\DateTimeImmutable
     {
-        return $this->getCreationDateWrapper()->getDateTime();
+        return $this->getCreationDate();
     }
 
+    /**
+     * @deprecated use getCreationDate()->getTimestamp()
+     */
     public function getCreationDateAsTimestamp(): ?int
     {
-        return $this->getCreationDateWrapper()->getTimestamp();
+        return $this->getCreationDate()?->getTimestamp();
     }
 }

@@ -45,7 +45,7 @@ class CreationDateTest extends TestCase
             'creation date' => $timestamp,
         ]));
 
-        self::assertEquals($timestamp, $torrent->getCreationDate());
+        self::assertEquals($dateTime, $torrent->getCreationDate());
         self::assertEquals($timestamp, $torrent->getCreationDateAsTimestamp());
         self::assertEquals($dateTime, $torrent->getCreationDateAsDateTime());
     }

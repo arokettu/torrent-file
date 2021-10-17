@@ -23,7 +23,7 @@ final class DateTimeWrapper implements BencodeSerializable
     /**
      * From the value that is hinted in setCreationDate()
      */
-    public static function fromExternalValue(int|\DateTimeInterface|null $value): self
+    public static function fromExternalValue(\DateTimeInterface|int|null $value): self
     {
         if (\is_integer($value)) {
             return self::fromTimestamp($value);
