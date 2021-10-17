@@ -194,7 +194,7 @@ final class TorrentFile implements BencodeSerializable
                 );
             }
 
-            $group = array_unique($group);
+            $group = array_values(array_unique($group));
 
             foreach ($group as $announce) {
                 if (!\is_string($announce)) {

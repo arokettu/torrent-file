@@ -109,11 +109,17 @@ class AnnounceListTest extends TestCase
             ['http://example.net/announce', 'udp://example.net/announce'],
             ['http://example.net/announce', 'udp://example.net/announce'], // more complex group test
             ['http://example.org/announce', 'udp://example.org/announce'], // groups are compared after in-group removal
+            [
+                'http://example.biz/announce',
+                'http://example.biz/announce',
+                'udp://example.biz/announce', // check key reindexing on both levels
+            ],
         ]);
         self::assertEquals([
             ['http://example.com/announce'],
             ['http://example.org/announce', 'udp://example.org/announce'],
             ['http://example.net/announce', 'udp://example.net/announce'],
+            ['http://example.biz/announce', 'udp://example.biz/announce'],
         ], $torrent->getAnnounceList());
     }
 }
