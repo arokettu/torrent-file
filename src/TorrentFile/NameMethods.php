@@ -9,6 +9,8 @@ namespace SandFox\Torrent\TorrentFile;
  */
 trait NameMethods
 {
+    abstract public function getInfoHash(): string;
+
     public function getDisplayName(): string
     {
         $name = $this->getName() ?? '';

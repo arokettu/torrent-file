@@ -13,6 +13,9 @@ trait AnnounceList
 {
     private ?AnnounceListType $announceList = null;
 
+    abstract private function getField(string $key, mixed $default = null): mixed;
+    abstract private function setField(string $key, mixed $value): void;
+
     /**
      * @deprecated Alias of getAnnounceListAsArray(). In 3.0 it will be an alias of getAnnounceListAsObject()
      * @return array<array<string>>

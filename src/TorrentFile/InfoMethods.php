@@ -16,10 +16,13 @@ trait InfoMethods
     // info hash cache
     private ?string $infoHash = null;
 
+    abstract private function getField(string $key, mixed $default = null): mixed;
+    abstract private function getInfoField(string $key, mixed $default = null): mixed;
+    abstract private function setInfoField(string $key, mixed $value): void;
+
     public function setPrivate(bool $isPrivate): self
     {
         $this->setInfoField('private', $isPrivate);
-
         return $this;
     }
 

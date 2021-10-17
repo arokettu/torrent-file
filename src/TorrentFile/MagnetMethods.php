@@ -11,6 +11,11 @@ use League\Uri\QueryString;
  */
 trait MagnetMethods
 {
+    abstract public function getInfoHash(): string;
+    abstract public function getAnnounce(): ?string;
+    abstract public function getAnnounceList(): array;
+    abstract public function getDisplayName(): ?string;
+
     public function getMagnetLink(): string
     {
         $pairs = [['xt', 'urn:btih:' . $this->getInfoHash()]];
