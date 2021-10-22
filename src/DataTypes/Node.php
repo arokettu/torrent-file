@@ -29,6 +29,22 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return new self($array[0], $array[1]);
     }
 
+    /**
+     * @param array|Node $node
+     */
+    public static function ensure($node): Node
+    {
+        if ($node instanceof Node) {
+            return $node;
+        }
+
+        if (\is_array($node)) {
+            return Node::fromArray($node);
+        }
+
+        throw new InvalidArgumentException('$node must be an instance of Node or array[2]');
+    }
+
     public function getHost(): string
     {
         return $this->host;

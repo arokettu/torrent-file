@@ -10,6 +10,9 @@ use SandFox\Bencode\Types\ListType;
 use SandFox\Torrent\Exception\BadMethodCallException;
 use SandFox\Torrent\Exception\OutOfBoundsException;
 
+use function iter\chain;
+use function iter\filter;
+
 final class NodeList implements \IteratorAggregate, BencodeSerializable, \Countable, \ArrayAccess
 {
     private array $nodes;
@@ -19,7 +22,7 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
         $setOfNodes = [];
 
         foreach ($nodes as $node) {
-            $node = $this->ensureNode($node);
+            $node = Node::ensure($node);
             $setOfNodes[$this->nodeKey($node)] ??= $node;
         }
 
@@ -27,19 +30,29 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
     }
 
     /**
-     * @param array|Node $node
+     * @param array|Node ...$nodes
      */
-    private function ensureNode($node): Node
+    public static function append(self $nodeList, ...$nodes): self
     {
-        if ($node instanceof Node) {
-            return $node;
-        }
+        return new self(chain($nodeList, $nodes));
+    }
 
-        if (\is_array($node)) {
-            return Node::fromArray($node);
-        }
+    /**
+     * @param array|Node ...$nodes
+     */
+    public static function prepend(self $nodeList, ...$nodes): self
+    {
+        return new self(chain($nodes, $nodeList));
+    }
 
-        throw new \InvalidArgumentException('$node must be an instance of Node or array[2]');
+    /**
+     * @param array|Node ...$nodes
+     */
+    public static function remove(self $nodeList, ...$nodes): self
+    {
+        $nodes = array_map(fn ($node) => Node::ensure($node), $nodes);
+
+        return new self(filter(fn ($node) => !\in_array($node, $nodes), $nodeList));
     }
 
     private function nodeKey(Node $node): string
