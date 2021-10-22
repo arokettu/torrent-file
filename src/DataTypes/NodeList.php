@@ -47,6 +47,16 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
         return Bencode::encode($node);
     }
 
+    public function toArray(): array
+    {
+        return array_map(fn ($node) => $node->toArray(), $this->nodes);
+    }
+
+    public function toArrayOfNodes(): array
+    {
+        return $this->nodes;
+    }
+
     // IteratorAggregate
 
     public function getIterator(): \ArrayIterator
