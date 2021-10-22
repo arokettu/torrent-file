@@ -115,9 +115,8 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
 
     /**
      * @param mixed $offset
-     * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): Node
     {
         if (isset($this->nodes[$offset])) {
             return $this->nodes[$offset];

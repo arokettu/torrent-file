@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SandFox\Torrent\Tests\All;
 
 use PHPUnit\Framework\TestCase;
+use SandFox\Torrent\DataTypes\AnnounceList;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\TorrentFile;
 
@@ -25,7 +26,12 @@ class AnnounceListTest extends TestCase
         // setting empty groups is empty set
         $torrent->setAnnounceList([[], [], [], []]);
         self::assertEquals([], $torrent->getAnnounceList());
-        self::assertNull($torrent->getRawData()['announce-list'] ?? null);
+        self::assertArrayNotHasKey('announce-list', $torrent->getRawData());
+
+        // setting empty groups is empty set
+        $torrent->setAnnounceList(new AnnounceList());
+        self::assertEquals([], $torrent->getAnnounceListAsArray());
+        self::assertArrayNotHasKey('announce-list', $torrent->getRawData());
     }
 
     public function testPlainList(): void

@@ -39,6 +39,24 @@ final class UriList implements \IteratorAggregate, BencodeSerializable, \Countab
         return new self($uris);
     }
 
+    /**
+     * @param iterable<string>|self $uriList
+     * @return static
+     */
+    public static function ensure($uriList): self
+    {
+        if ($uriList instanceof self) {
+            return $uriList;
+        }
+
+        if (\is_iterable($uriList)) {
+            return new self($uriList);
+        }
+
+        throw new InvalidArgumentException('$uriList must be an instance of UriList or iterable<string>');
+    }
+
+
     public static function append(self $uriList, string ...$uris): self
     {
         return new self(chain($uriList, $uris));

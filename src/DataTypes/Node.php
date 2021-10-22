@@ -22,8 +22,8 @@ final class Node implements BencodeSerializable, \ArrayAccess
 
     public static function fromArray(array $array): self
     {
-        if (\count($array) !== 2) {
-            throw new InvalidArgumentException('$array must contain 2 values');
+        if (\count($array) !== 2 || !array_is_list($array)) {
+            throw new InvalidArgumentException('$array must contain 2 values and be a list');
         }
 
         return new self($array[0], $array[1]);
@@ -32,14 +32,14 @@ final class Node implements BencodeSerializable, \ArrayAccess
     /**
      * @param array|Node $node
      */
-    public static function ensure($node): Node
+    public static function ensure($node): self
     {
-        if ($node instanceof Node) {
+        if ($node instanceof self) {
             return $node;
         }
 
         if (\is_array($node)) {
-            return Node::fromArray($node);
+            return self::fromArray($node);
         }
 
         throw new InvalidArgumentException('$node must be an instance of Node or array[2]');
