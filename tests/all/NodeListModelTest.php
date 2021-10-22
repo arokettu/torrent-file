@@ -14,10 +14,10 @@ class NodeListModelTest extends TestCase
 {
     private function getNodeList(): NodeList
     {
-        return new NodeList([
+        return NodeList::create(
             ['localhost', 8080],
             ['127.0.0.1', 10101],
-        ]);
+        );
     }
 
     // array getters

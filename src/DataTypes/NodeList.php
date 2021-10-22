@@ -17,6 +17,9 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
 {
     private array $nodes;
 
+    /**
+     * @param iterable<Node|array> $nodes
+     */
     public function __construct(iterable $nodes = [])
     {
         $setOfNodes = [];
@@ -27,6 +30,14 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
         }
 
         $this->nodes = array_values($setOfNodes);
+    }
+
+    /**
+     * @param array|Node ...$nodes
+     */
+    public static function create(...$nodes): self
+    {
+        return new self($nodes);
     }
 
     /**
