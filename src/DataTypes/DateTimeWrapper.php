@@ -21,19 +21,6 @@ final class DateTimeWrapper implements BencodeSerializable
     }
 
     /**
-     * From the value that may happen in TorrentFile::$data
-     * @param self|int|null $value
-     */
-    public static function fromDataValue($value): self
-    {
-        if ($value instanceof self) {
-            return $value;
-        }
-
-        return self::fromTimestamp($value);
-    }
-
-    /**
      * From the value that is hinted in setCreationDate()
      * @param int|\DateTimeInterface|null $value
      */

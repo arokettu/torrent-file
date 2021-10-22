@@ -40,7 +40,7 @@ trait CreationDate
 
     private function getCreationDateWrapper(): DateTimeWrapper
     {
-        return $this->creationDate ??= DateTimeWrapper::fromDataValue($this->data['creation date'] ?? null);
+        return $this->creationDate ??= DateTimeWrapper::fromTimestamp($this->data['creation date'] ?? null);
     }
 
     public function getCreationDateAsDateTime(): ?\DateTimeImmutable
