@@ -30,6 +30,7 @@ final class Node implements BencodeSerializable, \ArrayAccess
     }
 
     /**
+     * @internal
      * @param array|Node $node
      */
     public static function ensure($node): self

@@ -40,6 +40,7 @@ final class UriList implements \IteratorAggregate, BencodeSerializable, \Countab
     }
 
     /**
+     * @internal
      * @param iterable<string>|self $uriList
      * @return static
      */
