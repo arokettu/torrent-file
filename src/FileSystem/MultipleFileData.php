@@ -57,12 +57,14 @@ final class MultipleFileData extends FileData
                     }
                 }
 
+                // @codeCoverageIgnoreStart
                 throw new \LogicException(
                     "You can't have two files with the same name: " .
                     $path1['relativePath'] .
                     ' and ' .
                     $path2['relativePath']
-                ); // @codeCoverageIgnore
+                );
+                // @codeCoverageIgnoreEnd
             });
         }
 
