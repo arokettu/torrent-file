@@ -67,4 +67,15 @@ class NodesTest extends TestCase
         self::assertEquals('localhost', $nodes[0][0]);
         self::assertEquals(10101, $nodes[1][1]);
     }
+
+    public function testSetEmpty(): void
+    {
+        $torrent = TorrentFile::loadFromString(Bencode::encode([
+            'nodes' => [['localhost', 8080], ['127.0.0.1', 10101]],
+        ]));
+
+        $torrent->setNodes([]);
+
+        self::assertArrayNotHasKey('nodes', $torrent->getRawData());
+    }
 }
