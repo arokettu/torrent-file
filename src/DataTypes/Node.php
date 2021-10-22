@@ -44,10 +44,14 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return [$this->host, $this->port];
     }
 
+    // BencodeSerializable
+
     public function bencodeSerialize(): array
     {
         return $this->toArray();
     }
+
+    // ArrayAccess
 
     /**
      * @param mixed $offset
