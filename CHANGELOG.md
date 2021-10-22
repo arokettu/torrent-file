@@ -13,6 +13,7 @@
   to simplify future migration to 3.x.
   In 3.x `getCreationDate()` will return `DateTimeImmutable` instead of `int`
 * Added support for nodes field (BEP-0005)
+* Added support for httpseeds field (BEP-0017)
 
 ## 2.1.2
 
