@@ -39,7 +39,7 @@
         "league/uri-components": "^2.0",
         "nikic/iter": "^2.0",
         "psr/event-dispatcher": "^1.0",
-        "sandfoxme/bencode": "^1.7 | ^2.7 | ^3.0",
+        "sandfoxme/bencode": "^1.7.2 | ^2.7.2 | ^3.0.2",
         "symfony/deprecation-contracts": "^2.1",
         "symfony/finder": ">= 2.7 < 6"
     },
