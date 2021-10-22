@@ -25,11 +25,12 @@ final class DateTimeWrapper implements BencodeSerializable
      */
     public static function fromExternalValue(\DateTimeInterface|int|null $value): self
     {
-        if (\is_integer($value)) {
-            return self::fromTimestamp($value);
-        }
-
-        return self::fromDateTime($value);
+        return match (true) {
+            \is_integer($value)
+                => self::fromTimestamp($value),
+            default
+                => self::fromDateTime($value),
+        };
     }
 
     public static function fromTimestamp(?int $timestamp): self

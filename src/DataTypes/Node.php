@@ -32,21 +32,9 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return new self($array[0], $array[1]);
     }
 
-    /**
-     * @internal
-     * @param array|Node $node
-     */
-    public static function ensure($node): self
+    public static function ensure(array|self $node): self
     {
-        if ($node instanceof self) {
-            return $node;
-        }
-
-        if (\is_array($node)) {
-            return self::fromArray($node);
-        }
-
-        throw new InvalidArgumentException('$node must be an instance of Node or array[2]');
+        return $node instanceof self ? $node : self::fromArray($node);
     }
 
     public function getHost(): string
@@ -81,14 +69,11 @@ final class Node implements BencodeSerializable, \ArrayAccess
 
     public function offsetGet(mixed $offset): mixed
     {
-        switch ($offset) {
-            case 0:
-                return $this->getHost();
-            case 1:
-                return $this->getPort();
-            default:
-                throw new OutOfBoundsException('Unknown offset');
-        }
+        return match ($offset) {
+            0 => $this->getHost(),
+            1 => $this->getPort(),
+            default => throw new OutOfBoundsException('Unknown offset'),
+        };
     }
 
     public function offsetSet(mixed $offset, mixed $value): void

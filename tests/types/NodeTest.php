@@ -12,12 +12,6 @@ use SandFox\Torrent\Exception\OutOfBoundsException;
 
 class NodeTest extends TestCase
 {
-    public function testNoInvalidTypes(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        Node::ensure(new \ArrayObject());
-    }
-
     public function testNoInvalidArrayStructure(): void
     {
         $this->expectException(InvalidArgumentException::class);

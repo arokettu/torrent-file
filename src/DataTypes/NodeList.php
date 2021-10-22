@@ -32,10 +32,7 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
         $this->nodes = array_values($setOfNodes);
     }
 
-    /**
-     * @param array|Node ...$nodes
-     */
-    public static function create(...$nodes): self
+    public static function create(array|Node ...$nodes): self
     {
         return new self($nodes);
     }
@@ -45,26 +42,17 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
         return new self($iterable);
     }
 
-    /**
-     * @param array|Node ...$nodes
-     */
-    public static function append(self $nodeList, ...$nodes): self
+    public static function append(self $nodeList, array|Node ...$nodes): self
     {
         return new self(chain($nodeList, $nodes));
     }
 
-    /**
-     * @param array|Node ...$nodes
-     */
-    public static function prepend(self $nodeList, ...$nodes): self
+    public static function prepend(self $nodeList, array|Node ...$nodes): self
     {
         return new self(chain($nodes, $nodeList));
     }
 
-    /**
-     * @param array|Node ...$nodes
-     */
-    public static function remove(self $nodeList, ...$nodes): self
+    public static function remove(self $nodeList, array|Node ...$nodes): self
     {
         $nodes = array_map(fn ($node) => Node::ensure($node), $nodes);
 
