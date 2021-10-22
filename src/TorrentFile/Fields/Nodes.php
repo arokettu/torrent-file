@@ -12,8 +12,7 @@ trait Nodes
 
     public function getNodes(): NodeList
     {
-        return $this->nodes ??=
-            $this->data['nodes'] = $this->buildNodeListFromExternalValue($this->data['nodes'] ?? null);
+        return $this->nodes ??= $this->buildNodeListFromExternalValue($this->data['nodes'] ?? []);
     }
 
     /**

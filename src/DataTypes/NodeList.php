@@ -27,7 +27,7 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
     }
 
     /**
-     * @param array|self $node
+     * @param array|Node $node
      */
     private function ensureNode($node): Node
     {
