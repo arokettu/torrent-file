@@ -10,6 +10,9 @@ trait HttpSeeds
 {
     private ?UriList $httpseeds = null;
 
+    abstract private function getField(string $key, mixed $default = null): mixed;
+    abstract private function setField(string $key, mixed $value): void;
+
     public function getHttpSeeds(): UriList
     {
         return $this->httpseeds ??= new UriList($this->getField('httpseeds', []));
@@ -18,7 +21,7 @@ trait HttpSeeds
     /**
      * @param UriList|iterable<string>|null $value
      */
-    public function setHttpSeeds($value): self
+    public function setHttpSeeds(UriList|iterable|null $value): self
     {
         $this->setField(
             'httpseeds',
