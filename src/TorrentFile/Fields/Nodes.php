@@ -13,7 +13,7 @@ trait Nodes
 
     public function getNodes(): NodeList
     {
-        return $this->nodes ??= new NodeList($this->data['nodes'] ?? []);
+        return $this->nodes ??= new NodeList($this->getField('nodes', []));
     }
 
     /**
@@ -21,8 +21,7 @@ trait Nodes
      */
     public function setNodes($value): self
     {
-        $this->nodes = $this->data['nodes'] = $value instanceof NodeList ? $value : new NodeList($value ?? []);
-
+        $this->setField('nodes', $this->nodes = $value instanceof NodeList ? $value : new NodeList($value ?? []));
         return $this;
     }
 }

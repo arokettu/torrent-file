@@ -38,18 +38,20 @@ trait AnnounceList
 
     public function getAnnounceListAsObject(): AnnounceListType
     {
-        return $this->announceList ??= new AnnounceListType($this->data['announce-list'] ?? []);
+        return $this->announceList ??= new AnnounceListType($this->getField('announce-list', []));
     }
 
     /**
-     * @param AnnounceListType|iterable<string|iterable<string>> $announceList
+     * @param AnnounceListType|iterable<string|iterable<string>>|null $announceList
      */
     public function setAnnounceList($announceList): self
     {
-        $this->data['announce-list'] = $this->announceList =
-            $announceList instanceof AnnounceListType ?
+        $this->setField(
+            'announce-list',
+            $this->announceList = $announceList instanceof AnnounceListType ?
                 $announceList :
-                AnnounceListType::fromArray($announceList ?? []);
+                AnnounceListType::fromArray($announceList ?? [])
+        );
 
         return $this;
     }

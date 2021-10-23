@@ -12,7 +12,7 @@ trait HttpSeeds
 
     public function getHttpSeeds(): UriList
     {
-        return $this->httpseeds ??= new UriList($this->data['httpseeds'] ?? []);
+        return $this->httpseeds ??= new UriList($this->getField('httpseeds', []));
     }
 
     /**
@@ -20,8 +20,7 @@ trait HttpSeeds
      */
     public function setHttpSeeds($value): self
     {
-        $this->httpseeds = $this->data['httpseeds'] = $value instanceof UriList ? $value : new UriList($value ?? []);
-
+        $this->setField('httpseeds', $this->httpseeds = $value instanceof UriList ? $value : new UriList($value ?? []));
         return $this;
     }
 }

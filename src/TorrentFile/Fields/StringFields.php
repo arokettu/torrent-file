@@ -11,34 +11,34 @@ trait StringFields
 {
     public function setAnnounce(?string $announce): self
     {
-        $this->data['announce'] = $announce;
+        $this->setField('announce', $announce);
         return $this;
     }
 
     public function getAnnounce(): ?string
     {
-        return $this->data['announce'] ?? null;
+        return $this->getField('announce');
     }
 
     public function setComment(?string $comment): self
     {
-        $this->data['comment'] = $comment;
+        $this->setField('comment', $comment);
         return $this;
     }
 
     public function getComment(): ?string
     {
-        return $this->data['comment'] ?? null;
+        return $this->getField('comment');
     }
 
     public function setCreatedBy(?string $comment): self
     {
-        $this->data['created by'] = $comment;
+        $this->setField('created by', $comment);
         return $this;
     }
 
     public function getCreatedBy(): ?string
     {
-        return $this->data['created by'] ?? null;
+        return $this->getField('created by');
     }
 }

@@ -15,9 +15,9 @@ trait MagnetMethods
     {
         $pairs = [['xt', 'urn:btih:' . strtoupper($this->getInfoHash())]];
 
-        $dn = $this->data['info']['name'] ?? '';
+        $dn = $this->getName() ?? '';
         if ($dn !== '') {
-            $pairs[] = ['dn', $this->getDisplayName()];
+            $pairs[] = ['dn', $dn];
         }
 
         $trackers = [];

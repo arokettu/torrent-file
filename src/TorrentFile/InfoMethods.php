@@ -18,15 +18,14 @@ trait InfoMethods
 
     public function setPrivate(bool $isPrivate): self
     {
-        $this->infoHash = null;
-        $this->data['info']['private'] = $isPrivate;
+        $this->setInfoField('private', $isPrivate);
 
         return $this;
     }
 
     public function isPrivate(): bool
     {
-        return \boolval($this->data['info']['private'] ?? false);
+        return \boolval($this->getInfoField('private', false));
     }
 
     public function setName(string $name): self
@@ -38,15 +37,14 @@ trait InfoMethods
             throw new InvalidArgumentException('$name must not contain slashes and zero bytes');
         }
 
-        $this->infoHash = null;
-        $this->data['info']['name'] = $name;
+        $this->setInfoField('name', $name);
 
         return $this;
     }
 
     public function getName(): ?string
     {
-        return $this->data['info']['name'] ?? null;
+        return $this->getInfoField('name');
     }
 
     public function getInfoHash(): string
