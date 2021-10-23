@@ -18,6 +18,7 @@
 * Added support for `nodes` field (BEP-5)
 * Added support for `httpseeds` field (BEP-17)
 * Added support for `url-list` field (BEP-19)
+* Added methods for name manipulation
 * sortFiles option is deprecated. Files are always sorted now
 
 ## 2.1.2
