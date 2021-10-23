@@ -8,6 +8,8 @@
 * In `TorrentFile::forPath()` options array is removed and replaced with named parameters
 * `getCreationDate()` now returns an instance of `DateTimeImmutable`
   * `getCreationDateAsDateTime()` and `getCreationDateAsTimestamp()` now trigger silent deprecations
+* `getAnnounceList()` now returns an instance of `AnnounceList`
+  * `getAnnounceListAsArray()` and `getAnnounceListAsObject()` now trigger silent deprecations
 
 ## 2.2.0
 
