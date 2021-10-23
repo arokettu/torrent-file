@@ -12,10 +12,10 @@ use SandFox\Torrent\DataTypes\AnnounceList;
  */
 trait MagnetMethods
 {
-    abstract public function getInfoHash(): string;
-    abstract public function getAnnounce(): ?string;
-    abstract public function getAnnounceList(): AnnounceList;
-    abstract public function getDisplayName(): ?string;
+    abstract private function getInfoHash(): string;
+    abstract private function getName(): ?string;
+    abstract private function getAnnounce(): ?string;
+    abstract private function getAnnounceList(): AnnounceList;
 
     public function getMagnetLink(): string
     {

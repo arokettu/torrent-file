@@ -9,7 +9,8 @@ namespace SandFox\Torrent\TorrentFile;
  */
 trait NameMethods
 {
-    abstract public function getInfoHash(): string;
+    abstract private function getInfoHash(): string;
+    abstract private function getName(): ?string;
 
     public function getDisplayName(): string
     {
