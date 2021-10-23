@@ -22,6 +22,7 @@ Documentation
    fields
    types
    upgrade
+   plans
 
 Usage
 =====
@@ -45,13 +46,6 @@ Magnet Link
     <?php
     // generate magnet link
     $torrent->getMagnetLink(); // 'magnet:?xt=urn:btih:...'
-
-Possible future features
-------------------------
-
-- Files model (chunks and offsets for files)
-- Chunks model (files and their offsets, chunk data validation)
-- Info verification for existing files on disk
 
 License
 =======
