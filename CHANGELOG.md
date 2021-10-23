@@ -17,6 +17,7 @@
   In 3.x `getAnnounceList()` will return `AnnounceList` instead of `string[][]`
 * Added support for nodes field (BEP-0005)
 * Added support for httpseeds field (BEP-0017)
+* sortFiles option is deprecated. Files are always sorted now
 
 ## 2.1.2
 
