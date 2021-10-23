@@ -20,12 +20,6 @@ class UriListTest extends TestCase
         );
     }
 
-    public function testNoInvalidTypes(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        UriList::ensure(new \stdClass());
-    }
-
     // array getters
 
     public function testInvalidType(): void

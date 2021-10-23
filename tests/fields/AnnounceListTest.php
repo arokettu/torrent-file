@@ -16,16 +16,16 @@ class AnnounceListTest extends TestCase
         $torrent = TorrentFile::loadFromString('de');
 
         // no warning if not set
-        self::assertEquals([], $torrent->getAnnounceList());
+        self::assertEquals([], $torrent->getAnnounceList()->toArray());
 
         // allow unset
         $torrent->setAnnounceList(['http://localhost']);
         $torrent->setAnnounceList([]);
-        self::assertEquals([], $torrent->getAnnounceList());
+        self::assertEquals([], $torrent->getAnnounceList()->toArray());
 
         // setting empty groups is empty set
         $torrent->setAnnounceList([[], [], [], []]);
-        self::assertEquals([], $torrent->getAnnounceList());
+        self::assertEquals([], $torrent->getAnnounceListAsObject()->toArray());
         self::assertArrayNotHasKey('announce-list', $torrent->getRawData());
 
         // setting empty groups is empty set
@@ -44,7 +44,7 @@ class AnnounceListTest extends TestCase
         self::assertEquals([
             ['https://example.com/tracker'],
             ['https://example.org/tracker'],
-        ], $torrent->getAnnounceList());
+        ], $torrent->getAnnounceList()->toArray());
     }
 
     public function testGroupList(): void
@@ -55,7 +55,7 @@ class AnnounceListTest extends TestCase
 
         self::assertEquals([
             ['https://example.com/tracker', 'https://example.org/tracker']
-        ], $torrent->getAnnounceList());
+        ], $torrent->getAnnounceList()->toArray());
     }
 
     public function testMixedGrouping(): void
@@ -73,7 +73,7 @@ class AnnounceListTest extends TestCase
             ['https://example.com/tracker', 'https://example.org/tracker'],
             ['https://example.net/tracker'],
             ['https://example.info/tracker'],
-        ], $torrent->getAnnounceList());
+        ], $torrent->getAnnounceList()->toArray());
     }
 
     public function testInvalidNesting(): void
@@ -126,6 +126,6 @@ class AnnounceListTest extends TestCase
             ['http://example.org/announce', 'udp://example.org/announce'],
             ['http://example.net/announce', 'udp://example.net/announce'],
             ['http://example.biz/announce', 'udp://example.biz/announce'],
-        ], $torrent->getAnnounceList());
+        ], $torrent->getAnnounceList()->toArray());
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SandFox\Torrent\TorrentFile;
 
 use League\Uri\QueryString;
+use SandFox\Torrent\DataTypes\AnnounceList;
 
 /**
  * @internal
@@ -13,7 +14,7 @@ trait MagnetMethods
 {
     abstract public function getInfoHash(): string;
     abstract public function getAnnounce(): ?string;
-    abstract public function getAnnounceList(): array;
+    abstract public function getAnnounceList(): AnnounceList;
     abstract public function getDisplayName(): ?string;
 
     public function getMagnetLink(): string

@@ -21,7 +21,7 @@ class LoadFileTest extends TestCase
         self::assertEquals([
             ['http://torrent.centos.org:6969/announce'],
             ['http://ipv6.torrent.centos.org:6969/announce'],
-        ], $torrent->getAnnounceList());
+        ], $torrent->getAnnounceList()->toArray());
         self::assertEquals('CentOS x86_64 NetInstall ISO', $torrent->getComment());
         self::assertEquals('mktorrent 1.0', $torrent->getCreatedBy());
         self::assertEquals(1481207147, $torrent->getCreationDate()->getTimestamp());
