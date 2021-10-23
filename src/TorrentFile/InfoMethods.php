@@ -28,6 +28,11 @@ trait InfoMethods
         return \boolval($this->getInfoField('private', false));
     }
 
+    public function isDirectory(): bool
+    {
+        return $this->getInfoField('files') !== null;
+    }
+
     public function setName(string $name): self
     {
         if ($name === '') {
