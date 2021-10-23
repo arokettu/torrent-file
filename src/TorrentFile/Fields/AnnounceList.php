@@ -18,7 +18,7 @@ trait AnnounceList
 
     public function getAnnounceList(): AnnounceListType
     {
-        return $this->announceList ??= new AnnounceListType($this->data['announce-list'] ?? []);
+        return $this->announceList ??= new AnnounceListType($this->getField('announce-list', []));
     }
 
     /**
