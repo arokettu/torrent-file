@@ -88,9 +88,9 @@ final class UriList implements \IteratorAggregate, BencodeSerializable, \Countab
 
     // IteratorAggregate
 
-    public function getIterator(): \ArrayIterator
+    public function getIterator(): \Generator
     {
-        return new \ArrayIterator($this->uris);
+        yield from $this->uris;
     }
 
     // BencodeSerializable

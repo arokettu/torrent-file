@@ -102,9 +102,9 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
 
     // IteratorAggregate
 
-    public function getIterator(): \ArrayIterator
+    public function getIterator(): \Generator
     {
-        return new \ArrayIterator($this->uriLists);
+        yield from $this->uriLists;
     }
 
     // BencodeSerializable

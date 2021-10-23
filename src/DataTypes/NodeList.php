@@ -94,9 +94,9 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
 
     // IteratorAggregate
 
-    public function getIterator(): \ArrayIterator
+    public function getIterator(): \Generator
     {
-        return new \ArrayIterator($this->nodes);
+        yield from $this->nodes;
     }
 
     // BencodeSerializable
