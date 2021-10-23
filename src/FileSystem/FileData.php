@@ -25,6 +25,7 @@ abstract class FileData
 
     public static function forPath(string $path, array $options = []): self
     {
+        // @codeCoverageIgnoreStart
         if (isset($options['sortFiles'])) {
             trigger_deprecation(
                 'sandfoxme/torrent-file',
@@ -32,6 +33,7 @@ abstract class FileData
                 'sortFiles option is deprecated. Files are always sorted now',
             );
         }
+        // @codeCoverageIgnoreEnd
 
         if (is_file($path)) {
             return new SingleFileData(realpath($path), $options);
