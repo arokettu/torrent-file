@@ -45,12 +45,12 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
     }
 
     /**
-     * @param iterable<string|iterable<string>> $array
+     * @param iterable<string|iterable<string>> $iterable
      * @return static
      */
-    public static function fromArray(iterable $array): self
+    public static function fromIterable(iterable $iterable): self
     {
-        return new self(map(fn ($uriList) => is_iterable($uriList) ? $uriList : [$uriList], $array));
+        return new self(map(fn ($uriList) => is_iterable($uriList) ? $uriList : [$uriList], $iterable));
     }
 
     /**

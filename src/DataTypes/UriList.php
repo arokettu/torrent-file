@@ -39,6 +39,11 @@ final class UriList implements \IteratorAggregate, BencodeSerializable, \Countab
         return new self($uris);
     }
 
+    public static function fromIterable(iterable $iterable): self
+    {
+        return new self($iterable);
+    }
+
     /**
      * @internal
      * @param iterable<string>|self $uriList

@@ -50,7 +50,7 @@ trait AnnounceList
             'announce-list',
             $this->announceList = $announceList instanceof AnnounceListType ?
                 $announceList :
-                AnnounceListType::fromArray($announceList ?? [])
+                AnnounceListType::fromIterable($announceList ?? [])
         );
 
         return $this;

@@ -40,6 +40,11 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
         return new self($nodes);
     }
 
+    public static function fromIterable(iterable $iterable): self
+    {
+        return new self($iterable);
+    }
+
     /**
      * @param array|Node ...$nodes
      */
