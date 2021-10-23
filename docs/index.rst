@@ -18,66 +18,11 @@ Documentation
 .. toctree::
    :maxdepth: 2
 
+   saveload
    upgrade
 
 Usage
 =====
-
-Load existing torrent file
---------------------------
-
-.. code-block:: php
-
-    <?php
-
-    use SandFox\Torrent\TorrentFile;
-
-    // from file
-    $torrent = TorrentFile::load('debian.torrent');
-    // from string
-    $torrent = TorrentFile::loadFromString(file_get_contents('debian.torrent'));
-    // from stream
-    $torrent = TorrentFile::loadFromStream(fopen('debian.torrent', 'r'));
-
-Create torrent file for existing directory or file
---------------------------------------------------
-
-.. code-block:: php
-
-    <?php
-
-    use SandFox\Torrent\TorrentFile;
-
-    $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', [
-        'pieceLength' => 512 * 1024,    // torrent chunk size (default: 512 KiB)
-        'md5sum' => false,              // generate md5 sums for files (default: false)
-        'sortFiles' => true,            // sort files in info dictionary by name (default: true)
-    ]);
-
-    // pass an instance of PSR-14 event dispatcher to receive progress events:
-    $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', [], $eventDispatcher);
-    // dispatcher will receive instances of \SandFox\Torrent\FileSystem\FileDataProgressEvent
-    //    only in 2.0 and later
-
-Save torrent file
------------------
-
-.. code-block:: php
-
-    <?php
-
-    // to file
-    $torrent->store('debian.torrent');
-
-    // to string. for example, for downloading
-    header('Content-Type: application/x-bittorrent');
-    header('Content-Disposition: attachment; filename="' . urlencode($torrent->getFileName()) . '"');
-    echo $torrent->storeToString();
-
-    // to stream. useful for psr-7
-    $response
-        ->withHeader('Content-Type', 'application/x-bittorrent')
-        ->withBody($streamFactory->createStreamFromResource($torrent->storeToStream()));
 
 Basic fields manipulation
 -------------------------
