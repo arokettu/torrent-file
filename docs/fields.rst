@@ -23,7 +23,7 @@ Announce List
 .. note:: BEP-12_ Multitracker Metadata Extension
 .. _BEP-12: https://www.bittorrent.org/beps/bep_0012.html
 
-.. versionadded:: 2.2 ``AnnounceList`` object
+.. versionchanged:: 3.0 ``AnnounceList`` object is returned instead of array of arrays
 
 A list of lists of tracker URLs.
 See :ref:`the type section <type_AnnounceList>` for acceptable formats.
@@ -34,12 +34,10 @@ See :ref:`the type section <type_AnnounceList>` for acceptable formats.
     // accepts AnnounceList objects or iterables of valid structure
     //      (same as AnnounceList::fromIterable())
     $torrent->setAnnounceList([['udp://example.com/announce']]);
-    // get Announce List as array (in 3.0: as AnnounceList object)
+    // get Announce List as AnnounceList object
     $torrent->getAnnounceList();
     // get Announce List as array
-    $torrent->getAnnounceListAsArray();
-    // get Announce List as AnnounceList object
-    $torrent->getAnnounceListAsObject();
+    $torrent->getAnnounceList()->toArray();
 
 Comment
 =======
@@ -68,10 +66,10 @@ Optional info about the creator.
 Creation Date
 =============
 
-.. versionadded:: 2.2 ``DateTime`` based logic
+.. versionchanged:: 3.0 ``DateTimeImmutable`` is returned instead of ``int``
 
 Optional info about the creator.
-``DateTimeImmutable`` / ``int``.
+``DateTimeImmutable``.
 
 .. code-block:: php
 
@@ -80,13 +78,10 @@ Optional info about the creator.
     $torrent->setCreationDate(new DateTime('now'));
     // set by int timestamp
     $torrent->setCreationDate(time());
-
-    // get int timestamp (in 3.0: DateTimeImmutable object)
+    // get DateTimeImmutable object
     $creationDate = $torrent->getCreationDate();
     // get int timestamp
-    $creationDate = $torrent->getCreationDateAsTimestamp();
-    // get DateTimeImmutable object
-    $creationDate = $torrent->getCreationDateAsDateTime();
+    $creationDate = $torrent->getCreationDate()->getTimestamp();
 
 Http Seeds
 ==========
