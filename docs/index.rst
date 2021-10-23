@@ -12,6 +12,14 @@ Installation
 
     composer require sandfoxme/torrent-file
 
+Documentation
+=============
+
+.. toctree::
+   :maxdepth: 2
+
+   upgrade
+
 Usage
 =====
 
@@ -126,14 +134,6 @@ Possible future features
 - Files model (chunks and offsets for files)
 - Chunks model (files and their offsets, chunk data validation)
 - Info verification for existing files on disk
-
-Upgrade from 1.x
-================
-
-Breaking changes:
-
-* PHP 7.4 is now required.
-* Custom event system based on ``FileDataProgress`` is removed. It was never documented anyway.
 
 License
 =======
