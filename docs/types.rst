@@ -161,17 +161,17 @@ Modification
     use SandFox\Torrent\DataTypes\NodeList;
 
     // append a node
-    $nodeList = AnnounceList::append(
+    $nodeList = NodeList::append(
         $nodeList,
         new Node('fe00::1234', 12321),
     );
     // prepend a node
-    $nodeList = AnnounceList::prepend(
+    $nodeList = NodeList::prepend(
         $nodeList,
         new Node('fe00::1234', 12321),
     );
     // remove a node
-    $nodeList = AnnounceList::remove(
+    $nodeList = NodeList::remove(
         $nodeList,
         new Node('fe00::1234', 12321),
     );
@@ -209,12 +209,12 @@ Uri list can be created from the following structures:
     use SandFox\Torrent\DataTypes\UriList;
 
     // Build from iterable
-    $uriList = AnnounceList::fromIterable([
+    $uriList = UriList::fromIterable([
         'https://example.com/announce',
         'udp://example.com/announce',
     ]);
     // OOP way
-    $uriList = AnnounceList::create(
+    $uriList = UriList::create(
         'https://example.com/announce',
         'udp://example.com/announce',
     );
@@ -229,17 +229,17 @@ Modification
     use SandFox\Torrent\DataTypes\UriList;
 
     // append a list
-    $uriList = AnnounceList::append(
+    $uriList = UriList::append(
         $uriList,
         'udp://example.net/announce',
     );
     // prepend a list
-    $uriList = AnnounceList::prepend(
+    $uriList = UriList::prepend(
         $uriList,
         'udp://example.net/announce',
     );
     // remove a list
-    $uriList = AnnounceList::remove(
+    $uriList = UriList::remove(
         $uriList,
         'udp://example.net/announce',
     );
