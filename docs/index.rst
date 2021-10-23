@@ -10,7 +10,7 @@ Installation
 
 .. code-block:: bash
 
-    composer require sandfoxme/torrent-file
+   composer require sandfoxme/torrent-file
 
 Documentation
 =============
@@ -19,6 +19,8 @@ Documentation
    :maxdepth: 2
 
    saveload
+   fields
+   types
    upgrade
 
 Usage
@@ -30,35 +32,6 @@ Basic fields manipulation
 .. code-block:: php
 
     <?php
-
-    // main announce url
-    $announce = $torrent->getAnnounce();
-    $torrent->setAnnounce('https://example.com/tracker');
-
-    // additional announce urls
-    $announces = $torrent->getAnnounceList();
-    // plain ordered list
-    $torrent->setAnnounceList([
-        'https://example.net/tracker',
-        'https://example.org/tracker',
-    ]);
-    // or with tier grouping
-    $torrent->setAnnounceList([
-        ['https://example.com/tracker', 'https://example.net/tracker'],
-        'https://example.org/tracker',
-    ]);
-
-    // creation date
-    $created = $torrent->getCreationDate();
-    $torrent->setCreationDate(time());
-
-    // comment
-    $comment = $torrent->getComment();
-    $torrent->setComment('This is a very cool torrent');
-
-    // created by
-    $createdBy = $torrent->getCreatedBy();
-    $torrent->setCreatedBy('Me');
 
     // private marker
     $private = $torrent->isPrivate();
