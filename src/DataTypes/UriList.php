@@ -73,6 +73,9 @@ final class UriList implements \IteratorAggregate, BencodeSerializable, \Countab
         return new self(filter(fn ($uri) => !\in_array($uri, $uris), $uriList));
     }
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         return $this->uris;

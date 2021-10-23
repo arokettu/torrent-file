@@ -84,11 +84,17 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
         return $uriList->count() === 0 ? '0:' : Bencode::encode($uriList);
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public function toArray(): array
     {
         return array_map(fn ($uriList) => $uriList->toArray(), $this->uriLists);
     }
 
+    /**
+     * @return array<UriList>
+     */
     public function toArrayOfUriLists(): array
     {
         return $this->uriLists;
