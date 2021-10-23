@@ -50,6 +50,7 @@
         "symfony/polyfill-php81": "^1.22"
     },
     "require-dev": {
+        "jetbrains/phpstorm-attributes": "^1.0",
         "league/event": "^3.0",
         "phpunit/phpunit": "^9.5",
         "psy/psysh": "*",
