@@ -83,13 +83,7 @@ final class TorrentFile implements BencodeSerializable
 
     public function bencodeSerialize(): array
     {
-        // clean data from empty arrays
-        $filter = fn ($v) => $v !== [];
-
-        $data = $this->data;
-        $data = array_filter($data, $filter);
-
-        return $data;
+        return $this->data;
     }
 
     public function __serialize(): array
