@@ -49,6 +49,12 @@ trait InfoMethods
 
     public function getInfoHash(): string
     {
-        return $this->infoHash ??= sha1((new Encoder())->encode(new DictType($this->data['info'] ?? [])));
+        return $this->infoHash ??= sha1(
+            (new Encoder())->encode(
+                new DictType(
+                    $this->getField('info', [])
+                )
+            )
+        );
     }
 }
