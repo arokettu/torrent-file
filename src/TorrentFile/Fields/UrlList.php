@@ -23,7 +23,7 @@ trait UrlList
     /**
      * @param UriList|iterable<string>|null $value
      */
-    public function setUrlList($value): self
+    public function setUrlList(UriList|iterable|null $value): self
     {
         // always store as list
         $this->setField(
