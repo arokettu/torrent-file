@@ -39,7 +39,6 @@ The library can create a torrent file from scratch for a file or a directory.
     $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', [
         'pieceLength' => 512 * 1024,    // torrent chunk size (default: 512 KiB)
         'md5sum' => false,              // generate md5 sums for files (default: false)
-        'sortFiles' => true,            // sort files in info dictionary by name (default: true)
     ]);
 
     // pass an instance of PSR-14 event dispatcher to receive progress events:

@@ -21,11 +21,18 @@ abstract class FileData
     public const DEFAULT_OPTIONS = [
         'pieceLength'   => 512 * 1024, // 512 KB
         'md5sum'        => false,
-        'sortFiles'     => true,
     ];
 
     public static function forPath(string $path, array $options = []): self
     {
+        if (isset($options['sortFiles'])) {
+            trigger_deprecation(
+                'sandfoxme/torrent-file',
+                '2.2',
+                'sortFiles option is deprecated. Files are always sorted now',
+            );
+        }
+
         if (is_file($path)) {
             return new SingleFileData(realpath($path), $options);
         }
@@ -33,7 +40,7 @@ abstract class FileData
             return new MultipleFileData(realpath($path), $options);
         }
 
-        throw new PathNotFoundException("Path '{$path}' doesn't exist or is not regular file or directory");
+        throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");
     }
 
     protected function __construct(string $path, array $options = [])

@@ -41,32 +41,30 @@ final class MultipleFileData extends FileData
 
         $this->reportProgress($totalSize, 0, $data['name']);
 
-        if ($this->options['sortFiles']) {
-            // sort files by binary comparing exploded parts
-            usort($filePaths, function ($path1, $path2): int {
-                $exploded1 = $path1['explodedPath'];
-                $exploded2 = $path2['explodedPath'];
+        // sort files by binary comparing exploded parts
+        usort($filePaths, function ($path1, $path2): int {
+            $exploded1 = $path1['explodedPath'];
+            $exploded2 = $path2['explodedPath'];
 
-                $partsCount = min(\count($exploded1), \count($exploded2));
+            $partsCount = min(\count($exploded1), \count($exploded2));
 
-                for ($i = 0; $i < $partsCount; ++$i) {
-                    $result = strcmp($exploded1[$i], $exploded2[$i]);
+            for ($i = 0; $i < $partsCount; ++$i) {
+                $result = strcmp($exploded1[$i], $exploded2[$i]);
 
-                    if ($result !== 0) {
-                        return $result;
-                    }
+                if ($result !== 0) {
+                    return $result;
                 }
+            }
 
-                // @codeCoverageIgnoreStart
-                throw new \LogicException(
-                    "You can't have two files with the same name: " .
-                    $path1['relativePath'] .
-                    ' and ' .
-                    $path2['relativePath']
-                );
-                // @codeCoverageIgnoreEnd
-            });
-        }
+            // @codeCoverageIgnoreStart
+            throw new \LogicException(
+                "You can't have two files with the same name: " .
+                $path1['relativePath'] .
+                ' and ' .
+                $path2['relativePath']
+            );
+            // @codeCoverageIgnoreEnd
+        });
 
         // now process files
         $files = [];
