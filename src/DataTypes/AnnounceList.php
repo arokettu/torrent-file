@@ -39,7 +39,7 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
     /**
      * @param iterable<string>|UriList ...$uriLists
      */
-    public static function create(...$uriLists): self
+    public static function create(iterable|UriList ...$uriLists): self
     {
         return new self($uriLists);
     }
@@ -55,7 +55,7 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
     /**
      * @param iterable<string>|UriList ...$uriLists
      */
-    public static function append(self $announceList, ...$uriLists): self
+    public static function append(self $announceList, iterable|UriList ...$uriLists): self
     {
         return new self(chain($announceList, $uriLists));
     }
@@ -63,7 +63,7 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
     /**
      * @param iterable<string>|UriList ...$uriLists
      */
-    public static function prepend(self $announceList, ...$uriLists): self
+    public static function prepend(self $announceList, iterable|UriList ...$uriLists): self
     {
         return new self(chain($uriLists, $announceList));
     }
@@ -71,7 +71,7 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
     /**
      * @param iterable<string>|UriList ...$uriLists
      */
-    public static function remove(self $announceList, ...$uriLists): self
+    public static function remove(self $announceList, iterable|UriList ...$uriLists): self
     {
         $uriLists = array_map(fn ($uriList) => UriList::ensure($uriList), $uriLists);
 
@@ -123,18 +123,12 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
 
     // ArrayAccess
 
-    /**
-     * @param mixed $offset
-     */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->uriLists[$offset]);
     }
 
-    /**
-     * @param mixed $offset
-     */
-    public function offsetGet($offset): UriList
+    public function offsetGet(mixed $offset): UriList
     {
         if (isset($this->uriLists[$offset])) {
             return $this->uriLists[$offset];
@@ -143,19 +137,12 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
         throw new OutOfBoundsException('Unknown offset');
     }
 
-    /**
-     * @param mixed $offset
-     * @param mixed $value
-     */
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         throw new BadMethodCallException('AnnounceList is immutable');
     }
 
-    /**
-     * @param mixed $offset
-     */
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         throw new BadMethodCallException('AnnounceList is immutable');
     }

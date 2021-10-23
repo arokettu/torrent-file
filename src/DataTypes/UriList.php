@@ -48,17 +48,9 @@ final class UriList implements \IteratorAggregate, BencodeSerializable, \Countab
      * @internal
      * @param iterable<string>|self $uriList
      */
-    public static function ensure($uriList): self
+    public static function ensure(iterable|self $uriList): self
     {
-        if ($uriList instanceof self) {
-            return $uriList;
-        }
-
-        if (\is_iterable($uriList)) {
-            return new self($uriList);
-        }
-
-        throw new InvalidArgumentException('$uriList must be an instance of UriList or iterable<string>');
+        return $uriList instanceof self ? $uriList : new self($uriList);
     }
 
 
@@ -109,18 +101,12 @@ final class UriList implements \IteratorAggregate, BencodeSerializable, \Countab
 
     // ArrayAccess
 
-    /**
-     * @param mixed $offset
-     */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->uris[$offset]);
     }
 
-    /**
-     * @param mixed $offset
-     */
-    public function offsetGet($offset): string
+    public function offsetGet(mixed $offset): string
     {
         if (isset($this->uris[$offset])) {
             return $this->uris[$offset];
@@ -129,19 +115,12 @@ final class UriList implements \IteratorAggregate, BencodeSerializable, \Countab
         throw new OutOfBoundsException('Unknown offset');
     }
 
-    /**
-     * @param mixed $offset
-     * @param mixed $value
-     */
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         throw new BadMethodCallException('UriList is immutable');
     }
 
-    /**
-     * @param mixed $offset
-     */
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         throw new BadMethodCallException('UriList is immutable');
     }

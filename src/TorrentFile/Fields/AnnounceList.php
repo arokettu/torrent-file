@@ -16,32 +16,42 @@ trait AnnounceList
     abstract private function getField(string $key, mixed $default = null): mixed;
     abstract private function setField(string $key, mixed $value): void;
 
-    /**
-     * @deprecated Alias of getAnnounceListAsArray(). In 3.0 it will be an alias of getAnnounceListAsObject()
-     * @return array<array<string>>
-     */
-    public function getAnnounceList(): array
+    public function getAnnounceList(): AnnounceListType
     {
-        return $this->getAnnounceListAsObject()->toArray();
+        return $this->announceList ??= new AnnounceListType($this->data['announce-list'] ?? []);
     }
 
     /**
+     * @deprecated use getAnnounceList()->toArray()
      * @return array<array<string>>
      */
     public function getAnnounceListAsArray(): array
     {
-        return $this->getAnnounceListAsObject()->toArray();
+        trigger_deprecation(
+            'sandfoxme/torrent-file',
+            '3.0.0',
+            'Use getAnnounceList()->toArray() instead of getAnnounceListAsArray()',
+        );
+        return $this->getAnnounceList()->toArray();
     }
 
+    /**
+     * @deprecated use getAnnounceList()
+     */
     public function getAnnounceListAsObject(): AnnounceListType
     {
-        return $this->announceList ??= new AnnounceListType($this->getField('announce-list', []));
+        trigger_deprecation(
+            'sandfoxme/torrent-file',
+            '3.0.0',
+            'Use getAnnounceList() instead of getAnnounceListAsObject()',
+        );
+        return $this->getAnnounceList();
     }
 
     /**
      * @param AnnounceListType|iterable<string|iterable<string>>|null $announceList
      */
-    public function setAnnounceList($announceList): self
+    public function setAnnounceList(AnnounceListType|iterable|null $announceList): self
     {
         $this->setField(
             'announce-list',

@@ -67,7 +67,7 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return $offset === 0 || $offset === 1;
     }
 
-    public function offsetGet(mixed $offset): mixed
+    public function offsetGet(mixed $offset): int|string
     {
         return match ($offset) {
             0 => $this->getHost(),
