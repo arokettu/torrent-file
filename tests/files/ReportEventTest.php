@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\All;
+namespace SandFox\Torrent\Tests\Files;
 
 use League\Event\EventDispatcher;
 use PHPUnit\Framework\TestCase;

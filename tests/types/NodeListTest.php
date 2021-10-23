@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\All;
+namespace SandFox\Torrent\Tests\Types;
 
 use PHPUnit\Framework\TestCase;
 use SandFox\Torrent\DataTypes\Node;
@@ -10,7 +10,7 @@ use SandFox\Torrent\DataTypes\NodeList;
 use SandFox\Torrent\Exception\BadMethodCallException;
 use SandFox\Torrent\Exception\OutOfBoundsException;
 
-class NodeListModelTest extends TestCase
+class NodeListTest extends TestCase
 {
     private function getNodeList(): NodeList
     {

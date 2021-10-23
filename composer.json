@@ -28,7 +28,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SandFox\\Torrent\\Tests\\All\\": "tests/all"
+            "SandFox\\Torrent\\Tests\\Fields\\": "tests/fields",
+            "SandFox\\Torrent\\Tests\\Files\\": "tests/files",
+            "SandFox\\Torrent\\Tests\\Info\\": "tests/info",
+            "SandFox\\Torrent\\Tests\\Types\\": "tests/types"
         },
         "files": [
             "tests/functions.php"

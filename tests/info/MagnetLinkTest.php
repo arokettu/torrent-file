@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\All;
+namespace SandFox\Torrent\Tests\Info;
 
 use PHPUnit\Framework\TestCase;
 use SandFox\Bencode\Bencode;
 use SandFox\Torrent\Tests as t;
 use SandFox\Torrent\TorrentFile;
+use function SandFox\Torrent\Tests as t;
 
 class MagnetLinkTest extends TestCase
 {

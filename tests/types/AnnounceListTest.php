@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\All;
+namespace SandFox\Torrent\Tests\Types;
 
 use PHPUnit\Framework\TestCase;
 use SandFox\Torrent\DataTypes\AnnounceList;
@@ -10,7 +10,7 @@ use SandFox\Torrent\DataTypes\UriList;
 use SandFox\Torrent\Exception\BadMethodCallException;
 use SandFox\Torrent\Exception\OutOfBoundsException;
 
-class AnnounceListTypeTest extends TestCase
+class AnnounceListTest extends TestCase
 {
     private function getAnnounceList(): AnnounceList
     {

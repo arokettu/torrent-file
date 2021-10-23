@@ -2,17 +2,20 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\All;
+namespace SandFox\Torrent\Tests\Files;
 
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\Tests as t;
 use SandFox\Torrent\TorrentFile;
+
+use function SandFox\Torrent\Tests\build_magnet_link;
+
+use const SandFox\Torrent\Tests\TEST_ROOT;
 
 class LoadFileTest extends TestCase
 {
     public function testLoadFields(): void
     {
-        $torrent = TorrentFile::load(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
+        $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 
         self::assertEquals('http://torrent.centos.org:6969/announce', $torrent->getAnnounce());
         self::assertEquals([
@@ -30,7 +33,7 @@ class LoadFileTest extends TestCase
         // magnet link
 
         self::assertEquals(
-            t\build_magnet_link([
+            build_magnet_link([
                 'xt=urn:btih:54259D2FAFB1DE5B794E449777748EBA36236F8C',
                 'dn=CentOS-7-x86_64-NetInstall-1611',
                 'tr=http://torrent.centos.org:6969/announce',
@@ -46,20 +49,20 @@ class LoadFileTest extends TestCase
         fflush($tmpfile);
 
         self::assertFileEquals(
-            t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent',
+            TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent',
             stream_get_meta_data($tmpfile)['uri']
         );
     }
 
     public function testStore(): void
     {
-        $torrent = TorrentFile::load(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
+        $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 
         $tmpName = tempnam('/tmp', 'tf-test');
 
         $torrent->store($tmpName);
 
-        self::assertFileEquals(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', $tmpName);
+        self::assertFileEquals(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', $tmpName);
 
         unlink($tmpName);
     }
@@ -67,14 +70,14 @@ class LoadFileTest extends TestCase
     public function testStream(): void
     {
         $torrent = TorrentFile::loadFromStream(
-            fopen(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', 'r')
+            fopen(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', 'r')
         );
 
         $stream = $torrent->storeToStream();
         rewind($stream);
 
         self::assertEquals(
-            file_get_contents(t\TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent'),
+            file_get_contents(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent'),
             stream_get_contents($stream)
         );
     }
