@@ -20,6 +20,7 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\Fields\CreationDate;
     use TorrentFile\Fields\HttpSeeds;
     use TorrentFile\Fields\Nodes;
+    use TorrentFile\Fields\UrlList;
     // info manipulation
     use TorrentFile\InfoMethods;
     // file name suggestions
