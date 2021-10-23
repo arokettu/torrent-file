@@ -6,7 +6,8 @@ All fields can be unset by passing ``null``.
 Announce
 ========
 
-The URL of the tracker. ``string``.
+The URL of the tracker.
+``string``.
 
 .. code-block:: php
 
@@ -17,11 +18,13 @@ The URL of the tracker. ``string``.
 Announce List
 =============
 
+.. note:: BEP-12_ Multitracker Metadata Extension
+.. _BEP-12: https://www.bittorrent.org/beps/bep_0012.html
+
 .. versionadded:: 2.2 ``AnnounceList`` object
 
-BEP-12_. A list of lists of tracker URLs. See :ref:`the type section <type_AnnounceList>` for acceptable formats.
-
-.. _BEP-12: https://www.bittorrent.org/beps/bep_0012.html
+A list of lists of tracker URLs.
+See :ref:`the type section <type_AnnounceList>` for acceptable formats.
 
 .. code-block:: php
 
@@ -38,7 +41,8 @@ BEP-12_. A list of lists of tracker URLs. See :ref:`the type section <type_Annou
 Comment
 =======
 
-Optional description. ``string``.
+Optional description.
+``string``.
 
 .. code-block:: php
 
@@ -49,7 +53,8 @@ Optional description. ``string``.
 Created By
 ==========
 
-Optional info about the creator. ``string``.
+Optional info about the creator.
+``string``.
 
 .. code-block:: php
 
@@ -62,7 +67,8 @@ Creation Date
 
 .. versionadded:: 2.2 ``DateTime`` based logic
 
-Optional info about the creator. ``DateTimeImmutable`` / ``int``.
+Optional info about the creator.
+``DateTimeImmutable`` / ``int``.
 
 .. code-block:: php
 
@@ -78,3 +84,25 @@ Optional info about the creator. ``DateTimeImmutable`` / ``int``.
     $creationDate = $torrent->getCreationDateAsTimestamp();
     // get DateTimeImmutable object
     $creationDate = $torrent->getCreationDateAsDateTime();
+
+Http Seeds
+==========
+
+.. note:: BEP-17_ HTTP Seeding
+.. _BEP-17: https://www.bittorrent.org/beps/bep_0017.html
+
+A list of HTTP seeding URLs.
+
+Nodes
+=====
+
+.. note:: BEP-5_ DHT Protocol
+.. _BEP-5: https://www.bittorrent.org/beps/bep_0005.html
+
+A list of DHT nodes.
+
+Url List
+========
+
+.. note:: BEP-19_ WebSeed - HTTP/FTP Seeding
+.. _BEP-19: https://www.bittorrent.org/beps/bep_0019.html
