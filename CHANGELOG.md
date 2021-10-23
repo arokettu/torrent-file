@@ -15,8 +15,9 @@
 * Added 2 temporary methods: `getAnnounceListAsArray()` and `getAnnounceListAsObject()`
   to simplify future migration to 3.x.
   In 3.x `getAnnounceList()` will return `AnnounceList` instead of `string[][]`
-* Added support for nodes field (BEP-0005)
-* Added support for httpseeds field (BEP-0017)
+* Added support for `nodes` field (BEP-5)
+* Added support for `httpseeds` field (BEP-17)
+* Added support for `url-list` field (BEP-19)
 * sortFiles option is deprecated. Files are always sorted now
 
 ## 2.1.2
