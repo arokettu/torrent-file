@@ -195,7 +195,8 @@ UriList
 =======
 
 ``UriList`` is a list of strings.
-It represents the inner lists in the ``announce-list`` field and the ``url-list`` field in the torrent file.
+It represents the ``url-list`` and ``httpseeds`` fields
+and the inner lists in the ``announce-list`` field in the torrent file.
 
 Creation
 --------

@@ -31,7 +31,8 @@ See :ref:`the type section <type_AnnounceList>` for acceptable formats.
 .. code-block:: php
 
     <?php
-    // accepts AnnounceList objects or arrays of valid structure
+    // accepts AnnounceList objects or iterables of valid structure
+    //      (same as AnnounceList::fromIterable())
     $torrent->setAnnounceList([['udp://example.com/announce']]);
     // get Announce List as array (in 3.0: as AnnounceList object)
     $torrent->getAnnounceList();
@@ -94,6 +95,18 @@ Http Seeds
 .. _BEP-17: https://www.bittorrent.org/beps/bep_0017.html
 
 A list of HTTP seeding URLs.
+See :ref:`the type section <type_UriList>` for acceptable formats.
+
+.. code-block:: php
+
+    <?php
+    // accepts UriList objects or iterables of valid structure
+    //      (same as UriList::fromIterable())
+    $torrent->setHttpSeeds(['udp://example.com/seed']);
+    // get Http Seeds as UriList object
+    $torrent->getHttpSeeds();
+    // get Http Seeds as array
+    $torrent->getHttpSeeds()->toArray();
 
 Nodes
 =====
@@ -102,9 +115,36 @@ Nodes
 .. _BEP-5: https://www.bittorrent.org/beps/bep_0005.html
 
 A list of DHT nodes.
+See :ref:`the type section <type_NodeList>` for acceptable formats.
+
+.. code-block:: php
+
+    <?php
+    // accepts NodeList objects or iterables of valid structure
+    //      (same as NodeList::fromIterable())
+    $torrent->setNodes(['udp://example.com/seed']);
+    // get Url List as UriList object
+    $torrent->getNodes();
+    // get Url List as array
+    $torrent->getNodes()->toArray();
+
 
 Url List
 ========
 
 .. note:: BEP-19_ WebSeed - HTTP/FTP Seeding
 .. _BEP-19: https://www.bittorrent.org/beps/bep_0019.html
+
+A list of webseed URLs.
+See :ref:`the type section <type_UriList>` for acceptable formats.
+
+.. code-block:: php
+
+    <?php
+    // accepts UriList objects or iterables of valid structure
+    //      (same as UriList::fromIterable())
+    $torrent->setUrlList(['udp://example.com/seed']);
+    // get Url List as UriList object
+    $torrent->setUrlList();
+    // get Url List as array
+    $torrent->setUrlList()->toArray();
