@@ -1,6 +1,8 @@
-Fields
-######
+Root Fields
+###########
 
+Fields of the torrent file that are not parts of the info dictionary.
+By changing these fields you're not creating a separate torrent file (not changing infohash).
 All fields can be unset by passing ``null``.
 
 Announce

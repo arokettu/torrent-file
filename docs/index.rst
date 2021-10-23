@@ -20,23 +20,13 @@ Documentation
 
    saveload
    fields
+   info
    types
    upgrade
    plans
 
 Usage
 =====
-
-Basic fields manipulation
--------------------------
-
-.. code-block:: php
-
-    <?php
-
-    // private marker
-    $private = $torrent->isPrivate();
-    $torrent->setPrivate(true);
 
 Magnet Link
 -----------
