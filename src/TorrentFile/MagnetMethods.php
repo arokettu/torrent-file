@@ -34,7 +34,7 @@ trait MagnetMethods
             $trackers[] = $rootTracker;
         }
 
-        foreach ($this->getAnnounceListAsObject() as $trGroup) {
+        foreach ($this->getAnnounceList() as $trGroup) {
             foreach ($trGroup as $tracker) {
                 $trackers[] = $tracker;
             }
