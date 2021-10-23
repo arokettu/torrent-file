@@ -1,8 +1,8 @@
 Upgrade Notes
 #############
 
-Upgrade from 1.x
-================
+Upgrade from 1.x to 2.0
+=======================
 
 Breaking changes:
 
