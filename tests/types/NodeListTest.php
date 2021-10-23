@@ -42,12 +42,12 @@ class NodeListTest extends TestCase
     {
         $nodeList = $this->getNodeList();
 
-        $nodeList = NodeList::append($nodeList, new Node('[::1]', 443), ['test', 80]);
+        $nodeList = NodeList::append($nodeList, new Node('::1', 443), ['test', 80]);
 
         self::assertEquals([
             ['localhost', 8080],
             ['127.0.0.1', 10101],
-            ['[::1]', 443],
+            ['::1', 443],
             ['test', 80],
         ], $nodeList->toArray());
 
@@ -58,7 +58,7 @@ class NodeListTest extends TestCase
         self::assertEquals([
             ['localhost', 8080],
             ['127.0.0.1', 10101],
-            ['[::1]', 443],
+            ['::1', 443],
             ['test', 80],
         ], $nodeList->toArray());
     }
@@ -67,10 +67,10 @@ class NodeListTest extends TestCase
     {
         $nodeList = $this->getNodeList();
 
-        $nodeList = NodeList::prepend($nodeList, new Node('[::1]', 443), ['test', 80]);
+        $nodeList = NodeList::prepend($nodeList, new Node('::1', 443), ['test', 80]);
 
         self::assertEquals([
-            ['[::1]', 443],
+            ['::1', 443],
             ['test', 80],
             ['localhost', 8080],
             ['127.0.0.1', 10101],
@@ -82,7 +82,7 @@ class NodeListTest extends TestCase
 
         self::assertEquals([
             ['127.0.0.1', 10101],
-            ['[::1]', 443],
+            ['::1', 443],
             ['test', 80],
             ['localhost', 8080],
         ], $nodeList->toArray());
