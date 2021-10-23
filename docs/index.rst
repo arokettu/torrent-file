@@ -21,21 +21,10 @@ Documentation
    saveload
    fields
    info
+   helpers
    types
    upgrade
    plans
-
-Usage
-=====
-
-Magnet Link
------------
-
-.. code-block:: php
-
-    <?php
-    // generate magnet link
-    $torrent->getMagnetLink(); // 'magnet:?xt=urn:btih:...'
 
 License
 =======
