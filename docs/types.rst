@@ -78,6 +78,47 @@ Array representation
 Node
 ====
 
+``Node`` represents an item in the DHT nodes list.
+
+Creation
+--------
+
+.. code-block:: php
+
+    <?php
+
+    use SandFox\Torrent\DataTypes\Node;
+
+    // Build from array
+    $node = Node::fromArray(['localhost', 11111]);
+    // OOP way
+    $node = new Node('127.0.0.1', 12345);
+
+Fields
+------
+
+.. code-block:: php
+
+    <?php
+
+    $host = $node->getHost(); // node host or ip
+    $port = $node->getPort(); // node port
+
+    // also with array access that mimics the representation in the torrent file
+    $host = $node[0];
+    $port = $node[1];
+
+Array representation
+--------------------
+
+.. code-block:: php
+
+    <?php
+
+    // toArray() return a node-array [$host, $port],
+    // the same structure as it is represented in the torrent file
+    $data = $node->toArray();
+
 .. _type_NodeList:
 
 NodeList
