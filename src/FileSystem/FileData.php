@@ -33,14 +33,16 @@ abstract class FileData
             $detectSymlinks,
         ];
 
-        if (is_file($path)) {
-            return new V1\SingleFileData(...$params);
-        }
-        if (is_dir($path)) {
-            return new V1\MultipleFileData(...$params);
-        }
-
-        throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");
+        return match (true) {
+            is_file($path)
+                => new V1\SingleFileData(...$params),
+            is_dir($path)
+                => new V1\MultipleFileData(...$params),
+            default
+                => throw new PathNotFoundException(
+                    "Path '{$path}' doesn't exist or is not a regular file or a directory"
+                ),
+        };
     }
 
     protected function __construct(
