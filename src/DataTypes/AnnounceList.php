@@ -46,7 +46,6 @@ final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Co
 
     /**
      * @param iterable<string|iterable<string>> $iterable
-     * @return static
      */
     public static function fromIterable(iterable $iterable): self
     {
