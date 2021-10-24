@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SandFox\Torrent\FileSystem;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
+use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\PathNotFoundException;
 
 /**
@@ -17,6 +18,8 @@ abstract class FileData
     protected bool $md5sum;
 
     private ?EventDispatcherInterface $eventDispatcher;
+
+    private const PIECE_LENGTH_MIN = 16 * 1024;
 
     public static function forPath(
         string $path,
@@ -44,6 +47,12 @@ abstract class FileData
         $this->eventDispatcher = $eventDispatcher;
         $this->pieceLength = $pieceLength;
         $this->md5sum = $md5sum;
+
+        if ($pieceLength < self::PIECE_LENGTH_MIN || ($pieceLength & ($pieceLength - 1)) !== 0) {
+            throw new InvalidArgumentException(
+                'pieceLength must be a power of 2 and at least ' . self::PIECE_LENGTH_MIN
+            );
+        }
     }
 
     abstract public function process(): array;

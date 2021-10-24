@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SandFox\Torrent\Tests\Files;
 
 use PHPUnit\Framework\TestCase;
+use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\PathNotFoundException;
 use SandFox\Torrent\TorrentFile;
 
@@ -81,5 +82,25 @@ class CreateFileTest extends TestCase
     {
         $this->expectException(PathNotFoundException::class);
         TorrentFile::fromPath(TEST_ROOT . '/data/files/nosuchfile.txt');
+    }
+
+    public function testChunkTooLow(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('pieceLength must be a power of 2 and at least 16384');
+
+        TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
+            'pieceLength' => 1024,
+        ]);
+    }
+
+    public function testChunkNotPow2(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('pieceLength must be a power of 2 and at least 16384');
+
+        TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
+            'pieceLength' => 1024 * 1024 - 1,
+        ]);
     }
 }
