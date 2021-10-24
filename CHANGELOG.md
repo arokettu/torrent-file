@@ -20,7 +20,8 @@
 * Added support for `url-list` field (BEP-19)
 * Added `setName()` and `getName()`
 * Added `isDirectory()`
-* sortFiles option is deprecated. Files are always sorted now
+* sortFiles option is deprecated. Files are always sorted now (BEP 52 compatibility)
+* pieceLength option is validated to be pow of 2 and at least 16 KiB (BEP 52 compatibility)
 
 ## 2.1.2
 
