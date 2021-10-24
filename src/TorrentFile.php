@@ -28,7 +28,7 @@ final class TorrentFile implements BencodeSerializable
     // magnet link
     use TorrentFile\MagnetMethods;
 
-    public const CREATED_BY = 'PHP Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
+    private const CREATED_BY = 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
     private array $data;
 
