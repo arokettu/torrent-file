@@ -34,7 +34,7 @@ class LoadFileTest extends TestCase
 
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:54259D2FAFB1DE5B794E449777748EBA36236F8C',
+                'xt=urn:btih:54259d2fafb1de5b794e449777748eba36236f8c',
                 'dn=CentOS-7-x86_64-NetInstall-1611',
                 'tr=http://torrent.centos.org:6969/announce',
                 'tr=http://ipv6.torrent.centos.org:6969/announce',

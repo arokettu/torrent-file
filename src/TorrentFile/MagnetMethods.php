@@ -13,7 +13,7 @@ trait MagnetMethods
 {
     public function getMagnetLink(): string
     {
-        $pairs = [['xt', 'urn:btih:' . strtoupper($this->getInfoHash())]];
+        $pairs = [['xt', 'urn:btih:' . $this->getInfoHash()]];
 
         $dn = $this->getName() ?? '';
         if ($dn !== '') {

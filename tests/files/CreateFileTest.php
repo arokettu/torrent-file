@@ -28,7 +28,7 @@ class CreateFileTest extends TestCase
 
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:6092CFE0E10D639229CDB76A1375AF37E45C0DF7',
+                'xt=urn:btih:6092cfe0e10d639229cdb76a1375af37e45c0df7',
                 'dn=file1.txt',
             ]),
             $torrent->getMagnetLink()
@@ -49,7 +49,7 @@ class CreateFileTest extends TestCase
 
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:0C8AF23BEB533D29FE210137439E6C1FCE8ACABA',
+                'xt=urn:btih:0c8af23beb533d29fe210137439e6c1fce8acaba',
                 'dn=files',
             ]),
             $torrent->getMagnetLink()
@@ -70,7 +70,7 @@ class CreateFileTest extends TestCase
 
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:7F71B004D89E823B7800E9F27C893C3A97562CEA',
+                'xt=urn:btih:7f71b004d89e823b7800e9f27c893c3a97562cea',
                 'dn=files',
             ]),
             $torrent->getMagnetLink()
