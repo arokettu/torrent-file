@@ -57,12 +57,13 @@ The library can create a torrent file from scratch for a file or a directory.
 
     use SandFox\Torrent\TorrentFile;
 
-    $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', [
-        'pieceLength' => 512 * 1024,
-    ]);
+    $torrent = TorrentFile::fromPath(
+        '/home/user/ISO/Debian',
+        pieceLength: 512 * 1024,
+    );
 
     // pass an instance of PSR-14 event dispatcher to receive progress events:
-    $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', [], $eventDispatcher);
+    $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', $eventDispatcher);
     // dispatcher will receive instances of \SandFox\Torrent\FileSystem\FileDataProgressEvent
     //    only in 2.0 and later
 
@@ -95,3 +96,7 @@ Available options:
 .. note::
     Defaults may change in minor versions.
     If you care about their specific values, set them explicitly.
+
+.. warning::
+    Parameter order is not guaranteed for options.
+    Please use named parameters.
