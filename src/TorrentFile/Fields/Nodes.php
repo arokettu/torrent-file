@@ -21,7 +21,10 @@ trait Nodes
      */
     public function setNodes($value): self
     {
-        $this->setField('nodes', $this->nodes = $value instanceof NodeList ? $value : new NodeList($value ?? []));
+        $this->setField(
+            'nodes',
+            $this->nodes = $value instanceof NodeList ? $value : NodeList::fromIterable($value ?? [])
+        );
         return $this;
     }
 }

@@ -23,7 +23,10 @@ trait UrlList
     public function setUrlList($value): self
     {
         // always store as list
-        $this->setField('url-list', $this->urlList = $value instanceof UriList ? $value : new UriList($value ?? []));
+        $this->setField(
+            'url-list',
+            $this->urlList = $value instanceof UriList ? $value : UriList::fromIterable($value ?? [])
+        );
         return $this;
     }
 }

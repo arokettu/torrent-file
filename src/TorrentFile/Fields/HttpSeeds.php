@@ -20,7 +20,10 @@ trait HttpSeeds
      */
     public function setHttpSeeds($value): self
     {
-        $this->setField('httpseeds', $this->httpseeds = $value instanceof UriList ? $value : new UriList($value ?? []));
+        $this->setField(
+            'httpseeds',
+            $this->httpseeds = $value instanceof UriList ? $value : UriList::fromIterable($value ?? [])
+        );
         return $this;
     }
 }
