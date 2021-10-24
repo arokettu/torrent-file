@@ -55,12 +55,25 @@ final class TorrentFile implements BencodeSerializable
     ): self {
         // generate data for files
 
-        $dataGenerator = FileData::forPath($path, $options);
+        // @codeCoverageIgnoreStart
+        if (isset($options['sortFiles'])) {
+            trigger_deprecation(
+                'sandfoxme/torrent-file',
+                '2.2',
+                'sortFiles option is deprecated. Files are always sorted now',
+            );
+        }
+        // @codeCoverageIgnoreEnd
 
-        $dataGenerator->generateData($eventDispatcher);
+        $options = array_merge([
+            'pieceLength'   => 512 * 1024, // 512 KB
+            'md5sum'        => false,
+        ], $options);
+
+        $dataGenerator = FileData::forPath($path, $eventDispatcher, $options['pieceLength'], $options['md5sum']);
 
         $torrent = new self([
-            'info' => $dataGenerator->getData(),
+            'info' => $dataGenerator->process(),
         ]);
 
         // set some defaults

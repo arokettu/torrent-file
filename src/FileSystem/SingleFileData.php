@@ -11,23 +11,23 @@ use SplFileObject;
  */
 final class SingleFileData extends FileData
 {
-    protected function process(): void
+    public function process(): array
     {
         $file = new SplFileObject($this->path);
 
         $data = [
-            'piece length'  => $this->options['pieceLength'],
+            'piece length'  => $this->pieceLength,
             'name'          => $file->getBasename(),
             'length'        => $file->getSize(),
         ];
 
         $this->reportProgress($data['length'], 0, $data['name']);
 
-        if ($this->options['md5sum']) {
+        if ($this->md5sum) {
             $data['md5sum'] = md5_file($this->path);
         }
 
-        $chunkSize = $this->options['pieceLength'];
+        $chunkSize = $this->pieceLength;
 
         $chunkHashes = [];
 
@@ -38,6 +38,6 @@ final class SingleFileData extends FileData
 
         $data['pieces'] = implode($chunkHashes);
 
-        $this->data = $data;
+        return $data;
     }
 }

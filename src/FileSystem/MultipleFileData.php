@@ -12,10 +12,10 @@ use Symfony\Component\Finder\Finder;
  */
 final class MultipleFileData extends FileData
 {
-    protected function process(): void
+    public function process(): array
     {
         $data = [
-            'piece length'  => $this->options['pieceLength'],
+            'piece length'  => $this->pieceLength,
             'name' => basename($this->path),
         ];
 
@@ -70,7 +70,7 @@ final class MultipleFileData extends FileData
         $files = [];
         $chunkHashes = [];
 
-        $chunkSize = $this->options['pieceLength'];
+        $chunkSize = $this->pieceLength;
         $currentChunk = '';
 
         $doneSize = 0;
@@ -84,7 +84,7 @@ final class MultipleFileData extends FileData
                 'length'    => $file->getSize(),
             ];
 
-            if ($this->options['md5sum']) {
+            if ($this->md5sum) {
                 $fileData['md5sum'] = md5_file($filePath['fullPath']);
             }
 
@@ -123,6 +123,6 @@ final class MultipleFileData extends FileData
         $data['files']  = $files;
         $data['pieces'] = implode($chunkHashes);
 
-        $this->data = $data;
+        return $data;
     }
 }

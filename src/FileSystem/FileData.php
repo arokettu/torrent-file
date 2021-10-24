@@ -12,58 +12,41 @@ use SandFox\Torrent\Exception\PathNotFoundException;
  */
 abstract class FileData
 {
-    protected array $data;
     protected string $path;
-    protected array $options;
+    protected int $pieceLength;
+    protected bool $md5sum;
 
-    private ?EventDispatcherInterface $eventDispatcher = null;
+    private ?EventDispatcherInterface $eventDispatcher;
 
-    public const DEFAULT_OPTIONS = [
-        'pieceLength'   => 512 * 1024, // 512 KB
-        'md5sum'        => false,
-    ];
-
-    public static function forPath(string $path, array $options = []): self
-    {
-        // @codeCoverageIgnoreStart
-        if (isset($options['sortFiles'])) {
-            trigger_deprecation(
-                'sandfoxme/torrent-file',
-                '2.2',
-                'sortFiles option is deprecated. Files are always sorted now',
-            );
-        }
-        // @codeCoverageIgnoreEnd
-
+    public static function forPath(
+        string $path,
+        ?EventDispatcherInterface $eventDispatcher,
+        int $pieceLength,
+        bool $md5sum
+    ): self {
         if (is_file($path)) {
-            return new SingleFileData(realpath($path), $options);
+            return new SingleFileData(realpath($path), $eventDispatcher, $pieceLength, $md5sum);
         }
         if (is_dir($path)) {
-            return new MultipleFileData(realpath($path), $options);
+            return new MultipleFileData(realpath($path), $eventDispatcher, $pieceLength, $md5sum);
         }
 
         throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");
     }
 
-    protected function __construct(string $path, array $options = [])
-    {
+    protected function __construct(
+        string $path,
+        ?EventDispatcherInterface $eventDispatcher,
+        int $pieceLength,
+        bool $md5sum
+    ) {
         $this->path = $path;
-        $this->options = array_merge(self::DEFAULT_OPTIONS, $options);
-    }
-
-    public function generateData(?EventDispatcherInterface $eventDispatcher = null): void
-    {
         $this->eventDispatcher = $eventDispatcher;
-
-        $this->process();
+        $this->pieceLength = $pieceLength;
+        $this->md5sum = $md5sum;
     }
 
-    public function getData(): array
-    {
-        return $this->data;
-    }
-
-    abstract protected function process(): void;
+    abstract public function process(): array;
 
     protected function hashChunk(string $chunk): string
     {
