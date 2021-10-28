@@ -1,6 +1,9 @@
 # ide
 /.idea
 
+# dev
+/samples
+
 # composer
 /vendor
 /composer.lock
