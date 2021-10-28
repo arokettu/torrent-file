@@ -59,7 +59,6 @@ The library can create a torrent file from scratch for a file or a directory.
 
     $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', [
         'pieceLength' => 512 * 1024,
-        'md5sum' => false,
     ]);
 
     // pass an instance of PSR-14 event dispatcher to receive progress events:
@@ -73,11 +72,12 @@ Available options:
     The number of bytes that each logical piece in the peer protocol refers to.
     Must be a power of 2 and at least 16 KiB.
     Default: ``524_288`` (512 KiB)
-``md5sum``
-    The MD5 sum is added to the each file data dictionary.
-    Non standard field but some clients use it.
-    Not recommended.
-    Default: ``false``
+``detectExec``
+    The library detects executable attribute and sets it on files.
+    Default: ``true``
+``detectSymlinks``
+    The library detects symlinks and creates symlink torrent objects.
+    Default: ``true``
 
 .. note::
     Defaults may change in minor versions.

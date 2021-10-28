@@ -20,8 +20,14 @@
 * Added support for `url-list` field (BEP-19)
 * Added `setName()` and `getName()`
 * Added `isDirectory()`
-* sortFiles option is deprecated. Files are always sorted now (BEP 52 compatibility)
-* pieceLength option is validated to be pow of 2 and at least 16 KiB (BEP 52 compatibility)
+* `sortFiles` option is deprecated and no longer has any effect. Files are always sorted now (BEP-52 compatibility)
+* `pieceLength` option is validated to be pow of 2 and at least 16 KiB (BEP-52 compatibility)
+* `md5sum` option is deprecated and no longer has any effect
+* sha1 sums for all files are now generated (BEP-47)
+* The library now detects executable files and sets the attribute (BEP-47)
+  * Set the new option `detectExec` to `false` to disable it
+* The library now detects symlinks (BEP-47)
+  * Set the new option `detectSymlinks` to `false` to disable it
 
 ## 2.1.2
 
