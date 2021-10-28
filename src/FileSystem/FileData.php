@@ -41,10 +41,10 @@ abstract class FileData
         ];
 
         if (is_file($path)) {
-            return new SingleFileData(...$params);
+            return new V1\SingleFileData(...$params);
         }
         if (is_dir($path)) {
-            return new MultipleFileData(...$params);
+            return new V1\MultipleFileData(...$params);
         }
 
         throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");

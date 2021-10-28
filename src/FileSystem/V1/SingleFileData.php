@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\FileSystem;
+namespace SandFox\Torrent\FileSystem\V1;
 
+use SandFox\Torrent\FileSystem\FileData;
 use SplFileObject;
 
 /**
