@@ -66,11 +66,20 @@ final class TorrentFile implements BencodeSerializable
         // @codeCoverageIgnoreEnd
 
         $options = array_merge([
-            'pieceLength'   => 512 * 1024, // 512 KB
-            'md5sum'        => false,
+            'pieceLength'       => 512 * 1024, // 512 KB
+            'md5sum'            => false,
+            'detectExec'        => true,
+            'detectSymlinks'    => true,
         ], $options);
 
-        $dataGenerator = FileData::forPath($path, $eventDispatcher, $options['pieceLength'], $options['md5sum']);
+        $dataGenerator = FileData::forPath(
+            $path,
+            $eventDispatcher,
+            $options['pieceLength'],
+            $options['md5sum'],
+            $options['detectExec'],
+            $options['detectSymlinks'],
+        );
 
         $torrent = new self([
             'info' => $dataGenerator->process(),

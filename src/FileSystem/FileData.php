@@ -13,25 +13,38 @@ use SandFox\Torrent\Exception\PathNotFoundException;
  */
 abstract class FileData
 {
+    private const PIECE_LENGTH_MIN = 16 * 1024;
+
     protected string $path;
     protected int $pieceLength;
     protected bool $md5sum;
+    protected bool $detectExec;
+    protected bool $detectSymlinks;
 
     private ?EventDispatcherInterface $eventDispatcher;
-
-    private const PIECE_LENGTH_MIN = 16 * 1024;
 
     public static function forPath(
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
         int $pieceLength,
-        bool $md5sum
+        bool $md5sum,
+        bool $detectExec,
+        bool $detectSymlinks
     ): self {
+        $params = [
+            realpath($path),
+            $eventDispatcher,
+            $pieceLength,
+            $md5sum,
+            $detectExec,
+            $detectSymlinks,
+        ];
+
         if (is_file($path)) {
-            return new SingleFileData(realpath($path), $eventDispatcher, $pieceLength, $md5sum);
+            return new SingleFileData(...$params);
         }
         if (is_dir($path)) {
-            return new MultipleFileData(realpath($path), $eventDispatcher, $pieceLength, $md5sum);
+            return new MultipleFileData(...$params);
         }
 
         throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");
@@ -41,12 +54,16 @@ abstract class FileData
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
         int $pieceLength,
-        bool $md5sum
+        bool $md5sum,
+        bool $detectExec,
+        bool $detectSymlinks
     ) {
         $this->path = $path;
         $this->eventDispatcher = $eventDispatcher;
         $this->pieceLength = $pieceLength;
         $this->md5sum = $md5sum;
+        $this->detectExec = $detectExec;
+        $this->detectSymlinks = $detectSymlinks;
 
         if ($pieceLength < self::PIECE_LENGTH_MIN || ($pieceLength & ($pieceLength - 1)) !== 0) {
             throw new InvalidArgumentException(
@@ -67,5 +84,16 @@ abstract class FileData
         if ($this->eventDispatcher) {
             $this->eventDispatcher->dispatch(new FileDataProgressEvent($total, $done, $fileName));
         }
+    }
+
+    protected function getAttributes(string $path): ?string
+    {
+        $attr = null;
+
+        if (is_executable($path)) {
+            $attr .= 'x';
+        }
+
+        return $attr;
     }
 }

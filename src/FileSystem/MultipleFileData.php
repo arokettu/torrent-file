@@ -82,6 +82,7 @@ final class MultipleFileData extends FileData
             $fileData = [
                 'path'      => $filePath['explodedPath'],
                 'length'    => $file->getSize(),
+                'attr'      => $this->getAttributes($filePath['fullPath']),
             ];
 
             if ($this->md5sum) {

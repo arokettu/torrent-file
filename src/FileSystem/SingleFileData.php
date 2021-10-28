@@ -19,6 +19,7 @@ final class SingleFileData extends FileData
             'piece length'  => $this->pieceLength,
             'name'          => $file->getBasename(),
             'length'        => $file->getSize(),
+            'attr'          => $this->getAttributes($this->path),
         ];
 
         $this->reportProgress($data['length'], 0, $data['name']);
