@@ -14,7 +14,7 @@ final class MultipleFileData extends FileData
 {
     public function process(): array
     {
-        $data = [
+        $info = [
             'piece length'  => $this->pieceLength,
             'name' => basename($this->path),
         ];
@@ -39,7 +39,7 @@ final class MultipleFileData extends FileData
             $totalSize += $file->getSize();
         }
 
-        $this->reportProgress($totalSize, 0, $data['name']);
+        $this->reportProgress($totalSize, 0, $info['name']);
 
         // sort files by binary comparing exploded parts
         usort($filePaths, function ($path1, $path2): int {
@@ -118,12 +118,12 @@ final class MultipleFileData extends FileData
 
             $doneSize += \strlen($currentChunk);
 
-            $this->reportProgress($totalSize, $doneSize, $data['name']);
+            $this->reportProgress($totalSize, $doneSize, $info['name']);
         }
 
-        $data['files']  = $files;
-        $data['pieces'] = implode($chunkHashes);
+        $info['files']  = $files;
+        $info['pieces'] = implode($chunkHashes);
 
-        return $data;
+        return ['info' => $info];
     }
 }

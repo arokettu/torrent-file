@@ -81,9 +81,7 @@ final class TorrentFile implements BencodeSerializable
             $options['detectSymlinks'],
         );
 
-        $torrent = new self([
-            'info' => $dataGenerator->process(),
-        ]);
+        $torrent = new self($dataGenerator->process());
 
         // set some defaults
 

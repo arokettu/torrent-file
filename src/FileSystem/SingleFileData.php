@@ -15,17 +15,17 @@ final class SingleFileData extends FileData
     {
         $file = new SplFileObject($this->path);
 
-        $data = [
+        $info = [
             'piece length'  => $this->pieceLength,
             'name'          => $file->getBasename(),
             'length'        => $file->getSize(),
             'attr'          => $this->getAttributes($this->path),
         ];
 
-        $this->reportProgress($data['length'], 0, $data['name']);
+        $this->reportProgress($info['length'], 0, $info['name']);
 
         if ($this->md5sum) {
-            $data['md5sum'] = md5_file($this->path);
+            $info['md5sum'] = md5_file($this->path);
         }
 
         $chunkSize = $this->pieceLength;
@@ -34,11 +34,11 @@ final class SingleFileData extends FileData
 
         while ($chunk = $file->fread($chunkSize)) {
             $chunkHashes[] = $this->hashChunk($chunk);
-            $this->reportProgress($data['length'], $file->ftell(), $data['name']);
+            $this->reportProgress($info['length'], $file->ftell(), $info['name']);
         }
 
-        $data['pieces'] = implode($chunkHashes);
+        $info['pieces'] = implode($chunkHashes);
 
-        return $data;
+        return ['info' => $info];
     }
 }
