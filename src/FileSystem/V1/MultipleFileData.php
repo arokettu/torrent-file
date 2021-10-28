@@ -84,11 +84,8 @@ final class MultipleFileData extends FileData
                 'path'      => $filePath['explodedPath'],
                 'length'    => $file->getSize(),
                 'attr'      => $this->getAttributes($filePath['fullPath']),
+                'sha1'      => sha1_file($filePath['fullPath'], true),
             ];
-
-            if ($this->md5sum) {
-                $fileData['md5sum'] = md5_file($filePath['fullPath']);
-            }
 
             $files[] = $fileData;
 

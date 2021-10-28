@@ -63,11 +63,18 @@ final class TorrentFile implements BencodeSerializable
                 'sortFiles option is deprecated. Files are always sorted now',
             );
         }
+
+        if (isset($options['md5sum'])) {
+            trigger_deprecation(
+                'sandfoxme/torrent-file',
+                '2.2',
+                'sortFiles option is deprecated. Files are always sorted now',
+            );
+        }
         // @codeCoverageIgnoreEnd
 
         $options = array_merge([
             'pieceLength'       => 512 * 1024, // 512 KB
-            'md5sum'            => false,
             'detectExec'        => true,
             'detectSymlinks'    => true,
         ], $options);
@@ -76,7 +83,6 @@ final class TorrentFile implements BencodeSerializable
             $path,
             $eventDispatcher,
             $options['pieceLength'],
-            $options['md5sum'],
             $options['detectExec'],
             $options['detectSymlinks'],
         );

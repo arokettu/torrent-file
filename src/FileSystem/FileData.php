@@ -17,7 +17,6 @@ abstract class FileData
 
     protected string $path;
     protected int $pieceLength;
-    protected bool $md5sum;
     protected bool $detectExec;
     protected bool $detectSymlinks;
 
@@ -27,7 +26,6 @@ abstract class FileData
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
         int $pieceLength,
-        bool $md5sum,
         bool $detectExec,
         bool $detectSymlinks
     ): self {
@@ -35,7 +33,6 @@ abstract class FileData
             realpath($path),
             $eventDispatcher,
             $pieceLength,
-            $md5sum,
             $detectExec,
             $detectSymlinks,
         ];
@@ -54,14 +51,12 @@ abstract class FileData
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
         int $pieceLength,
-        bool $md5sum,
         bool $detectExec,
         bool $detectSymlinks
     ) {
         $this->path = $path;
         $this->eventDispatcher = $eventDispatcher;
         $this->pieceLength = $pieceLength;
-        $this->md5sum = $md5sum;
         $this->detectExec = $detectExec;
         $this->detectSymlinks = $detectSymlinks;
 

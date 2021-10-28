@@ -21,13 +21,10 @@ final class SingleFileData extends FileData
             'name'          => $file->getBasename(),
             'length'        => $file->getSize(),
             'attr'          => $this->getAttributes($this->path),
+            'sha1'          => sha1_file($this->path, true),
         ];
 
         $this->reportProgress($info['length'], 0, $info['name']);
-
-        if ($this->md5sum) {
-            $info['md5sum'] = md5_file($this->path);
-        }
 
         $chunkSize = $this->pieceLength;
 
