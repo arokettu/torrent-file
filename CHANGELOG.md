@@ -25,9 +25,9 @@
 * `md5sum` option is deprecated and no longer has any effect
 * sha1 sums for all files are now generated (BEP-47)
 * The library now detects executable files and sets the attribute (BEP-47)
-  * Set the new option `detectExec` to `false` to disable it
+  * Enabled by default. Set the new option `detectExec` to `false` to disable it
 * The library now detects symlinks (BEP-47)
-  * Set the new option `detectSymlinks` to `false` to disable it
+  * Disabled by default. Set the new option `detectSymlinks` to `true` to enable it
 
 ## 2.1.2
 

@@ -32,7 +32,7 @@ final class MultipleFileData extends FileData
 
         foreach ($finder->files()->in($this->path) as $file) {
             $filePaths[] = [
-                'fullPath'      => realpath($file->getPathname()),
+                'fullPath'      => $file->getPathname(),
                 'relativePath'  => $file->getRelativePathname(),
                 'explodedPath'  => explode(DIRECTORY_SEPARATOR, $file->getRelativePathname()),
             ];
@@ -78,6 +78,17 @@ final class MultipleFileData extends FileData
 
         foreach ($filePaths as $filePath) {
             $file = new SplFileObject($filePath['fullPath']);
+
+            $link = $this->detectSymlink($filePath['fullPath']);
+            if ($link !== null) {
+                $files[] = [
+                    'path'          => $filePath['explodedPath'],
+                    'attr'          => 'l',
+                    'length'        => 0, // compatibility
+                    'symlink path'  => $link,
+                ];
+                continue;
+            }
 
             // create file metadata
             $fileData = [

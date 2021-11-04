@@ -76,7 +76,7 @@ final class TorrentFile implements BencodeSerializable
         $options = array_merge([
             'pieceLength'       => 512 * 1024, // 512 KB
             'detectExec'        => true,
-            'detectSymlinks'    => true,
+            'detectSymlinks'    => false,
         ], $options);
 
         $dataGenerator = FileData::forPath(

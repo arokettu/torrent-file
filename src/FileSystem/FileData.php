@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\FileSystem;
 
+use Arokettu\Path\PathFactory;
+use Arokettu\Path\RelativePathInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\PathNotFoundException;
@@ -79,6 +81,37 @@ abstract class FileData
         if ($this->eventDispatcher) {
             $this->eventDispatcher->dispatch(new FileDataProgressEvent($total, $done, $fileName));
         }
+    }
+
+    protected function detectSymlink(string $path): ?array
+    {
+        if (!is_link($path)) {
+            return null;
+        }
+
+        // peel one layer of a link
+
+        $link = readlink($path);
+
+        $linkPath = PathFactory::parse($link);
+
+        if ($linkPath instanceof RelativePathInterface) {
+            $basePath = PathFactory::parse(dirname($path));
+            $linkPath = $basePath->resolveRelative($linkPath);
+        }
+
+        $abspath = $linkPath->toString();
+
+        if (!str_starts_with($abspath, $this->path)) {
+            return null;
+        }
+
+        return array_values(
+            array_filter(
+                explode('/', substr($abspath, \strlen($this->path))),
+                fn ($s) => $s !== ''
+            )
+        );
     }
 
     protected function getAttributes(string $path): ?string

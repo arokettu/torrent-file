@@ -77,7 +77,7 @@ Available options:
     Default: ``true``
 ``detectSymlinks``
     The library detects symlinks and creates symlink torrent objects.
-    Default: ``true``
+    Default: ``false``
 
 .. note::
     Defaults may change in minor versions.
