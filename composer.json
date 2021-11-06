@@ -39,7 +39,7 @@
     },
     "require": {
         "php": "^7.4 | ^8.0",
-        "arokettu/path": "0.* | ^1.0",
+        "arokettu/path": "^1.0",
         "league/uri-components": "^2.0",
         "nikic/iter": "^2.0",
         "psr/event-dispatcher": "^1.0",
