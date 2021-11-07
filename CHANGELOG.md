@@ -28,6 +28,8 @@
   * Enabled by default. Set the new option `detectExec` to `false` to disable it
 * The library now detects symlinks (BEP-47)
   * Disabled by default. Set the new option `detectSymlinks` to `true` to enable it
+* The library now allows aligning files to piece boundaries (BEP-47)
+  * Disabled by default. Set the new option `pieceAlign` to `true` or minimum bytes value to enable it
 
 ## 2.1.2
 

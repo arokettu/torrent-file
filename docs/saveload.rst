@@ -72,11 +72,24 @@ Available options:
     The number of bytes that each logical piece in the peer protocol refers to.
     Must be a power of 2 and at least 16 KiB.
     Default: ``524_288`` (512 KiB)
+``pieceAlign``
+    Align files to piece boundaries by inserting pad files.
+
+    * ``true``: Align all files
+    * ``false``: Do not align
+    * ``int $bytes``: Align files larger than ``$bytes`` in length
+
+    Default:
+    ``false`` for V1 torrents,
+    (in future versions)
+    ignored, always assumed ``true`` for hybrid V1+V2 torrents,
+    ignored, meaningless for V2 torrents
 ``detectExec``
     The library detects executable attribute and sets it on files.
     Default: ``true``
 ``detectSymlinks``
     The library detects symlinks and creates symlink torrent objects.
+    Only symlinks leading to files in the torrent data directory are detected.
     Default: ``false``
 
 .. note::
