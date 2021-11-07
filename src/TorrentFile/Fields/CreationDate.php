@@ -29,12 +29,6 @@ trait CreationDate
      */
     public function getCreationDate(): ?int
     {
-        trigger_deprecation(
-            'sandfoxme/bencode',
-            '2.2.0',
-            'getCreationDate() will return an instance of DateTimeImmutable in 3.0. ' .
-            'Use getCreationDateAsTimestamp() for future compatibility.'
-        );
         return $this->getCreationDateAsTimestamp();
     }
 

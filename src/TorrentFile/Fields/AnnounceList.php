@@ -19,12 +19,6 @@ trait AnnounceList
      */
     public function getAnnounceList(): array
     {
-        trigger_deprecation(
-            'sandfoxme/bencode',
-            '2.2.0',
-            'getAnnounceList() will return an instance of AnnounceList in 3.0. ' .
-            'Use getAnnounceListAsArray() for future compatibility.'
-        );
         return $this->getAnnounceListAsObject()->toArray();
     }
 
