@@ -35,6 +35,7 @@ final class MultipleFileData extends FileData
                 'fullPath'      => $file->getPathname(),
                 'relativePath'  => $file->getRelativePathname(),
                 'explodedPath'  => explode(DIRECTORY_SEPARATOR, $file->getRelativePathname()),
+                'fileObject'    => new SplFileObject($file->getPathname()),
             ];
 
             $totalSize += $file->getSize();
@@ -76,8 +77,9 @@ final class MultipleFileData extends FileData
 
         $doneSize = 0;
 
-        foreach ($filePaths as $filePath) {
-            $file = new SplFileObject($filePath['fullPath']);
+        foreach ($filePaths as $fileKey => $filePath) {
+            /** @var SplFileObject $file */
+            $file = $filePath['fileObject'];
 
             $link = $this->detectSymlink($filePath['fullPath']);
             if ($link !== null) {
@@ -105,15 +107,43 @@ final class MultipleFileData extends FileData
 
             while ($partialChunk = $file->fread($chunkReadSize)) {
                 $currentChunk .= $partialChunk;
+                $currentChunkLenWithoutPadding = \strlen($currentChunk);
 
+                // incomplete chunk
                 if (\strlen($currentChunk) < $chunkSize) {
-                    break; // add next file to the chunk
+                    $nextFilePath = $filePaths[$fileKey + 1] ?? null;
+                    if ($nextFilePath === null) {
+                        break; // last file, no need for padding
+                    }
+
+                    /** @var SplFileObject $fileNext */
+                    $fileNext = $nextFilePath['fileObject'];
+                    if (
+                        $file->getSize() < $this->pieceAlign && // no need to pad this file
+                        $fileNext->getSize() < $this->pieceAlign // no need to pad next file
+                    ) {
+                        break; // no need for padding: read the next file for a partial chunk
+                    }
+
+                    // add pad 'file'
+                    $padSize = $chunkSize - \strlen($currentChunk);
+                    $padFileData = [
+                        'attr'      => 'p',
+                        'length'    => $padSize,
+                        'path'      => ['.pad', \strval($padSize)]
+                    ];
+                    $files[] = $padFileData;
+
+                    // complete the chunk
+                    $currentChunk = str_pad($currentChunk, $chunkSize, "\0", \STR_PAD_RIGHT);
+
+                    // fall through to the complete chunk logic
                 }
 
                 // we have complete chunk here
                 $chunkHashes[] = $this->hashChunk($currentChunk);
 
-                $doneSize += \strlen($currentChunk);
+                $doneSize += $currentChunkLenWithoutPadding;
                 $this->reportProgress($totalSize, $doneSize, $filePath['relativePath']);
 
                 $currentChunk = ''; // start new chunk

@@ -75,14 +75,20 @@ final class TorrentFile implements BencodeSerializable
 
         $options = array_merge([
             'pieceLength'       => 512 * 1024, // 512 KB
+            'pieceAlign'        => false,
             'detectExec'        => true,
             'detectSymlinks'    => false,
         ], $options);
+
+        if (\is_bool($options['pieceAlign'])) {
+            $options['pieceAlign'] = $options['pieceAlign'] ? 0 : PHP_INT_MAX;
+        }
 
         $dataGenerator = FileData::forPath(
             $path,
             $eventDispatcher,
             $options['pieceLength'],
+            $options['pieceAlign'],
             $options['detectExec'],
             $options['detectSymlinks'],
         );

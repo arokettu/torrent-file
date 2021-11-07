@@ -21,6 +21,7 @@ abstract class FileData
     protected int $pieceLength;
     protected bool $detectExec;
     protected bool $detectSymlinks;
+    protected int $pieceAlign;
 
     private ?EventDispatcherInterface $eventDispatcher;
 
@@ -28,6 +29,7 @@ abstract class FileData
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
         int $pieceLength,
+        int $pieceAlign,
         bool $detectExec,
         bool $detectSymlinks
     ): self {
@@ -35,6 +37,7 @@ abstract class FileData
             realpath($path),
             $eventDispatcher,
             $pieceLength,
+            $pieceAlign,
             $detectExec,
             $detectSymlinks,
         ];
@@ -53,6 +56,7 @@ abstract class FileData
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
         int $pieceLength,
+        int $pieceAlign,
         bool $detectExec,
         bool $detectSymlinks
     ) {
@@ -61,6 +65,7 @@ abstract class FileData
         $this->pieceLength = $pieceLength;
         $this->detectExec = $detectExec;
         $this->detectSymlinks = $detectSymlinks;
+        $this->pieceAlign = $pieceAlign;
 
         if ($pieceLength < self::PIECE_LENGTH_MIN || ($pieceLength & ($pieceLength - 1)) !== 0) {
             throw new InvalidArgumentException(
@@ -85,6 +90,10 @@ abstract class FileData
 
     protected function detectSymlink(string $path): ?array
     {
+        if (!$this->detectSymlinks) {
+            return null;
+        }
+
         if (!is_link($path)) {
             return null;
         }
@@ -102,6 +111,7 @@ abstract class FileData
 
         $abspath = $linkPath->toString();
 
+        // leading beyond the torrent root
         if (!str_starts_with($abspath, $this->path)) {
             return null;
         }
