@@ -25,7 +25,12 @@ trait CreationDate
 
     public function getCreationDate(): ?\DateTimeImmutable
     {
-        return $this->getCreationDateAsTimestamp();
+        return $this->getCreationDateWrapper()->getDateTime();
+    }
+
+    private function getCreationDateWrapper(): DateTimeWrapper
+    {
+        return $this->creationDate ??= DateTimeWrapper::fromTimestamp($this->getField('creation date'));
     }
 
     /**
