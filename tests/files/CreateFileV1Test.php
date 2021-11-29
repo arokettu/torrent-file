@@ -13,7 +13,7 @@ use function SandFox\Torrent\Tests\build_magnet_link;
 
 use const SandFox\Torrent\Tests\TEST_ROOT;
 
-class CreateFileTest extends TestCase
+class CreateFileV1Test extends TestCase
 {
     public function testSingleFile(): void
     {

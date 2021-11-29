@@ -9,7 +9,7 @@
 /composer.lock
 
 # phpunit
-/tests/data/files
+/tests/data/files*
 /reports
 /.phpunit.result.cache
 
