@@ -108,9 +108,10 @@ class CreateFileV1Test extends TestCase
 
     public function testMultipleFiles1MB(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files', [
-            'pieceLength' => 1024 * 1024, // 1mb chunk
-        ]); // approx 19 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files',
+            pieceLength: 1024 * 1024, // 1mb chunk
+        ); // approx 19 mb
 
         self::assertEquals('8d7b1593175abfa6563f7c8de082e5c46b3d1292', $torrent->getInfoHash());
 //        echo export_test_data($torrent->getRawData()['info']);
@@ -170,9 +171,10 @@ class CreateFileV1Test extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('pieceLength must be a power of 2 and at least 16384');
 
-        TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
-            'pieceLength' => 1024,
-        ]);
+        TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            pieceLength: 1024,
+        );
     }
 
     public function testChunkNotPow2(): void
@@ -180,8 +182,9 @@ class CreateFileV1Test extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('pieceLength must be a power of 2 and at least 16384');
 
-        TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
-            'pieceLength' => 1024 * 1024 - 1,
-        ]);
+        TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            pieceLength: 1024 * 1024 - 1,
+        );
     }
 }

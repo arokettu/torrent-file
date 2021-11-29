@@ -95,9 +95,10 @@ class CreateFileV1FeaturesTest extends TestCase
 
     public function testExecutable(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
-            'detectExec' => true,
-        ]);
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files2',
+            detectExec: true,
+        );
 
         $info = $torrent->getRawData()['info'];
 
@@ -113,9 +114,10 @@ class CreateFileV1FeaturesTest extends TestCase
 
     public function testSymlinks(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
-            'detectSymlinks' => true,
-        ]);
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files2',
+            detectSymlinks: true,
+        );
 
         $info = $torrent->getRawData()['info'];
 
@@ -197,9 +199,10 @@ class CreateFileV1FeaturesTest extends TestCase
 
     public function testPadAlways(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
-            'pieceAlign' => true,
-        ]);
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files2',
+            pieceAlign: true,
+        );
 
         $info = $torrent->getRawData()['info'];
 
@@ -308,10 +311,11 @@ class CreateFileV1FeaturesTest extends TestCase
 
     public function testPadSpecificWithSymlinks(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
-            'pieceAlign' => 6_621_350,
-            'detectSymlinks' => true,
-        ]);
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files2',
+            pieceAlign: 6_621_350,
+            detectSymlinks: true,
+        );
 
         $info = $torrent->getRawData()['info'];
 
