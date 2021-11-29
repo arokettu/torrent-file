@@ -16,7 +16,7 @@ trait LoadMethods
 
     private static function decoder(): Decoder
     {
-        return new Decoder(['bigInt' => BigInt::INTERNAL]);
+        return new Decoder(bigInt: BigInt::INTERNAL);
     }
 
     /**

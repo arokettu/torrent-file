@@ -101,10 +101,7 @@ function build_magnet_link(array $components): string
     return 'magnet:?' . implode('&', $components);
 }
 
-/**
- * @param mixed $data
- */
-function export_test_data($data): string
+function export_test_data(mixed $data): string
 {
     if (\is_array($data)) {
         $export = "[\n";
