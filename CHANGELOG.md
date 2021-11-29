@@ -10,6 +10,7 @@
   * `getCreationDateAsDateTime()` and `getCreationDateAsTimestamp()` now trigger silent deprecations
 * `getAnnounceList()` now returns an instance of `AnnounceList`
   * `getAnnounceListAsArray()` and `getAnnounceListAsObject()` now trigger silent deprecations
+* `FileDataProgressEvent`: getters were replaced with readonly properties
 
 ## 2.2.0
 
