@@ -9,7 +9,7 @@ use SandFox\Torrent\TorrentFile;
 
 use const SandFox\Torrent\Tests\TEST_ROOT;
 
-class CreateFileFeaturesTest extends TestCase
+class CreateFileV1FeaturesTest extends TestCase
 {
     public function testFiles2(): void
     {
