@@ -39,13 +39,13 @@
     },
     "require": {
         "php": "^7.4 | ^8.0",
-        "arokettu/path": "^1.0",
         "league/uri-components": "^2.0",
         "nikic/iter": "^2.0",
         "psr/event-dispatcher": "^1.0",
         "sandfoxme/bencode": "^1.7.2 | ^2.7.2 | ^3.0.2",
         "symfony/deprecation-contracts": "^2.1",
-        "symfony/finder": ">= 2.7 < 7",
+        "symfony/filesystem": "^5.4 | ^6.0",
+        "symfony/finder": "^5.4 | ^6.0",
         "symfony/polyfill-php80": "^1.22",
         "symfony/polyfill-php81": "^1.22"
     },

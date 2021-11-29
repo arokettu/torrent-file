@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\FileSystem;
 
-use Arokettu\Path\PathFactory;
-use Arokettu\Path\RelativePathInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\PathNotFoundException;
+use Symfony\Component\Filesystem\Path;
 
 /**
  * @internal
@@ -102,23 +101,18 @@ abstract class FileData
 
         $link = readlink($path);
 
-        $linkPath = PathFactory::parse($link);
-
-        if ($linkPath instanceof RelativePathInterface) {
-            $basePath = PathFactory::parse(dirname($path));
-            $linkPath = $basePath->resolveRelative($linkPath);
+        if (Path::isRelative($link)) {
+            $link = Path::makeAbsolute($link, Path::getDirectory($path));
         }
 
-        $abspath = $linkPath->toString();
-
         // leading beyond the torrent root
-        if (!str_starts_with($abspath, $this->path)) {
+        if (!str_starts_with($link, $this->path)) {
             return null;
         }
 
         return array_values(
             array_filter(
-                explode('/', substr($abspath, \strlen($this->path))),
+                explode('/', substr($link, \strlen($this->path))),
                 fn ($s) => $s !== ''
             )
         );
