@@ -110,4 +110,88 @@ class CreateFileFeaturesTest extends TestCase
 
         self::assertStringContainsString('x', $xfile['attr']);
     }
+
+    public function testSymlinks(): void
+    {
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
+            'detectSymlinks' => true,
+        ]);
+
+        $info = $torrent->getRawData()['info'];
+
+//        echo export_test_data($info);
+        $this->assertEquals(
+            [
+                'files' => [
+                    [
+                        // not link!
+                        'length' => 6621359,
+                        'path' => ['dir1', 'file1.txt'],
+                        'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                    ],
+                    [
+                        // link
+                        'attr' => 'l',
+                        'length' => 0,
+                        'path' => ['dir2', 'file1.txt'],
+                        'symlink path' => ['dir1', 'file1.txt'],
+                    ],
+                    [
+                        // link
+                        'attr' => 'l',
+                        'length' => 0,
+                        'path' => ['dir2', 'file2.txt'],
+                        'symlink path' => ['dir3', 'file2.txt'],
+                    ],
+                    [
+                        // not link!
+                        'length' => 6621341,
+                        'path' => ['dir3', 'file2.txt'],
+                        'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                    ],
+                    [
+                        'length' => 6291456,
+                        'path' => ['dir4', 'aligned.txt'],
+                        'sha1' => base64_decode("8uHdutKp152UxbBUEr66/UNo/I0="),
+                    ],
+                    [
+                        // not link!
+                        'length' => 6621335,
+                        'path' => ['dir5', 'file3.txt'],
+                        'sha1' => base64_decode("WW5Dv31hzse3rO95vQfVTk7M3lg="),
+                    ],
+                    [
+                        'attr' => 'x',
+                        'length' => 6621355,
+                        'path' => ['dir6', 'exec.txt'],
+                        'sha1' => base64_decode("PLesPfBgCmcfBdyu9k95eUh8sfs="),
+                    ],
+                ],
+                'name' => 'files2',
+                'piece length' => 524288,
+                'pieces' => base64_decode(<<<PIECES
+                    UA6+qBSqwP7uJvTrqHs5iSp5mUcYJfIZ0wAyzY2UHsZoDGPTMYeNeHBiUmrKwus8K15+gprxhB4ZmcoA/4vOAEQncUHAA
+                    kG2ApyqUloDAZ8XO3ktOMTUiQudWYbF+C7vrrYcJZZSA1ah8mNroUK9GEhJ/3tU40U4gfAgqRjk+AYay689QDM/8hpiYY
+                    egLmNYntD0erSEXD7G9Fy4DT1SOMM4lHtUQsC+7erlN+apGisf4erLaK2bGTgKsbDwETNk115guP75OsxO499nbjEf7uz
+                    Nnu+SVo3wmeoI5/mx1jV2iihYK4Ow/iJL7yq2CUruihk4M/lebvPJnEfBTUvdCoFQgS9jQ2WiZD5/gYl0SBcWwh9FtIKZ
+                    Ak4YSRTGIeRQ3uXrskTU0He9RBdgQaOZ8ABWE4SMUURL+XDW70fjiUa1tu8UBF8CXXhn79MxF6KXE582EpS4vihoyDRFG
+                    Dm/LmkZzDsXFlSbSLDLkJQcQUKYcAiHDPhw/x3cDE4nFCeXrDD5KqFoSU00GjSJhZnOIWGP/217S/WL3BdekItM3HLx2B
+                    q/QQUHmTimqOmC1s5vTkQBM1hhc+zts7/oBz5+Kz+9EDdgyjBCKs/x/fYk74HyKKwBz97lPpf+c+WUc+GkJMQO1S/BEdp
+                    L4G3wghtWdDVw9alE62SqWu/GRbcLrrIlgjBaK0bcPbXFpcFU3qEUR0Pxv1hjwLr5uvskGDGwmwPuk8DqAfvL8hvCRJCV
+                    OLE0HDN1KPOBFi7ss67AWYaM0xFy66QjMzaZqujBtRTzzrYchSH+MYDCA9uaDmzha3LfYUzsAScdz5S8nSpze+lEbPnU0
+                    KiaVr+7jLNEWO+iV/7ZixtD2zvQ17AyG9Gj5wQ7EKcWKf+O+elKyeFKD5eBX23nEhk1XO4cwrJA1O5O1EuzEdqbFW/fXn
+                    kMUDhJSdF1Xaqu3kf5HVx3VO840F0KrsS1qUTItSsK6YrTGLPIEPBDUSd9COYobuEtSCZOp8FyRBPaoK9C+7u6DrBeDQY
+                    oc95Fwp8U3G/zEkOyapShH77K83cwoRUlir7GErzIwMQ6tBHnucv+xNbuZzEh30maSnRgk96BM7d+KYbwbisqJsTeQ+Zh
+                    A8oYwi+/2i0Cwd8aiIXZpWVvciVjl+cImI+3YerfVB/wbTvWkfplvnorW/jk0kJRLWBuvJe1eqtqTPOyTYM+oYceqWoWU
+                    sC+GaLXgNJ1x4lif2YAZ6jsTPn1DWAAk1jRaSop4JWdmzrwa89eMEutd/O0iLX3I5LKK/vm4uRtJPu835z3zR1JrRuzW3
+                    J6TEE+yvVmYuZXhf1gffmMfEfA2VWYIejjFOl32f98K5AWf5MFeQak2SuX0XVbFsDff67LFumUQqxFepoaP+vFgnKhRxz
+                    57+sGLMnJUEWGHDpxKQ65SKR01/trU7PsQcSc4QS35cCRBHtqakHMPjbhQKX/bONJHPKERYZfoMXW1VDcI00w2PyZlABc
+                    WWpkmvpTNdynmRpa5GAuxpd6MnFA7jPUJH3TKdkL8lMuDoyoqj9Ts3Gm0uklbpkOoBXxLizJSByOt3/OWqs/8E8nWSkcv
+                    Rcu6qW78hS32cr6P+Jk/tRi0wWc6twxlKnBTptaHWEl6d4WEj8mqJxELWyvIc7K5D6sM6fLUheOiYxUzl9k9ZSJIpIFmQ
+                    rCx1NK
+                    PIECES),
+            ],
+            $info
+        );
+    }
 }
