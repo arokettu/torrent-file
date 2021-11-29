@@ -108,7 +108,7 @@ final class TorrentFile implements BencodeSerializable
         $stream = fopen('php://temp', 'r+');
         $this->storeToStream($stream);
         rewind($stream);
-        $rawData = (new Decoder())->decodeStream($stream);
+        $rawData = self::decoder()->decodeStream($stream);
         fclose($stream);
 
         return $rawData;
