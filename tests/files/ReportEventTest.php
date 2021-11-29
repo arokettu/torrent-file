@@ -34,8 +34,8 @@ class ReportEventTest extends TestCase implements ListenerProviderInterface
 
     public function listener(FileDataProgressEvent $event): void
     {
-        self::assertEquals($this->done, $event->getDone());
-        self::assertEquals(6621335 + 6621341 + 6621359, $event->getTotal());
+        self::assertEquals($this->done, $event->done);
+        self::assertEquals(6621335 + 6621341 + 6621359, $event->total);
 
         if ($this->done === 6621335 + 6621341 + 6621359) { // total
             $file = 'files';
@@ -49,7 +49,7 @@ class ReportEventTest extends TestCase implements ListenerProviderInterface
             $file = 'files';
         }
 
-        self::assertEquals($file, $event->getFileName());
+        self::assertEquals($file, $event->fileName);
 
         $this->done += 512 * 1024;
         if ($this->done > 6621335 + 6621341 + 6621359) {
