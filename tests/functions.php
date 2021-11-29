@@ -51,3 +51,35 @@ function build_magnet_link(array $components): string
 {
     return 'magnet:?' . implode('&', $components);
 }
+
+/**
+ * @param mixed $data
+ */
+function export_test_data($data): string
+{
+    if (\is_array($data)) {
+        $export = "[\n";
+        if (array_is_list($data)) {
+            foreach ($data as $value) {
+                $export .= export_test_data($value);
+                $export .= ",\n";
+            }
+        } else {
+            foreach ($data as $key => $value) {
+                $export .= export_test_data($key);
+                $export .= ' => ';
+                $export .= export_test_data($value);
+                $export .= ",\n";
+            }
+        }
+        $export .= "]";
+
+        return $export;
+    }
+
+    if (\is_string($data) && !ctype_print($data)) {
+        return 'base64_decode("' . base64_encode($data) . '")';
+    }
+
+    return var_export($data, true);
+}
