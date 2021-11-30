@@ -46,3 +46,17 @@ A base name of the encoded file or directory.
     $torrent->setName('file.iso');
     // stored name may be null or invalid :(
     $name = $torrent->getName();
+
+Private
+=======
+
+.. note:: BEP-27_ Private Torrents
+.. _BEP-27: https://www.bittorrent.org/beps/bep_0027.html
+
+Get / set / unset the private flag.
+
+.. code-block:: php
+
+    <?php
+    $isPrivate = $torrent->isPrivate();
+    $torrent->setPrivate(true);
