@@ -3,7 +3,9 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
-## 2.next
+## 2.2.0
+
+*Nov 30, 2021*
 
 * Fixed possible announce list corruption if deduplication of trackers happened
 * Fixed `null` handling on `announce` and `created by` 
