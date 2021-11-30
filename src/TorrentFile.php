@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SandFox\Torrent;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
-use SandFox\Bencode\Decoder;
 use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\FileSystem\FileData;
 
