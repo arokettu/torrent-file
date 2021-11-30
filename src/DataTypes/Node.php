@@ -12,14 +12,10 @@ use SandFox\Torrent\Exception\OutOfBoundsException;
 
 final class Node implements BencodeSerializable, \ArrayAccess
 {
-    private string $host;
-    private int $port;
-
-    public function __construct(string $host, int $port)
-    {
-        $this->host = $host;
-        $this->port = $port;
-    }
+    public function __construct(
+        public readonly string $host,
+        public readonly int $port,
+    ) {}
 
     public static function fromArray(array $array): self
     {
@@ -35,13 +31,29 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return $node instanceof self ? $node : self::fromArray($node);
     }
 
+    /**
+     * @deprecated use $this->host
+     */
     public function getHost(): string
     {
+        trigger_deprecation(
+            'sandfoxme/torrent-file',
+            '3.0.1',
+            '$node->getHost() is deprecated, use $node->host'
+        );
         return $this->host;
     }
 
+    /**
+     * @deprecated use $this->port
+     */
     public function getPort(): int
     {
+        trigger_deprecation(
+            'sandfoxme/torrent-file',
+            '3.0.1',
+            '$node->getPort() is deprecated, use $node->port'
+        );
         return $this->port;
     }
 
@@ -68,8 +80,8 @@ final class Node implements BencodeSerializable, \ArrayAccess
     public function offsetGet(mixed $offset): int|string
     {
         return match ($offset) {
-            0 => $this->getHost(),
-            1 => $this->getPort(),
+            0 => $this->host,
+            1 => $this->port,
             default => throw new OutOfBoundsException('Unknown offset'),
         };
     }

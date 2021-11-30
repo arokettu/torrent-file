@@ -101,8 +101,8 @@ Fields
 
     <?php
 
-    $host = $node->getHost(); // node host or ip
-    $port = $node->getPort(); // node port
+    $host = $node->host; // node host or ip
+    $port = $node->port; // node port
 
     // also with array access that mimics the representation in the torrent file
     $host = $node[0];
