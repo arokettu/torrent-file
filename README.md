@@ -45,6 +45,11 @@ Also on Read the Docs: <https://torrent-file.readthedocs.io/>
 
 Please file issues on our main repo at GitLab: <https://gitlab.com/sandfox/torrent-file/-/issues>
 
+Supported versions:
+
+* 2.x (current, PHP 7.4+)
+* 3.x ("future", PHP 8.1+)
+
 ## License
 
 The library is available as open source under the terms of the [MIT License].
