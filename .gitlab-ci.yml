@@ -48,7 +48,7 @@ coverage:
   extends: .test
   stage: report
   only:
-    - master
+    - 3.x
   image: php:8.1
   script:
     - composer update
