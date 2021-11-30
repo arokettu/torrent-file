@@ -21,10 +21,8 @@ final class Node implements BencodeSerializable, \ArrayAccess
         $this->port = $port;
     }
 
-    public static function fromArray(
-        #[ArrayShape(['string', 'int'])]
-        array $array
-    ): self {
+    public static function fromArray(array $array): self
+    {
         if (\count($array) !== 2 || !array_is_list($array)) {
             throw new InvalidArgumentException('$array must contain 2 values and be a list');
         }
