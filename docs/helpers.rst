@@ -35,3 +35,25 @@ A helper to generate a magnet link for the torrent.
 
     <?php
     $magnet = $torrent->getMagnetLink(); // 'magnet:?xt=urn:btih:...'
+
+Raw Data
+========
+
+.. warning::
+    Since 2.2 ``getRawData()`` is guaranteed to return the structure as it is encoded in the bencoded torrent file.
+    In earlier versions it returned whatever junk TorrentFile stored internally.
+
+.. versionchanged:: 2.2 Consistent return format
+
+A helper method that dumps raw torrent data as array.
+
+.. code-block:: php
+
+    <?php
+    // get raw data
+    $data = $torrent->getRawData();
+    // info dictionary
+    var_dump($data['info']);
+    // fields
+    var_dump($data['creation date']);
+    // etc...
