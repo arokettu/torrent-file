@@ -3,8 +3,13 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
-## next
+## 3.0.0
 
+*Nov 30, 2021*
+
+(forked from 2.2.0)
+
+* PHP 8.1 is now required
 * In `TorrentFile::forPath()` options array is removed and replaced with named parameters
 * `getCreationDate()` now returns an instance of `DateTimeImmutable`
   * `getCreationDateAsDateTime()` and `getCreationDateAsTimestamp()` now trigger silent deprecations
