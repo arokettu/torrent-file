@@ -13,12 +13,9 @@ use SandFox\Bencode\Types\BencodeSerializable;
  */
 final class DateTimeWrapper implements BencodeSerializable
 {
-    private ?\DateTimeImmutable $dateTime;
-
-    public function __construct(?\DateTimeImmutable $dateTime)
-    {
-        $this->dateTime = $dateTime;
-    }
+    public function __construct(
+        public readonly ?\DateTimeImmutable $dateTime
+    ) {}
 
     /**
      * From the value that is hinted in setCreationDate()
@@ -43,18 +40,8 @@ final class DateTimeWrapper implements BencodeSerializable
         return new self($dateTime ? \DateTimeImmutable::createFromInterface($dateTime) : null);
     }
 
-    public function getDateTime(): ?\DateTimeImmutable
-    {
-        return $this->dateTime;
-    }
-
-    public function getTimestamp(): ?int
-    {
-        return $this->dateTime?->getTimestamp();
-    }
-
     public function bencodeSerialize(): ?int
     {
-        return $this->getTimestamp();
+        return $this->dateTime?->getTimestamp();
     }
 }
