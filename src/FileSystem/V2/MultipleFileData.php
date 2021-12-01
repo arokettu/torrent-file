@@ -103,8 +103,11 @@ class MultipleFileData extends FileData
 
         // generate 1st level of merkle tree
         $file->rewind();
-        while ($file->eof() === false) {
+        while (!$file->eof()) {
             $data = $file->fread(self::PIECE_LENGTH_MIN);
+            if ($data === '') {
+                continue; // trigger eof
+            }
             if ($data === false) {
                 throw new RuntimeException('Unable to read file ' . $filePath['fullPath']);
             }
