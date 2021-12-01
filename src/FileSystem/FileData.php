@@ -7,14 +7,17 @@ namespace SandFox\Torrent\FileSystem;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\PathNotFoundException;
+use SandFox\Torrent\Helpers\MathHelper;
 use Symfony\Component\Filesystem\Path;
+use Symfony\Component\Finder\Finder;
 
 /**
  * @internal
  */
 abstract class FileData
 {
-    private const PIECE_LENGTH_MIN = 16 * 1024;
+    protected const PIECE_LENGTH_MIN = 16 * 1024;
+    protected const PIECE_LENGTH_MIN_LOG_2 = 14; // log2(16) + log2(1024) = 4 + 10
 
     protected string $path;
     protected int $pieceLength;
@@ -66,16 +69,22 @@ abstract class FileData
         $this->detectSymlinks = $detectSymlinks;
         $this->pieceAlign = $pieceAlign;
 
-        if ($pieceLength < self::PIECE_LENGTH_MIN || ($pieceLength & ($pieceLength - 1)) !== 0) {
+        if ($pieceLength < self::PIECE_LENGTH_MIN || !MathHelper::isPow2($pieceLength)) {
             throw new InvalidArgumentException(
                 'pieceLength must be a power of 2 and at least ' . self::PIECE_LENGTH_MIN
             );
         }
+
+        $this->init();
+    }
+
+    protected function init(): void
+    {
     }
 
     abstract public function process(): array;
 
-    protected function hashChunk(string $chunk): string
+    protected function hashChunkV1(string $chunk): string
     {
         return sha1($chunk, true);
     }
@@ -127,5 +136,16 @@ abstract class FileData
         }
 
         return $attr;
+    }
+
+    protected function finder(): Finder
+    {
+        $finder = new Finder();
+
+        // don't ignore files
+        $finder->ignoreDotFiles(false);
+        $finder->ignoreVCS(false);
+
+        return $finder;
     }
 }

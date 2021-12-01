@@ -6,7 +6,6 @@ namespace SandFox\Torrent\FileSystem\V1;
 
 use SandFox\Torrent\FileSystem\FileData;
 use SplFileObject;
-use Symfony\Component\Finder\Finder;
 
 /**
  * @internal
@@ -20,17 +19,10 @@ final class MultipleFileData extends FileData
             'name' => basename($this->path),
         ];
 
-        $finder = new Finder();
-
-        // don't ignore files
-        $finder->ignoreDotFiles(false);
-        $finder->ignoreVCS(false);
-
         $filePaths = [];
-
         $totalSize = 0;
 
-        foreach ($finder->files()->in($this->path) as $file) {
+        foreach ($this->finder()->files()->in($this->path) as $file) {
             $filePaths[] = [
                 'fullPath'      => $file->getPathname(),
                 'relativePath'  => $file->getRelativePathname(),
@@ -141,7 +133,7 @@ final class MultipleFileData extends FileData
                 }
 
                 // we have complete chunk here
-                $chunkHashes[] = $this->hashChunk($currentChunk);
+                $chunkHashes[] = $this->hashChunkV1($currentChunk);
 
                 $doneSize += $currentChunkLenWithoutPadding;
                 $this->reportProgress($totalSize, $doneSize, $filePath['relativePath']);
@@ -153,7 +145,7 @@ final class MultipleFileData extends FileData
 
         // hash last chunk
         if (\strlen($currentChunk) > 0) {
-            $chunkHashes[] = $this->hashChunk($currentChunk);
+            $chunkHashes[] = $this->hashChunkV1($currentChunk);
 
             $doneSize += \strlen($currentChunk);
 
