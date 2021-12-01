@@ -47,24 +47,16 @@ A base name of the encoded file or directory.
     // stored name may be null or invalid :(
     $name = $torrent->getName();
 
-Raw Data
-========
+Private
+=======
 
-.. warning::
-    Since 2.2 ``getRawData()`` is guaranteed to return the structure as it is encoded in the bencoded torrent file.
-    In earlier versions it returned whatever junk TorrentFile stored internally.
+.. note:: BEP-27_ Private Torrents
+.. _BEP-27: https://www.bittorrent.org/beps/bep_0027.html
 
-.. versionchanged:: 2.2 Consistent return format
-
-A helper method that dumps raw torrent data as array.
+Get / set / unset the private flag.
 
 .. code-block:: php
 
     <?php
-    // get raw data
-    $data = $torrent->getRawData();
-    // info dictionary
-    var_dump($data['info']);
-    // fields
-    var_dump($data['creation date']);
-    // etc...
+    $isPrivate = $torrent->isPrivate();
+    $torrent->setPrivate(true);

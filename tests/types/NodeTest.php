@@ -18,6 +18,14 @@ class NodeTest extends TestCase
         Node::ensure(['localhost', 80, 'testtest']);
     }
 
+    public function testGetters(): void
+    {
+        $node = Node::ensure(['localhost', 8080]);
+
+        self::assertEquals('localhost', $node->getHost());
+        self::assertEquals(8080, $node->getPort());
+    }
+
     public function testArrayAccess(): void
     {
         $node = Node::ensure(['localhost', 8080]);
