@@ -30,10 +30,10 @@ final class MathHelper
 
     public static function merkleTreeLevelSha256(array $hashes, int $level): array
     {
-        // normalize a number of hashes
         $count = \count($hashes);
+        $twoPowLevel = 2 ** $level;
 
-        if ($count < 2 ** $level) {
+        if ($count < $twoPowLevel) {
             throw new \LogicException('Not enough hashes for level');
         }
 
@@ -42,7 +42,7 @@ final class MathHelper
             return $hashes;
         }
 
-        $twoPowLevel = 2 ** $level;
+        // normalize a number of hashes
         if ($count % $twoPowLevel !== 0) {
             $partials = intdiv($count, $twoPowLevel) + 1;
             $missing = $partials * $twoPowLevel - $count;
