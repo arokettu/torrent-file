@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SandFox\Torrent\Tests\Info;
 
 use PHPUnit\Framework\TestCase;
+use SandFox\Bencode\Bencode;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\TorrentFile;
 
@@ -12,7 +13,9 @@ class NameTest extends TestCase
 {
     public function testNameSet(): void
     {
-        $torrent = TorrentFile::loadFromString('de');
+        $torrent = TorrentFile::loadFromString(Bencode::encode([
+            'info' => ['length' => 0],
+        ]));
         self::assertNull($torrent->getName());
 
         $infoHash1 = $torrent->getInfoHash();

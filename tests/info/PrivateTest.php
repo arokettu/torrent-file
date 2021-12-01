@@ -12,7 +12,9 @@ class PrivateTest extends TestCase
 {
     public function testSetPrivate(): void
     {
-        $torrent = TorrentFile::loadFromString('de');
+        $torrent = TorrentFile::loadFromString(Bencode::encode([
+            'info' => ['length' => 0],
+        ]));
 
         $sha = $torrent->getInfoHash();
 
@@ -26,7 +28,7 @@ class PrivateTest extends TestCase
     public function testUnsetPrivate(): void
     {
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['private' => 1],
+            'info' => ['private' => 1, 'length' => 0],
         ]));
 
         $sha = $torrent->getInfoHash();
