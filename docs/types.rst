@@ -97,7 +97,7 @@ Creation
 Fields
 ------
 
-.. versionchanged:: 3.0.1 getters replaced with readonly properties
+.. versionchanged:: 3.0.1 getters were replaced with readonly properties
 
 .. code-block:: php
 
