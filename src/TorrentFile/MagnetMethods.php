@@ -27,7 +27,7 @@ trait MagnetMethods
         }
 
         if ($hash === false) {
-            throw new RuntimeException('Trying to create a magnet link for a file without known metadata');
+            throw new RuntimeException('Trying to create a magnet link for a file without valid metadata');
         }
 
         $dn = $this->getName() ?? '';
