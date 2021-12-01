@@ -210,4 +210,58 @@ class CreateFileHybridTest extends TestCase
             $torrent->getMagnetLink()
         );
     }
+
+    public function testEmptyFile(): void
+    {
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/empty_file.txt', [
+            'version' => MetaVersion::HybridV1V2,
+        ]); // approx 6 mb
+        $torrent->setCreationDate(null); // always changes
+
+        self::assertEquals(
+            '338522b1f642456e398ff84d89904a4842b815be486176267cca29d788e270b2',
+            $torrent->getInfoHash()
+        );
+        self::assertEquals(
+            'fada7f40f317f9dfd7275d6809acbfea8659c484',
+            $torrent->getInfoHashV1()
+        );
+        self::assertEquals(
+            '338522b1f642456e398ff84d89904a4842b815be486176267cca29d788e270b2',
+            $torrent->getInfoHashV2()
+        );
+//        echo export_test_data($torrent->getRawData());
+        self::assertEquals([
+            'created by' => 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html',
+            'info' => [
+                'file tree' => [
+                    'empty_file.txt' => [
+                        '' => [
+                            'length' => 0,
+                        ],
+                    ],
+                ],
+                'length' => 0,
+                'meta version' => 2,
+                'name' => 'empty_file.txt',
+                'piece length' => 524288,
+                'pieces' => '',
+                'sha1' => base64_decode("2jmj7l5rSw0yVb/vlWAYkK/YBwk="),
+            ],
+            'piece layers' => [
+            ],
+        ], $torrent->getRawData());
+        self::assertEquals('empty_file.txt', $torrent->getDisplayName());
+        self::assertEquals('empty_file.txt.torrent', $torrent->getFileName());
+        self::assertFalse($torrent->isDirectory());
+
+        self::assertEquals(
+            build_magnet_link([
+                'xt=urn:btih:fada7f40f317f9dfd7275d6809acbfea8659c484',
+                'xt=urn:btmh:1220338522b1f642456e398ff84d89904a4842b815be486176267cca29d788e270b2',
+                'dn=empty_file.txt',
+            ]),
+            $torrent->getMagnetLink()
+        );
+    }
 }

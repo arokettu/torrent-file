@@ -87,6 +87,11 @@ function generate_files2(): void
     @chmod($files2Path . '/dir6/exec.txt', 0755);
 }
 
+function generate_files3(): void
+{
+    file_put_contents(TEST_ROOT . '/data/empty_file.txt', '');
+}
+
 function get_words(): array
 {
     $wordsFile = TEST_ROOT . '/data/words.txt';
