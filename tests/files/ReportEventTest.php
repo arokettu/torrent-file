@@ -56,4 +56,14 @@ class ReportEventTest extends TestCase implements ListenerProviderInterface
             $this->done = 6621335 + 6621341 + 6621359;
         }
     }
+
+    public function testGetters(): void
+    {
+        // mostly for coverage
+        $event = new FileDataProgressEvent(100, 50, 'test.txt');
+
+        self::assertEquals(100, $event->getTotal());
+        self::assertEquals(50, $event->getDone());
+        self::assertEquals('test.txt', $event->getFileName());
+    }
 }
