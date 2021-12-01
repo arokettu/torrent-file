@@ -49,6 +49,8 @@ class MultipleFileData extends FileData
 
         $this->reportProgress($totalSize, 0, $info['name']);
 
+        $doneSize = 0;
+
         // no need to sort, files will be sorted on encoding
 
         foreach ($filePaths as $filePath) {
@@ -59,13 +61,16 @@ class MultipleFileData extends FileData
                 $fileRecord = &$fileRecord[$component];
             }
 
-            [$record, $layer] = $this->buildFileRecord($filePath);
+            [$record, $layer] = $this->buildFileRecord($filePath, $doneSize);
 
             $fileRecord[''] = $record;
 
             if ($layer !== null) {
                 $layers[$record['pieces root']] = $layer;
             }
+
+            $doneSize += $filePath['fileObject']->getSize();
+            $this->reportProgress($totalSize, $doneSize, $filePath['relativePath']);
         }
 
         return [
