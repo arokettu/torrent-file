@@ -31,29 +31,15 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return $node instanceof self ? $node : self::fromArray($node);
     }
 
-    /**
-     * @deprecated use $this->host
-     */
+    // todo: deprecate
     public function getHost(): string
     {
-        trigger_deprecation(
-            'sandfoxme/torrent-file',
-            '3.0.1',
-            '$node->getHost() is deprecated, use $node->host'
-        );
         return $this->host;
     }
 
-    /**
-     * @deprecated use $this->port
-     */
+    // todo: deprecate
     public function getPort(): int
     {
-        trigger_deprecation(
-            'sandfoxme/torrent-file',
-            '3.0.1',
-            '$node->getPort() is deprecated, use $node->port'
-        );
         return $this->port;
     }
 
