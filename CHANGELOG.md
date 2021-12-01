@@ -3,6 +3,15 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 3.0.1
+
+*Dec 1, 2021*
+
+* `Node`: getters were replaced with readonly properties.
+  Getters are kept for now, but they will be deprecated in 3.2.
+* `FileDataProgressEvent`: getters were returned for smoother upgrade.
+  They will be deprecated in 3.2.
+
 ## 3.0.0
 
 *Nov 30, 2021*
