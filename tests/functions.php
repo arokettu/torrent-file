@@ -126,7 +126,7 @@ function export_test_data($data): string
         return $export;
     }
 
-    if (\is_string($data) && !ctype_print($data)) {
+    if (\is_string($data) && $data !== '' && !ctype_print($data)) {
         return 'base64_decode("' . base64_encode($data) . '")';
     }
 

@@ -19,7 +19,10 @@ final class MathHelper
     public static function log2i(int $value): int
     {
         if ($value <= 0) {
+            // @codeCoverageIgnoreStart
+            // should never happen
             throw new \LogicException('Value must be >= 1');
+            // @codeCoverageIgnoreEnd
         }
 
         /** @noinspection PhpStatementHasEmptyBodyInspection */
@@ -34,7 +37,10 @@ final class MathHelper
         $twoPowLevel = 2 ** $level;
 
         if ($count < $twoPowLevel) {
+            // @codeCoverageIgnoreStart
+            // should never happen
             throw new \LogicException('Not enough hashes for level');
+            // @codeCoverageIgnoreEnd
         }
 
         // do not add zeros on 0 level
@@ -64,7 +70,10 @@ final class MathHelper
         $count = \count($hashes);
 
         if ($count === 0) {
+            // @codeCoverageIgnoreStart
+            // should never happen
             throw new \LogicException('Hashes array must not be empty');
+            // @codeCoverageIgnoreEnd
         }
 
         if (!self::isPow2($count)) {
