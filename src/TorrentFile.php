@@ -73,6 +73,7 @@ final class TorrentFile implements BencodeSerializable
         // @codeCoverageIgnoreEnd
 
         $options = array_merge([
+            'version'           => MetaVersion::V1,
             'pieceLength'       => 512 * 1024, // 512 KB
             'pieceAlign'        => false,
             'detectExec'        => true,
@@ -86,6 +87,7 @@ final class TorrentFile implements BencodeSerializable
         $dataGenerator = FileData::forPath(
             $path,
             $eventDispatcher,
+            $options['version'],
             $options['pieceLength'],
             $options['pieceAlign'],
             $options['detectExec'],

@@ -8,6 +8,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\PathNotFoundException;
 use SandFox\Torrent\Helpers\MathHelper;
+use SandFox\Torrent\MetaVersion;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
 
@@ -30,6 +31,7 @@ abstract class FileData
     public static function forPath(
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
+        string $version,
         int $pieceLength,
         int $pieceAlign,
         bool $detectExec,
@@ -44,14 +46,26 @@ abstract class FileData
             $detectSymlinks,
         ];
 
-        if (is_file($path)) {
-            return new V1\SingleFileData(...$params);
-        }
-        if (is_dir($path)) {
-            return new V1\MultipleFileData(...$params);
+        $isFile = is_file($path);
+        $isDir  = is_dir($path);
+
+        if (!$isFile && !$isDir) {
+            throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");
         }
 
-        throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");
+        switch ($version) {
+            case MetaVersion::V1:
+                return $isFile ? new V1\SingleFileData(...$params) : new V1\MultipleFileData(...$params);
+
+            case MetaVersion::V2:
+                return new V2\MultipleFileData(...$params);
+
+            case MetaVersion::HybridV1V2:
+                return new HybridV1V2\MultipleFileData(...$params);
+
+            default:
+                throw new InvalidArgumentException("Unknown torrent metadata version: " . $version);
+        }
     }
 
     protected function __construct(
