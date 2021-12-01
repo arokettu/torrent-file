@@ -31,13 +31,13 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return $node instanceof self ? $node : self::fromArray($node);
     }
 
-    // todo: deprecate
+    // todo: deprecate in 3.2
     public function getHost(): string
     {
         return $this->host;
     }
 
-    // todo: deprecate
+    // todo: deprecate in 3.2
     public function getPort(): int
     {
         return $this->port;

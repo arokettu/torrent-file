@@ -17,4 +17,22 @@ final class FileDataProgressEvent
         public readonly string $fileName,
     ) {
     }
+
+    // todo: deprecate in 3.2
+    public function getTotal(): int
+    {
+        return $this->total;
+    }
+
+    // todo: deprecate in 3.2
+    public function getDone(): int
+    {
+        return $this->done;
+    }
+
+    // todo: deprecate in 3.2
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
 }
