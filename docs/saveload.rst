@@ -48,6 +48,9 @@ Create a torrent for existing directory or file
 
 .. versionadded:: 1.1 $options
 .. versionadded:: 2.0 $eventDispatcher
+.. versionadded:: 2.2 pieceAlign, detectExec, detectSymlinks
+.. versionchanged:: 2.2 sortFiles, md5sum became noop
+.. versionadded:: 2.3/3.1 version
 
 The library can create a torrent file from scratch for a file or a directory.
 
@@ -68,22 +71,27 @@ The library can create a torrent file from scratch for a file or a directory.
 
 Available options:
 
+``version``
+    BitTorrent metadata file version.
+
+    * ``MetaVersion::V1`` as described in BEP-3_ spec.
+    * ``MetaVersion::V2`` as described in BEP-52_ spec.
+    * ``MetaVersion::HybridV1V2`` with both V1 and V2 metadata.
+
+    Default: ``MetaVersion::V1`` (will change to ``MetaVersion::HybridV1V2`` in 3.x)
 ``pieceLength``
     The number of bytes that each logical piece in the peer protocol refers to.
     Must be a power of 2 and at least 16 KiB.
     Default: ``524_288`` (512 KiB)
 ``pieceAlign``
     Align files to piece boundaries by inserting pad files.
+    The option is ignored for V2 and V1+V2 torrent files because files in V2 are always aligned.
 
     * ``true``: Align all files
     * ``false``: Do not align
     * ``int $bytes``: Align files larger than ``$bytes`` in length
 
-    Default:
-    ``false`` for V1 torrents,
-    (in future versions)
-    ignored, always assumed ``true`` for hybrid V1+V2 torrents,
-    ignored, meaningless for V2 torrents
+    Default: ``false``
 ``detectExec``
     The library detects executable attribute and sets it on files.
     Default: ``true``
@@ -91,6 +99,9 @@ Available options:
     The library detects symlinks and creates symlink torrent objects.
     Only symlinks leading to files in the torrent data directory are detected.
     Default: ``false``
+
+.. _BEP-3:  https://www.bittorrent.org/beps/bep_0003.html
+.. _BEP-52: https://www.bittorrent.org/beps/bep_0052.html
 
 .. note::
     Defaults may change in minor versions.
