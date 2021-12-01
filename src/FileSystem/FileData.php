@@ -25,7 +25,7 @@ abstract class FileData
     protected bool $detectSymlinks;
     protected int $pieceAlign;
 
-    private ?EventDispatcherInterface $eventDispatcher;
+    protected ?EventDispatcherInterface $eventDispatcher;
 
     public static function forPath(
         string $path,
