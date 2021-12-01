@@ -88,9 +88,9 @@ final class Node implements BencodeSerializable, \ArrayAccess
     {
         switch ($offset) {
             case 0:
-                return $this->getHost();
+                return $this->host;
             case 1:
-                return $this->getPort();
+                return $this->port;
             default:
                 throw new OutOfBoundsException('Unknown offset');
         }
