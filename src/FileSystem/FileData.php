@@ -64,7 +64,9 @@ abstract class FileData
                 return new HybridV1V2\MultipleFileData(...$params);
 
             default:
+                // @codeCoverageIgnoreStart
                 throw new InvalidArgumentException("Unknown torrent metadata version: " . $version);
+                // @codeCoverageIgnoreEnd
         }
     }
 

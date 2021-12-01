@@ -109,7 +109,9 @@ class MultipleFileData extends FileData
                 continue; // trigger eof
             }
             if ($data === false) {
+                // @codeCoverageIgnoreStart
                 throw new RuntimeException('Unable to read file ' . $filePath['fullPath']);
+                // @codeCoverageIgnoreEnd
             }
             $hashes[] = hash('sha256', $data, true);
         }
