@@ -18,7 +18,7 @@ use SandFox\Torrent\TorrentFile;
 // open file
 $torrent = TorrentFile::load('debian.torrent');
 // create for path (file or directory)
-$torrent = TorrentFile::fromPath('~/dists/debian');
+$torrent = TorrentFile::fromPath('/home/user/dists/debian');
 
 // manipulate fields
 $torrent->setAnnounce('http://tracker.example:1234');
