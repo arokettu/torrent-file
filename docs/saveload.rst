@@ -79,7 +79,7 @@ Available options:
     * ``MetaVersion::V2`` as described in BEP-52_ spec.
     * ``MetaVersion::HybridV1V2`` with both V1 and V2 metadata.
 
-    Default: ``MetaVersion::V1`` (will change to ``MetaVersion::HybridV1V2`` in 3.x)
+    Default: ``MetaVersion::HybridV1V2`` (was ``MetaVersion::V1`` in 2.x)
 ``pieceLength``
     The number of bytes that each logical piece in the peer protocol refers to.
     Must be a power of 2 and at least 16 KiB.
