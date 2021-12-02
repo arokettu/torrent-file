@@ -14,6 +14,7 @@
   * New method `getInfoHashV1()` to get V1 hash explicitly
   * New method `getInfoHashV2()` to get V2 hash explicitly
   * New method `getInfoHashes()` to get all metadata hashes as array
+* Fixed `detectExec` option not having any effect
 
 ## 2.2.0
 

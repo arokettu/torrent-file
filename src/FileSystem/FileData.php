@@ -147,7 +147,7 @@ abstract class FileData
     {
         $attr = null;
 
-        if (is_executable($path)) {
+        if ($this->detectExec && is_executable($path)) {
             $attr .= 'x';
         }
 
