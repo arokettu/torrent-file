@@ -7,6 +7,7 @@ namespace SandFox\Torrent\TorrentFile;
 use SandFox\Bencode\Encoder;
 use SandFox\Bencode\Types\DictType;
 use SandFox\Torrent\Exception\InvalidArgumentException;
+use SandFox\Torrent\Exception\RuntimeException;
 
 /**
  * @internal
@@ -96,7 +97,7 @@ trait InfoMethods
 
     public function getInfoHash(): string
     {
-        return $this->getInfoHashV2() ?: $this->getInfoHashV1();
+        return $this->getInfoHashV2() ?: $this->getInfoHashV1() ?: throw new RuntimeException('Invalid metadata');
     }
 
     public function getInfoHashes(): array
