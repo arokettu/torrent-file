@@ -20,12 +20,57 @@ A method to check if a directory or a file is encoded.
 Info Hash
 =========
 
-A method to get infohash of the torrent file.
+Methods to get info hash of the torrent file.
+
+V1
+--
+
+.. versionadded:: 2.3/3.1
+
+Get V1 info hash if V1 metadata is present or null if not.
+
+.. code-block:: php
+
+    <?php
+    $infoHash = $torrent->getInfoHashV1();
+
+V2
+--
+
+.. versionadded:: 2.3/3.1
+
+Get V2 info hash if V2 metadata is present or null if not.
+
+.. code-block:: php
+
+    <?php
+    $infoHash = $torrent->getInfoHashV2();
+
+General method
+--------------
+
+.. versionchanged:: 2.3/3.1 The method returns V2 info hash if the metadata is present
+
+Get V2 info hash if V2 metadata is present, fall back to V1 info hash.
 
 .. code-block:: php
 
     <?php
     $infoHash = $torrent->getInfoHash();
+
+All hashes
+----------
+
+.. versionadded:: 2.3/3.1
+
+Get all available hashes as array.
+
+.. code-block:: php
+
+    <?php
+    $infoHashes = $torrent->getInfoHashes();
+    $infoHashes[1]; // V1 info hash if V1 metadata is present
+    $infoHashes[2]; // V2 info hash if V2 metadata is present
 
 Name
 ====

@@ -39,6 +39,7 @@
     },
     "require": {
         "php": "^8.1",
+        "ext-hash": "*",
         "league/uri-components": "^2.0",
         "nikic/iter": "^2.0",
         "psr/event-dispatcher": "^1.0",

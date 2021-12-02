@@ -7,18 +7,23 @@ namespace SandFox\Torrent\FileSystem;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\PathNotFoundException;
+use SandFox\Torrent\Helpers\MathHelper;
+use SandFox\Torrent\MetaVersion;
 use Symfony\Component\Filesystem\Path;
+use Symfony\Component\Finder\Finder;
 
 /**
  * @internal
  */
 abstract class FileData
 {
-    private const PIECE_LENGTH_MIN = 16 * 1024;
+    protected const PIECE_LENGTH_MIN = 16 * 1024;
+    protected const PIECE_LENGTH_MIN_LOG_2 = 14; // log2(16) + log2(1024) = 4 + 10
 
     public static function forPath(
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
+        string $version,
         int $pieceLength,
         int $pieceAlign,
         bool $detectExec,
@@ -33,36 +38,54 @@ abstract class FileData
             $detectSymlinks,
         ];
 
-        return match (true) {
-            is_file($path)
-                => new V1\SingleFileData(...$params),
-            is_dir($path)
-                => new V1\MultipleFileData(...$params),
-            default
-                => throw new PathNotFoundException(
-                    "Path '{$path}' doesn't exist or is not a regular file or a directory"
-                ),
-        };
+        $isFile = is_file($path);
+        $isDir  = is_dir($path);
+
+        if (!$isFile && !$isDir) {
+            throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");
+        }
+
+        switch ($version) {
+            case MetaVersion::V1:
+                return $isFile ? new V1\SingleFileData(...$params) : new V1\MultipleFileData(...$params);
+
+            case MetaVersion::V2:
+                return new V2\MultipleFileData(...$params);
+
+            case MetaVersion::HybridV1V2:
+                return new HybridV1V2\MultipleFileData(...$params);
+
+            default:
+                // @codeCoverageIgnoreStart
+                throw new InvalidArgumentException("Unknown torrent metadata version: " . $version);
+                // @codeCoverageIgnoreEnd
+        }
     }
 
     protected function __construct(
         protected string $path,
-        private ?EventDispatcherInterface $eventDispatcher,
+        protected ?EventDispatcherInterface $eventDispatcher,
         protected int $pieceLength,
         protected int $pieceAlign,
         protected bool $detectExec,
         protected bool $detectSymlinks,
     ) {
-        if ($pieceLength < self::PIECE_LENGTH_MIN || ($pieceLength & ($pieceLength - 1)) !== 0) {
+        if ($pieceLength < self::PIECE_LENGTH_MIN || !MathHelper::isPow2($pieceLength)) {
             throw new InvalidArgumentException(
                 'pieceLength must be a power of 2 and at least ' . self::PIECE_LENGTH_MIN
             );
         }
+
+        $this->init();
+    }
+
+    protected function init(): void
+    {
     }
 
     abstract public function process(): array;
 
-    protected function hashChunk(string $chunk): string
+    protected function hashChunkV1(string $chunk): string
     {
         return sha1($chunk, true);
     }
@@ -112,5 +135,16 @@ abstract class FileData
         }
 
         return $attr;
+    }
+
+    protected function finder(): Finder
+    {
+        $finder = new Finder();
+
+        // don't ignore files
+        $finder->ignoreDotFiles(false);
+        $finder->ignoreVCS(false);
+
+        return $finder;
     }
 }

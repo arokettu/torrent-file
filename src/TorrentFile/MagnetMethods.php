@@ -6,6 +6,7 @@ namespace SandFox\Torrent\TorrentFile;
 
 use League\Uri\QueryString;
 use SandFox\Torrent\DataTypes\AnnounceList;
+use SandFox\Torrent\Exception\RuntimeException;
 
 /**
  * @internal
@@ -19,7 +20,21 @@ trait MagnetMethods
 
     public function getMagnetLink(): string
     {
-        $pairs = [['xt', 'urn:btih:' . $this->getInfoHash()]];
+        $pairs = [];
+
+        $hash = false;
+        if ($this->getInfoHashV1()) {
+            $hash = true;
+            $pairs[] = ['xt', 'urn:btih:' . $this->getInfoHashV1()];
+        }
+        if ($this->getInfoHashV2()) {
+            $hash = true;
+            $pairs[] = ['xt', 'urn:btmh:' . bin2hex("\x12\x20") . $this->getInfoHashV2()];
+        }
+
+        if ($hash === false) {
+            throw new RuntimeException('Trying to create a magnet link for a file without valid metadata');
+        }
 
         $dn = $this->getName() ?? '';
         if ($dn !== '') {

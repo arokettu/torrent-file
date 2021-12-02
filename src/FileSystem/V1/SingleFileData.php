@@ -31,7 +31,7 @@ final class SingleFileData extends FileData
         $chunkHashes = [];
 
         while ($chunk = $file->fread($chunkSize)) {
-            $chunkHashes[] = $this->hashChunk($chunk);
+            $chunkHashes[] = $this->hashChunkV1($chunk);
             $this->reportProgress($info['length'], $file->ftell(), $info['name']);
         }
 

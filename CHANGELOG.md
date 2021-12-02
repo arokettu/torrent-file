@@ -26,6 +26,18 @@
   * `getAnnounceListAsArray()` and `getAnnounceListAsObject()` now trigger silent deprecations
 * `FileDataProgressEvent`: getters were replaced with readonly properties
 
+## 2.3.0
+
+*???*
+
+* Added `version` option
+  * Creation of V2 torrents is now allowed (BEP-52)
+* New and changed methods to get info hash:
+  * `getInfoHash()` will return V2 info hash if V2 metadata is present
+  * New method `getInfoHashV1()` to get V1 hash explicitly
+  * New method `getInfoHashV2()` to get V2 hash explicitly
+  * New method `getInfoHashes()` to get all metadata hashes as array
+
 ## 2.2.0
 
 *Nov 30, 2021*

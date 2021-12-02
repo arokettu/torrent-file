@@ -39,6 +39,7 @@ final class TorrentFile implements BencodeSerializable
     public static function fromPath(
         string $path,
         ?EventDispatcherInterface $eventDispatcher = null,
+        MetaVersion $version,
         int $pieceLength = 512 * 1024, // 512 KB
         bool|int $pieceAlign = false,
         bool $detectExec = true,
@@ -53,6 +54,7 @@ final class TorrentFile implements BencodeSerializable
         $dataGenerator = FileData::forPath(
             $path,
             $eventDispatcher,
+            $version,
             $pieceLength,
             $pieceAlign,
             $detectExec,
@@ -113,7 +115,8 @@ final class TorrentFile implements BencodeSerializable
 
     private function setInfoField(string $key, mixed $value): void
     {
-        $this->infoHash = null;
+        $this->infoHashV1 = null;
+        $this->infoHashV2 = null;
         $this->data['info'][$key] = $value;
     }
 }

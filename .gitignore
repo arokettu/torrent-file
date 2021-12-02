@@ -10,6 +10,7 @@
 
 # phpunit
 /tests/data/files*
+/tests/data/empty_file.txt
 /reports
 /.phpunit.result.cache
 

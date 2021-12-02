@@ -12,7 +12,7 @@ use SandFox\Torrent\TorrentFile;
 
 use const SandFox\Torrent\Tests\TEST_ROOT;
 
-class ReportEventTest extends TestCase implements ListenerProviderInterface
+class ReportEventV1Test extends TestCase implements ListenerProviderInterface
 {
     private int $done;
 
