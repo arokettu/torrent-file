@@ -105,6 +105,20 @@ class CreateFileV2FeaturesTest extends TestCase
         self::assertStringContainsString('x', $xfile['attr']);
     }
 
+    public function testExecutableDisabled(): void
+    {
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
+            'detectExec' => false,
+            'version' => MetaVersion::V2,
+        ]);
+
+        $info = $torrent->getRawData()['info'];
+
+        $xfile = $info['file tree']['dir6']['exec.txt'][''];
+
+        self::assertStringNotContainsString('x', $xfile['attr'] ?? '');
+    }
+
     public function testSymlinks(): void
     {
         $torrent = TorrentFile::fromPath(
