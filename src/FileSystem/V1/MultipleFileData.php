@@ -153,7 +153,7 @@ final class MultipleFileData extends FileData
         }
 
         $info['files']  = $files;
-        $info['pieces'] = implode($chunkHashes);
+        $info['pieces'] = implode('', $chunkHashes);
 
         return ['info' => $info];
     }

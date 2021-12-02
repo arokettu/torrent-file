@@ -29,7 +29,7 @@ class MultipleFileData extends FileData
         $v2data = $v2->process();
 
         // $v1data only has info dictionary, merge it
-        $v2data['info'] = array_merge($v1data['info'], $v2data['info']);
+        $v2data['info'] = [...$v1data['info'], ...$v2data['info']];
 
         return $v2data;
     }

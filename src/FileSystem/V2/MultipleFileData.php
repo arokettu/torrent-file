@@ -61,7 +61,7 @@ class MultipleFileData extends FileData
                 $fileRecord = &$fileRecord[$component];
             }
 
-            [$record, $layer] = $this->buildFileRecord($filePath, $doneSize);
+            [$record, $layer] = $this->buildFileRecord($filePath);
 
             $fileRecord[''] = $record;
 

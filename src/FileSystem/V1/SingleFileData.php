@@ -35,7 +35,7 @@ final class SingleFileData extends FileData
             $this->reportProgress($info['length'], $file->ftell(), $info['name']);
         }
 
-        $info['pieces'] = implode($chunkHashes);
+        $info['pieces'] = implode('', $chunkHashes);
 
         return ['info' => $info];
     }

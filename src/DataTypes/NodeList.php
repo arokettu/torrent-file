@@ -54,7 +54,7 @@ final class NodeList implements \IteratorAggregate, BencodeSerializable, \Counta
 
     public static function remove(self $nodeList, array|Node ...$nodes): self
     {
-        $nodes = array_map(fn ($node) => Node::ensure($node), $nodes);
+        $nodes = array_map(Node::ensure(...), $nodes);
 
         return new self(filter(fn ($node) => !\in_array($node, $nodes), $nodeList));
     }
