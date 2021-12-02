@@ -41,7 +41,7 @@
 
 ## 2.3.0
 
-*???*
+*Dec 2, 2021*
 
 * Added `version` option
   * Creation of V2 torrents is now allowed (BEP-52)

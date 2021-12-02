@@ -47,8 +47,8 @@ Please file issues on our main repo at GitLab: <https://gitlab.com/sandfox/torre
 
 Supported versions:
 
-* 2.x (current, PHP 7.4+)
-* 3.x ("future", PHP 8.1+)
+* 2.x (bugfixes, PHP 7.4+)
+* 3.x (current, PHP 8.1+)
 
 ## License
 
