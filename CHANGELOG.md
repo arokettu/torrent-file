@@ -3,6 +3,19 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 3.1.0
+
+*???*
+
+* Added `version` option
+    * Creation of V2 torrents is now allowed (BEP-52)
+* New and changed methods to get info hash:
+    * `getInfoHash()` will return V2 info hash if V2 metadata is present
+    * New method `getInfoHashV1()` to get V1 hash explicitly
+    * New method `getInfoHashV2()` to get V2 hash explicitly
+    * New method `getInfoHashes()` to get all metadata hashes as array
+* Fixed `detectExec` option not having any effect
+
 ## 3.0.1
 
 *Dec 1, 2021*
