@@ -115,6 +115,7 @@ final class TorrentFile implements BencodeSerializable
 
     private function setInfoField(string $key, mixed $value): void
     {
+        $this->infoString = null;
         $this->infoHashV1 = null;
         $this->infoHashV2 = null;
         $this->data['info'][$key] = $value;

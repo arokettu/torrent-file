@@ -17,6 +17,7 @@ trait InfoMethods
     // null = not calculated, '' = not present (returned to user as null)
     private ?string $infoHashV1 = null;
     private ?string $infoHashV2 = null;
+    private ?string $infoString = null;
 
     abstract private function getField(string $key, mixed $default = null): mixed;
     abstract private function getInfoField(string $key, mixed $default = null): mixed;
@@ -86,7 +87,7 @@ trait InfoMethods
 
     private function getInfoString(): string
     {
-        return (new Encoder())->encode(
+        return $this->infoString ??= (new Encoder())->encode(
             new DictType(
                 $this->getField('info', [])
             )
