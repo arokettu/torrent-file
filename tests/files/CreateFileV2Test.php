@@ -16,9 +16,10 @@ class CreateFileV2Test extends TestCase
 {
     public function testSingleFile(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
-            'version' => MetaVersion::V2,
-        ]); // approx 6 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V2,
+        ); // approx 6 mb
         $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
@@ -67,10 +68,11 @@ class CreateFileV2Test extends TestCase
 
     public function testSingleFile16KB(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
-            'version' => MetaVersion::V2,
-            'pieceLength' => 16384,
-        ]); // approx 6 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V2,
+            pieceLength: 16384,
+        ); // approx 6 mb
         $torrent->setCreationDate(null); // always changes
 
         $raw = $torrent->getRawData();
@@ -115,9 +117,10 @@ class CreateFileV2Test extends TestCase
 
     public function testMultipleFiles(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files', [
-            'version' => MetaVersion::V2,
-        ]); // approx 19 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files',
+            version: MetaVersion::V2,
+        ); // approx 19 mb
         $torrent->setCreationDate(null); // always changes
 
         self::assertEquals('ed751104df9a3d16a141aea0e86cc03b0a5d591f18ee0f70162e68ec8c218f97', $torrent->getInfoHash());
@@ -197,10 +200,11 @@ class CreateFileV2Test extends TestCase
 
     public function testMultipleFiles1MB(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files', [
-            'pieceLength' => 1024 * 1024, // 1mb chunk
-            'version' => MetaVersion::V2,
-        ]); // approx 19 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files',
+            version: MetaVersion::V2,
+            pieceLength: 1024 * 1024, // 1mb chunk
+        ); // approx 19 mb
         $torrent->setCreationDate(null); // always changes
 
         self::assertEquals('81b558cd173dd0645bb243a8db9b326f1b2c3a8e952d0b6401bb64ed757919b0', $torrent->getInfoHash());

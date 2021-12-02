@@ -19,9 +19,11 @@ class ReportEventV2Test extends TestCase implements ListenerProviderInterface
     {
         $eventDispatcher = new EventDispatcher($this);
 
-        TorrentFile::fromPath(TEST_ROOT . '/data/files', [
-            'version' => MetaVersion::V2,
-        ], $eventDispatcher);
+        TorrentFile::fromPath(
+            TEST_ROOT . '/data/files',
+            eventDispatcher: $eventDispatcher,
+            version: MetaVersion::V2,
+        );
     }
 
     public function getListenersForEvent(object $event): iterable

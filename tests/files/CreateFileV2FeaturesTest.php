@@ -15,7 +15,7 @@ class CreateFileV2FeaturesTest extends TestCase
     public function testFiles2(): void
     {
         // test info dict on default settings
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', ['version' => MetaVersion::V2]);
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', version: MetaVersion::V2);
         $info = $torrent->getRawData()['info'];
 
 //        echo export_test_data($info);
@@ -92,10 +92,11 @@ class CreateFileV2FeaturesTest extends TestCase
 
     public function testExecutable(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
-            'detectExec' => true,
-            'version' => MetaVersion::V2,
-        ]);
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files2',
+            version: MetaVersion::V2,
+            detectExec: true,
+        );
 
         $info = $torrent->getRawData()['info'];
 
@@ -106,10 +107,11 @@ class CreateFileV2FeaturesTest extends TestCase
 
     public function testSymlinks(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
-            'detectSymlinks' => true,
-            'version' => MetaVersion::V2,
-        ]);
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files2',
+            version: MetaVersion::V2,
+            detectSymlinks: true,
+        );
 
         $info = $torrent->getRawData()['info'];
 

@@ -16,9 +16,10 @@ class CreateFileHybridTest extends TestCase
 {
     public function testSingleFile(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
-            'version' => MetaVersion::HybridV1V2,
-        ]); // approx 6 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::HybridV1V2,
+        ); // approx 6 mb
         $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
@@ -84,9 +85,10 @@ class CreateFileHybridTest extends TestCase
 
     public function testMultipleFiles(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files', [
-            'version' => MetaVersion::HybridV1V2,
-        ]); // approx 19 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files',
+            version: MetaVersion::HybridV1V2,
+        ); // approx 19 mb
         $torrent->setCreationDate(null); // always changes
 
         self::assertEquals('3531223d5ac920e55fa32510253dfa2f5bcd9d2d836c482e65ca1aecbab0b9eb', $torrent->getInfoHash());
@@ -213,9 +215,10 @@ class CreateFileHybridTest extends TestCase
 
     public function testEmptyFile(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/empty_file.txt', [
-            'version' => MetaVersion::HybridV1V2,
-        ]); // approx 6 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/empty_file.txt',
+            version: MetaVersion::HybridV1V2,
+        ); // approx 6 mb
         $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(

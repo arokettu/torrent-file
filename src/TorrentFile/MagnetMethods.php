@@ -13,10 +13,11 @@ use SandFox\Torrent\Exception\RuntimeException;
  */
 trait MagnetMethods
 {
-    abstract private function getInfoHash(): string;
-    abstract private function getName(): ?string;
-    abstract private function getAnnounce(): ?string;
-    abstract private function getAnnounceList(): AnnounceList;
+    abstract public function getInfoHashV1(): ?string;
+    abstract public function getInfoHashV2(): ?string;
+    abstract public function getName(): ?string;
+    abstract public function getAnnounce(): ?string;
+    abstract public function getAnnounceList(): AnnounceList;
 
     public function getMagnetLink(): string
     {

@@ -7,6 +7,7 @@ namespace SandFox\Torrent\Tests\Files;
 use PHPUnit\Framework\TestCase;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\PathNotFoundException;
+use SandFox\Torrent\MetaVersion;
 use SandFox\Torrent\TorrentFile;
 
 use function SandFox\Torrent\Tests\build_magnet_link;
@@ -17,7 +18,10 @@ class CreateFileV1Test extends TestCase
 {
     public function testSingleFile(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt'); // approx 6 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V1,
+        ); // approx 6 mb
 
         self::assertEquals('3ab5a1739bd320333898510a6cec900a5e6acb7d', $torrent->getInfoHash());
 //        echo export_test_data($torrent->getRawData()['info']);
@@ -49,7 +53,10 @@ class CreateFileV1Test extends TestCase
 
     public function testMultipleFiles(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files'); // approx 19 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files',
+            version: MetaVersion::V1,
+        ); // approx 19 mb
 
         self::assertEquals('e3bfb18c606631c472b7ba1813bc96c7f748b098', $torrent->getInfoHash());
 //        echo export_test_data($torrent->getRawData()['info']);
@@ -110,6 +117,7 @@ class CreateFileV1Test extends TestCase
     {
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
+            version: MetaVersion::V1,
             pieceLength: 1024 * 1024, // 1mb chunk
         ); // approx 19 mb
 
@@ -166,13 +174,14 @@ class CreateFileV1Test extends TestCase
         TorrentFile::fromPath(TEST_ROOT . '/data/files/nosuchfile.txt');
     }
 
-    public function testChunkTooLow(): void
+    public function testChunkTooSmall(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('pieceLength must be a power of 2 and at least 16384');
 
         TorrentFile::fromPath(
             TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V1,
             pieceLength: 1024,
         );
     }
@@ -184,6 +193,7 @@ class CreateFileV1Test extends TestCase
 
         TorrentFile::fromPath(
             TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V1,
             pieceLength: 1024 * 1024 - 1,
         );
     }

@@ -23,7 +23,7 @@ abstract class FileData
     public static function forPath(
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
-        string $version,
+        MetaVersion $version,
         int $pieceLength,
         int $pieceAlign,
         bool $detectExec,
@@ -45,21 +45,14 @@ abstract class FileData
             throw new PathNotFoundException("Path '{$path}' doesn't exist or is not a regular file or a directory");
         }
 
-        switch ($version) {
-            case MetaVersion::V1:
-                return $isFile ? new V1\SingleFileData(...$params) : new V1\MultipleFileData(...$params);
-
-            case MetaVersion::V2:
-                return new V2\MultipleFileData(...$params);
-
-            case MetaVersion::HybridV1V2:
-                return new HybridV1V2\MultipleFileData(...$params);
-
-            default:
-                // @codeCoverageIgnoreStart
-                throw new InvalidArgumentException("Unknown torrent metadata version: " . $version);
-                // @codeCoverageIgnoreEnd
-        }
+        return match ($version) {
+            MetaVersion::V1
+                => $isFile ? new V1\SingleFileData(...$params) : new V1\MultipleFileData(...$params),
+            MetaVersion::V2
+                => new V2\MultipleFileData(...$params),
+            MetaVersion::HybridV1V2
+                => new HybridV1V2\MultipleFileData(...$params),
+        };
     }
 
     protected function __construct(

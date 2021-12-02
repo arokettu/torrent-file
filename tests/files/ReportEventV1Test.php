@@ -8,6 +8,7 @@ use League\Event\EventDispatcher;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
 use SandFox\Torrent\FileSystem\FileDataProgressEvent;
+use SandFox\Torrent\MetaVersion;
 use SandFox\Torrent\TorrentFile;
 
 use const SandFox\Torrent\Tests\TEST_ROOT;
@@ -22,7 +23,11 @@ class ReportEventV1Test extends TestCase implements ListenerProviderInterface
 
         $this->done = 0;
 
-        TorrentFile::fromPath(TEST_ROOT . '/data/files', eventDispatcher:  $eventDispatcher);
+        TorrentFile::fromPath(
+            TEST_ROOT . '/data/files',
+            eventDispatcher:  $eventDispatcher,
+            version: MetaVersion::V1,
+        );
     }
 
     public function getListenersForEvent(object $event): iterable

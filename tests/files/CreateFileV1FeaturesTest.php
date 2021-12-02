@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SandFox\Torrent\Tests\Files;
 
 use PHPUnit\Framework\TestCase;
+use SandFox\Torrent\MetaVersion;
 use SandFox\Torrent\TorrentFile;
 
 use const SandFox\Torrent\Tests\TEST_ROOT;
@@ -14,7 +15,7 @@ class CreateFileV1FeaturesTest extends TestCase
     public function testFiles2(): void
     {
         // test info dict on default settings
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2');
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', version: MetaVersion::V1);
         $info = $torrent->getRawData()['info'];
 
 //        echo export_test_data($info);
@@ -97,6 +98,7 @@ class CreateFileV1FeaturesTest extends TestCase
     {
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files2',
+            version: MetaVersion::V1,
             detectExec: true,
         );
 
@@ -116,6 +118,7 @@ class CreateFileV1FeaturesTest extends TestCase
     {
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files2',
+            version: MetaVersion::V1,
             detectSymlinks: true,
         );
 
@@ -201,6 +204,7 @@ class CreateFileV1FeaturesTest extends TestCase
     {
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files2',
+            version: MetaVersion::V1,
             pieceAlign: true,
         );
 
@@ -313,6 +317,7 @@ class CreateFileV1FeaturesTest extends TestCase
     {
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files2',
+            version: MetaVersion::V1,
             pieceAlign: 6_621_350,
             detectSymlinks: true,
         );
