@@ -116,9 +116,11 @@ class CreateFileV1FeaturesTest extends TestCase
 
     public function testExecutableDisabled(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', [
-            'detectExec' => false,
-        ]);
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files2',
+            version: MetaVersion::V1,
+            detectExec: false,
+        );
 
         $info = $torrent->getRawData()['info'];
 
