@@ -95,21 +95,24 @@ trait InfoMethods
         );
     }
 
-    public function getInfoHash(): string
+    public function getInfoHash(bool $binary = false): string
     {
-        return $this->getInfoHashV2() ?: $this->getInfoHashV1() ?: throw new RuntimeException('Invalid metadata');
+        return
+            $this->getInfoHashV2($binary) ?:
+            $this->getInfoHashV1($binary) ?:
+            throw new RuntimeException('Invalid metadata');
     }
 
-    public function getInfoHashes(): array
+    public function getInfoHashes(bool $binary = false): array
     {
         $hashes = [];
 
-        $v1 = $this->getInfoHashV1();
+        $v1 = $this->getInfoHashV1($binary);
         if ($v1) {
             $hashes[1] = $v1;
         }
 
-        $v2 = $this->getInfoHashV2();
+        $v2 = $this->getInfoHashV2($binary);
         if ($v2) {
             $hashes[2] = $v2;
         }
@@ -117,11 +120,16 @@ trait InfoMethods
         return $hashes;
     }
 
-    public function getInfoHashV1(): ?string
+    public function getInfoHashV1(bool $binary = false): ?string
     {
         $this->infoHashV1 ??= $this->calcInfoHashV1();
+
         // empty string means that there is no hash, return null
-        return $this->infoHashV1 === '' ? null : $this->infoHashV1;
+        if ($this->infoHashV1 === '') {
+            return null;
+        }
+
+        return $binary ? $this->infoHashV1 : bin2hex($this->infoHashV1);
     }
 
     private function calcInfoHashV1(): string
@@ -130,17 +138,22 @@ trait InfoMethods
 
         if (isset($info['files']) || isset($info['length'])) {
             // v1 metadata found
-            return sha1($this->getInfoString());
+            return sha1($this->getInfoString(), true);
         }
 
         return '';
     }
 
-    public function getInfoHashV2(): ?string
+    public function getInfoHashV2(bool $binary = false): ?string
     {
         $this->infoHashV2 ??= $this->calcInfoHashV2();
+
         // empty string means that there is no hash, return null
-        return $this->infoHashV2 === '' ? null : $this->infoHashV2;
+        if ($this->infoHashV2 === '') {
+            return null;
+        }
+
+        return $binary ? $this->infoHashV2 : bin2hex($this->infoHashV2);
     }
 
     private function calcInfoHashV2(): string
@@ -149,7 +162,7 @@ trait InfoMethods
 
         if ($version === 2) {
             // trust the version declaration
-            return hash('sha256', $this->getInfoString());
+            return hash('sha256', $this->getInfoString(), true);
         }
 
         return '';

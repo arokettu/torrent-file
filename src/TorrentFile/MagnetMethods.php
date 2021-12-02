@@ -13,8 +13,8 @@ use SandFox\Torrent\Exception\RuntimeException;
  */
 trait MagnetMethods
 {
-    abstract public function getInfoHashV1(): ?string;
-    abstract public function getInfoHashV2(): ?string;
+    abstract public function getInfoHashV1(bool $binary = false): ?string;
+    abstract public function getInfoHashV2(bool $binary = false): ?string;
     abstract public function getName(): ?string;
     abstract public function getAnnounce(): ?string;
     abstract public function getAnnounceList(): AnnounceList;
