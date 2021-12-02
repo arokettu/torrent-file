@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace SandFox\Torrent\FileSystem\HybridV1V2;
 
 use SandFox\Torrent\FileSystem\FileData;
-use SandFox\Torrent\FileSystem\V1\MultipleFileData as MultipleFileDataV1;
-use SandFox\Torrent\FileSystem\V1\SingleFileData as SingleFileDataV1;
-use SandFox\Torrent\FileSystem\V2\MultipleFileData as MultipleFileDataV2;
+use SandFox\Torrent\FileSystem\V1;
+use SandFox\Torrent\FileSystem\V2;
 
 class MultipleFileData extends FileData
 {
@@ -22,8 +21,8 @@ class MultipleFileData extends FileData
             $this->detectSymlinks,
         ];
 
-        $v1 = is_dir($this->path) ? new MultipleFileDataV1(...$params) : new SingleFileDataV1(...$params);
-        $v2 = new MultipleFileDataV2(...$params);
+        $v1 = is_dir($this->path) ? new V1\MultipleFileData(...$params) : new V1\SingleFileData(...$params);
+        $v2 = new V2\MultipleFileData(...$params);
 
         $v1data = $v1->process();
         $v2data = $v2->process();
