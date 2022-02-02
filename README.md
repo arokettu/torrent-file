@@ -45,6 +45,8 @@ Also on Read the Docs: <https://torrent-file.readthedocs.io/>
 
 Please file issues on our main repo at GitLab: <https://gitlab.com/sandfox/torrent-file/-/issues>
 
+Feel free to ask any questions in our room on Gitter: <https://gitter.im/arokettu/community>
+
 Supported versions:
 
 * 2.x (bugfixes, PHP 7.4+)
