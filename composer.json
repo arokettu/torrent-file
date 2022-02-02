@@ -16,7 +16,8 @@
     "support": {
         "source": "https://gitlab.com/sandfox/torrent-file",
         "issues": "https://gitlab.com/sandfox/torrent-file/-/issues",
-        "docs": "https://torrent-file.readthedocs.io/"
+        "docs": "https://torrent-file.readthedocs.io/",
+        "chat": "https://gitter.im/arokettu/community"
     },
     "config": {
         "sort-packages": true
