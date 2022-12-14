@@ -45,6 +45,12 @@
   * `getAnnounceListAsArray()` and `getAnnounceListAsObject()` now trigger silent deprecations
 * `FileDataProgressEvent`: getters were replaced with readonly properties
 
+## 2.3.1
+
+*Dec 14, 2022*
+
+* sandfoxme/bencode -> arokettu/bencode
+
 ## 2.3.0
 
 *Dec 2, 2021*
@@ -117,6 +123,12 @@
 * 100% test coverage
  
 [PSR-14]: https://www.php-fig.org/psr/psr-14/
+
+## 1.3.2
+
+*Dec 14, 2022*
+
+* sandfoxme/bencode -> arokettu/bencode
 
 ## 1.3.1
 
