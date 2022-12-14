@@ -3,6 +3,12 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 2.3.1
+
+*Dec 14, 2022*
+
+* sandfoxme/bencode -> arokettu/bencode
+
 ## 2.3.0
 
 *Dec 2, 2021*
