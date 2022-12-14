@@ -76,6 +76,12 @@
  
 [PSR-14]: https://www.php-fig.org/psr/psr-14/
 
+## 1.3.2
+
+*Dec 14, 2022*
+
+* sandfoxme/bencode -> arokettu/bencode
+
 ## 1.3.1
 
 *Nov 9, 2020*
