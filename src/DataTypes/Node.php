@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\DataTypes;
 
+use Arokettu\Bencode\Types\BencodeSerializable;
 use JetBrains\PhpStorm\ArrayShape;
-use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\BadMethodCallException;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\OutOfBoundsException;

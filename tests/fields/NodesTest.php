@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\Tests\Fields;
 
+use Arokettu\Bencode\Bencode;
 use PHPUnit\Framework\TestCase;
-use SandFox\Bencode\Bencode;
 use SandFox\Torrent\DataTypes\Node;
 use SandFox\Torrent\DataTypes\NodeList;
 use SandFox\Torrent\TorrentFile;

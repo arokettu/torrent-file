@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\TorrentFile;
 
-use SandFox\Bencode\Encoder;
-use SandFox\Bencode\Types\DictType;
+use Arokettu\Bencode\Encoder;
+use Arokettu\Bencode\Types\DictType;
 use SandFox\Torrent\Exception\InvalidArgumentException;
 use SandFox\Torrent\Exception\RuntimeException;
 

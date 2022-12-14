@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\DataTypes;
 
-use SandFox\Bencode\Bencode;
-use SandFox\Bencode\Types\BencodeSerializable;
-use SandFox\Bencode\Types\ListType;
+use Arokettu\Bencode\Bencode;
+use Arokettu\Bencode\Types\BencodeSerializable;
+use Arokettu\Bencode\Types\ListType;
 use SandFox\Torrent\Exception\BadMethodCallException;
 use SandFox\Torrent\Exception\OutOfBoundsException;
 

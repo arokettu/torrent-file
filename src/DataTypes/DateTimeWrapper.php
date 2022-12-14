@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\DataTypes;
 
-use SandFox\Bencode\Types\BencodeSerializable;
+use Arokettu\Bencode\Types\BencodeSerializable;
 
 /**
  * Wrapper for nullable datetime

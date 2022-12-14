@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent;
 
+use Arokettu\Bencode\Types\BencodeSerializable;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\FileSystem\FileData;
 
 final class TorrentFile implements BencodeSerializable

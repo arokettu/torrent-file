@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\TorrentFile;
 
-use SandFox\Bencode\Bencode\BigInt;
-use SandFox\Bencode\Decoder;
+use Arokettu\Bencode\Bencode\BigInt;
+use Arokettu\Bencode\Bencode\Collection;
+use Arokettu\Bencode\Decoder;
 
 /**
  * @internal
@@ -16,7 +17,7 @@ trait LoadMethods
 
     private static function decoder(): Decoder
     {
-        return new Decoder(bigInt: BigInt::INTERNAL);
+        return new Decoder(dictType: Collection::ARRAY, bigInt: BigInt::INTERNAL);
     }
 
     /**

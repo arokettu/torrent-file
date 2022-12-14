@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\TorrentFile;
 
-use SandFox\Bencode\Encoder;
+use Arokettu\Bencode\Encoder;
 
 /**
  * @internal
