@@ -37,14 +37,6 @@ final class Node implements ArrayAccess, ArrayInterface, BencodeSerializable
         return new self($array[0], $array[1]);
     }
 
-    /**
-     * @internal
-     */
-    public static function ensure(array|self $node): self
-    {
-        return $node instanceof self ? $node : self::fromArray($node);
-    }
-
     #[ArrayShape(['string', 'int'])]
     public function toArray(): array
     {

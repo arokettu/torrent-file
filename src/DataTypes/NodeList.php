@@ -21,24 +21,22 @@ final class NodeList implements Internal\StorageInterface
 {
     use Internal\ImmutableStorage;
 
-    /**
-     * @param iterable<Node|array> $nodes
-     */
-    public function __construct(iterable $nodes = [])
+    public function __construct(Node ...$nodes)
     {
         $setOfNodes = [];
 
+        // deduplication
         foreach ($nodes as $node) {
-            $node = Node::ensure($node);
             $setOfNodes[$this->nodeKey($node)] ??= $node;
         }
 
+        // enforce list
         $this->data = array_values($setOfNodes);
     }
 
     public static function create(array|Node ...$nodes): self
     {
-        return new self($nodes);
+        return new self(...map(fn ($node) => \is_array($node) ? Node::fromArray($node) : $node, $nodes ?? []));
     }
 
     /**
@@ -46,29 +44,28 @@ final class NodeList implements Internal\StorageInterface
      */
     public static function fromInternal(?ListObject $nodes): self
     {
-        return new self(map(fn (ListObject $node) => Node::fromInternal($node), $nodes ?? []));
+        return new self(...map(fn (ListObject $node) => Node::fromInternal($node), $nodes ?? []));
     }
 
     public static function fromIterable(iterable $iterable): self
     {
-        return new self($iterable);
+        return self::create(...$iterable);
     }
 
     public static function append(self $nodeList, array|Node ...$nodes): self
     {
-        return new self(chain($nodeList, $nodes));
+        return self::fromIterable(chain($nodeList, $nodes));
     }
 
     public static function prepend(self $nodeList, array|Node ...$nodes): self
     {
-        return new self(chain($nodes, $nodeList));
+        return self::fromIterable(chain($nodes, $nodeList));
     }
 
     public static function remove(self $nodeList, array|Node ...$nodes): self
     {
-        $nodes = array_map(Node::ensure(...), $nodes);
-
-        return new self(filter(fn ($node) => !\in_array($node, $nodes), $nodeList));
+        $nodes = array_map(fn ($node) => \is_array($node) ? Node::fromArray($node) : $node, $nodes);
+        return self::fromIterable(filter(fn ($node) => !\in_array($node, $nodes), $nodeList));
     }
 
     private function nodeKey(Node $node): string

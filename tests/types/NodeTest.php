@@ -15,12 +15,12 @@ class NodeTest extends TestCase
     public function testNoInvalidArrayStructure(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        Node::ensure(['localhost', 80, 'testtest']);
+        Node::fromArray(['localhost', 80, 'testtest']);
     }
 
     public function testGetters(): void
     {
-        $node = Node::ensure(['localhost', 8080]);
+        $node = Node::fromArray(['localhost', 8080]);
 
         self::assertEquals('localhost', $node->host);
         self::assertEquals(8080, $node->port);
@@ -28,7 +28,7 @@ class NodeTest extends TestCase
 
     public function testArrayAccess(): void
     {
-        $node = Node::ensure(['localhost', 8080]);
+        $node = Node::fromArray(['localhost', 8080]);
 
         self::assertTrue(isset($node[0]));
         self::assertTrue(isset($node[1]));
@@ -41,21 +41,21 @@ class NodeTest extends TestCase
     public function testArrayAccessOOB(): void
     {
         $this->expectException(OutOfBoundsException::class);
-        $node = Node::ensure(['localhost', 8080]);
+        $node = Node::fromArray(['localhost', 8080]);
         var_dump($node[3]);
     }
 
     public function testImmutableSet(): void
     {
         $this->expectException(BadMethodCallException::class);
-        $node = Node::ensure(['localhost', 8080]);
+        $node = Node::fromArray(['localhost', 8080]);
         $node[0] = '127.0.0.1';
     }
 
     public function testImmutableUnset(): void
     {
         $this->expectException(BadMethodCallException::class);
-        $node = Node::ensure(['localhost', 8080]);
+        $node = Node::fromArray(['localhost', 8080]);
         unset($node[0]);
     }
 }
