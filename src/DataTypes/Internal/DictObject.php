@@ -15,6 +15,12 @@ class DictObject implements StorageInterface
     use ImmutableStorage;
     use DataObject;
 
+    public function __construct(iterable $data)
+    {
+        // can be simply iterator_to_array in 8.2+
+        $this->data = \is_array($data) ? $data : iterator_to_array($data);
+    }
+
     public function bencodeSerialize(): DictType
     {
         return new DictType($this);

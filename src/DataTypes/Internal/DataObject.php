@@ -13,12 +13,6 @@ trait DataObject
 {
     private readonly array $data;
 
-    public function __construct(iterable $data)
-    {
-        // can be simply iterator_to_array in 8.2+
-        $this->data = \is_array($data) ? $data : iterator_to_array($data);
-    }
-
     public function getIterator(): Generator
     {
         yield from $this->data;
