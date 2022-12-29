@@ -3,13 +3,22 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
-## 2.3.1
+## 2.x
+
+### 2.4.0
+
+*Dec 30, 2022*
+
+* Alias all classes in `SandFox\Torrent\*` to `Arokettu\Torrent\*` in preparation for 4.0
+* Old package `sandfoxme/torrent-file` is now provided by the new package
+
+### 2.3.1
 
 *Dec 14, 2022*
 
 * sandfoxme/bencode -> arokettu/bencode
 
-## 2.3.0
+### 2.3.0
 
 *Dec 2, 2021*
 
@@ -22,7 +31,7 @@
   * New method `getInfoHashes()` to get all metadata hashes as array
 * Fixed `detectExec` option not having any effect
 
-## 2.2.0
+### 2.2.0
 
 *Nov 30, 2021*
 
@@ -52,29 +61,31 @@
 * The library now allows aligning files to piece boundaries (BEP-47)
   * Disabled by default. Set the new option `pieceAlign` to `true` or minimum bytes value to enable it
 
-## 2.1.2
+### 2.1.2
 
 *Sep 25, 2021*
 
 * Allow bencode 3.0, bump requirements to bencode 1.7+/2.7+/3.0+
 
-## 2.1.1
+### 2.1.1
 
 *Feb 25, 2021*
 
 * Fixed deprecated behavior not removed in 2.0.0:
   `TorrentFile::__construct()` is now private
 
-## 2.1.0
+### 2.1.0
 
 *Feb 19, 2021*
 
 * Add Stream API from Bencode 1.5/2.5
 * Add big integer support from Bencode 1.6/2.6
 
-## 2.0.0
+### 2.0.0
 
 *Nov 17, 2020*
+
+Branched from 1.3.1
 
 * Bump PHP requirement to PHP 7.4
 * Replace `FileDataProgress` with Event Dispatcher ([PSR-14]) + `FileDataProgressEvent`
@@ -82,7 +93,6 @@
  
 [PSR-14]: https://www.php-fig.org/psr/psr-14/
 
-## 1.3.2
 ## 1.x
 
 ### 1.4.0
