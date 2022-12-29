@@ -9,6 +9,8 @@ use Arokettu\Torrent\DataTypes\UriList;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
+use function SandFox\Torrent\Tests\raw_torrent_data;
+
 class UrlListTest extends TestCase
 {
     public function testSet(): void
@@ -23,16 +25,16 @@ class UrlListTest extends TestCase
         // set by object
         $torrent->setUrlList($uriList);
         self::assertEquals($uriList, $torrent->getUrlList());
-        self::assertEquals($uriList->toArray(), $torrent->getRawData()['url-list']);
+        self::assertEquals($uriList->toArray(), raw_torrent_data($torrent)['url-list']);
 
         // set null
         $torrent->setUrlList(null);
-        self::assertArrayNotHasKey('url-list', $torrent->getRawData());
+        self::assertArrayNotHasKey('url-list', raw_torrent_data($torrent));
 
         // set by array
         $torrent->setUrlList($uriList->toArray());
         self::assertEquals($uriList, $torrent->getUrlList());
-        self::assertEquals($uriList->toArray(), $torrent->getRawData()['url-list']);
+        self::assertEquals($uriList->toArray(), raw_torrent_data($torrent)['url-list']);
     }
 
     public function testParse(): void

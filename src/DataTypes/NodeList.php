@@ -49,6 +49,9 @@ final class NodeList implements Internal\StorageInterface
 
     public static function fromIterable(iterable $iterable): self
     {
+        if ($iterable instanceof self) {
+            return $iterable;
+        }
         return self::create(...$iterable);
     }
 

@@ -8,6 +8,7 @@ use Arokettu\Bencode\Types\ListType;
 use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
+use SandFox\Torrent\DataTypes\Internal\ListObject;
 
 use function iter\chain;
 use function iter\filter;
@@ -17,58 +18,69 @@ use function iter\filter;
  */
 final class UriList implements Internal\StorageInterface
 {
-    private array $uris;
+    use Internal\ImmutableStorage;
 
-    /**
-     * @param iterable<string> $uris
-     */
-    public function __construct(iterable $uris = [])
+    public function __construct(string ...$uris)
     {
         $setOfUris = [];
 
+        // deduplicate
         foreach ($uris as $uri) {
-            if (!\is_string($uri)) {
-                throw new InvalidArgumentException('Uri instances must be strings');
-            }
             $setOfUris[$uri] ??= $uri;
         }
 
-        $this->uris = array_values($setOfUris);
-    }
-
-    public static function create(string ...$uris): self
-    {
-        return new self($uris);
-    }
-
-    public static function fromIterable(iterable $iterable): self
-    {
-        return new self($iterable);
+        // enforce list
+        $this->data = array_values($setOfUris);
     }
 
     /**
      * @internal
-     * @param iterable<string>|self $uriList
      */
-    public static function ensure(iterable|self $uriList): self
+    public static function fromInternal(?ListObject $uris): self
     {
-        return $uriList instanceof self ? $uriList : new self($uriList);
+        return self::fromIterable($uris ?? []);
     }
 
+    /**
+     * @internal
+     *
+     * BEP-0019 allows url-list to be a string not list
+     */
+    public static function fromInternalUrlList(ListObject|string|null $uris): self
+    {
+        if (\is_string($uris)) {
+            return new self($uris);
+        }
+
+        return self::fromInternal($uris);
+    }
+
+    public static function create(string ...$uris): self
+    {
+        return new self(...$uris);
+    }
+
+    public static function fromIterable(iterable $iterable): self
+    {
+        if ($iterable instanceof self) {
+            return $iterable;
+        }
+        return new self(...$iterable);
+    }
 
     public static function append(self $uriList, string ...$uris): self
     {
-        return new self(chain($uriList, $uris));
+        return self::fromIterable(chain($uriList, $uris));
     }
 
     public static function prepend(self $uriList, string ...$uris): self
     {
-        return new self(chain($uris, $uriList));
+        return self::fromIterable(chain($uris, $uriList));
     }
 
     public static function remove(self $uriList, string ...$uris): self
     {
-        return new self(filter(fn ($uri) => !\in_array($uri, $uris), $uriList));
+        return self::fromIterable(filter(fn ($uri) => !\in_array($uri, $uris), $uriList));
     }
 
     /**
@@ -76,14 +88,14 @@ final class UriList implements Internal\StorageInterface
      */
     public function toArray(): array
     {
-        return $this->uris;
+        return $this->data;
     }
 
     // IteratorAggregate
 
     public function getIterator(): \Generator
     {
-        yield from $this->uris;
+        yield from $this->data;
     }
 
     // BencodeSerializable
@@ -91,39 +103,17 @@ final class UriList implements Internal\StorageInterface
     public function bencodeSerialize(): ?ListType
     {
         // return null for empty list
-        return $this->uris === [] ? null : new ListType($this);
-    }
-
-    // Countable
-
-    public function count(): int
-    {
-        return \count($this->uris);
+        return $this->data === [] ? null : new ListType($this);
     }
 
     // ArrayAccess
 
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->uris[$offset]);
-    }
-
     public function offsetGet(mixed $offset): string
     {
-        if (isset($this->uris[$offset])) {
-            return $this->uris[$offset];
+        if (isset($this->data[$offset])) {
+            return $this->data[$offset];
         }
 
         throw new OutOfBoundsException('Unknown offset');
-    }
-
-    public function offsetSet(mixed $offset, mixed $value): void
-    {
-        throw new BadMethodCallException('UriList is immutable');
-    }
-
-    public function offsetUnset(mixed $offset): void
-    {
-        throw new BadMethodCallException('UriList is immutable');
     }
 }

@@ -18,7 +18,7 @@ trait HttpSeeds
 
     public function getHttpSeeds(): UriList
     {
-        return $this->httpseeds ??= new UriList($this->getField('httpseeds', []));
+        return $this->httpseeds ??= UriList::fromInternal($this->getField('httpseeds'));
     }
 
     /**
@@ -26,10 +26,8 @@ trait HttpSeeds
      */
     public function setHttpSeeds(UriList|iterable|null $value): self
     {
-        $this->setField(
-            'httpseeds',
-            $this->httpseeds = $value instanceof UriList ? $value : UriList::fromIterable($value ?? [])
-        );
+        $this->httpseeds = UriList::fromIterable($value ?? []);
+        $this->setField('httpseeds', $this->httpseeds);
         return $this;
     }
 }

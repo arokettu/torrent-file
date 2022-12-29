@@ -18,9 +18,8 @@ trait UrlList
 
     public function getUrlList(): UriList
     {
-        $urlList = $this->getField('url-list', []);
         // additional handling in case url-list is a string not array of strings
-        return $this->urlList ??= new UriList(\is_array($urlList) ? $urlList : [$urlList]);
+        return $this->urlList ??= UriList::fromInternalUrlList($this->getField('url-list'));
     }
 
     /**
@@ -29,10 +28,8 @@ trait UrlList
     public function setUrlList(UriList|iterable|null $value): self
     {
         // always store as list
-        $this->setField(
-            'url-list',
-            $this->urlList = $value instanceof UriList ? $value : UriList::fromIterable($value ?? [])
-        );
+        $this->urlList = UriList::fromIterable($value ?? []);
+        $this->setField('url-list', $this->urlList);
         return $this;
     }
 }

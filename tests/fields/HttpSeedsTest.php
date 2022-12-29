@@ -8,6 +8,8 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
+use function SandFox\Torrent\Tests\raw_torrent_data;
+
 class HttpSeedsTest extends TestCase
 {
     public function testSetHttpSeeds(): void
@@ -22,7 +24,7 @@ class HttpSeedsTest extends TestCase
         self::assertEquals([
             'https://example.com/seed',
             'https://example.org/seed',
-        ], $torrent->getRawData()['httpseeds']);
+        ], raw_torrent_data($torrent)['httpseeds']);
     }
 
     public function testParseHttpSeeds(): void
@@ -51,6 +53,6 @@ class HttpSeedsTest extends TestCase
 
         $torrent->setHttpSeeds(null);
 
-        self::assertArrayNotHasKey('httpseeds', $torrent->getRawData());
+        self::assertArrayNotHasKey('httpseeds', raw_torrent_data($torrent));
     }
 }

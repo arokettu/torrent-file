@@ -22,12 +22,6 @@ class UriListTest extends TestCase
 
     // array getters
 
-    public function testInvalidType(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new UriList([1, 2, 3]);
-    }
-
     public function testToArray(): void
     {
         $uriList = $this->getUriList();
