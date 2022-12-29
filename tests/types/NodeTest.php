@@ -22,8 +22,8 @@ class NodeTest extends TestCase
     {
         $node = Node::ensure(['localhost', 8080]);
 
-        self::assertEquals('localhost', $node->getHost());
-        self::assertEquals(8080, $node->getPort());
+        self::assertEquals('localhost', $node->host);
+        self::assertEquals(8080, $node->port);
     }
 
     public function testArrayAccess(): void
