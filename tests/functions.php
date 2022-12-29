@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests;
 
+use SandFox\Torrent\TorrentFile;
+
 function generate_files(): void
 {
     $filesPath = TEST_ROOT . '/data/files';
@@ -133,4 +135,9 @@ function export_test_data(mixed $data): string
     }
 
     return var_export($data, true);
+}
+
+function raw_torrent_data(TorrentFile $torrent): array
+{
+    return $torrent->getRawData()->toArray();
 }
