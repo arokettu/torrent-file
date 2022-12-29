@@ -19,21 +19,21 @@ class CreationDateTest extends TestCase
         $torrent = TorrentFile::loadFromString('de');
 
         $torrent->setCreationDate($timestamp);
-        self::assertEquals($timestamp, $torrent->getCreationDateAsTimestamp());
+        self::assertEquals($timestamp, $torrent->getCreationDate()?->getTimestamp());
 
         // reset and check
         $torrent->setCreationDate(null);
-        self::assertNull($torrent->getCreationDateAsTimestamp());
+        self::assertNull($torrent->getCreationDate()?->getTimestamp());
 
         $torrent->setCreationDate($dateTimeM);
-        self::assertEquals($timestamp, $torrent->getCreationDateAsTimestamp());
+        self::assertEquals($timestamp, $torrent->getCreationDate()?->getTimestamp());
 
         // reset and check
         $torrent->setCreationDate(null);
-        self::assertNull($torrent->getCreationDateAsTimestamp());
+        self::assertNull($torrent->getCreationDate()?->getTimestamp());
 
         $torrent->setCreationDate($dateTimeI);
-        self::assertEquals($timestamp, $torrent->getCreationDateAsTimestamp());
+        self::assertEquals($timestamp, $torrent->getCreationDate()?->getTimestamp());
     }
 
     public function testGetCreationDate(): void
@@ -46,8 +46,6 @@ class CreationDateTest extends TestCase
         ]));
 
         self::assertEquals($dateTime, $torrent->getCreationDate());
-        self::assertEquals($timestamp, $torrent->getCreationDateAsTimestamp());
-        self::assertEquals($dateTime, $torrent->getCreationDateAsDateTime());
     }
 
     public function testGetNullCreationDate(): void
@@ -55,7 +53,5 @@ class CreationDateTest extends TestCase
         $torrent = TorrentFile::loadFromString('de');
 
         self::assertNull($torrent->getCreationDate());
-        self::assertNull($torrent->getCreationDateAsTimestamp());
-        self::assertNull($torrent->getCreationDateAsDateTime());
     }
 }
