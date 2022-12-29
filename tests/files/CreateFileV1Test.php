@@ -10,6 +10,7 @@ use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
+use function SandFox\Torrent\Tests\raw_torrent_data;
 use function Arokettu\Torrent\Tests\build_magnet_link;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
@@ -36,7 +37,7 @@ class CreateFileV1Test extends TestCase
                 O499nbjEf7uzNnu+SVo3wmeoI5/mx1jV2iihYK4Ow/iJL7yq2CUruoTvVHnSPqq4c3I2T5nT3YPQqLBc=
                 PIECES),
             'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
-        ], $torrent->getRawData()['info']);
+        ], raw_torrent_data($torrent)['info']);
         self::assertEquals(260, \strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
@@ -97,7 +98,7 @@ class CreateFileV1Test extends TestCase
                     iLX3I5LKK/vm4uRtJPu835z3zR1JrRuzW3J6TEHvbYqbr5L2uI573DUhKccSXsglMw==
                     PIECES),
             ],
-            $torrent->getRawData()['info'],
+            raw_torrent_data($torrent)['info'],
         );
         self::assertEquals(760, \strlen($torrent->getRawData()['info']['pieces'])); // 38 chunks
         self::assertEquals('files', $torrent->getDisplayName());
@@ -153,7 +154,7 @@ class CreateFileV1Test extends TestCase
                     DSTGxWAAZwUAvMXqyul/jBAklvryvwF42vGm8=
                     PIECES),
             ],
-            $torrent->getRawData()['info']
+            raw_torrent_data($torrent)['info']
         );
         self::assertEquals(380, \strlen($torrent->getRawData()['info']['pieces'])); // 19 chunks
         self::assertEquals('files', $torrent->getDisplayName());

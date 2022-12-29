@@ -8,6 +8,7 @@ use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
+use function SandFox\Torrent\Tests\raw_torrent_data;
 use function Arokettu\Torrent\Tests\build_magnet_link;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
@@ -52,7 +53,7 @@ class CreateFileV2Test extends TestCase
                     Pg9XjyEaYTIJ+GGshceSRkcWcDUEzdUMTos4c8sz3Gtywycv+Mn5U2mslfFOW3bIafnwo54feqx+HKXFc6BjmfWtQo=
                     LAYER),
             ],
-        ], $torrent->getRawData());
+        ], raw_torrent_data($torrent));
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
         self::assertFalse($torrent->isDirectory());
@@ -75,7 +76,7 @@ class CreateFileV2Test extends TestCase
         ); // approx 6 mb
         $torrent->setCreationDate(null); // always changes
 
-        $raw = $torrent->getRawData();
+        $raw = raw_torrent_data($torrent);
         $raw['piece layers'] = array_map(fn ($s) => \strlen($s), $raw['piece layers']); // very long with these hashes
 
         self::assertEquals(
@@ -183,7 +184,7 @@ class CreateFileV2Test extends TestCase
                         LAYER),
                 ],
             ],
-            $torrent->getRawData(),
+            raw_torrent_data($torrent),
         );
         self::assertEquals('files', $torrent->getDisplayName());
         self::assertEquals('files.torrent', $torrent->getFileName());
@@ -258,7 +259,7 @@ class CreateFileV2Test extends TestCase
                         LAYER),
                 ],
             ],
-            $torrent->getRawData()
+            raw_torrent_data($torrent)
         );
         self::assertEquals('files', $torrent->getDisplayName());
         self::assertEquals('files.torrent', $torrent->getFileName());

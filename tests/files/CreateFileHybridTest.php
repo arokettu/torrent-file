@@ -9,6 +9,7 @@ use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
 use function Arokettu\Torrent\Tests\build_magnet_link;
+use function SandFox\Torrent\Tests\raw_torrent_data;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
@@ -68,7 +69,7 @@ class CreateFileHybridTest extends TestCase
                     Pg9XjyEaYTIJ+GGshceSRkcWcDUEzdUMTos4c8sz3Gtywycv+Mn5U2mslfFOW3bIafnwo54feqx+HKXFc6BjmfWtQo=
                     LAYER),
             ],
-        ], $torrent->getRawData());
+        ], raw_torrent_data($torrent));
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
         self::assertFalse($torrent->isDirectory());
@@ -197,7 +198,7 @@ class CreateFileHybridTest extends TestCase
                         LAYER),
                 ],
             ],
-            $torrent->getRawData(),
+            raw_torrent_data($torrent),
         );
         self::assertEquals('files', $torrent->getDisplayName());
         self::assertEquals('files.torrent', $torrent->getFileName());
@@ -253,7 +254,7 @@ class CreateFileHybridTest extends TestCase
             ],
             'piece layers' => [
             ],
-        ], $torrent->getRawData());
+        ], raw_torrent_data($torrent));
         self::assertEquals('empty_file.txt', $torrent->getDisplayName());
         self::assertEquals('empty_file.txt.torrent', $torrent->getFileName());
         self::assertFalse($torrent->isDirectory());

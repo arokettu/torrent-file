@@ -8,6 +8,7 @@ use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\Exception\PathNotFoundException;
 use Arokettu\Torrent\Helpers\MathHelper;
 use Arokettu\Torrent\MetaVersion;
+use Arokettu\Bencode\Bencode;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
@@ -72,11 +73,16 @@ abstract class FileData
         $this->init();
     }
 
+    public function getBencoded(): string
+    {
+        return Bencode::encode($this->process());
+    }
+
     protected function init(): void
     {
     }
 
-    abstract public function process(): array;
+    abstract protected function process(): array;
 
     protected function hashChunkV1(string $chunk): string
     {

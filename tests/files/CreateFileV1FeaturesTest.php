@@ -8,6 +8,8 @@ use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
+use function SandFox\Torrent\Tests\raw_torrent_data;
+
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
 class CreateFileV1FeaturesTest extends TestCase
@@ -16,7 +18,7 @@ class CreateFileV1FeaturesTest extends TestCase
     {
         // test info dict on default settings
         $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', version: MetaVersion::V1);
-        $info = $torrent->getRawData()['info'];
+        $info = raw_torrent_data($torrent)['info'];
 
 //        echo export_test_data($info);
         $this->assertEquals('be5a07b2ba3beb89e4b04132eb135e3f1d771bf6', $torrent->getInfoHash());
@@ -102,7 +104,7 @@ class CreateFileV1FeaturesTest extends TestCase
             detectExec: true,
         );
 
-        $info = $torrent->getRawData()['info'];
+        $info = raw_torrent_data($torrent)['info'];
 
         $xfile = [];
         foreach ($info['files'] as $file) {
@@ -122,7 +124,7 @@ class CreateFileV1FeaturesTest extends TestCase
             detectExec: false,
         );
 
-        $info = $torrent->getRawData()['info'];
+        $info = raw_torrent_data($torrent)['info'];
 
         $xfile = [];
         foreach ($info['files'] as $file) {
@@ -142,7 +144,7 @@ class CreateFileV1FeaturesTest extends TestCase
             detectSymlinks: true,
         );
 
-        $info = $torrent->getRawData()['info'];
+        $info = raw_torrent_data($torrent)['info'];
 
 //        echo export_test_data($info);
         $this->assertEquals(
@@ -228,7 +230,7 @@ class CreateFileV1FeaturesTest extends TestCase
             pieceAlign: true,
         );
 
-        $info = $torrent->getRawData()['info'];
+        $info = raw_torrent_data($torrent)['info'];
 
 //        echo export_test_data($info);
         $this->assertEquals(
@@ -342,7 +344,7 @@ class CreateFileV1FeaturesTest extends TestCase
             detectSymlinks: true,
         );
 
-        $info = $torrent->getRawData()['info'];
+        $info = raw_torrent_data($torrent)['info'];
 
 //        echo export_test_data($info);
         $this->assertEquals(

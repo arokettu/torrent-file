@@ -67,8 +67,8 @@ class ReportEventV1Test extends TestCase implements ListenerProviderInterface
         // mostly for coverage
         $event = new FileDataProgressEvent(100, 50, 'test.txt');
 
-        self::assertEquals(100, $event->getTotal());
-        self::assertEquals(50, $event->getDone());
-        self::assertEquals('test.txt', $event->getFileName());
+        self::assertEquals(100, $event->total);
+        self::assertEquals(50, $event->done);
+        self::assertEquals('test.txt', $event->fileName);
     }
 }

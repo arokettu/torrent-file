@@ -54,10 +54,12 @@ trait InfoMethods
                 return true;
             }
 
-            $file = $fileTree[array_key_first($fileTree)];
-
-            if (isset($file['']['length'])) {
-                return false;
+            // check first file
+            foreach ($fileTree as $file) {
+                if (isset($file['']['length'])) {
+                    return false;
+                }
+                break;
             }
         }
 

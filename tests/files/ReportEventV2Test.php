@@ -35,7 +35,7 @@ class ReportEventV2Test extends TestCase implements ListenerProviderInterface
 
     public function listener(FileDataProgressEvent $event): void
     {
-        self::assertEquals(6621335 + 6621341 + 6621359, $event->getTotal());
+        self::assertEquals(6621335 + 6621341 + 6621359, $event->total);
 
         $files = [
             'files',
@@ -44,6 +44,6 @@ class ReportEventV2Test extends TestCase implements ListenerProviderInterface
             'file3.txt',
         ];
 
-        self::assertContains($event->getFileName(), $files);
+        self::assertContains($event->fileName, $files);
     }
 }
