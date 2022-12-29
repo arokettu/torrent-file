@@ -28,30 +28,4 @@ trait CreationDate
         $this->creationDate ??= DateTimeWrapper::fromTimestamp($this->getField('creation date'));
         return $this->creationDate->dateTime;
     }
-
-    /**
-     * @deprecated use getCreationDate()
-     */
-    public function getCreationDateAsDateTime(): ?\DateTimeImmutable
-    {
-        trigger_deprecation(
-            'arokettu/torrent-file',
-            '3.0.0',
-            'Use getCreationDate() instead of getCreationDateAsDateTime()',
-        );
-        return $this->getCreationDate();
-    }
-
-    /**
-     * @deprecated use getCreationDate()->getTimestamp()
-     */
-    public function getCreationDateAsTimestamp(): ?int
-    {
-        trigger_deprecation(
-            'arokettu/torrent-file',
-            '3.0.0',
-            'Use getCreationDate()->getTimestamp() instead of getCreationDateAsTimestamp()',
-        );
-        return $this->getCreationDate()?->getTimestamp();
-    }
 }

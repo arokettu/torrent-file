@@ -31,32 +31,6 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return $node instanceof self ? $node : self::fromArray($node);
     }
 
-    /**
-     * @deprecated use $this->host
-     */
-    public function getHost(): string
-    {
-        trigger_deprecation(
-            'arokettu/torrent-file',
-            '3.2.0',
-            '->host instead of ->getHost()',
-        );
-        return $this->host;
-    }
-
-    /**
-     * @deprecated use $this->port
-     */
-    public function getPort(): int
-    {
-        trigger_deprecation(
-            'arokettu/torrent-file',
-            '3.2.0',
-            '->port instead of ->getPort()',
-        );
-        return $this->port;
-    }
-
     #[ArrayShape(['string', 'int'])]
     public function toArray(): array
     {

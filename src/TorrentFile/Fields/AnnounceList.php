@@ -22,33 +22,6 @@ trait AnnounceList
     }
 
     /**
-     * @deprecated use getAnnounceList()->toArray()
-     * @return array<array<string>>
-     */
-    public function getAnnounceListAsArray(): array
-    {
-        trigger_deprecation(
-            'arokettu/torrent-file',
-            '3.0.0',
-            'Use getAnnounceList()->toArray() instead of getAnnounceListAsArray()',
-        );
-        return $this->getAnnounceList()->toArray();
-    }
-
-    /**
-     * @deprecated use getAnnounceList()
-     */
-    public function getAnnounceListAsObject(): AnnounceListType
-    {
-        trigger_deprecation(
-            'arokettu/torrent-file',
-            '3.0.0',
-            'Use getAnnounceList() instead of getAnnounceListAsObject()',
-        );
-        return $this->getAnnounceList();
-    }
-
-    /**
      * @param AnnounceListType|iterable<string|iterable<string>>|null $announceList
      */
     public function setAnnounceList(AnnounceListType|iterable|null $announceList): self
