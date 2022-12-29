@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\DataTypes;
 
 use Arokettu\Bencode\Bencode;
-use Arokettu\Bencode\Types\BencodeSerializable;
 use Arokettu\Bencode\Types\ListType;
 use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
@@ -14,7 +13,10 @@ use function iter\chain;
 use function iter\filter;
 use function iter\map;
 
-final class AnnounceList implements \IteratorAggregate, BencodeSerializable, \Countable, \ArrayAccess
+/**
+ * @implements Internal\StorageInterface<int, UriList>
+ */
+final class AnnounceList implements Internal\StorageInterface
 {
     private array $uriLists;
 
