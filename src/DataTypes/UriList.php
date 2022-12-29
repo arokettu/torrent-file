@@ -48,11 +48,7 @@ final class UriList implements Internal\StorageInterface
      */
     public static function fromInternalUrlList(ListObject|string|null $uris): self
     {
-        if (\is_string($uris)) {
-            return new self($uris);
-        }
-
-        return self::fromInternal($uris);
+        return self::fromIterableOrString($uris ?? []);
     }
 
     public static function create(string ...$uris): self
@@ -64,6 +60,14 @@ final class UriList implements Internal\StorageInterface
     {
         if ($iterable instanceof self) {
             return $iterable;
+        }
+        return new self(...$iterable);
+    }
+
+    public static function fromIterableOrString(iterable|string $iterable): self
+    {
+        if (\is_string($iterable)) {
+            return new self($iterable);
         }
         return new self(...$iterable);
     }

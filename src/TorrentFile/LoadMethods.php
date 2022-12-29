@@ -19,8 +19,8 @@ trait LoadMethods
     private static function decoder(): Decoder
     {
         return new Decoder(
-            listType: fn (iterable $list) => new ListObject($list),
-            dictType: fn (iterable $dict) => new DictObject($dict),
+            listType: static fn (iterable $list) => new ListObject($list),
+            dictType: static fn (iterable $dict) => new DictObject($dict),
             bigInt: BigInt::INTERNAL,
         );
     }

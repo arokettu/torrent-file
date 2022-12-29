@@ -44,7 +44,7 @@ final class NodeList implements Internal\StorageInterface
      */
     public static function fromInternal(?ListObject $nodes): self
     {
-        return new self(...map(fn (ListObject $node) => Node::fromInternal($node), $nodes ?? []));
+        return new self(...map(Node::fromInternal(...), $nodes ?? []));
     }
 
     public static function fromIterable(iterable $iterable): self

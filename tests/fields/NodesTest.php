@@ -18,7 +18,7 @@ class NodesTest extends TestCase
     {
         $torrent = TorrentFile::loadFromString('de');
 
-        $torrent->setNodes(new NodeList([['localhost', 8080], new Node('127.0.0.1', 10101)]));
+        $torrent->setNodes(NodeList::fromIterable([['localhost', 8080], new Node('127.0.0.1', 10101)]));
 
         self::assertEquals([
             ['localhost', 8080],

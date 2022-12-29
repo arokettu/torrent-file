@@ -35,10 +35,10 @@ class AnnounceListTest extends TestCase
             ['https://example.biz/announce', 'udp://example.biz/announce'],
         ], $announceList->toArray());
         self::assertEquals([
-            UriList::ensure(['https://example.com/announce']),
-            UriList::ensure(['https://example.org/announce', 'udp://example.org/announce']),
-            UriList::ensure(['https://example.net/announce', 'udp://example.net/announce']),
-            UriList::ensure(['https://example.biz/announce', 'udp://example.biz/announce']),
+            UriList::fromIterable(['https://example.com/announce']),
+            UriList::fromIterable(['https://example.org/announce', 'udp://example.org/announce']),
+            UriList::fromIterable(['https://example.net/announce', 'udp://example.net/announce']),
+            UriList::fromIterable(['https://example.biz/announce', 'udp://example.biz/announce']),
         ], $announceList->toArrayOfUriLists());
     }
 
@@ -51,7 +51,7 @@ class AnnounceListTest extends TestCase
         $announceList = AnnounceList::append(
             $announceList,
             ['https://example.edu/announce', 'udp://example.edu/announce'],
-            new UriList(['https://example.int/announce', 'udp://example.int/announce']),
+            UriList::create('https://example.int/announce', 'udp://example.int/announce'),
         );
 
         self::assertEquals([
@@ -87,7 +87,7 @@ class AnnounceListTest extends TestCase
         $announceList = AnnounceList::prepend(
             $announceList,
             ['https://example.edu/announce', 'udp://example.edu/announce'],
-            new UriList(['https://example.int/announce', 'udp://example.int/announce']),
+            UriList::create('https://example.int/announce', 'udp://example.int/announce'),
         );
 
         self::assertEquals([

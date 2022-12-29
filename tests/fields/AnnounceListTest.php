@@ -25,12 +25,12 @@ class AnnounceListTest extends TestCase
 
         // setting empty groups is empty set
         $torrent->setAnnounceList([[], [], [], []]);
-        self::assertEquals([], $torrent->getAnnounceListAsObject()->toArray());
+        self::assertEquals([], $torrent->getAnnounceList()->toArray());
         self::assertArrayNotHasKey('announce-list', $torrent->getRawData());
 
         // setting empty groups is empty set
         $torrent->setAnnounceList(new AnnounceList());
-        self::assertEquals([], $torrent->getAnnounceListAsArray());
+        self::assertEquals([], $torrent->getAnnounceList()->toArray());
         self::assertArrayNotHasKey('announce-list', $torrent->getRawData());
     }
 
@@ -80,7 +80,7 @@ class AnnounceListTest extends TestCase
     {
         $torrent = TorrentFile::loadFromString('de');
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\TypeError::class);
         $torrent->setAnnounceList([[['http://localhost']]]);
     }
 
@@ -88,7 +88,7 @@ class AnnounceListTest extends TestCase
     {
         $torrent = TorrentFile::loadFromString('de');
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\TypeError::class);
         $torrent->setAnnounceList([123]);
     }
 
@@ -96,7 +96,7 @@ class AnnounceListTest extends TestCase
     {
         $torrent = TorrentFile::loadFromString('de');
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\TypeError::class);
         $torrent->setAnnounceList([[123]]);
     }
 

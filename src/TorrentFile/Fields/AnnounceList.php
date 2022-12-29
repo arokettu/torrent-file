@@ -18,7 +18,7 @@ trait AnnounceList
 
     public function getAnnounceList(): AnnounceListType
     {
-        return $this->announceList ??= new AnnounceListType($this->getField('announce-list', []));
+        return $this->announceList ??= AnnounceListType::fromInternal($this->getField('announce-list'));
     }
 
     /**
@@ -26,13 +26,8 @@ trait AnnounceList
      */
     public function setAnnounceList(AnnounceListType|iterable|null $announceList): self
     {
-        $this->setField(
-            'announce-list',
-            $this->announceList = $announceList instanceof AnnounceListType ?
-                $announceList :
-                AnnounceListType::fromIterable($announceList ?? [])
-        );
-
+        $this->announceList = AnnounceListType::fromIterable($announceList ?? []);
+        $this->setField('announce-list', $this->announceList);
         return $this;
     }
 }

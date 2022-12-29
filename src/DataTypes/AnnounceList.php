@@ -8,6 +8,7 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Bencode\Types\ListType;
 use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
+use SandFox\Torrent\DataTypes\Internal\ListObject;
 
 use function iter\chain;
 use function iter\filter;
@@ -18,40 +19,49 @@ use function iter\map;
  */
 final class AnnounceList implements Internal\StorageInterface
 {
-    private array $uriLists;
+    use Internal\ImmutableStorage;
 
-    /**
-     * @param iterable<UriList|iterable<string>> $uriLists
-     */
-    public function __construct(iterable $uriLists = [])
+    public function __construct(UriList ...$uriLists)
     {
         $setOfUriLists = [];
 
+        // deduplication
         foreach ($uriLists as $uriList) {
-            $uriList = UriList::ensure($uriList);
             $setOfUriLists[$this->uriListKey($uriList)] ??= $uriList;
         }
 
         // unset empty
         unset($setOfUriLists['0:']);
 
-        $this->uriLists = array_values($setOfUriLists);
+        // enforce list
+        $this->data = array_values($setOfUriLists);
     }
 
     /**
-     * @param iterable<string>|UriList ...$uriLists
+     * @internal
      */
-    public static function create(iterable|UriList ...$uriLists): self
+    public static function fromInternal(?ListObject $uriLists): self
     {
-        return new self($uriLists);
+        return new self(...map(UriList::fromInternal(...), $uriLists ?? []));
     }
 
     /**
-     * @param iterable<string|iterable<string>> $iterable
+     * @param string|iterable<string>|UriList ...$uriLists
+     */
+    public static function create(iterable|UriList|string ...$uriLists): self
+    {
+        return new self(...map(UriList::fromIterableOrString(...), $uriLists));
+    }
+
+    /**
+     * @param iterable<string|iterable<string>|UriList> $iterable
      */
     public static function fromIterable(iterable $iterable): self
     {
-        return new self(map(fn ($uriList) => is_iterable($uriList) ? $uriList : [$uriList], $iterable));
+        if ($iterable instanceof self) {
+            return $iterable;
+        }
+        return self::create(...$iterable);
     }
 
     /**
@@ -59,7 +69,7 @@ final class AnnounceList implements Internal\StorageInterface
      */
     public static function append(self $announceList, iterable|UriList ...$uriLists): self
     {
-        return new self(chain($announceList, $uriLists));
+        return self::fromIterable(chain($announceList, $uriLists));
     }
 
     /**
@@ -67,17 +77,17 @@ final class AnnounceList implements Internal\StorageInterface
      */
     public static function prepend(self $announceList, iterable|UriList ...$uriLists): self
     {
-        return new self(chain($uriLists, $announceList));
+        return self::fromIterable(chain($uriLists, $announceList));
     }
 
     /**
-     * @param iterable<string>|UriList ...$uriLists
+     * @param iterable<string>|UriList|string ...$uriLists
      */
-    public static function remove(self $announceList, iterable|UriList ...$uriLists): self
+    public static function remove(self $announceList, iterable|UriList|string ...$uriLists): self
     {
-        $uriLists = array_map(fn ($uriList) => UriList::ensure($uriList), $uriLists);
+        $uriLists = array_map(UriList::fromIterableOrString(...), $uriLists);
 
-        return new self(filter(fn ($uriList) => !\in_array($uriList, $uriLists), $announceList));
+        return self::fromIterable(filter(fn ($uriList) => !\in_array($uriList, $uriLists), $announceList));
     }
 
     private function uriListKey(UriList $uriList): string
@@ -90,7 +100,7 @@ final class AnnounceList implements Internal\StorageInterface
      */
     public function toArray(): array
     {
-        return array_map(fn ($uriList) => $uriList->toArray(), $this->uriLists);
+        return array_map(fn ($uriList) => $uriList->toArray(), $this->data);
     }
 
     /**
@@ -98,14 +108,14 @@ final class AnnounceList implements Internal\StorageInterface
      */
     public function toArrayOfUriLists(): array
     {
-        return $this->uriLists;
+        return $this->data;
     }
 
     // IteratorAggregate
 
     public function getIterator(): \Generator
     {
-        yield from $this->uriLists;
+        yield from $this->data;
     }
 
     // BencodeSerializable
@@ -113,39 +123,17 @@ final class AnnounceList implements Internal\StorageInterface
     public function bencodeSerialize(): ?ListType
     {
         // return null for empty list
-        return $this->uriLists === [] ? null : new ListType($this);
-    }
-
-    // Countable
-
-    public function count(): int
-    {
-        return \count($this->uriLists);
+        return $this->data === [] ? null : new ListType($this);
     }
 
     // ArrayAccess
 
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->uriLists[$offset]);
-    }
-
     public function offsetGet(mixed $offset): UriList
     {
-        if (isset($this->uriLists[$offset])) {
-            return $this->uriLists[$offset];
+        if (isset($this->data[$offset])) {
+            return $this->data[$offset];
         }
 
         throw new OutOfBoundsException('Unknown offset');
-    }
-
-    public function offsetSet(mixed $offset, mixed $value): void
-    {
-        throw new BadMethodCallException('AnnounceList is immutable');
-    }
-
-    public function offsetUnset(mixed $offset): void
-    {
-        throw new BadMethodCallException('AnnounceList is immutable');
     }
 }
