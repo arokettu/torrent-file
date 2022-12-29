@@ -8,16 +8,18 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Bencode\Types\ListType;
 use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
+use SandFox\Torrent\DataTypes\Internal\ListObject;
 
 use function iter\chain;
 use function iter\filter;
+use function iter\map;
 
 /**
  * @implements Internal\StorageInterface<int, Node>
  */
 final class NodeList implements Internal\StorageInterface
 {
-    private array $nodes;
+    use Internal\ImmutableStorage;
 
     /**
      * @param iterable<Node|array> $nodes
@@ -31,12 +33,20 @@ final class NodeList implements Internal\StorageInterface
             $setOfNodes[$this->nodeKey($node)] ??= $node;
         }
 
-        $this->nodes = array_values($setOfNodes);
+        $this->data = array_values($setOfNodes);
     }
 
     public static function create(array|Node ...$nodes): self
     {
         return new self($nodes);
+    }
+
+    /**
+     * @internal
+     */
+    public static function fromInternal(?ListObject $nodes): self
+    {
+        return new self(map(fn (ListObject $node) => Node::fromInternal($node), $nodes ?? []));
     }
 
     public static function fromIterable(iterable $iterable): self
@@ -71,7 +81,7 @@ final class NodeList implements Internal\StorageInterface
      */
     public function toArray(): array
     {
-        return array_map(fn ($node) => $node->toArray(), $this->nodes);
+        return array_map(fn ($node) => $node->toArray(), $this->data);
     }
 
     /**
@@ -79,14 +89,14 @@ final class NodeList implements Internal\StorageInterface
      */
     public function toArrayOfNodes(): array
     {
-        return $this->nodes;
+        return $this->data;
     }
 
     // IteratorAggregate
 
     public function getIterator(): \Generator
     {
-        yield from $this->nodes;
+        yield from $this->data;
     }
 
     // BencodeSerializable
@@ -94,39 +104,17 @@ final class NodeList implements Internal\StorageInterface
     public function bencodeSerialize(): ?ListType
     {
         // return null for empty list
-        return $this->nodes === [] ? null : new ListType($this);
-    }
-
-    // Countable
-
-    public function count(): int
-    {
-        return \count($this->nodes);
+        return $this->data === [] ? null : new ListType($this);
     }
 
     // ArrayAccess
 
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->nodes[$offset]);
-    }
-
     public function offsetGet(mixed $offset): Node
     {
-        if (isset($this->nodes[$offset])) {
-            return $this->nodes[$offset];
+        if (isset($this->data[$offset])) {
+            return $this->data[$offset];
         }
 
         throw new OutOfBoundsException('Unknown offset');
-    }
-
-    public function offsetSet(mixed $offset, mixed $value): void
-    {
-        throw new BadMethodCallException('NodeList is immutable');
-    }
-
-    public function offsetUnset(mixed $offset): void
-    {
-        throw new BadMethodCallException('NodeList is immutable');
     }
 }

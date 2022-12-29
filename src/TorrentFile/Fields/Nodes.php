@@ -19,7 +19,7 @@ trait Nodes
 
     public function getNodes(): NodeList
     {
-        return $this->nodes ??= new NodeList($this->getField('nodes', []));
+        return $this->nodes ??= NodeList::fromInternal($this->getField('nodes'));
     }
 
     /**

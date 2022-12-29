@@ -9,13 +9,24 @@ use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
 use JetBrains\PhpStorm\ArrayShape;
+use ArrayAccess;
+use SandFox\Torrent\DataTypes\Internal\ArrayInterface;
+use SandFox\Torrent\DataTypes\Internal\ListObject;
 
-final class Node implements BencodeSerializable, \ArrayAccess
+final class Node implements ArrayAccess, ArrayInterface, BencodeSerializable
 {
     public function __construct(
         public readonly string $host,
         public readonly int $port,
     ) {}
+
+    /**
+     * @internal
+     */
+    public static function fromInternal(ListObject $node): self
+    {
+        return self::fromArray($node->toArray());
+    }
 
     public static function fromArray(array $array): self
     {
@@ -26,6 +37,9 @@ final class Node implements BencodeSerializable, \ArrayAccess
         return new self($array[0], $array[1]);
     }
 
+    /**
+     * @internal
+     */
     public static function ensure(array|self $node): self
     {
         return $node instanceof self ? $node : self::fromArray($node);
@@ -62,11 +76,11 @@ final class Node implements BencodeSerializable, \ArrayAccess
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        throw new BadMethodCallException('Node is immutable');
+        throw new BadMethodCallException(self::class . ' is immutable');
     }
 
     public function offsetUnset(mixed $offset): void
     {
-        throw new BadMethodCallException('Node is immutable');
+        throw new BadMethodCallException(self::class . ' is immutable');
     }
 }

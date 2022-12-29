@@ -29,7 +29,7 @@ trait DataObject
         $data = $this->data;
 
         foreach ($data as &$value) {
-            if ($value instanceof StorageInterface) {
+            if ($value instanceof ArrayInterface) {
                 $value = $value->toArray();
             }
         }

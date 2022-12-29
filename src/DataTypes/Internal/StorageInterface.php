@@ -16,7 +16,6 @@ use IteratorAggregate;
  * @extends ArrayAccess<TKey, TValue>
  * @extends IteratorAggregate<TKey, TValue>
  */
-interface StorageInterface extends ArrayAccess, Countable, IteratorAggregate, BencodeSerializable
+interface StorageInterface extends ArrayAccess, Countable, IteratorAggregate, BencodeSerializable, ArrayInterface
 {
-    public function toArray(): array;
 }

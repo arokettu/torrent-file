@@ -10,6 +10,8 @@ use Arokettu\Torrent\DataTypes\NodeList;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
+use function SandFox\Torrent\Tests\raw_torrent_data;
+
 class NodesTest extends TestCase
 {
     public function testSetByObject(): void
@@ -21,7 +23,7 @@ class NodesTest extends TestCase
         self::assertEquals([
             ['localhost', 8080],
             ['127.0.0.1', 10101],
-        ], $torrent->getRawData()['nodes']);
+        ], raw_torrent_data($torrent)['nodes']);
     }
 
     public function testSetByArray(): void
@@ -33,7 +35,7 @@ class NodesTest extends TestCase
         self::assertEquals([
             ['localhost', 8080],
             ['127.0.0.1', 10101],
-        ], $torrent->getRawData()['nodes']);
+        ], raw_torrent_data($torrent)['nodes']);
     }
 
     public function testDuplicate(): void
@@ -50,7 +52,7 @@ class NodesTest extends TestCase
         self::assertEquals([
             ['localhost', 8080],
             ['127.0.0.1', 10101],
-        ], $torrent->getRawData()['nodes']);
+        ], raw_torrent_data($torrent)['nodes']);
     }
 
     public function testParse(): void
