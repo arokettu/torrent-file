@@ -1,5 +1,5 @@
 {
-    "name": "sandfoxme/torrent-file",
+    "name": "arokettu/torrent-file",
     "description": "A class to work with torrent files",
     "keywords": ["bittorrent", "torrent", "torrent-file"],
     "homepage": "https://sandfox.dev/php/torrent-file.html",
@@ -29,7 +29,10 @@
     "autoload": {
         "psr-4": {
             "SandFox\\Torrent\\": "src"
-        }
+        },
+        "files": [
+            "autoload.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -41,6 +44,9 @@
         "files": [
             "tests/functions.php"
         ]
+    },
+    "provide": {
+        "sandfoxme/torrent-file": "self.version"
     },
     "require": {
         "php": "^8.1",

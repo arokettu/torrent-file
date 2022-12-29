@@ -45,13 +45,22 @@
   * `getAnnounceListAsArray()` and `getAnnounceListAsObject()` now trigger silent deprecations
 * `FileDataProgressEvent`: getters were replaced with readonly properties
 
-## 2.3.1
+## 2.x
+
+### 2.4.0
+
+*Dec 30, 2022*
+
+* Alias all classes in `SandFox\Torrent\*` to `Arokettu\Torrent\*` in preparation for 4.0
+* Old package `sandfoxme/torrent-file` is now provided by the new package
+
+### 2.3.1
 
 *Dec 14, 2022*
 
 * sandfoxme/bencode -> arokettu/bencode
 
-## 2.3.0
+### 2.3.0
 
 *Dec 2, 2021*
 
@@ -64,7 +73,7 @@
   * New method `getInfoHashes()` to get all metadata hashes as array
 * Fixed `detectExec` option not having any effect
 
-## 2.2.0
+### 2.2.0
 
 *Nov 30, 2021*
 
@@ -94,29 +103,31 @@
 * The library now allows aligning files to piece boundaries (BEP-47)
   * Disabled by default. Set the new option `pieceAlign` to `true` or minimum bytes value to enable it
 
-## 2.1.2
+### 2.1.2
 
 *Sep 25, 2021*
 
 * Allow bencode 3.0, bump requirements to bencode 1.7+/2.7+/3.0+
 
-## 2.1.1
+### 2.1.1
 
 *Feb 25, 2021*
 
 * Fixed deprecated behavior not removed in 2.0.0:
   `TorrentFile::__construct()` is now private
 
-## 2.1.0
+### 2.1.0
 
 *Feb 19, 2021*
 
 * Add Stream API from Bencode 1.5/2.5
 * Add big integer support from Bencode 1.6/2.6
 
-## 2.0.0
+### 2.0.0
 
 *Nov 17, 2020*
+
+Branched from 1.3.1
 
 * Bump PHP requirement to PHP 7.4
 * Replace `FileDataProgress` with Event Dispatcher ([PSR-14]) + `FileDataProgressEvent`
@@ -124,20 +135,29 @@
  
 [PSR-14]: https://www.php-fig.org/psr/psr-14/
 
-## 1.3.2
+## 1.x
+
+### 1.4.0
+
+*Dec 30, 2022*
+
+* Alias all classes in `SandFox\Torrent\*` to `Arokettu\Torrent\*` in preparation for 4.0
+* Old package `sandfoxme/torrent-file` is now provided by the new package
+
+### 1.3.2
 
 *Dec 14, 2022*
 
 * sandfoxme/bencode -> arokettu/bencode
 
-## 1.3.1
+### 1.3.1
 
 *Nov 9, 2020*
 
 * Use saner url encoder for `getMagnetLink()`
 * Bump PHP requirement from 7.1.0 to 7.1.3 to match dependencies
 
-## 1.3.0
+### 1.3.0
 
 *Nov 9, 2020*
 
@@ -146,7 +166,7 @@
 * Add `getMagnetLink()`
 * Filter announce list from duplicates
 
-## 1.2.0
+### 1.2.0
 
 *Oct 29, 2020*
 
@@ -157,7 +177,7 @@
 * Allow unsetting comment
 * Fix Announce List behavior so it allows an arbitrary composition for groups
 
-## 1.1.1
+### 1.1.1
 
 *Oct 29, 2020*
 
@@ -167,27 +187,27 @@
 [gh#4]: https://github.com/arokettu/torrent-file/pull/4/
 [gh#5]: https://github.com/arokettu/torrent-file/pull/5/
 
-## 1.1.0
+### 1.1.0
 
 *Oct 6, 2020*
 
 * Expose options array to `fromFile()` call
 * Fix `getAnnounceList()` is broken after `setAnnounceList()` is used
 
-## 1.0.2
+### 1.0.2
 
 *Oct 6, 2020*
 
 * Fix torrent creation
 * Fix info hash calculation
 
-## 1.0.1
+### 1.0.1
 
 *Jul 21, 2020*
 
 * Allow bencode v2 and Symfony v5
 
-## 1.0.0
+### 1.0.0
 
 *Apr 19, 2019*
 
@@ -195,13 +215,15 @@
 * Remove encoding field
 * Release as 1.0.0 because it is quite stable
 
-## 0.1.1
+## 0.x
+
+### 0.1.1
 
 *Nov 6, 2017*
 
 Update Symfony dependencies to allow Symfony 4
 
-## 0.1.0
+### 0.1.0
 
 *Mar 30, 2017*
 
