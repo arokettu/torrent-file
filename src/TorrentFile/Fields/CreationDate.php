@@ -18,14 +18,14 @@ trait CreationDate
 
     public function setCreationDate(\DateTimeInterface|int|null $timestamp): self
     {
-        $this->creationDate = DateTimeWrapper::fromExternalValue($timestamp);
+        $this->creationDate = DateTimeWrapper::fromExternal($timestamp);
         $this->setField('creation date', $this->creationDate);
         return $this;
     }
 
     public function getCreationDate(): ?\DateTimeImmutable
     {
-        $this->creationDate ??= DateTimeWrapper::fromTimestamp($this->getField('creation date'));
+        $this->creationDate ??= DateTimeWrapper::fromInternal($this->getField('creation date'));
         return $this->creationDate->dateTime;
     }
 }
