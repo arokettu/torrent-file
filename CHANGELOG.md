@@ -3,13 +3,15 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
-## 3.1.1
+## 3.x
+
+### 3.1.1
 
 *Dec 14, 2022*
 
 * sandfoxme/bencode -> arokettu/bencode
 
-## 3.1.0
+### 3.1.0
 
 *Dec 2, 2021*
 
@@ -22,7 +24,7 @@
     * New method `getInfoHashes()` to get all metadata hashes as array
 * Fixed `detectExec` option not having any effect
 
-## 3.0.1
+### 3.0.1
 
 *Dec 1, 2021*
 
@@ -31,11 +33,11 @@
 * `FileDataProgressEvent`: getters were returned for smoother upgrade.
   They will be deprecated in 3.2.
 
-## 3.0.0
+### 3.0.0
 
 *Nov 30, 2021*
 
-(forked from 2.2.0)
+branched from 2.2.0
 
 * PHP 8.1 is now required
 * In `TorrentFile::forPath()` options array is removed and replaced with named parameters
