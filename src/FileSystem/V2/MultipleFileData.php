@@ -10,6 +10,9 @@ use Arokettu\Torrent\Helpers\MathHelper;
 use SplFileObject;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * @internal
+ */
 class MultipleFileData extends FileData
 {
     private int $merkleTreePieceLevel;

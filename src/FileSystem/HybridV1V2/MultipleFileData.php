@@ -8,6 +8,9 @@ use Arokettu\Torrent\FileSystem\FileData;
 use Arokettu\Torrent\FileSystem\V1;
 use Arokettu\Torrent\FileSystem\V2;
 
+/**
+ * @internal
+ */
 class MultipleFileData extends FileData
 {
     public function process(): array

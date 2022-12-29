@@ -6,6 +6,9 @@ namespace Arokettu\Torrent\TorrentFile\Fields;
 
 use Arokettu\Torrent\DataTypes\UriList;
 
+/**
+ * @internal
+ */
 trait UrlList
 {
     private ?UriList $urlList = null;

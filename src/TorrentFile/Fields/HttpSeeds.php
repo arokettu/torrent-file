@@ -6,6 +6,9 @@ namespace Arokettu\Torrent\TorrentFile\Fields;
 
 use Arokettu\Torrent\DataTypes\UriList;
 
+/**
+ * @internal
+ */
 trait HttpSeeds
 {
     private ?UriList $httpseeds = null;

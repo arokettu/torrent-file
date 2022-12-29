@@ -7,6 +7,9 @@ namespace Arokettu\Torrent\TorrentFile\Fields;
 use Arokettu\Torrent\DataTypes\Node;
 use Arokettu\Torrent\DataTypes\NodeList;
 
+/**
+ * @internal
+ */
 trait Nodes
 {
     private ?NodeList $nodes = null;

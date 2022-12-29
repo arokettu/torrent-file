@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Helpers;
 
+/**
+ * @internal
+ */
 final class MathHelper
 {
     private const SHA256_EMPTY = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"; // 32 zeros
