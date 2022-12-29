@@ -7,6 +7,7 @@ namespace Arokettu\Torrent;
 use Arokettu\Bencode\Types\BencodeSerializable;
 use Arokettu\Torrent\FileSystem\FileData;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use SandFox\Torrent\DataTypes\Internal\DictObject;
 
 final class TorrentFile implements BencodeSerializable
 {
@@ -30,7 +31,7 @@ final class TorrentFile implements BencodeSerializable
     private const CREATED_BY = 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
     private function __construct(
-        private array $data,
+        private DictObject $data,
     ) {}
 
     /**
@@ -71,7 +72,7 @@ final class TorrentFile implements BencodeSerializable
         return $torrent;
     }
 
-    public function getRawData(): array
+    public function getRawData(): DictObject
     {
         $stream = fopen('php://temp', 'r+');
         $this->storeToStream($stream);
@@ -82,7 +83,7 @@ final class TorrentFile implements BencodeSerializable
         return $rawData;
     }
 
-    public function bencodeSerialize(): array
+    public function bencodeSerialize(): DictObject
     {
         return $this->data;
     }
@@ -90,12 +91,12 @@ final class TorrentFile implements BencodeSerializable
     public function __serialize(): array
     {
         // normalize data on serialization
-        return ['data' => $this->getRawData()];
+        return ['bin' => $this->storeToString()];
     }
 
     public function __unserialize(array $data): void
     {
-        ['data' => $this->data] = $data;
+        $this->data = self::decoder()->decode($data['bin']);
     }
 
     private function getField(string $key, mixed $default = null): mixed
@@ -105,7 +106,7 @@ final class TorrentFile implements BencodeSerializable
 
     private function setField(string $key, mixed $value): void
     {
-        $this->data[$key] = $value;
+        $this->data = $this->data->withOffset($key, $value);
     }
 
     private function getInfoField(string $key, mixed $default = null): mixed
@@ -118,6 +119,8 @@ final class TorrentFile implements BencodeSerializable
         $this->infoString = null;
         $this->infoHashV1 = null;
         $this->infoHashV2 = null;
-        $this->data['info'][$key] = $value;
+        $info = $this->data['info'] ?? new DictObject([]); // enforce info to be a dictionary
+        $info = $info->withOffset($key, $value);
+        $this->data = $this->data->withOffset('info', $info);
     }
 }

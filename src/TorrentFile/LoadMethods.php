@@ -5,19 +5,24 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Bencode\Bencode\BigInt;
-use Arokettu\Bencode\Bencode\Collection;
 use Arokettu\Bencode\Decoder;
+use SandFox\Torrent\DataTypes\Internal\DictObject;
+use SandFox\Torrent\DataTypes\Internal\ListObject;
 
 /**
  * @internal
  */
 trait LoadMethods
 {
-    abstract private function __construct(array $data);
+    abstract private function __construct(DictObject $data);
 
     private static function decoder(): Decoder
     {
-        return new Decoder(dictType: Collection::ARRAY, bigInt: BigInt::INTERNAL);
+        return new Decoder(
+            listType: fn (iterable $list) => new ListObject($list),
+            dictType: fn (iterable $dict) => new DictObject($dict),
+            bigInt: BigInt::INTERNAL,
+        );
     }
 
     /**
