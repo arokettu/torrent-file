@@ -5,6 +5,13 @@
 
 ## 1.x
 
+### 1.4.0
+
+*Dec 30, 2022*
+
+* Alias all classes in `SandFox\Torrent\*` to `Arokettu\Torrent\*` in preparation for 4.0
+* Old package `sandfoxme/torrent-file` is now provided by the new package
+
 ### 1.3.2
 
 *Dec 14, 2022*
