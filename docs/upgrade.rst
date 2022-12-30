@@ -1,6 +1,17 @@
 Upgrade Notes
 #############
 
+Upgrade from 3.x to 4.0
+=======================
+
+* Namespace was changed to ``Arokettu\\Torrent\\``
+
+    * Alases for the new namespace were added to 1.4.0, 2.4.0, 3.2.0 for future compatibility
+* ``getRawData()`` returns immutable objects with ArrayAccess&Countable&Iterable capabilities instead of arrays
+
+    * Use ``getRawData()->getArray()`` to have a real array
+* Getter methods on ``Node`` and ``FileDataEvent`` were removed, use exposed public readonly properties
+
 Upgrade from 2.x to 3.0
 =======================
 

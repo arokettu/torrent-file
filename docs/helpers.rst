@@ -44,16 +44,20 @@ Raw Data
     In earlier versions it returned whatever junk TorrentFile stored internally.
 
 .. versionchanged:: 2.2 Consistent return format
+.. versionchanged:: 4.0 Uses ListObject and DictObject instances instead of array
 
-A helper method that dumps raw torrent data as array.
+A helper method that dumps raw torrent data as an array-like structure.
 
 .. code-block:: php
 
     <?php
-    // get raw data
+    // get raw data (in readonly array-like structures)
     $data = $torrent->getRawData();
     // info dictionary
     var_dump($data['info']);
     // fields
     var_dump($data['creation date']);
     // etc...
+
+    // get a real array
+    $array = $data->getArray();
