@@ -5,6 +5,12 @@
 
 ## 4.x
 
+### 4.0.1
+
+*Dec 30, 2022*
+
+* The library no longer provides `sandfoxme/torrent-file`
+
 ### 4.0.0
 
 *Dec 30, 2022*
