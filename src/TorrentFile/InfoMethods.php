@@ -59,7 +59,10 @@ trait InfoMethods
                 if (isset($file['']['length'])) {
                     return false;
                 }
+                // @codeCoverageIgnoreStart
+                // should never happen, see below
                 break;
+                // @codeCoverageIgnoreEnd
             }
         }
 
