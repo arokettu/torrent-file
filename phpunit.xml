@@ -14,6 +14,9 @@
         <testsuite name="info">
             <directory>tests/info</directory>
         </testsuite>
+        <testsuite name="other">
+            <directory>tests/other</directory>
+        </testsuite>
         <testsuite name="types">
             <directory>tests/types</directory>
         </testsuite>

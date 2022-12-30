@@ -61,4 +61,19 @@ class UrlListTest extends TestCase
             'https://example.org/files/test.iso',
         ], $torrent->getUrlList()->toArray());
     }
+
+    public function testAcceptsStringInFile(): void
+    {
+        $data1 = [
+            'url-list' => 'http://localhost',
+        ];
+        $data2 = [
+            'url-list' => ['http://localhost'],
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data1));
+        self::assertEquals(['http://localhost'], $torrent->getUrlList()->toArray());
+
+        self::assertEquals(Bencode::encode($data2), $torrent->setUrlList($torrent->getUrlList())->storeToString());
+    }
 }
