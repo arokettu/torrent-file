@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\DataTypes;
+namespace Arokettu\Torrent\DataTypes;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
+use Arokettu\Torrent\Exception\BadMethodCallException;
+use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\OutOfBoundsException;
 use JetBrains\PhpStorm\ArrayShape;
-use SandFox\Torrent\Exception\BadMethodCallException;
-use SandFox\Torrent\Exception\InvalidArgumentException;
-use SandFox\Torrent\Exception\OutOfBoundsException;
 
 final class Node implements BencodeSerializable, \ArrayAccess
 {

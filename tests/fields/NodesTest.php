@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Fields;
+namespace Arokettu\Torrent\Tests\Fields;
 
 use Arokettu\Bencode\Bencode;
+use Arokettu\Torrent\DataTypes\Node;
+use Arokettu\Torrent\DataTypes\NodeList;
+use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\DataTypes\Node;
-use SandFox\Torrent\DataTypes\NodeList;
-use SandFox\Torrent\TorrentFile;
 
 class NodesTest extends TestCase
 {

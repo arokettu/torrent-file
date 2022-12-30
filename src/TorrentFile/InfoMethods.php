@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\TorrentFile;
+namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Bencode\Encoder;
 use Arokettu\Bencode\Types\DictType;
-use SandFox\Torrent\Exception\InvalidArgumentException;
-use SandFox\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\RuntimeException;
 
 /**
  * @internal

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Legacy;
+namespace Arokettu\Torrent\Legacy;
 
 const NS = 'Arokettu\\Torrent\\';
 const PREFIX = 'SandFox\\Torrent\\';

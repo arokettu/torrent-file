@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\FileSystem;
+namespace Arokettu\Torrent\FileSystem;
 
+use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\PathNotFoundException;
+use Arokettu\Torrent\Helpers\MathHelper;
+use Arokettu\Torrent\MetaVersion;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use SandFox\Torrent\Exception\InvalidArgumentException;
-use SandFox\Torrent\Exception\PathNotFoundException;
-use SandFox\Torrent\Helpers\MathHelper;
-use SandFox\Torrent\MetaVersion;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
 

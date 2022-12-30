@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\FileSystem\HybridV1V2;
+namespace Arokettu\Torrent\FileSystem\HybridV1V2;
 
-use SandFox\Torrent\FileSystem\FileData;
-use SandFox\Torrent\FileSystem\V1;
-use SandFox\Torrent\FileSystem\V2;
+use Arokettu\Torrent\FileSystem\FileData;
+use Arokettu\Torrent\FileSystem\V1;
+use Arokettu\Torrent\FileSystem\V2;
 
 class MultipleFileData extends FileData
 {

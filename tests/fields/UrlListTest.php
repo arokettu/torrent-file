@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Fields;
+namespace Arokettu\Torrent\Tests\Fields;
 
 use Arokettu\Bencode\Bencode;
+use Arokettu\Torrent\DataTypes\UriList;
+use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\DataTypes\UriList;
-use SandFox\Torrent\TorrentFile;
 
 class UrlListTest extends TestCase
 {

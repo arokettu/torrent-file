@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Fields;
+namespace Arokettu\Torrent\Tests\Fields;
 
+use Arokettu\Torrent\DataTypes\AnnounceList;
+use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\DataTypes\AnnounceList;
-use SandFox\Torrent\Exception\InvalidArgumentException;
-use SandFox\Torrent\TorrentFile;
 
 class AnnounceListTest extends TestCase
 {

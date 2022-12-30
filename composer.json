@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SandFox\\Torrent\\": "src"
+            "Arokettu\\Torrent\\": "src"
         },
         "files": [
             "autoload.php"
@@ -36,10 +36,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SandFox\\Torrent\\Tests\\Fields\\": "tests/fields",
-            "SandFox\\Torrent\\Tests\\Files\\": "tests/files",
-            "SandFox\\Torrent\\Tests\\Info\\": "tests/info",
-            "SandFox\\Torrent\\Tests\\Types\\": "tests/types"
+            "Arokettu\\Torrent\\Tests\\Fields\\": "tests/fields",
+            "Arokettu\\Torrent\\Tests\\Files\\": "tests/files",
+            "Arokettu\\Torrent\\Tests\\Info\\": "tests/info",
+            "Arokettu\\Torrent\\Tests\\Types\\": "tests/types"
         },
         "files": [
             "tests/functions.php"

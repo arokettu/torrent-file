@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\TorrentFile;
+namespace Arokettu\Torrent\TorrentFile;
 
+use Arokettu\Torrent\DataTypes\AnnounceList;
+use Arokettu\Torrent\Exception\RuntimeException;
 use League\Uri\QueryString;
-use SandFox\Torrent\DataTypes\AnnounceList;
-use SandFox\Torrent\Exception\RuntimeException;
 
 /**
  * @internal

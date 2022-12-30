@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Exception;
+namespace Arokettu\Torrent\Exception;
 
 class OutOfBoundsException extends \OutOfBoundsException implements TorrentFileException
 {

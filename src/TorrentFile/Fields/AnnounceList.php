@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\TorrentFile\Fields;
+namespace Arokettu\Torrent\TorrentFile\Fields;
 
-use SandFox\Torrent\DataTypes\AnnounceList as AnnounceListType;
+use Arokettu\Torrent\DataTypes\AnnounceList as AnnounceListType;
 
 /**
  * @internal

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\TorrentFile\Fields;
+namespace Arokettu\Torrent\TorrentFile\Fields;
 
-use SandFox\Torrent\DataTypes\Node;
-use SandFox\Torrent\DataTypes\NodeList;
+use Arokettu\Torrent\DataTypes\Node;
+use Arokettu\Torrent\DataTypes\NodeList;
 
 trait Nodes
 {

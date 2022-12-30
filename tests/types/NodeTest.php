@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Types;
+namespace Arokettu\Torrent\Tests\Types;
 
+use Arokettu\Torrent\DataTypes\Node;
+use Arokettu\Torrent\Exception\BadMethodCallException;
+use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\DataTypes\Node;
-use SandFox\Torrent\Exception\BadMethodCallException;
-use SandFox\Torrent\Exception\InvalidArgumentException;
-use SandFox\Torrent\Exception\OutOfBoundsException;
 
 class NodeTest extends TestCase
 {

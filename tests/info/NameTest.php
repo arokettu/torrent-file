@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Info;
+namespace Arokettu\Torrent\Tests\Info;
 
 use Arokettu\Bencode\Bencode;
+use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\Exception\InvalidArgumentException;
-use SandFox\Torrent\TorrentFile;
 
 class NameTest extends TestCase
 {

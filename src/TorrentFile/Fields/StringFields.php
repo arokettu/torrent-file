@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\TorrentFile\Fields;
+namespace Arokettu\Torrent\TorrentFile\Fields;
 
 /**
  * @internal

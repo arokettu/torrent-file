@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Files;
+namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\TorrentFile;
 
-use const SandFox\Torrent\Tests\TEST_ROOT;
+use const Arokettu\Torrent\Tests\TEST_ROOT;
 
 class SerializiationTest extends TestCase
 {

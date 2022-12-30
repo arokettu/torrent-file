@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Info;
+namespace Arokettu\Torrent\Tests\Info;
 
 use Arokettu\Bencode\Bencode;
+use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\TorrentFile;
 
 class FileNameSuggestionTest extends TestCase
 {

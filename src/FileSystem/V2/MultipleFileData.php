@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\FileSystem\V2;
+namespace Arokettu\Torrent\FileSystem\V2;
 
-use SandFox\Torrent\Exception\RuntimeException;
-use SandFox\Torrent\FileSystem\FileData;
-use SandFox\Torrent\Helpers\MathHelper;
+use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\FileSystem\FileData;
+use Arokettu\Torrent\Helpers\MathHelper;
 use SplFileObject;
 use Symfony\Component\Finder\SplFileInfo;
 

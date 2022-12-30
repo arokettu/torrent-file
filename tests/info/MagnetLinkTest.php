@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Info;
+namespace Arokettu\Torrent\Tests\Info;
 
 use Arokettu\Bencode\Bencode;
+use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\Exception\RuntimeException;
-use SandFox\Torrent\TorrentFile;
 
-use function SandFox\Torrent\Tests\build_magnet_link;
+use function Arokettu\Torrent\Tests\build_magnet_link;
 
 class MagnetLinkTest extends TestCase
 {

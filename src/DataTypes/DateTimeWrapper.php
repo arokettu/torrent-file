@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\DataTypes;
+namespace Arokettu\Torrent\DataTypes;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
 

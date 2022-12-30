@@ -13,7 +13,7 @@ A PHP Class to work with torrent files
 ```php
 <?php
 
-use SandFox\Torrent\TorrentFile;
+use Arokettu\Torrent\TorrentFile;
 
 // open file
 $torrent = TorrentFile::load('debian.torrent');

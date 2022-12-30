@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Helpers;
+namespace Arokettu\Torrent\Helpers;
 
 final class MathHelper
 {

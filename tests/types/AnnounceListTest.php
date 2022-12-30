@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Types;
+namespace Arokettu\Torrent\Tests\Types;
 
+use Arokettu\Torrent\DataTypes\AnnounceList;
+use Arokettu\Torrent\DataTypes\UriList;
+use Arokettu\Torrent\Exception\BadMethodCallException;
+use Arokettu\Torrent\Exception\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\DataTypes\AnnounceList;
-use SandFox\Torrent\DataTypes\UriList;
-use SandFox\Torrent\Exception\BadMethodCallException;
-use SandFox\Torrent\Exception\OutOfBoundsException;
 
 class AnnounceListTest extends TestCase
 {

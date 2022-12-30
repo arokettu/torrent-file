@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Files;
+namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Torrent\MetaVersion;
+use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
-use SandFox\Torrent\MetaVersion;
-use SandFox\Torrent\TorrentFile;
 
-use function SandFox\Torrent\Tests\build_magnet_link;
+use function Arokettu\Torrent\Tests\build_magnet_link;
 
-use const SandFox\Torrent\Tests\TEST_ROOT;
+use const Arokettu\Torrent\Tests\TEST_ROOT;
 
 class CreateFileHybridTest extends TestCase
 {

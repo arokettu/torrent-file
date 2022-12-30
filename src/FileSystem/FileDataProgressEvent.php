@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\FileSystem;
+namespace Arokettu\Torrent\FileSystem;
 
 final class FileDataProgressEvent
 {

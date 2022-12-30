@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\Tests\Files;
+namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Torrent\FileSystem\FileDataProgressEvent;
+use Arokettu\Torrent\MetaVersion;
+use Arokettu\Torrent\TorrentFile;
 use League\Event\EventDispatcher;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
-use SandFox\Torrent\FileSystem\FileDataProgressEvent;
-use SandFox\Torrent\MetaVersion;
-use SandFox\Torrent\TorrentFile;
 
-use const SandFox\Torrent\Tests\TEST_ROOT;
+use const Arokettu\Torrent\Tests\TEST_ROOT;
 
 class ReportEventV1Test extends TestCase implements ListenerProviderInterface
 {

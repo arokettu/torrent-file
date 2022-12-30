@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\TorrentFile;
+namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Bencode\Encoder;
 
