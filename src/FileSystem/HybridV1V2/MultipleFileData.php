@@ -11,7 +11,7 @@ use Arokettu\Torrent\FileSystem\V2;
 /**
  * @internal
  */
-class MultipleFileData extends FileData
+final class MultipleFileData extends FileData
 {
     public function process(): array
     {

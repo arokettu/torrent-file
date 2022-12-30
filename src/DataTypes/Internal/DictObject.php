@@ -10,7 +10,7 @@ use Arokettu\Bencode\Types\DictType;
  * @internal
  * @implements StorageInterface<string, mixed>
  */
-class DictObject implements StorageInterface
+final class DictObject implements StorageInterface
 {
     use ImmutableStorage;
     use DataObject;

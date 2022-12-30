@@ -13,7 +13,7 @@ use Symfony\Component\Finder\SplFileInfo;
 /**
  * @internal
  */
-class MultipleFileData extends FileData
+final class MultipleFileData extends FileData
 {
     private int $merkleTreePieceLevel;
 

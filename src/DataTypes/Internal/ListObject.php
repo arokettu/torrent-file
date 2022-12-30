@@ -10,7 +10,7 @@ use Arokettu\Bencode\Types\ListType;
  * @internal
  * @implements StorageInterface<int, mixed>
  */
-class ListObject implements StorageInterface
+final class ListObject implements StorageInterface
 {
     use ImmutableStorage;
     use DataObject;
