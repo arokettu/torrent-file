@@ -22,8 +22,8 @@ Announce list can be created from the following structures:
 
     <?php
 
-    use SandFox\Torrent\DataTypes\AnnounceList;
-    use SandFox\Torrent\DataTypes\UriList;
+    use Arokettu\Torrent\DataTypes\AnnounceList;
+    use Arokettu\Torrent\DataTypes\UriList;
 
     // Build from iterable
     $announceList = AnnounceList::fromIterable([
@@ -43,8 +43,8 @@ Modification
 
     <?php
 
-    use SandFox\Torrent\DataTypes\AnnounceList;
-    use SandFox\Torrent\DataTypes\UriList;
+    use Arokettu\Torrent\DataTypes\AnnounceList;
+    use Arokettu\Torrent\DataTypes\UriList;
 
     // append a list
     $announceList = AnnounceList::append(
@@ -87,7 +87,7 @@ Creation
 
     <?php
 
-    use SandFox\Torrent\DataTypes\Node;
+    use Arokettu\Torrent\DataTypes\Node;
 
     // Build from array
     $node = Node::fromArray(['localhost', 11111]);
@@ -138,8 +138,8 @@ Node list can be created from the following structures:
 
     <?php
 
-    use SandFox\Torrent\DataTypes\Node;
-    use SandFox\Torrent\DataTypes\NodeList;
+    use Arokettu\Torrent\DataTypes\Node;
+    use Arokettu\Torrent\DataTypes\NodeList;
 
     // Build from iterable
     $nodeList = NodeList::fromIterable([
@@ -159,8 +159,8 @@ Modification
 
     <?php
 
-    use SandFox\Torrent\DataTypes\Node;
-    use SandFox\Torrent\DataTypes\NodeList;
+    use Arokettu\Torrent\DataTypes\Node;
+    use Arokettu\Torrent\DataTypes\NodeList;
 
     // append a node
     $nodeList = NodeList::append(
@@ -209,7 +209,7 @@ Uri list can be created from the following structures:
 
     <?php
 
-    use SandFox\Torrent\DataTypes\UriList;
+    use Arokettu\Torrent\DataTypes\UriList;
 
     // Build from iterable
     $uriList = UriList::fromIterable([
@@ -229,7 +229,7 @@ Modification
 
     <?php
 
-    use SandFox\Torrent\DataTypes\UriList;
+    use Arokettu\Torrent\DataTypes\UriList;
 
     // append a list
     $uriList = UriList::append(

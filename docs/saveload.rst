@@ -13,7 +13,7 @@ You can load a torrent from file, from string, or from stream.
 
     <?php
 
-    use SandFox\Torrent\TorrentFile;
+    use Arokettu\Torrent\TorrentFile;
 
     // from file
     $torrent = TorrentFile::load('debian.torrent');
@@ -58,7 +58,7 @@ The library can create a torrent file from scratch for a file or a directory.
 
     <?php
 
-    use SandFox\Torrent\TorrentFile;
+    use Arokettu\Torrent\TorrentFile;
 
     $torrent = TorrentFile::fromPath(
         '/home/user/ISO/Debian',
@@ -67,7 +67,7 @@ The library can create a torrent file from scratch for a file or a directory.
 
     // pass an instance of PSR-14 event dispatcher to receive progress events:
     $torrent = TorrentFile::fromPath('/home/user/ISO/Debian', $eventDispatcher);
-    // dispatcher will receive instances of \SandFox\Torrent\FileSystem\FileDataProgressEvent
+    // dispatcher will receive instances of \Arokettu\Torrent\FileSystem\FileDataProgressEvent
     //    only in 2.0 and later
 
 Available options:

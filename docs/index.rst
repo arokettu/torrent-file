@@ -10,7 +10,7 @@ Installation
 
 .. code-block:: bash
 
-   composer require sandfoxme/torrent-file
+   composer require arokettu/torrent-file
 
 Documentation
 =============
@@ -33,7 +33,7 @@ The library is available as open source under the terms of the `MIT License`_.
 
 .. _MIT License: https://opensource.org/licenses/MIT
 
-.. |Packagist|  image:: https://img.shields.io/packagist/v/sandfoxme/torrent-file.svg?style=flat-square
+.. |Packagist|  image:: https://img.shields.io/packagist/v/arokettu/torrent-file.svg?style=flat-square
    :target:     https://packagist.org/packages/sandfoxme/torrent-file
 .. |GitHub|     image:: https://img.shields.io/badge/get%20on-GitHub-informational.svg?style=flat-square&logo=github
    :target:     https://github.com/arokettu/torrent-file
