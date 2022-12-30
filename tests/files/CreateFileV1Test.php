@@ -10,8 +10,8 @@ use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-use function SandFox\Torrent\Tests\raw_torrent_data;
 use function Arokettu\Torrent\Tests\build_magnet_link;
+use function Arokettu\Torrent\Tests\raw_torrent_data;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests;
 
-use SandFox\Torrent\TorrentFile;
+use Arokettu\Torrent\TorrentFile;
 
 function generate_files(): void
 {

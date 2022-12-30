@@ -6,7 +6,6 @@ namespace Arokettu\Torrent\Tests\Types;
 
 use Arokettu\Torrent\DataTypes\UriList;
 use Arokettu\Torrent\Exception\BadMethodCallException;
-use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 

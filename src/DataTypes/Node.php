@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\DataTypes;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
+use Arokettu\Torrent\DataTypes\Internal\ArrayInterface;
+use Arokettu\Torrent\DataTypes\Internal\ListObject;
 use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
-use JetBrains\PhpStorm\ArrayShape;
 use ArrayAccess;
-use SandFox\Torrent\DataTypes\Internal\ArrayInterface;
-use SandFox\Torrent\DataTypes\Internal\ListObject;
+use JetBrains\PhpStorm\ArrayShape;
 
 final class Node implements ArrayAccess, ArrayInterface, BencodeSerializable
 {

@@ -8,7 +8,7 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-use function SandFox\Torrent\Tests\raw_torrent_data;
+use function Arokettu\Torrent\Tests\raw_torrent_data;
 
 class HttpSeedsTest extends TestCase
 {

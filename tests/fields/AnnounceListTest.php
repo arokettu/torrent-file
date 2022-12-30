@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\Tests\Fields;
 
 use Arokettu\Torrent\DataTypes\AnnounceList;
-use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 

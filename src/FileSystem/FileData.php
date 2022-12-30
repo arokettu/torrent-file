@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\FileSystem;
 
+use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\Exception\PathNotFoundException;
 use Arokettu\Torrent\Helpers\MathHelper;
 use Arokettu\Torrent\MetaVersion;
-use Arokettu\Bencode\Bencode;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Arokettu\Torrent;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
+use Arokettu\Torrent\DataTypes\Internal\DictObject;
 use Arokettu\Torrent\FileSystem\FileData;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use SandFox\Torrent\DataTypes\Internal\DictObject;
 
 final class TorrentFile implements BencodeSerializable
 {

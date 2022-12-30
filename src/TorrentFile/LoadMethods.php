@@ -6,8 +6,8 @@ namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Bencode\Bencode\BigInt;
 use Arokettu\Bencode\Decoder;
-use SandFox\Torrent\DataTypes\Internal\DictObject;
-use SandFox\Torrent\DataTypes\Internal\ListObject;
+use Arokettu\Torrent\DataTypes\Internal\DictObject;
+use Arokettu\Torrent\DataTypes\Internal\ListObject;
 
 /**
  * @internal

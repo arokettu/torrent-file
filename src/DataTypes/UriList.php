@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\DataTypes;
 
 use Arokettu\Bencode\Types\ListType;
-use Arokettu\Torrent\Exception\BadMethodCallException;
-use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\DataTypes\Internal\ListObject;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
-use SandFox\Torrent\DataTypes\Internal\ListObject;
 
 use function iter\chain;
 use function iter\filter;

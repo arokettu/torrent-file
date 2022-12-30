@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SandFox\Torrent\DataTypes\Internal;
+namespace Arokettu\Torrent\DataTypes\Internal;
 
 use Generator;
 
