@@ -29,10 +29,7 @@
     "autoload": {
         "psr-4": {
             "Arokettu\\Torrent\\": "src"
-        },
-        "files": [
-            "autoload.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
