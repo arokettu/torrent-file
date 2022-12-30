@@ -5,6 +5,17 @@
 
 ## 3.x
 
+### 3.2.0
+
+*Dec 30, 2022*
+
+* The package was renamed to `arokettu/torrent-file`
+* The namespace was changed to `Arokettu\Torrent\ `
+  * Aliased all classes in `Arokettu\Torrent\*` to `SandFox\Torrent\*` for backward compatibility
+  * Added `aliases.php` so the changes can be indexed by the IDEs
+* Old package `sandfoxme/torrent-file` is now provided by the new package
+* Deprecated getters on `Node` and `FileDataProgressEvent`
+
 ### 3.1.1
 
 *Dec 14, 2022*
