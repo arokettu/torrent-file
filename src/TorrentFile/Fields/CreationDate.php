@@ -35,7 +35,7 @@ trait CreationDate
     public function getCreationDateAsDateTime(): ?\DateTimeImmutable
     {
         trigger_deprecation(
-            'sandfoxme/torrent-file',
+            'arokettu/torrent-file',
             '3.0.0',
             'Use getCreationDate() instead of getCreationDateAsDateTime()',
         );
@@ -48,7 +48,7 @@ trait CreationDate
     public function getCreationDateAsTimestamp(): ?int
     {
         trigger_deprecation(
-            'sandfoxme/torrent-file',
+            'arokettu/torrent-file',
             '3.0.0',
             'Use getCreationDate()->getTimestamp() instead of getCreationDateAsTimestamp()',
         );

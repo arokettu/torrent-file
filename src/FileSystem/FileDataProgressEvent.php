@@ -18,21 +18,42 @@ final class FileDataProgressEvent
     ) {
     }
 
-    // todo: deprecate in 3.2
+    /**
+     * @deprecated use $this->total
+     */
     public function getTotal(): int
     {
+        trigger_deprecation(
+            'arokettu/torrent-file',
+            '3.2.0',
+            '->total instead of ->getTotal()',
+        );
         return $this->total;
     }
 
-    // todo: deprecate in 3.2
+    /**
+     * @deprecated use $this->done
+     */
     public function getDone(): int
     {
+        trigger_deprecation(
+            'arokettu/torrent-file',
+            '3.2.0',
+            '->done instead of ->getDone()',
+        );
         return $this->done;
     }
 
-    // todo: deprecate in 3.2
+    /**
+     * @deprecated use $this->fileName
+     */
     public function getFileName(): string
     {
+        trigger_deprecation(
+            'arokettu/torrent-file',
+            '3.2.0',
+            '->fileName instead of ->getFileName()',
+        );
         return $this->fileName;
     }
 }

@@ -28,7 +28,7 @@ trait AnnounceList
     public function getAnnounceListAsArray(): array
     {
         trigger_deprecation(
-            'sandfoxme/torrent-file',
+            'arokettu/torrent-file',
             '3.0.0',
             'Use getAnnounceList()->toArray() instead of getAnnounceListAsArray()',
         );
@@ -41,7 +41,7 @@ trait AnnounceList
     public function getAnnounceListAsObject(): AnnounceListType
     {
         trigger_deprecation(
-            'sandfoxme/torrent-file',
+            'arokettu/torrent-file',
             '3.0.0',
             'Use getAnnounceList() instead of getAnnounceListAsObject()',
         );
