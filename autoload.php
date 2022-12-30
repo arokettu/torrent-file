@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\Legacy;
 
-const NS = 'SandFox\\Torrent\\';
-const PREFIX = 'Arokettu\\Torrent\\';
-const PREFIX_LEN = 17;
+const NS = 'Arokettu\\Torrent\\';
+const PREFIX = 'SandFox\\Torrent\\';
+const PREFIX_LEN = 16;
 
 spl_autoload_register(function (string $class_name) {
     if (strncmp($class_name, PREFIX, PREFIX_LEN) === 0) {
