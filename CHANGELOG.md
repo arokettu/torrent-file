@@ -3,6 +3,21 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
+## 4.x
+
+### 4.0.0
+
+*Dec 30, 2022*
+
+* New internal structure makes library more stable on malformed but valid-ish torrent files
+  * In general both Bencode and Torrent File libs aim at `save(load(file)) === file` compatibility
+* Default constructor parameters on the data structures now accept variadic lists of elements instead of iterables
+  * Default constructors are not recommended because their signatures are not considered stable.
+    Named constructors should be used instead as explained in the documentation
+* Getters on `Node` and `FileDataProgressEvent` were removed
+* `getRawData()` now returns immutable ArrayAccess&Countable&Traversable objects instead of arrays
+  * If you need a real array, use `getRawData()->toArray()`
+
 ## 3.x
 
 ### 3.2.0
