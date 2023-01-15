@@ -40,7 +40,7 @@
             "tests/functions.php"
         ]
     },
-    "provide": {
+    "replace": {
         "sandfoxme/torrent-file": "self.version"
     },
     "require": {
