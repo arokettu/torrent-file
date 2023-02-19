@@ -52,6 +52,7 @@ Supported versions:
 * 2.x (bugfixes, PHP 7.4+)
 * 3.x (bugfixes, PHP 8.1+)
 * 4.x (current, PHP 8.1+)
+* 5.x (future, PHP 8.1+)
 
 ## License
 
