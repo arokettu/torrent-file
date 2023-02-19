@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\FileSystem\HybridV1V2;
 
-use Arokettu\Torrent\FileSystem\FileData;
+use Arokettu\Torrent\FileSystem\FileData as BaseFileData;
 use Arokettu\Torrent\FileSystem\V1;
 use Arokettu\Torrent\FileSystem\V2;
 
 /**
  * @internal
  */
-final class MultipleFileData extends FileData
+final class FileData extends BaseFileData
 {
     public function process(): array
     {
@@ -25,7 +25,7 @@ final class MultipleFileData extends FileData
         ];
 
         $v1 = is_dir($this->path) ? new V1\MultipleFileData(...$params) : new V1\SingleFileData(...$params);
-        $v2 = new V2\MultipleFileData(...$params);
+        $v2 = new V2\FileData(...$params);
 
         $v1data = $v1->process();
         $v2data = $v2->process();

@@ -24,7 +24,7 @@ abstract class FileData
     public static function forPath(
         string $path,
         ?EventDispatcherInterface $eventDispatcher,
-        MetaVersion $version,
+        MetaVersion|array $version,
         int $pieceLength,
         int $pieceAlign,
         bool $detectExec,
@@ -47,12 +47,16 @@ abstract class FileData
         }
 
         return match ($version) {
-            MetaVersion::V1
+            MetaVersion::V1, [MetaVersion::V1],
                 => $isFile ? new V1\SingleFileData(...$params) : new V1\MultipleFileData(...$params),
-            MetaVersion::V2
-                => new V2\MultipleFileData(...$params),
-            MetaVersion::HybridV1V2
-                => new HybridV1V2\MultipleFileData(...$params),
+            MetaVersion::V2, [MetaVersion::V2],
+                => new V2\FileData(...$params),
+            // only 2 valid combinations here
+            [MetaVersion::V1, MetaVersion::V2],
+            [MetaVersion::V2, MetaVersion::V1],
+                => new HybridV1V2\FileData(...$params, ...array_values($version)),
+            default
+                => throw new InvalidArgumentException('Invalid metadata version'),
         };
     }
 

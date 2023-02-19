@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\FileSystem\V2;
 
 use Arokettu\Torrent\Exception\RuntimeException;
-use Arokettu\Torrent\FileSystem\FileData;
+use Arokettu\Torrent\FileSystem\FileData as BaseFileData;
 use Arokettu\Torrent\Helpers\MathHelper;
 use SplFileObject;
 use Symfony\Component\Finder\SplFileInfo;
@@ -13,7 +13,7 @@ use Symfony\Component\Finder\SplFileInfo;
 /**
  * @internal
  */
-final class MultipleFileData extends FileData
+final class FileData extends BaseFileData
 {
     private int $merkleTreePieceLevel;
 

@@ -40,7 +40,7 @@ final class TorrentFile implements BencodeSerializable
     public static function fromPath(
         string $path,
         ?EventDispatcherInterface $eventDispatcher = null,
-        MetaVersion $version = MetaVersion::HybridV1V2,
+        MetaVersion|array $version = [MetaVersion::V1, MetaVersion::V2],
         int $pieceLength = 512 * 1024, // 512 KB
         bool|int $pieceAlign = false,
         bool $detectExec = true,
