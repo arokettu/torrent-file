@@ -1,6 +1,13 @@
 Upgrade Notes
 #############
 
+Upgrade from 4.x to 5.0
+=======================
+
+* ``getInfoHashV1()`` and ``getInfoHashV2()`` were removed
+
+    * Use ``getInfoHash()`` with $version: ``$torrent->getInfoHash(MetaVersion::V1)``
+
 Upgrade from 3.x to 4.0
 =======================
 
