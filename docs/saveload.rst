@@ -51,6 +51,7 @@ Create a torrent for existing directory or file
 .. versionadded:: 2.2 pieceAlign, detectExec, detectSymlinks
 .. versionchanged:: 2.2 sortFiles, md5sum became noop
 .. versionadded:: 2.3/3.1 version
+.. versionchanged:: 4.1 MetaVersion::HybridV1V2 is now an array [MetaVersion::V1, MetaVersion::V2]
 
 The library can create a torrent file from scratch for a file or a directory.
 
@@ -77,9 +78,9 @@ Available options:
 
     * ``MetaVersion::V1`` as described in BEP-3_ spec.
     * ``MetaVersion::V2`` as described in BEP-52_ spec.
-    * ``MetaVersion::HybridV1V2`` with both V1 and V2 metadata.
+    * A list ``[MetaVersion::V1, MetaVersion::V2]`` for a hybrid torrent both V1 and V2 metadata.
 
-    Default: ``MetaVersion::HybridV1V2`` (was ``MetaVersion::V1`` in 2.x)
+    Default: ``[MetaVersion::V1, MetaVersion::V2]`` (was ``MetaVersion::V1`` in 2.x)
 ``pieceLength``
     The number of bytes that each logical piece in the peer protocol refers to.
     Must be a power of 2 and at least 16 KiB.

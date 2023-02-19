@@ -5,6 +5,11 @@
 
 ## 4.x
 
+### next
+
+* `MetaVersion::HybridV1V2` is no longer a separate case but an alias for an array
+  `[MetaVersion::V1, MetaVersion::V2]`
+
 ### 4.0.1
 
 *Dec 30, 2022*
