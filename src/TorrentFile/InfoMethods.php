@@ -7,7 +7,7 @@ namespace Arokettu\Torrent\TorrentFile;
 use Arokettu\Bencode\Encoder;
 use Arokettu\Bencode\Types\DictType;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
-use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\MetaVersion;
 
 /**
  * @internal
@@ -100,32 +100,38 @@ trait InfoMethods
         );
     }
 
-    public function getInfoHash(bool $binary = false): string
+    public function getInfoHash(?MetaVersion $version = null, bool $binary = false): ?string
     {
-        return
-            $this->getInfoHashV2($binary) ?:
-            $this->getInfoHashV1($binary) ?:
-            throw new RuntimeException('Invalid metadata');
+        return match ($version) {
+            MetaVersion::V1 =>
+                $this->getInfoHashV1($binary),
+            MetaVersion::V2 =>
+                $this->getInfoHashV2($binary),
+            null =>
+                $this->getInfoHashV2($binary) ?:
+                $this->getInfoHashV1($binary) ?:
+                null,
+        };
     }
 
     public function getInfoHashes(bool $binary = false): array
     {
         $hashes = [];
 
-        $v1 = $this->getInfoHashV1($binary);
+        $v1 = $this->getInfoHash(version: MetaVersion::V1, binary: $binary);
         if ($v1) {
-            $hashes[1] = $v1;
+            $hashes[MetaVersion::V1->value] = $v1;
         }
 
-        $v2 = $this->getInfoHashV2($binary);
+        $v2 = $this->getInfoHash(version: MetaVersion::V2, binary: $binary);
         if ($v2) {
-            $hashes[2] = $v2;
+            $hashes[MetaVersion::V2->value] = $v2;
         }
 
         return $hashes;
     }
 
-    public function getInfoHashV1(bool $binary = false): ?string
+    private function getInfoHashV1(bool $binary = false): ?string
     {
         $this->infoHashV1 ??= $this->calcInfoHashV1();
 
@@ -149,7 +155,7 @@ trait InfoMethods
         return '';
     }
 
-    public function getInfoHashV2(bool $binary = false): ?string
+    private function getInfoHashV2(bool $binary = false): ?string
     {
         $this->infoHashV2 ??= $this->calcInfoHashV2();
 

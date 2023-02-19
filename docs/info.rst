@@ -22,32 +22,25 @@ Info Hash
 
 Methods to get info hash of the torrent file.
 
-V1
---
+Single hash
+-----------
 
-.. versionadded:: 2.3/3.1
+.. versionchanged:: 2.3/3.1
+.. versionchanged:: 5.0 getInfoHashV1 and getInfoHashV2 replaced with the $version param of the getInfoHash()
 
 Get V1 info hash if V1 metadata is present or null if not.
 
 .. code-block:: php
 
     <?php
-    $infoHash = $torrent->getInfoHashV1();
-
-V2
---
-
-.. versionadded:: 2.3/3.1
+    $infoHash = $torrent->getInfoHash(MetaVersion::V1);
 
 Get V2 info hash if V2 metadata is present or null if not.
 
 .. code-block:: php
 
     <?php
-    $infoHash = $torrent->getInfoHashV2();
-
-General method
---------------
+    $infoHash = $torrent->getInfoHash(MetaVersion::V2);
 
 .. versionchanged:: 2.3/3.1 The method returns V2 info hash if the metadata is present
 
@@ -57,6 +50,13 @@ Get V2 info hash if V2 metadata is present, fall back to V1 info hash.
 
     <?php
     $infoHash = $torrent->getInfoHash();
+
+Use binary representation instead of hex:
+
+    <?php
+    $infoHashBin = $torrent->getInfoHash(MetaVersion::V2, true);
+    // or
+    $infoHashBin = $torrent->getInfoHash(binary: true);
 
 All hashes
 ----------

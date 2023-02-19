@@ -29,11 +29,11 @@ class CreateFileHybridTest extends TestCase
         );
         self::assertEquals(
             '4ce972d4398173732e009c7ce101a7be58f6972d',
-            $torrent->getInfoHashV1()
+            $torrent->getInfoHash(MetaVersion::V1)
         );
         self::assertEquals(
             'f91094f6910896b0d07d27df3d3e8f5df8abdbd3f80c3acc6a10a73886a6adf9',
-            $torrent->getInfoHashV2()
+            $torrent->getInfoHash(MetaVersion::V2)
         );
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
@@ -92,11 +92,17 @@ class CreateFileHybridTest extends TestCase
         ); // approx 19 mb
         $torrent->setCreationDate(null); // always changes
 
-        self::assertEquals('3531223d5ac920e55fa32510253dfa2f5bcd9d2d836c482e65ca1aecbab0b9eb', $torrent->getInfoHash());
-        self::assertEquals('8223a88d2a642b1dfc58c7c6c2e9d43fcbbd0c32', $torrent->getInfoHashV1());
         self::assertEquals(
             '3531223d5ac920e55fa32510253dfa2f5bcd9d2d836c482e65ca1aecbab0b9eb',
-            $torrent->getInfoHashV2()
+            $torrent->getInfoHash()
+        );
+        self::assertEquals(
+            '8223a88d2a642b1dfc58c7c6c2e9d43fcbbd0c32',
+            $torrent->getInfoHash(MetaVersion::V1)
+        );
+        self::assertEquals(
+            '3531223d5ac920e55fa32510253dfa2f5bcd9d2d836c482e65ca1aecbab0b9eb',
+            $torrent->getInfoHash(MetaVersion::V2)
         );
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals(
@@ -228,11 +234,11 @@ class CreateFileHybridTest extends TestCase
         );
         self::assertEquals(
             'fada7f40f317f9dfd7275d6809acbfea8659c484',
-            $torrent->getInfoHashV1()
+            $torrent->getInfoHash(MetaVersion::V1)
         );
         self::assertEquals(
             '338522b1f642456e398ff84d89904a4842b815be486176267cca29d788e270b2',
-            $torrent->getInfoHashV2()
+            $torrent->getInfoHash(MetaVersion::V2)
         );
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([

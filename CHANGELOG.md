@@ -3,12 +3,16 @@
 [//]: <> (Contributor list:)
 [@renan-s-oliveira]: https://github.com/renan-s-oliveira
 
-## 4.x
+## 5.x
 
 ### next
 
 * `MetaVersion::HybridV1V2` is no longer a separate case but an alias for an array
   `[MetaVersion::V1, MetaVersion::V2]`
+* getInfoHash() now accepts $version parameter
+  * getInfoHashV1() and getInfoHashV2() were removed
+
+## 4.x
 
 ### 4.0.1
 
