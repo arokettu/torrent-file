@@ -147,7 +147,7 @@ trait InfoMethods
     {
         $info = $this->getField('info', []);
 
-        if (isset($info['files']) || isset($info['length'])) {
+        if (isset($info['pieces'])) {
             // v1 metadata found
             return sha1($this->getInfoString(), true);
         }
@@ -177,5 +177,13 @@ trait InfoMethods
         }
 
         return '';
+    }
+
+    public function hasMetadata(MetaVersion $version): bool
+    {
+        return match ($version) {
+            MetaVersion::V1 => $this->getInfoField('pieces') !== null,
+            MetaVersion::V2 => $this->getInfoField('meta version') === 2,
+        };
     }
 }

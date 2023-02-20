@@ -3,6 +3,7 @@
 
 # dev
 /samples
+/debug
 
 # composer
 /vendor
