@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
@@ -16,6 +17,6 @@ class SerializiationTest extends TestCase
         $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
         $serialized = unserialize(serialize($torrent));
 
-        self::assertEquals($torrent->getInfoHash(), $serialized->getInfoHash());
+        self::assertEquals($torrent->getInfoHash(MetaVersion::V1), $serialized->getInfoHash(MetaVersion::V1));
     }
 }

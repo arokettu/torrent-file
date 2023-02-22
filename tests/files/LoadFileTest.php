@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
@@ -26,7 +27,7 @@ class LoadFileTest extends TestCase
         self::assertEquals('mktorrent 1.0', $torrent->getCreatedBy());
         self::assertEquals(1481207147, $torrent->getCreationDate()->getTimestamp());
         self::assertFalse($torrent->isPrivate());
-        self::assertEquals('54259d2fafb1de5b794e449777748eba36236f8c', $torrent->getInfoHash());
+        self::assertEquals('54259d2fafb1de5b794e449777748eba36236f8c', $torrent->getInfoHash(MetaVersion::V1));
         self::assertEquals('CentOS-7-x86_64-NetInstall-1611', $torrent->getDisplayName());
         self::assertEquals('CentOS-7-x86_64-NetInstall-1611.torrent', $torrent->getFileName());
 

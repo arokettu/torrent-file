@@ -18,11 +18,11 @@ class MagnetLinkTest extends TestCase
         // simple
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['name' => 'my test torrent', 'length' => 0]
+            'info' => ['name' => 'my test torrent', 'pieces' => '']
         ]));
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:8cdf7e5bdf89ebb3e33f3afe66362e99556cf8d3',
+                'xt=urn:btih:ea190bf5a23adbc91ea29062bf36a6a744b00436',
                 'dn=my%20test%20torrent',
             ]),
             $torrent->getMagnetLink()
@@ -31,11 +31,11 @@ class MagnetLinkTest extends TestCase
         // unicode
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['name' => 'トレント', 'length' => 0]
+            'info' => ['name' => 'トレント', 'pieces' => '']
         ]));
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:671ea756e405e74b7fe2710076ae9056cc19b69c',
+                'xt=urn:btih:ded9d4a1598b648359de7665fa13b2714248723f',
                 'dn=%E3%83%88%E3%83%AC%E3%83%B3%E3%83%88',
             ]),
             $torrent->getMagnetLink()
@@ -44,15 +44,15 @@ class MagnetLinkTest extends TestCase
         // empty
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['length' => 0]
+            'info' => ['pieces' => '']
         ]));
-        self::assertEquals('magnet:?xt=urn:btih:26f0b584fa6fea9ccc2c627f8f6df9feb752ed96', $torrent->getMagnetLink());
+        self::assertEquals('magnet:?xt=urn:btih:d38308ebeda8a85e730b9393f0bb37970c57e78f', $torrent->getMagnetLink());
     }
 
     public function testTR(): void
     {
         $base = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['name' => 'my test torrent', 'length' => 0]
+            'info' => ['name' => 'my test torrent', 'pieces' => '']
         ]));
 
         // add tracker
@@ -61,7 +61,7 @@ class MagnetLinkTest extends TestCase
         $torrent->setAnnounce('http://example.com');
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:8cdf7e5bdf89ebb3e33f3afe66362e99556cf8d3',
+                'xt=urn:btih:ea190bf5a23adbc91ea29062bf36a6a744b00436',
                 'dn=my%20test%20torrent',
                 'tr=http://example.com',
             ]),
@@ -77,7 +77,7 @@ class MagnetLinkTest extends TestCase
         ]);
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:8cdf7e5bdf89ebb3e33f3afe66362e99556cf8d3',
+                'xt=urn:btih:ea190bf5a23adbc91ea29062bf36a6a744b00436',
                 'dn=my%20test%20torrent',
                 'tr=http://example.net',
                 'tr=udp://example.org:4321',
@@ -97,7 +97,7 @@ class MagnetLinkTest extends TestCase
         ]);
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:8cdf7e5bdf89ebb3e33f3afe66362e99556cf8d3',
+                'xt=urn:btih:ea190bf5a23adbc91ea29062bf36a6a744b00436',
                 'dn=my%20test%20torrent',
                 'tr=http://example.com',
                 'tr=http://example.net',
@@ -113,10 +113,10 @@ class MagnetLinkTest extends TestCase
         // v1
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['length' => 0]
+            'info' => ['pieces' => '']
         ]));
         self::assertEquals(
-            'magnet:?xt=urn:btih:26f0b584fa6fea9ccc2c627f8f6df9feb752ed96',
+            'magnet:?xt=urn:btih:d38308ebeda8a85e730b9393f0bb37970c57e78f',
             $torrent->getMagnetLink()
         );
 
@@ -133,11 +133,11 @@ class MagnetLinkTest extends TestCase
         // v1 + v2
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['meta version' => 2, 'length' => 0]
+            'info' => ['meta version' => 2, 'pieces' => '']
         ]));
         self::assertEquals(build_magnet_link([
-            'xt=urn:btih:e5c50f1621e46db4b5356e3634ba80a5a4984244',
-            'xt=urn:btmh:122097df733df47fd30c2f0fe280eeff81114d69d2d0b6bb8c1f314a9eb52a5bc033',
+            'xt=urn:btih:810c7a83166568622e1712c14410243cd836d31c',
+            'xt=urn:btmh:12204bbc2b7563b4ec457114b60a477c5d5775a0f80de5ed6fe3173067ca1109f604',
         ]), $torrent->getMagnetLink());
     }
 

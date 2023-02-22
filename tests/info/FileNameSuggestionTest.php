@@ -15,7 +15,7 @@ class FileNameSuggestionTest extends TestCase
         // basic
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['name' => 'my test torrent', 'length' => 0]
+            'info' => ['name' => 'my test torrent', 'pieces' => '']
         ]));
 
         self::assertEquals('my test torrent', $torrent->getDisplayName());
@@ -24,7 +24,7 @@ class FileNameSuggestionTest extends TestCase
         // unicode
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['name' => 'トレント', 'length' => 0]
+            'info' => ['name' => 'トレント', 'pieces' => '']
         ]));
 
         self::assertEquals('トレント', $torrent->getDisplayName());
@@ -33,11 +33,11 @@ class FileNameSuggestionTest extends TestCase
         // empty - use infohash
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['length' => 0],
+            'info' => ['pieces' => ''],
         ]));
 
-        self::assertEquals('26f0b584fa6fea9ccc2c627f8f6df9feb752ed96', $torrent->getDisplayName());
-        self::assertEquals('26f0b584fa6fea9ccc2c627f8f6df9feb752ed96.torrent', $torrent->getFileName());
+        self::assertEquals('d38308ebeda8a85e730b9393f0bb37970c57e78f', $torrent->getDisplayName());
+        self::assertEquals('d38308ebeda8a85e730b9393f0bb37970c57e78f.torrent', $torrent->getFileName());
 
         // empty - use infohash v2
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\Tests\Info;
 
 use Arokettu\Bencode\Bencode;
+use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
@@ -15,15 +16,15 @@ class InfoHashTest extends TestCase
         // v1
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['length' => 0]
+            'info' => ['pieces' => '']
         ]));
         self::assertEquals(
-            [1 => '26f0b584fa6fea9ccc2c627f8f6df9feb752ed96'],
+            [1 => 'd38308ebeda8a85e730b9393f0bb37970c57e78f'],
             $torrent->getInfoHashes(),
         );
         self::assertEquals(
-            '26f0b584fa6fea9ccc2c627f8f6df9feb752ed96',
-            $torrent->getInfoHash(),
+            'd38308ebeda8a85e730b9393f0bb37970c57e78f',
+            $torrent->getInfoHash(MetaVersion::V1),
         );
 
         // v2
@@ -37,22 +38,18 @@ class InfoHashTest extends TestCase
         );
         self::assertEquals(
             '11f789319884160645bb421bfdfca60fac20c932cacea32c7757dd300a3765fd',
-            $torrent->getInfoHash(),
+            $torrent->getInfoHash(MetaVersion::V2),
         );
 
         // v1 + v2
 
         $torrent = TorrentFile::loadFromString(Bencode::encode([
-            'info' => ['meta version' => 2, 'length' => 0]
+            'info' => ['meta version' => 2, 'pieces' => '']
         ]));
         self::assertEquals([
-            1 => 'e5c50f1621e46db4b5356e3634ba80a5a4984244',
-            2 => '97df733df47fd30c2f0fe280eeff81114d69d2d0b6bb8c1f314a9eb52a5bc033',
+            1 => '810c7a83166568622e1712c14410243cd836d31c',
+            2 => '4bbc2b7563b4ec457114b60a477c5d5775a0f80de5ed6fe3173067ca1109f604',
         ], $torrent->getInfoHashes());
-        self::assertEquals(
-            '97df733df47fd30c2f0fe280eeff81114d69d2d0b6bb8c1f314a9eb52a5bc033', // v2 takes precedence
-            $torrent->getInfoHash(),
-        );
 
         // unknown
 

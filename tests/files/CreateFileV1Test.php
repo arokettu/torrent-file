@@ -24,7 +24,8 @@ class CreateFileV1Test extends TestCase
             version: MetaVersion::V1,
         ); // approx 6 mb
 
-        self::assertEquals('3ab5a1739bd320333898510a6cec900a5e6acb7d', $torrent->getInfoHash());
+        self::assertEquals('3ab5a1739bd320333898510a6cec900a5e6acb7d', $torrent->getInfoHash(MetaVersion::V1));
+        self::assertNull($torrent->getInfoHash(MetaVersion::V2));
 //        echo export_test_data($torrent->getRawData()['info']);
         self::assertEquals([
             'length' => 6621359,
@@ -59,7 +60,7 @@ class CreateFileV1Test extends TestCase
             version: MetaVersion::V1,
         ); // approx 19 mb
 
-        self::assertEquals('e3bfb18c606631c472b7ba1813bc96c7f748b098', $torrent->getInfoHash());
+        self::assertEquals('e3bfb18c606631c472b7ba1813bc96c7f748b098', $torrent->getInfoHash(MetaVersion::V1));
 //        echo export_test_data($torrent->getRawData()['info']);
         self::assertEquals(
             [
@@ -122,7 +123,7 @@ class CreateFileV1Test extends TestCase
             pieceLength: 1024 * 1024, // 1mb chunk
         ); // approx 19 mb
 
-        self::assertEquals('8d7b1593175abfa6563f7c8de082e5c46b3d1292', $torrent->getInfoHash());
+        self::assertEquals('8d7b1593175abfa6563f7c8de082e5c46b3d1292', $torrent->getInfoHash(MetaVersion::V1));
 //        echo export_test_data($torrent->getRawData()['info']);
         self::assertEquals(
             [
