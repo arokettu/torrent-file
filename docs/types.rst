@@ -1,8 +1,10 @@
 Data Types
 ##########
 
+.. versionadded:: 5.0 empty()
+
 All data types are immutable.
-All lists implement ``Traversable``, ``Countable`` and a read only ``ArrayAccess`` with numeric keys.
+All lists implement ``Traversable``, ``Countable`` and a read only ``ArrayAccess`` with numeric keys and have an ``empty()`` method.
 All lists wipe duplicates.
 
 .. _type_AnnounceList:

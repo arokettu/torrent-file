@@ -20,6 +20,11 @@ trait ImmutableStorage
         return \count($this->data);
     }
 
+    public function empty(): bool
+    {
+        return $this->data === [];
+    }
+
     // ArrayAccess
 
     public function offsetExists(mixed $offset): bool
