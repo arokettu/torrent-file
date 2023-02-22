@@ -46,7 +46,7 @@ final class Files implements \IteratorAggregate
                 path: $file['path'] ?? throw new RuntimeException('File is missing path'),
                 length: $length,
                 attributes: $attributes,
-                sha1: $file['sha1'],
+                sha1bin: $file['sha1'],
                 symlinkPath: $link,
             );
         }, $files)];
