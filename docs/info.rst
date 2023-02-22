@@ -42,21 +42,10 @@ Get V2 info hash if V2 metadata is present or null if not.
     <?php
     $infoHash = $torrent->getInfoHash(MetaVersion::V2);
 
-.. versionchanged:: 2.3/3.1 The method returns V2 info hash if the metadata is present
-
-Get V2 info hash if V2 metadata is present, fall back to V1 info hash.
-
-.. code-block:: php
-
-    <?php
-    $infoHash = $torrent->getInfoHash();
-
 Use binary representation instead of hex:
 
     <?php
     $infoHashBin = $torrent->getInfoHash(MetaVersion::V2, true);
-    // or
-    $infoHashBin = $torrent->getInfoHash(binary: true);
 
 All hashes
 ----------

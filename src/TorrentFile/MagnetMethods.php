@@ -6,6 +6,7 @@ namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Torrent\DataTypes\AnnounceList;
 use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\MetaVersion;
 use League\Uri\QueryString;
 
 /**
@@ -13,8 +14,7 @@ use League\Uri\QueryString;
  */
 trait MagnetMethods
 {
-    abstract public function getInfoHashV1(bool $binary = false): ?string;
-    abstract public function getInfoHashV2(bool $binary = false): ?string;
+    abstract public function getInfoHash(MetaVersion $version = null, bool $binary = false): ?string;
     abstract public function getName(): ?string;
     abstract public function getAnnounce(): ?string;
     abstract public function getAnnounceList(): AnnounceList;
@@ -24,13 +24,13 @@ trait MagnetMethods
         $pairs = [];
 
         $hash = false;
-        if ($this->getInfoHashV1()) {
+        if ($this->getInfoHash(MetaVersion::V1)) {
             $hash = true;
-            $pairs[] = ['xt', 'urn:btih:' . $this->getInfoHashV1()];
+            $pairs[] = ['xt', 'urn:btih:' . $this->getInfoHash(MetaVersion::V1)];
         }
-        if ($this->getInfoHashV2()) {
+        if ($this->getInfoHash(MetaVersion::V2)) {
             $hash = true;
-            $pairs[] = ['xt', 'urn:btmh:' . bin2hex("\x12\x20") . $this->getInfoHashV2()];
+            $pairs[] = ['xt', 'urn:btmh:' . bin2hex("\x12\x20") . $this->getInfoHash(MetaVersion::V2)];
         }
 
         if ($hash === false) {

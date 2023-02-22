@@ -12,14 +12,14 @@ use Arokettu\Torrent\MetaVersion;
  */
 trait NameMethods
 {
-    abstract public function getInfoHash(?MetaVersion $version = null, bool $binary = false): ?string;
+    abstract public function getInfoHash(MetaVersion $version = null, bool $binary = false): ?string;
     abstract public function getName(): ?string;
 
     public function getDisplayName(): string
     {
         $name = $this->getName() ?? '';
         if ($name === '') { // unset or empty
-            $name = $this->getInfoHash() ??
+            $name = $this->getInfoHash(MetaVersion::V2) ?? $this->getInfoHash(MetaVersion::V1) ??
                 throw new RuntimeException('Unable to generate a name: both name and hash are missing');
         }
         return $name;
