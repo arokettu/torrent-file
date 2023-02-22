@@ -100,7 +100,7 @@ trait InfoMethods
         );
     }
 
-    public function getInfoHash(MetaVersion $version = null, bool $binary = false): ?string
+    public function getInfoHash(MetaVersion $version, bool $binary = false): ?string
     {
         return match ($version) {
             MetaVersion::V1 =>

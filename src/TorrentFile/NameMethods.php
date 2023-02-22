@@ -12,7 +12,7 @@ use Arokettu\Torrent\MetaVersion;
  */
 trait NameMethods
 {
-    abstract public function getInfoHash(MetaVersion $version = null, bool $binary = false): ?string;
+    abstract public function getInfoHash(MetaVersion $version, bool $binary = false): ?string;
     abstract public function getName(): ?string;
 
     public function getDisplayName(): string

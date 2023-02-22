@@ -14,7 +14,7 @@ use League\Uri\QueryString;
  */
 trait MagnetMethods
 {
-    abstract public function getInfoHash(MetaVersion $version = null, bool $binary = false): ?string;
+    abstract public function getInfoHash(MetaVersion $version, bool $binary = false): ?string;
     abstract public function getName(): ?string;
     abstract public function getAnnounce(): ?string;
     abstract public function getAnnounceList(): AnnounceList;
