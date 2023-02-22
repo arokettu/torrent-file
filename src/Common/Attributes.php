@@ -18,16 +18,22 @@ use Arokettu\Torrent\Exception\InvalidArgumentException;
  */
 final class Attributes
 {
-    private readonly array $attributes;
+    public readonly string $attr;
+
+    public readonly bool $x;
+    public readonly bool $executable;
+    public readonly bool $l;
+    public readonly bool $symlink;
+    public readonly bool $p;
+    public readonly bool $pad;
 
     public function __construct(string $attr)
     {
-        $this->attributes = array_fill_keys(str_split($attr), 1);
-    }
+        $this->attr = $attr;
 
-    public function all(): array
-    {
-        return array_keys($this->attributes);
+        $this->x = $this->executable = str_contains($attr, 'x');
+        $this->l = $this->symlink = str_contains($attr, 'l');
+        $this->p = $this->pad = str_contains($attr, 'p');
     }
 
     public function has(string $attr): bool
@@ -35,31 +41,11 @@ final class Attributes
         if (\strlen($attr) !== 1) {
             throw new InvalidArgumentException('Attribute name must be 1 character long');
         }
-        return isset($this->attributes[$attr]);
-    }
-
-    public function isSymlink(): bool
-    {
-        return $this->has('l');
-    }
-
-    public function isPad(): bool
-    {
-        return $this->has('p');
-    }
-
-    public function isExecutable(): bool
-    {
-        return $this->has('x');
+        return str_contains($this->attr, $attr);
     }
 
     public function __get(string $name): bool
     {
-        return match ($name) {
-            'symlink' => $this->isSymlink(),
-            'pad' => $this->isPad(),
-            'executable' => $this->isExecutable(),
-            default => $this->has($name),
-        };
+        return $this->has($name);
     }
 }

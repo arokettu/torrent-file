@@ -28,7 +28,7 @@ final class Files implements \IteratorAggregate
         $this->files = [...map(function ($file) {
             $attributes = new Attributes($file['attr'] ?? '');
             $length = $file['length'];
-            if ($attributes->isSymlink()) {
+            if ($attributes->symlink) {
                 $link = $file['symlink path'] ?? throw new RuntimeException('Invalid symlink: missing link path');
                 if ($length === null) { // be tolerant to missing length
                     $length = 0;
@@ -56,7 +56,7 @@ final class Files implements \IteratorAggregate
         bool $skipPadFiles = true,
     ): \Generator {
         foreach ($this->files as $index => $file) {
-            if ($skipPadFiles && $file->attributes->isPad()) {
+            if ($skipPadFiles && $file->attributes->pad) {
                 continue;
             }
 
