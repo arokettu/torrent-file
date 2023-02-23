@@ -39,7 +39,7 @@ trait InfoMethods
 
         $files = $this->getInfoField('files');
         if ($files !== null) {
-            return \count($files) > 1 || [$this->getInfoField('name')] !== $files[0]['path'];
+            return \count($files) > 1 || \count($files[0]['path']) > 1;
         }
 
         // v2
