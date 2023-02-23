@@ -5,6 +5,14 @@
 
 ## 3.x
 
+### 3.3.0
+
+*Feb 23, 2023*
+
+* Adds forceMultifile option for v1 creation
+* Fixes probable v1/v2 compatibility issue in case name was edited by always creating v1 data in forceMultifile mode
+  * Hybrid torrents will be generated with different infohashes for same paths
+
 ### 3.2.0
 
 *Dec 30, 2022*
