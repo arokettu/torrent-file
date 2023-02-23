@@ -5,6 +5,13 @@
 
 ## 1.x
 
+### 1.4.1
+
+*Feb 23, 2023*
+
+* Drops PHP 7.1
+* Drops dependency on arokettu/query-string-proxy
+
 ### 1.4.0
 
 *Dec 30, 2022*
