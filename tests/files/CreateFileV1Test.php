@@ -76,7 +76,7 @@ class CreateFileV1Test extends TestCase
                 M/8hpiYYegLmNYntD0erSEXD7G9Fy4DT1SOMM4lHtUQsC+7erlN+apGisf4erLaK2bGTgKsbDwETNk115guP75Osx
                 O499nbjEf7uzNnu+SVo3wmeoI5/mx1jV2iihYK4Ow/iJL7yq2CUruoTvVHnSPqq4c3I2T5nT3YPQqLBc=
                 PIECES),
-        ], $torrent->getRawData()['info']);
+        ], raw_torrent_data($torrent)['info']);
         self::assertEquals(260, \strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
