@@ -47,6 +47,43 @@ class CreateFileV1Test extends TestCase
         );
     }
 
+    public function testSingleFileForceMulti(): void
+    {
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
+            'forceMultifile' => true,
+        ]); // approx 6 mb
+
+        self::assertEquals('113581f7f4f4a8acd204cd780c0e3f786c044518', $torrent->getInfoHash());
+//        echo export_test_data($torrent->getRawData()['info']);
+        self::assertEquals([
+            'files' => [[
+                'path' => ['file1.txt'],
+                'length' => 6621359,
+                'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+            ]],
+            'name' => 'file1.txt',
+            'piece length' => 524288,
+            'pieces' => base64_decode(<<<PIECES
+                UA6+qBSqwP7uJvTrqHs5iSp5mUcYJfIZ0wAyzY2UHsZoDGPTMYeNeHBiUmrKwus8K15+gprxhB4ZmcoA/4vOAEQnc
+                UHAAkG2ApyqUloDAZ8XO3ktOMTUiQudWYbF+C7vrrYcJZZSA1ah8mNroUK9GEhJ/3tU40U4gfAgqRjk+AYay689QD
+                M/8hpiYYegLmNYntD0erSEXD7G9Fy4DT1SOMM4lHtUQsC+7erlN+apGisf4erLaK2bGTgKsbDwETNk115guP75Osx
+                O499nbjEf7uzNnu+SVo3wmeoI5/mx1jV2iihYK4Ow/iJL7yq2CUruoTvVHnSPqq4c3I2T5nT3YPQqLBc=
+                PIECES),
+        ], $torrent->getRawData()['info']);
+        self::assertEquals(260, \strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
+        self::assertEquals('file1.txt', $torrent->getDisplayName());
+        self::assertEquals('file1.txt.torrent', $torrent->getFileName());
+        self::assertTrue($torrent->isDirectory());
+
+        self::assertEquals(
+            build_magnet_link([
+                'xt=urn:btih:113581f7f4f4a8acd204cd780c0e3f786c044518',
+                'dn=file1.txt',
+            ]),
+            $torrent->getMagnetLink()
+        );
+    }
+
     public function testMultipleFiles(): void
     {
         $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files'); // approx 19 mb

@@ -78,6 +78,7 @@ final class TorrentFile implements BencodeSerializable
             'pieceAlign'        => false,
             'detectExec'        => true,
             'detectSymlinks'    => false,
+            'forceMultifile'    => false,
         ], $options);
 
         if (\is_bool($options['pieceAlign'])) {
@@ -92,6 +93,7 @@ final class TorrentFile implements BencodeSerializable
             $options['pieceAlign'],
             $options['detectExec'],
             $options['detectSymlinks'],
+            $options['forceMultifile'],
         );
 
         $torrent = new self($dataGenerator->process());
