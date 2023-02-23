@@ -33,12 +33,13 @@ trait InfoMethods
     public function isDirectory(): bool
     {
         // v1
-        if ($this->getInfoField('files') !== null) {
-            return true;
-        }
-
         if ($this->getInfoField('length') !== null) {
             return false;
+        }
+
+        $files = $this->getInfoField('files');
+        if ($files !== null) {
+            return \count($files) > 1 || [$this->getInfoField('name')] !== $files[0]['path'];
         }
 
         // v2
