@@ -44,6 +44,7 @@ final class TorrentFile implements BencodeSerializable
         bool|int $pieceAlign = false,
         bool $detectExec = true,
         bool $detectSymlinks = false,
+        bool $forceMultifile = false,
     ): self {
         // generate data for files
 
@@ -59,6 +60,7 @@ final class TorrentFile implements BencodeSerializable
             $pieceAlign,
             $detectExec,
             $detectSymlinks,
+            $forceMultifile,
         );
 
         $torrent = new self($dataGenerator->process());

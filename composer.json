@@ -64,7 +64,7 @@
         "league/event": "^3.0",
         "phpunit/phpunit": "^9.5",
         "psy/psysh": "*",
-        "sandfox.dev/code-standard": "^10@dev",
+        "sandfox.dev/code-standard": "^1",
         "squizlabs/php_codesniffer": "*",
         "vimeo/psalm": "^5.2"
     }

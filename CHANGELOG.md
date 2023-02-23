@@ -60,6 +60,15 @@ branched from 2.2.0
 
 ## 2.x
 
+### 2.5.0
+
+*Feb 23, 2023*
+
+* Adds forceMultifile option for v1 creation
+* Fixes probable v1/v2 compatibility issue in case name was edited by always creating v1 data in forceMultifile mode 
+  * Hybrid torrents will be generated with different infohashes for same paths
+* Fixes deprecation warning in PHP 8.1+
+
 ### 2.4.0
 
 *Dec 30, 2022*
@@ -149,6 +158,13 @@ Branched from 1.3.1
 [PSR-14]: https://www.php-fig.org/psr/psr-14/
 
 ## 1.x
+
+### 1.4.1
+
+*Feb 23, 2023*
+
+* Drops PHP 7.1
+* Drops dependency on arokettu/query-string-proxy
 
 ### 1.4.0
 

@@ -23,15 +23,15 @@ class CreateFileHybridTest extends TestCase
         $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
-            'f91094f6910896b0d07d27df3d3e8f5df8abdbd3f80c3acc6a10a73886a6adf9',
+            '79cce7c3c5adaa1dabe47cb808b0eabd8c0a9de2076533e9ee2e2cdec7819db6',
             $torrent->getInfoHash()
         );
         self::assertEquals(
-            '4ce972d4398173732e009c7ce101a7be58f6972d',
+            '598bc421858f96416ac17c399a48af67fa8ffc4c',
             $torrent->getInfoHashV1()
         );
         self::assertEquals(
-            'f91094f6910896b0d07d27df3d3e8f5df8abdbd3f80c3acc6a10a73886a6adf9',
+            '79cce7c3c5adaa1dabe47cb808b0eabd8c0a9de2076533e9ee2e2cdec7819db6',
             $torrent->getInfoHashV2()
         );
 //        echo export_test_data($torrent->getRawData());
@@ -46,7 +46,11 @@ class CreateFileHybridTest extends TestCase
                         ],
                     ],
                 ],
-                'length' => 6621359,
+                'files' => [[
+                    'length' => 6621359,
+                    'path' => ['file1.txt'],
+                    'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                ]],
                 'meta version' => 2,
                 'name' => 'file1.txt',
                 'piece length' => 524288,
@@ -56,7 +60,6 @@ class CreateFileHybridTest extends TestCase
                     M/8hpiYYegLmNYntD0erSEXD7G9Fy4DT1SOMM4lHtUQsC+7erlN+apGisf4erLaK2bGTgKsbDwETNk115guP75Osx
                     O499nbjEf7uzNnu+SVo3wmeoI5/mx1jV2iihYK4Ow/iJL7yq2CUruoTvVHnSPqq4c3I2T5nT3YPQqLBc=
                     PIECES),
-                'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
             ],
             'piece layers' => [
                 base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4=") => base64_decode(<<<LAYER
@@ -75,8 +78,8 @@ class CreateFileHybridTest extends TestCase
 
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:4ce972d4398173732e009c7ce101a7be58f6972d',
-                'xt=urn:btmh:1220f91094f6910896b0d07d27df3d3e8f5df8abdbd3f80c3acc6a10a73886a6adf9',
+                'xt=urn:btih:598bc421858f96416ac17c399a48af67fa8ffc4c',
+                'xt=urn:btmh:122079cce7c3c5adaa1dabe47cb808b0eabd8c0a9de2076533e9ee2e2cdec7819db6',
                 'dn=file1.txt',
             ]),
             $torrent->getMagnetLink()
@@ -222,15 +225,15 @@ class CreateFileHybridTest extends TestCase
         $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
-            '338522b1f642456e398ff84d89904a4842b815be486176267cca29d788e270b2',
+            '3d053755a83a4f287358f0a2d50880047202ab04c70dcf6e3786dccf53cd95c8',
             $torrent->getInfoHash()
         );
         self::assertEquals(
-            'fada7f40f317f9dfd7275d6809acbfea8659c484',
+            '7d5393e3c1a4bf57fe254be62bbd6b900eb0d605',
             $torrent->getInfoHashV1()
         );
         self::assertEquals(
-            '338522b1f642456e398ff84d89904a4842b815be486176267cca29d788e270b2',
+            '3d053755a83a4f287358f0a2d50880047202ab04c70dcf6e3786dccf53cd95c8',
             $torrent->getInfoHashV2()
         );
 //        echo export_test_data($torrent->getRawData());
@@ -244,12 +247,15 @@ class CreateFileHybridTest extends TestCase
                         ],
                     ],
                 ],
-                'length' => 0,
+                'files' => [[
+                    'length' => 0,
+                    'sha1' => base64_decode("2jmj7l5rSw0yVb/vlWAYkK/YBwk="),
+                    'path' => ['empty_file.txt'],
+                ]],
                 'meta version' => 2,
                 'name' => 'empty_file.txt',
                 'piece length' => 524288,
                 'pieces' => '',
-                'sha1' => base64_decode("2jmj7l5rSw0yVb/vlWAYkK/YBwk="),
             ],
             'piece layers' => [
             ],
@@ -260,8 +266,8 @@ class CreateFileHybridTest extends TestCase
 
         self::assertEquals(
             build_magnet_link([
-                'xt=urn:btih:fada7f40f317f9dfd7275d6809acbfea8659c484',
-                'xt=urn:btmh:1220338522b1f642456e398ff84d89904a4842b815be486176267cca29d788e270b2',
+                'xt=urn:btih:7d5393e3c1a4bf57fe254be62bbd6b900eb0d605',
+                'xt=urn:btmh:12203d053755a83a4f287358f0a2d50880047202ab04c70dcf6e3786dccf53cd95c8',
                 'dn=empty_file.txt',
             ]),
             $torrent->getMagnetLink()
