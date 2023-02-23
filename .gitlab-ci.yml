@@ -20,12 +20,15 @@ cache:
     # cache dependencies
     - composer config -g cache-dir "$(pwd)/.composer-cache"
   script:
-    - composer config minimum-stability dev
-    - composer config prefer-stable true
-    # test on latest libs
     - composer update
     - vendor/bin/phpunit
-    # test on lowest libs
+
+# lowest version with lowest dependencies
+test-7.2-lowest:
+  extends: .test
+  stage: test
+  image: php:7.2
+  script:
     - composer update --prefer-lowest
     - vendor/bin/phpunit
 
