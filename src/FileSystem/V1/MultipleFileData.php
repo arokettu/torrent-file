@@ -6,6 +6,7 @@ namespace Arokettu\Torrent\FileSystem\V1;
 
 use Arokettu\Torrent\FileSystem\FileData;
 use SplFileObject;
+use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * @internal
@@ -22,7 +23,11 @@ final class MultipleFileData extends FileData
         $filePaths = [];
         $totalSize = 0;
 
-        foreach ($this->finder()->files()->in($this->path) as $file) {
+        $files = is_dir($this->path) ?
+            $this->finder()->files()->in($this->path) :
+            [new SplFileInfo($this->path, '.', basename($this->path))];
+
+        foreach ($files as $file) {
             $filePaths[] = [
                 'fullPath'      => $file->getPathname(),
                 'relativePath'  => $file->getRelativePathname(),
