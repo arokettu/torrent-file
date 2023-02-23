@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent;
 
-use Arokettu\Uri\QueryStringProxy;
 use ArrayObject;
+use League\Uri\QueryString;
 use SandFox\Bencode\Bencode;
 use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
@@ -278,7 +278,7 @@ class TorrentFile implements BencodeSerializable
             $pairs[] = ['tr', $tr];
         }
 
-        $query = QueryStringProxy::build($pairs);
+        $query = QueryString::build($pairs);
 
         return 'magnet:?' . strval($query);
     }

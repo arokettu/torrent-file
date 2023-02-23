@@ -3,16 +3,7 @@
     @see https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset
 -->
 <ruleset name="Custom Standard" namespace="MyProject\CS\Standard">
-    <rule ref="PSR12"/>
-    <rule ref="PHPCompatibility"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
-        <properties>
-            <property name="newlinesCountBetweenOpenTagAndDeclare" value="2"/>
-            <property name="newlinesCountAfterDeclare" value="2"/>
-            <property name="spacesCountAroundEqualsSign" value="0"/>
-        </properties>
-    </rule>
-    <config name="testVersion" value="7.1-"/>
+    <rule ref="SandFox_PHP72"/>
     <file>src</file>
     <file>tests</file>
 </ruleset>
