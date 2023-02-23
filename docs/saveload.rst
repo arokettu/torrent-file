@@ -51,6 +51,7 @@ Create a torrent for existing directory or file
 .. versionadded:: 2.2 pieceAlign, detectExec, detectSymlinks
 .. versionchanged:: 2.2 sortFiles, md5sum became noop
 .. versionadded:: 2.3/3.1 version
+.. versionadded:: 2.5/3.3/4.1 forceMultifile
 .. versionchanged:: 4.1 MetaVersion::HybridV1V2 is now an array [MetaVersion::V1, MetaVersion::V2]
 
 The library can create a torrent file from scratch for a file or a directory.
@@ -100,6 +101,11 @@ Available options:
 ``detectSymlinks``
     The library detects symlinks and creates symlink torrent objects.
     Only symlinks leading to files in the torrent data directory are detected.
+    Default: ``false``
+``forceMultifile``
+    V1 torrents are created in 'directory' mode even when created for a single file.
+    This mode fixes some possible incompatibilities between V1 and V2 data in hybrid torrents.
+    Always enabled in hybrid torrents, meaningless for pure V2.
     Default: ``false``
 
 .. _BEP-3:  https://www.bittorrent.org/beps/bep_0003.html

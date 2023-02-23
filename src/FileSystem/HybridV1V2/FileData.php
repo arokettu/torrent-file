@@ -24,7 +24,7 @@ final class FileData extends BaseFileData
             $this->detectSymlinks,
         ];
 
-        $v1 = is_dir($this->path) ? new V1\MultipleFileData(...$params) : new V1\SingleFileData(...$params);
+        $v1 = new V1\MultipleFileData(...$params);
         $v2 = new V2\FileData(...$params);
 
         $v1data = $v1->process();

@@ -29,6 +29,7 @@ abstract class FileData
         int $pieceAlign,
         bool $detectExec,
         bool $detectSymlinks,
+        bool $forceMultifile,
     ): self {
         $params = [
             realpath($path),
@@ -37,6 +38,7 @@ abstract class FileData
             $pieceAlign,
             $detectExec,
             $detectSymlinks,
+            $forceMultifile,
         ];
 
         $isFile = is_file($path);
@@ -48,7 +50,9 @@ abstract class FileData
 
         return match ($version) {
             MetaVersion::V1, [MetaVersion::V1],
-                => $isFile ? new V1\SingleFileData(...$params) : new V1\MultipleFileData(...$params),
+                => ($isFile && !$forceMultifile) ?
+                    new V1\SingleFileData(...$params) :
+                    new V1\MultipleFileData(...$params),
             MetaVersion::V2, [MetaVersion::V2],
                 => new V2\FileData(...$params),
             // only 2 valid combinations here
