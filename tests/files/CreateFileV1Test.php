@@ -53,9 +53,11 @@ class CreateFileV1Test extends TestCase
 
     public function testSingleFileForceMulti(): void
     {
-        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files/file1.txt', [
-            'forceMultifile' => true,
-        ]); // approx 6 mb
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V1,
+            forceMultifile: true,
+        ); // approx 6 mb
 
         self::assertEquals('113581f7f4f4a8acd204cd780c0e3f786c044518', $torrent->getInfoHash());
 //        echo export_test_data($torrent->getRawData()['info']);
