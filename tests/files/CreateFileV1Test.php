@@ -61,7 +61,7 @@ class CreateFileV1Test extends TestCase
             forceMultifile: true,
         ); // approx 6 mb
 
-        self::assertEquals('113581f7f4f4a8acd204cd780c0e3f786c044518', $torrent->getInfoHash());
+        self::assertEquals('113581f7f4f4a8acd204cd780c0e3f786c044518', $torrent->getInfoHash(MetaVersion::V1));
 //        echo export_test_data($torrent->getRawData()['info']);
         self::assertEquals([
             'files' => [[
