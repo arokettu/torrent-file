@@ -43,11 +43,11 @@ final class Files implements \IteratorAggregate
             }
 
             return new File(
-                path: $file['path'] ?? throw new RuntimeException('File is missing path'),
+                path: $file['path']?->toArray() ?? throw new RuntimeException('File is missing path'),
                 length: $length,
                 attributes: $attributes,
                 sha1bin: $file['sha1'],
-                symlinkPath: $link,
+                symlinkPath: $link?->toArray(),
             );
         }, $files)];
     }
