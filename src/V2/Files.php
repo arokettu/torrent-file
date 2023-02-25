@@ -56,7 +56,7 @@ final class Files implements \RecursiveIterator, \Countable
                     path: array_merge($this->path, [$key]),
                     length: $length,
                     attributes: $attributes,
-                    piecesRootBin: $data['sha1'],
+                    piecesRootBin: $data['pieces root'],
                     symlinkPath: $link,
                 );
                 continue;
