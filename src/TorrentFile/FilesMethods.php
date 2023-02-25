@@ -17,6 +17,9 @@ trait FilesMethods
 
     abstract private function getInfoField(string $key, mixed $default = null): mixed;
 
+    /**
+     * @psalm-return ($version is MetaVersion::V1 ? V1\Files : V2\Files)
+     */
     public function getFiles(MetaVersion $version): V1\Files|V2\Files
     {
         return match ($version) {
@@ -66,6 +69,8 @@ trait FilesMethods
 
     private function getFilesV2(): V2\Files
     {
-        throw new \LogicException();
+        $files = $this->getInfoField('file tree');
+
+        return new V2\Files($files, []);
     }
 }

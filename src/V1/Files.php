@@ -13,7 +13,7 @@ use function iter\map;
 /**
  * @implements \IteratorAggregate<int, File>
  */
-final class Files implements \IteratorAggregate
+final class Files implements \IteratorAggregate, \Countable
 {
     /** @var array<File> */
     public readonly array $files;
@@ -62,5 +62,10 @@ final class Files implements \IteratorAggregate
 
             yield $index => $file;
         }
+    }
+
+    public function count(): int
+    {
+        return \count($this->files);
     }
 }
