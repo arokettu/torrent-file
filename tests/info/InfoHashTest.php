@@ -24,7 +24,7 @@ class InfoHashTest extends TestCase
         );
         self::assertEquals(
             'd38308ebeda8a85e730b9393f0bb37970c57e78f',
-            $torrent->getInfoHash(MetaVersion::V1),
+            $torrent->v1()->getInfoHash(),
         );
 
         // v2
@@ -38,7 +38,7 @@ class InfoHashTest extends TestCase
         );
         self::assertEquals(
             '11f789319884160645bb421bfdfca60fac20c932cacea32c7757dd300a3765fd',
-            $torrent->getInfoHash(MetaVersion::V2),
+            $torrent->v2()->getInfoHash(),
         );
 
         // v1 + v2

@@ -19,17 +19,17 @@ class NameTest extends TestCase
         ]));
         self::assertNull($torrent->getName());
 
-        $infoHash1 = $torrent->getInfoHash(MetaVersion::V1);
+        $infoHash1 = $torrent->v1()->getInfoHash();
 
         $torrent->setName('file1.iso');
         self::assertEquals('file1.iso', $torrent->getName());
 
-        $infoHash2 = $torrent->getInfoHash(MetaVersion::V1);
+        $infoHash2 = $torrent->v1()->getInfoHash();
 
         $torrent->setName('file2.iso');
         self::assertEquals('file2.iso', $torrent->getName());
 
-        $infoHash3 = $torrent->getInfoHash(MetaVersion::V1);
+        $infoHash3 = $torrent->v1()->getInfoHash();
 
         self::assertNotEquals($infoHash1, $infoHash2);
         self::assertNotEquals($infoHash1, $infoHash3);

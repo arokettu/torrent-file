@@ -17,6 +17,6 @@ class SerializiationTest extends TestCase
         $torrent = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
         $serialized = unserialize(serialize($torrent));
 
-        self::assertEquals($torrent->getInfoHash(MetaVersion::V1), $serialized->getInfoHash(MetaVersion::V1));
+        self::assertEquals($torrent->v1()->getInfoHash(), $serialized->v1()->getInfoHash());
     }
 }

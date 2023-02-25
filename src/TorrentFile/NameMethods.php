@@ -5,21 +5,23 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Torrent\Exception\RuntimeException;
-use Arokettu\Torrent\MetaVersion;
+use Arokettu\Torrent\V1\Info as InfoV1;
+use Arokettu\Torrent\V2\Info as InfoV2;
 
 /**
  * @internal
  */
 trait NameMethods
 {
-    abstract public function getInfoHash(MetaVersion $version, bool $binary = false): ?string;
+    abstract public function v1(): ?InfoV1;
+    abstract public function v2(): ?InfoV2;
     abstract public function getName(): ?string;
 
     public function getDisplayName(): string
     {
         $name = $this->getName() ?? '';
         if ($name === '') { // unset or empty
-            $name = $this->getInfoHash(MetaVersion::V2) ?? $this->getInfoHash(MetaVersion::V1) ??
+            $name = $this->v2()?->getInfoHash() ?? $this->v1()?->getInfoHash() ??
                 throw new RuntimeException('Unable to generate a name: both name and hash are missing');
         }
         return $name;

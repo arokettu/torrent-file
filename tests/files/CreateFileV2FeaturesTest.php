@@ -23,7 +23,7 @@ class CreateFileV2FeaturesTest extends TestCase
 //        echo export_test_data($info);
         $this->assertEquals(
             '95a5d63fe33c4e1651856f1f2ecb4819a02ab5ddce007af5fa1afe225dd6a719',
-            $torrent->getInfoHash(MetaVersion::V2)
+            $torrent->v2()->getInfoHash()
         );
         $this->assertEquals(
             [

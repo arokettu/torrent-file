@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\TorrentFile;
 
-use Arokettu\Bencode\Encoder;
 use Arokettu\Bencode\Types\DictType;
 use Arokettu\Torrent\DataTypes\Internal\InfoDict;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
@@ -15,11 +14,7 @@ use Arokettu\Torrent\MetaVersion;
  */
 trait InfoMethods
 {
-    // info hash cache
-    // null = not calculated, '' = not present (returned to user as null)
-    private ?string $infoHashV1 = null;
-    private ?string $infoHashV2 = null;
-    private ?string $infoString = null;
+    // cached objects
     private ?InfoDict $info = null;
 
     abstract private function getField(string $key, mixed $default = null): mixed;
@@ -94,88 +89,19 @@ trait InfoMethods
         return $this->getInfoField('name');
     }
 
-    private function getInfoString(): string
-    {
-        return $this->infoString ??= (new Encoder())->encode(
-            new DictType(
-                $this->getField('info', new DictType())
-            )
-        );
-    }
-
-    public function getInfoHash(MetaVersion $version, bool $binary = false): ?string
-    {
-        return match ($version) {
-            MetaVersion::V1 =>
-                $this->getInfoHashV1($binary),
-            MetaVersion::V2 =>
-                $this->getInfoHashV2($binary),
-        };
-    }
-
     public function getInfoHashes(bool $binary = false): array
     {
         $hashes = [];
 
-        $v1 = $this->getInfoHash(version: MetaVersion::V1, binary: $binary);
-        if ($v1) {
-            $hashes[MetaVersion::V1->value] = $v1;
+        if ($this->v1()) {
+            $hashes[MetaVersion::V1->value] = $this->v1()->getInfoHash();
         }
 
-        $v2 = $this->getInfoHash(version: MetaVersion::V2, binary: $binary);
-        if ($v2) {
-            $hashes[MetaVersion::V2->value] = $v2;
+        if ($this->v2()) {
+            $hashes[MetaVersion::V2->value] = $this->v2()->getInfoHash();
         }
 
         return $hashes;
-    }
-
-    private function getInfoHashV1(bool $binary = false): ?string
-    {
-        $this->infoHashV1 ??= $this->calcInfoHashV1();
-
-        // empty string means that there is no hash, return null
-        if ($this->infoHashV1 === '') {
-            return null;
-        }
-
-        return $binary ? $this->infoHashV1 : bin2hex($this->infoHashV1);
-    }
-
-    private function calcInfoHashV1(): string
-    {
-        $info = $this->getField('info', []);
-
-        if (isset($info['pieces'])) {
-            // v1 metadata found
-            return sha1($this->getInfoString(), true);
-        }
-
-        return '';
-    }
-
-    private function getInfoHashV2(bool $binary = false): ?string
-    {
-        $this->infoHashV2 ??= $this->calcInfoHashV2();
-
-        // empty string means that there is no hash, return null
-        if ($this->infoHashV2 === '') {
-            return null;
-        }
-
-        return $binary ? $this->infoHashV2 : bin2hex($this->infoHashV2);
-    }
-
-    private function calcInfoHashV2(): string
-    {
-        $version = $this->getInfoField('meta version');
-
-        if ($version === 2) {
-            // trust the version declaration
-            return hash('sha256', $this->getInfoString(), true);
-        }
-
-        return '';
     }
 
     public function hasMetadata(MetaVersion $version): bool

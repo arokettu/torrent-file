@@ -124,9 +124,6 @@ final class TorrentFile implements BencodeSerializable
     private function setInfoField(string $key, mixed $value): void
     {
         $this->info = null;
-        $this->infoString = null;
-        $this->infoHashV1 = null;
-        $this->infoHashV2 = null;
         $this->v1 = Undefined::Undefined;
         $this->v2 = Undefined::Undefined;
         $info = $this->data['info'] ?? new DictObject([]); // enforce info to be a dictionary

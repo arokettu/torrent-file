@@ -17,14 +17,14 @@ class PrivateTest extends TestCase
             'info' => ['pieces' => '', 'meta version' => 2],
         ]));
 
-        $hash1 = $torrent->getInfoHash(MetaVersion::V1);
-        $hash2 = $torrent->getInfoHash(MetaVersion::V2);
+        $hash1 = $torrent->v1()->getInfoHash();
+        $hash2 = $torrent->v2()->getInfoHash();
 
         $torrent->setPrivate(true);
 
         // changing private value must change info hash
-        self::assertNotEquals($hash1, $torrent->getInfoHash(MetaVersion::V1));
-        self::assertNotEquals($hash2, $torrent->getInfoHash(MetaVersion::V2));
+        self::assertNotEquals($hash1, $torrent->v1()->getInfoHash());
+        self::assertNotEquals($hash2, $torrent->v2()->getInfoHash());
 
         self::assertEquals(1, $torrent->getRawData()['info']['private']);
     }
@@ -35,14 +35,14 @@ class PrivateTest extends TestCase
             'info' => ['private' => 1, 'pieces' => '', 'meta version' => 2],
         ]));
 
-        $hash1 = $torrent->getInfoHash(MetaVersion::V1);
-        $hash2 = $torrent->getInfoHash(MetaVersion::V2);
+        $hash1 = $torrent->v1()->getInfoHash();
+        $hash2 = $torrent->v2()->getInfoHash();
 
         $torrent->setPrivate(false);
 
         // changing private value must change info hash
-        self::assertNotEquals($hash1, $torrent->getInfoHash(MetaVersion::V1));
-        self::assertNotEquals($hash2, $torrent->getInfoHash(MetaVersion::V2));
+        self::assertNotEquals($hash1, $torrent->v1()->getInfoHash());
+        self::assertNotEquals($hash2, $torrent->v2()->getInfoHash());
 
         self::assertNull($torrent->getRawData()['info']['private'] ?? null);
     }
