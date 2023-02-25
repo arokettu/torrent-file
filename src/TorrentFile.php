@@ -6,6 +6,7 @@ namespace Arokettu\Torrent;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
+use Arokettu\Torrent\DataTypes\Internal\Undefined;
 use Arokettu\Torrent\FileSystem\FileData;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
@@ -29,6 +30,8 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\MagnetMethods;
     // file listing
     use TorrentFile\FilesMethods;
+    // handle v1 and v2 torrent data
+    use TorrentFile\VersionMethods;
 
     private const CREATED_BY = 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
@@ -124,6 +127,8 @@ final class TorrentFile implements BencodeSerializable
         $this->infoString = null;
         $this->infoHashV1 = null;
         $this->infoHashV2 = null;
+        $this->v1 = Undefined::Undefined;
+        $this->v2 = Undefined::Undefined;
         $info = $this->data['info'] ?? new DictObject([]); // enforce info to be a dictionary
         $info = $info->withOffset($key, $value);
         $this->data = $this->data->withOffset('info', $info);

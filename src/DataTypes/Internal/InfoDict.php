@@ -14,7 +14,7 @@ final class InfoDict
     public readonly string $infoString;
 
     public function __construct(
-        private readonly DictObject $info
+        public readonly DictObject $info
     ) {
         unset($this->infoString); // lazy creation
     }
