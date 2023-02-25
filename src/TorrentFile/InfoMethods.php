@@ -6,6 +6,7 @@ namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Bencode\Encoder;
 use Arokettu\Bencode\Types\DictType;
+use Arokettu\Torrent\DataTypes\Internal\InfoDict;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\MetaVersion;
 
@@ -19,6 +20,7 @@ trait InfoMethods
     private ?string $infoHashV1 = null;
     private ?string $infoHashV2 = null;
     private ?string $infoString = null;
+    private ?InfoDict $info = null;
 
     abstract private function getField(string $key, mixed $default = null): mixed;
     abstract private function getInfoField(string $key, mixed $default = null): mixed;
@@ -182,5 +184,10 @@ trait InfoMethods
             MetaVersion::V1 => $this->getInfoField('pieces') !== null,
             MetaVersion::V2 => $this->getInfoField('meta version') === 2,
         };
+    }
+
+    private function info(): InfoDict
+    {
+        return $this->info ??= new InfoDict($this->getField('info') ?? new DictType([]));
     }
 }
