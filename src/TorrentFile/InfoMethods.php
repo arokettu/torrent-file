@@ -96,7 +96,7 @@ trait InfoMethods
     {
         return $this->infoString ??= (new Encoder())->encode(
             new DictType(
-                $this->getField('info', [])
+                $this->getField('info', new DictType())
             )
         );
     }
