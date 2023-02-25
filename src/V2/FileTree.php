@@ -9,13 +9,13 @@ use Arokettu\Torrent\DataTypes\Internal\DictObject;
 use Arokettu\Torrent\Exception\RuntimeException;
 
 /**
- * @implements \RecursiveIterator<string, File|Files>
+ * @implements \RecursiveIterator<string, File|FileTree>
  */
-final class Files implements \RecursiveIterator, \Countable
+final class FileTree implements \RecursiveIterator, \Countable
 {
-    /** @var array<string, File|Files> */
+    /** @var array<string, File|FileTree> */
     public readonly array $files;
-    /** @var \ArrayIterator<string, File|Files> */
+    /** @var \ArrayIterator<string, File|FileTree> */
     private readonly \ArrayIterator $iterator;
 
     public function __construct(
@@ -64,7 +64,7 @@ final class Files implements \RecursiveIterator, \Countable
 
             // dir
             // directories have no known params so far so just create an object
-            $parsedFiles[] = new Files($file, array_merge($this->path, [$key]));
+            $parsedFiles[] = new FileTree($file, array_merge($this->path, [$key]));
         }
 
         $this->files = $parsedFiles;
@@ -72,7 +72,7 @@ final class Files implements \RecursiveIterator, \Countable
     }
 
     // RecursiveIterator
-    public function current(): File|Files
+    public function current(): File|FileTree
     {
         return $this->iterator->current();
     }
@@ -99,13 +99,13 @@ final class Files implements \RecursiveIterator, \Countable
 
     public function hasChildren(): bool
     {
-        return $this->current() instanceof Files;
+        return $this->current() instanceof FileTree;
     }
 
-    public function getChildren(): ?Files
+    public function getChildren(): ?FileTree
     {
         $current = $this->current();
-        return $current instanceof Files ? $current : null;
+        return $current instanceof FileTree ? $current : null;
     }
 
     // Countable

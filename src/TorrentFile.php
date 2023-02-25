@@ -28,8 +28,6 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\NameMethods;
     // magnet link
     use TorrentFile\MagnetMethods;
-    // file listing
-    use TorrentFile\FilesMethods;
     // handle v1 and v2 torrent data
     use TorrentFile\VersionMethods;
 

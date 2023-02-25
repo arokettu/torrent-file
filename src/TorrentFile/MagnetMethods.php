@@ -27,11 +27,11 @@ trait MagnetMethods
         $pairs = [];
 
         $hash = false;
-        if ($this->hasMetadata(MetaVersion::V1)) {
+        if ($this->v1()) {
             $hash = true;
             $pairs[] = ['xt', 'urn:btih:' . $this->v1()->getInfoHash()];
         }
-        if ($this->hasMetadata(MetaVersion::V2)) {
+        if ($this->v2()) {
             $hash = true;
             $pairs[] = ['xt', 'urn:btmh:' . bin2hex("\x12\x20") . $this->v2()->getInfoHash()];
         }
