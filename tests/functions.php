@@ -141,3 +141,24 @@ function raw_torrent_data(TorrentFile $torrent): array
 {
     return $torrent->getRawData()->toArray();
 }
+
+function recursive_iterator_to_array(\Traversable $iterator, bool $preserveKeys = true): array
+{
+    if ($iterator instanceof \IteratorAggregate) {
+        return recursive_iterator_to_array($iterator->getIterator());
+    }
+
+    if (!($iterator instanceof \RecursiveIterator)) {
+        return iterator_to_array($iterator, $preserveKeys);
+    }
+
+    return iterator_to_array((function (\RecursiveIterator $iterator) {
+        $iterator->rewind();
+
+        while ($iterator->valid()) {
+            yield $iterator->key() =>
+                $iterator->hasChildren() ? recursive_iterator_to_array($iterator->getChildren()) : $iterator->current();
+            $iterator->next();
+        }
+    })($iterator));
+}

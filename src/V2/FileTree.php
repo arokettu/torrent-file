@@ -51,7 +51,7 @@ final class FileTree implements \RecursiveIterator, \Countable
                     $link = null; // ignore even if set
                 }
 
-                $parsedFiles[] = new File(
+                $parsedFiles[$key] = new File(
                     name: $key,
                     path: array_merge($this->path, [$key]),
                     length: $length,
@@ -64,7 +64,7 @@ final class FileTree implements \RecursiveIterator, \Countable
 
             // dir
             // directories have no known params so far so just create an object
-            $parsedFiles[] = new FileTree($file, array_merge($this->path, [$key]));
+            $parsedFiles[$key] = new FileTree($file, array_merge($this->path, [$key]));
         }
 
         $this->files = $parsedFiles;

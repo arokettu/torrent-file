@@ -157,7 +157,7 @@ class FileListV1Test extends TestCase
 
         self::assertEquals([
             new File(
-                path: ['dir1', 'file1.txt',],
+                path: ['dir1', 'file1.txt'],
                 length: 6621359,
                 attributes: new Attributes(''),
                 sha1bin: base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
