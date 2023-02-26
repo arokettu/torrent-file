@@ -94,11 +94,11 @@ trait InfoMethods
         $hashes = [];
 
         if ($this->v1()) {
-            $hashes[MetaVersion::V1->value] = $this->v1()->getInfoHash();
+            $hashes[MetaVersion::V1->value] = $this->v1()->getInfoHash($binary);
         }
 
         if ($this->v2()) {
-            $hashes[MetaVersion::V2->value] = $this->v2()->getInfoHash();
+            $hashes[MetaVersion::V2->value] = $this->v2()->getInfoHash($binary);
         }
 
         return $hashes;
