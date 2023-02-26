@@ -13,7 +13,7 @@ trait AnnounceList
 {
     private ?AnnounceListType $announceList = null;
 
-    abstract private function getField(string $key, mixed $default = null): mixed;
+    abstract private function getField(string $key): mixed;
     abstract private function setField(string $key, mixed $value): void;
 
     public function getAnnounceList(): AnnounceListType

@@ -17,8 +17,8 @@ trait InfoMethods
     // cached objects
     private ?InfoDict $info = null;
 
-    abstract private function getField(string $key, mixed $default = null): mixed;
-    abstract private function getInfoField(string $key, mixed $default = null): mixed;
+    abstract private function getField(string $key): mixed;
+    abstract private function getInfoField(string $key): mixed;
     abstract private function setInfoField(string $key, mixed $value): void;
 
     public function setPrivate(bool $isPrivate): self
@@ -29,7 +29,7 @@ trait InfoMethods
 
     public function isPrivate(): bool
     {
-        return \boolval($this->getInfoField('private', false));
+        return \boolval($this->getInfoField('private'));
     }
 
     public function setName(string $name): self

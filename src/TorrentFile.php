@@ -104,9 +104,9 @@ final class TorrentFile implements BencodeSerializable
         $this->data = self::decoder()->decode($data['bin']);
     }
 
-    private function getField(string $key, mixed $default = null): mixed
+    private function getField(string $key): mixed
     {
-        return $this->data[$key] ?? $default;
+        return $this->data[$key];
     }
 
     private function setField(string $key, mixed $value): void
@@ -114,9 +114,9 @@ final class TorrentFile implements BencodeSerializable
         $this->data = $this->data->withOffset($key, $value);
     }
 
-    private function getInfoField(string $key, mixed $default = null): mixed
+    private function getInfoField(string $key): mixed
     {
-        return $this->data['info'][$key] ?? $default;
+        return ($this->data['info'] ?? new DictObject([]))[$key];
     }
 
     private function setInfoField(string $key, mixed $value): void
