@@ -17,6 +17,7 @@ final class Files implements \IteratorAggregate, \Countable
 {
     /** @var array<File> */
     public readonly array $files;
+    private ?int $countWithoutPads = null;
 
     public function __construct(ListObject $files)
     {
@@ -64,8 +65,15 @@ final class Files implements \IteratorAggregate, \Countable
         }
     }
 
-    public function count(): int
+    public function count(bool $skipPadFiles = true): int
     {
-        return \count($this->files);
+        if ($skipPadFiles === false) {
+            return \count($this->files);
+        }
+
+        return $this->countWithoutPads ??= \count(array_filter(
+            $this->files,
+            fn (File $file) => !$file->attributes->pad
+        ));
     }
 }
