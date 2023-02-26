@@ -63,4 +63,23 @@ final class Info
 
         return new Files($files);
     }
+
+    public function isDirectory(): bool
+    {
+        $info = $this->info->info;
+
+        if ($info['length'] !== null) {
+            return false;
+        }
+
+        $files = $info['files'];
+        if ($files !== null) {
+            return \count($files) > 1 || \count($files[0]['path']) > 1;
+        }
+
+        // @codeCoverageIgnoreStart
+        // should never happen
+        throw new \LogicException('Unable to determine');
+        // @codeCoverageIgnoreEnd
+    }
 }

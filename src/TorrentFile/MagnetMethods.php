@@ -6,7 +6,6 @@ namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Torrent\DataTypes\AnnounceList;
 use Arokettu\Torrent\Exception\RuntimeException;
-use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\V1\Info as InfoV1;
 use Arokettu\Torrent\V2\Info as InfoV2;
 use League\Uri\QueryString;

@@ -57,7 +57,7 @@ class CreateFileV2Test extends TestCase
         ], raw_torrent_data($torrent));
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
-        self::assertFalse($torrent->isDirectory());
+        self::assertFalse($torrent->v2()->isDirectory());
 
         self::assertEquals(
             build_magnet_link([
@@ -106,7 +106,7 @@ class CreateFileV2Test extends TestCase
         ], $raw);
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
-        self::assertFalse($torrent->isDirectory());
+        self::assertFalse($torrent->v2()->isDirectory());
 
         self::assertEquals(
             build_magnet_link([
@@ -192,7 +192,7 @@ class CreateFileV2Test extends TestCase
         );
         self::assertEquals('files', $torrent->getDisplayName());
         self::assertEquals('files.torrent', $torrent->getFileName());
-        self::assertTrue($torrent->isDirectory());
+        self::assertTrue($torrent->v2()->isDirectory());
 
         self::assertEquals(
             build_magnet_link([

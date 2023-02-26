@@ -42,7 +42,7 @@ class CreateFileV1Test extends TestCase
         self::assertEquals(260, \strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
-        self::assertFalse($torrent->isDirectory());
+        self::assertFalse($torrent->v1()->isDirectory());
 
         self::assertEquals(
             build_magnet_link([
@@ -81,7 +81,7 @@ class CreateFileV1Test extends TestCase
         self::assertEquals(260, \strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
-        self::assertFalse($torrent->isDirectory());
+        self::assertFalse($torrent->v1()->isDirectory());
 
         self::assertEquals(
             build_magnet_link([
@@ -143,7 +143,7 @@ class CreateFileV1Test extends TestCase
         self::assertEquals(760, \strlen($torrent->getRawData()['info']['pieces'])); // 38 chunks
         self::assertEquals('files', $torrent->getDisplayName());
         self::assertEquals('files.torrent', $torrent->getFileName());
-        self::assertTrue($torrent->isDirectory());
+        self::assertTrue($torrent->v1()->isDirectory());
 
         self::assertEquals(
             build_magnet_link([

@@ -32,44 +32,6 @@ trait InfoMethods
         return \boolval($this->getInfoField('private', false));
     }
 
-    public function isDirectory(): bool
-    {
-        // v1
-        if ($this->getInfoField('length') !== null) {
-            return false;
-        }
-
-        $files = $this->getInfoField('files');
-        if ($files !== null) {
-            return \count($files) > 1 || \count($files[0]['path']) > 1;
-        }
-
-        // v2
-        if ($this->getInfoField('meta version') === 2) {
-            $fileTree = $this->getInfoField('file tree');
-
-            if (\count($fileTree) !== 1) {
-                return true;
-            }
-
-            // check first file
-            foreach ($fileTree as $file) {
-                if (isset($file['']['length'])) {
-                    return false;
-                }
-                // @codeCoverageIgnoreStart
-                // should never happen, see below
-                break;
-                // @codeCoverageIgnoreEnd
-            }
-        }
-
-        // @codeCoverageIgnoreStart
-        // should never happen
-        throw new \LogicException('Unable to determine');
-        // @codeCoverageIgnoreEnd
-    }
-
     public function setName(string $name): self
     {
         if ($name === '') {

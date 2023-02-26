@@ -26,4 +26,23 @@ final class Info
         $this->fileTree ??= new FileTree($this->info->info['file tree'], []);
         return $this->fileTree;
     }
+
+    public function isDirectory(): bool
+    {
+        $fileTree = $this->info->info['file tree'];
+
+        if (\count($fileTree) !== 1) {
+            return true;
+        }
+
+        // check first file
+        foreach ($fileTree as $file) {
+            return isset($file['']['length']) === false;
+        }
+
+        // @codeCoverageIgnoreStart
+        // should never happen
+        throw new \LogicException('Unable to determine');
+        // @codeCoverageIgnoreEnd
+    }
 }
