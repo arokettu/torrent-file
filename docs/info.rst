@@ -1,7 +1,7 @@
 Info Fields
 ###########
 
-.. versionchanged:: 5.0 A lot of stuff was moved to version specific namespaces, see :ref:`fileLists`
+.. versionchanged:: 5.0 A lot of stuff was moved to version specific namespaces, see :ref:`torrent_versions`
 
 Fields of the info dictionary of the torrent file.
 The info dictionary is the primary data of the torrent file.

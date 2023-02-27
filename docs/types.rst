@@ -259,3 +259,44 @@ Array representation
     // toArray() return an array of strings,
     // the same structure as it is represented in the torrent file
     $data = $uriList->toArray();
+
+.. _type_Attributes:
+
+Attributes
+==========
+
+Attributes class represents file attibutes in file lists.
+Any single character attribute may be set for future compatibility:
+
+.. code-block:: php
+
+    <?php
+    $isA = $file->attributes->a;
+    // or
+    $isA = $file->attributes->has('a');
+
+Actual meaningful attributes:
+
+.. code-block:: php
+
+    <?php
+    /* Executable file: */
+    $isExecutable = $file->attributes->x;
+    // or
+    $isExecutable = $file->attributes->has('x');
+    // or
+    $isExecutable = $file->attributes->executable;
+
+    /* Symlink: */
+    $isSymlink = $file->attributes->l;
+    // or
+    $isSymlink = $file->attributes->has('l');
+    // or
+    $isSymlink = $file->attributes->symlink;
+
+    /* Pad file: */
+    $isPad = $file->attributes->p;
+    // or
+    $isPad = $file->attributes->has('p');
+    // or
+    $isPad = $file->attributes->pad;
