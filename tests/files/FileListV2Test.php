@@ -35,6 +35,7 @@ class FileListV2Test extends TestCase
                 symlinkPath: null,
             ),
         ], $files);
+        self::assertEquals(1, \count($torrent->v2()->getFileTree()));
     }
 
     public function testMultiFile(): void
@@ -72,6 +73,7 @@ class FileListV2Test extends TestCase
                 symlinkPath: null,
             ),
         ], $files);
+        self::assertEquals(3, \count($torrent->v2()->getFileTree()));
     }
 
     public function testFiles2(): void
@@ -150,6 +152,7 @@ class FileListV2Test extends TestCase
                 ),
             ],
         ], $files);
+        self::assertEquals(6, \count($torrent->v2()->getFileTree()));
     }
 
     public function testFilesNumericNames(): void
@@ -247,5 +250,6 @@ class FileListV2Test extends TestCase
                 ),
             ],
         ], $files);
+        self::assertEquals(2, \count($torrent->v2()->getFileTree()));
     }
 }
