@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
-use Arokettu\Torrent\Common\Attributes;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\TorrentFile\Common\Attributes;
 use PHPUnit\Framework\TestCase;
 
 class AttributesTest extends TestCase

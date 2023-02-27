@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Torrent\Exception\RuntimeException;
-use Arokettu\Torrent\V1\Info as InfoV1;
-use Arokettu\Torrent\V2\Info as InfoV2;
+use Arokettu\Torrent\TorrentFile\V1\Info as InfoV1;
+use Arokettu\Torrent\TorrentFile\V2\Info as InfoV2;
 
 /**
  * @internal

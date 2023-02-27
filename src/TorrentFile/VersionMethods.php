@@ -7,8 +7,8 @@ namespace Arokettu\Torrent\TorrentFile;
 use Arokettu\Torrent\DataTypes\Internal\InfoDict;
 use Arokettu\Torrent\DataTypes\Internal\Undefined;
 use Arokettu\Torrent\MetaVersion;
-use Arokettu\Torrent\V1\Info as InfoV1;
-use Arokettu\Torrent\V2\Info as InfoV2;
+use Arokettu\Torrent\TorrentFile\V1\Info as InfoV1;
+use Arokettu\Torrent\TorrentFile\V2\Info as InfoV2;
 
 trait VersionMethods
 {

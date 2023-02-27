@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Arokettu\Torrent\V2;
+namespace Arokettu\Torrent\TorrentFile\V2;
 
 use Arokettu\Torrent\DataTypes\Internal\InfoDict;
 

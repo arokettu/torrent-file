@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Arokettu\Torrent\V2;
+namespace Arokettu\Torrent\TorrentFile\V2;
 
-use Arokettu\Torrent\Common\Attributes;
+use Arokettu\Torrent\TorrentFile\Common\Attributes;
 
 final class File
 {

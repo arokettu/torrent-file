@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
-use Arokettu\Torrent\Common\Attributes;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
-use Arokettu\Torrent\V2\File;
+use Arokettu\Torrent\TorrentFile\Common\Attributes;
+use Arokettu\Torrent\TorrentFile\V2\File;
 use PHPUnit\Framework\TestCase;
 
 use function Arokettu\Torrent\Tests\recursive_iterator_to_array;

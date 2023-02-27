@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
-use Arokettu\Torrent\Common\Attributes;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
-use Arokettu\Torrent\V1\File;
+use Arokettu\Torrent\TorrentFile\Common\Attributes;
+use Arokettu\Torrent\TorrentFile\V1\File;
 use PHPUnit\Framework\TestCase;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;

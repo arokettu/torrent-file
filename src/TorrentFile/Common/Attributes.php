@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Arokettu\Torrent\Common;
+namespace Arokettu\Torrent\TorrentFile\Common;
 
 use Arokettu\Torrent\Exception\InvalidArgumentException;
 

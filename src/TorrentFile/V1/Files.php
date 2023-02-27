@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Arokettu\Torrent\V1;
+namespace Arokettu\Torrent\TorrentFile\V1;
 
-use Arokettu\Torrent\Common\Attributes;
 use Arokettu\Torrent\DataTypes\Internal\ListObject;
 use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\TorrentFile\Common\Attributes;
 
 use function iter\map;
 
