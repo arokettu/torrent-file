@@ -6,11 +6,14 @@ Upgrade from 4.x to 5.0
 
 * ``getInfoHashV1()`` and ``getInfoHashV2()`` were removed
 
-    * Use ``getInfoHash()`` with $version: ``$torrent->getInfoHash(MetaVersion::V1)``
-* ``getInfoHash()`` now requires version
+    * Use ``getInfoHash()`` from version objects: ``$torrent->v1()->getInfoHash()``
+* ``getInfoHash()`` was removed
 
-    * Use explicit version: ``$torrent->getInfoHash(MetaVersion::V2) ?? $torrent->getInfoHash(MetaVersion::V1)``
+    * Use ``getInfoHash()`` from version objects: ``$torrent->v2()?->getInfoHash() ?? $torrent->v1()?->getInfoHash()``
       or ``getInfoHashes()``
+* ``isDirectory()`` was removed
+
+    * Use ``isDirectory()`` from version objects: ``$torrent->v2()?->isDirectory() ?? $torrent->v1()?->isDirectory()``
 
 Upgrade from 3.x to 4.0
 =======================
