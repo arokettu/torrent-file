@@ -28,6 +28,22 @@ Get all available hashes as array.
     $infoHashes[1]; // V1 info hash if V1 metadata is present
     $infoHashes[2]; // V2 info hash if V2 metadata is present
 
+Metadata
+========
+
+Checks the version of the torrent.
+
+.. code-block:: php
+
+    <?php
+    $torrent->hasMetadata(MetaVersion::V1); // simple check, does not create v1 Files object
+    // or
+    $torrent->v1() !== null; // if you plan to iterate over files too
+
+    $torrent->hasMetadata(MetaVersion::V2); // simple check, does not create v2 FileTree object
+    // or
+    $torrent->v2() !== null; // if you plan to iterate over files too
+
 Name
 ====
 
