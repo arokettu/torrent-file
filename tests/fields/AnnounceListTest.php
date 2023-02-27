@@ -16,6 +16,7 @@ class AnnounceListTest extends TestCase
 
         // no warning if not set
         self::assertEquals([], $torrent->getAnnounceList()->toArray());
+        self::assertEquals(0, \count($torrent->getAnnounceList()));
 
         // allow unset
         $torrent->setAnnounceList(['http://localhost']);

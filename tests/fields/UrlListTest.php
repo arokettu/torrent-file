@@ -42,6 +42,7 @@ class UrlListTest extends TestCase
         // parse null
         $torrent = TorrentFile::loadFromString('de');
         self::assertEquals([], $torrent->getUrlList()->toArray());
+        self::assertTrue($torrent->getUrlList()->empty());
 
         // parse string
         $torrent = TorrentFile::loadFromString(Bencode::encode([
