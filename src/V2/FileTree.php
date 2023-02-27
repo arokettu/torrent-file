@@ -34,6 +34,8 @@ final class FileTree implements \RecursiveIterator, \Countable
                 continue;
             }
 
+            $key = \strval($key); // counter array keys type cast
+
             if (isset($file['']['length'])) {
                 if (\count($file) > 1) {
                     throw new RuntimeException('Invalid node: file cannot contain child files');
@@ -84,7 +86,7 @@ final class FileTree implements \RecursiveIterator, \Countable
 
     public function key(): string
     {
-        return $this->iterator->key();
+        return \strval($this->iterator->key()); // counter array keys type cast
     }
 
     public function valid(): bool

@@ -6,7 +6,7 @@ namespace Arokettu\Torrent\Tests;
 
 use Arokettu\Torrent\TorrentFile;
 
-function generate_files(): void
+function generate_files1(): void
 {
     $filesPath = TEST_ROOT . '/data/files';
 
@@ -92,6 +92,40 @@ function generate_files2(): void
 function generate_files3(): void
 {
     file_put_contents(TEST_ROOT . '/data/empty_file.txt', '');
+}
+
+function generate_files4(): void
+{
+    $filesPath = TEST_ROOT . '/data/files';
+    $files4Path = TEST_ROOT . '/data/4444';
+
+    $paths = [
+        $files4Path,
+        $files4Path . '/dir',
+        $files4Path . '/2',
+    ];
+
+    foreach ($paths as $path) {
+        if (!is_dir($path)) {
+            mkdir($path);
+        }
+    }
+
+    // @phpcs:disable PHPCS_SecurityAudit.BadFunctions.FilesystemFunctions.WarnSymlink
+    // External symlinks: should always become files
+
+    @symlink($filesPath . '/file1.txt', $files4Path . '/dir/file1.txt');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/dir/1111');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/dir/222');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/dir/33');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/dir/4');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/2/file2.txt');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/2/1');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/2/-22');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/2/0333');
+    @symlink($filesPath . '/file1.txt', $files4Path . '/2/0x4444');
+
+    // @phpcs:enable PHPCS_SecurityAudit.BadFunctions.FilesystemFunctions.WarnSymlink
 }
 
 function get_words(): array

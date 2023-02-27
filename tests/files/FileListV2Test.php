@@ -151,4 +151,101 @@ class FileListV2Test extends TestCase
             ],
         ], $files);
     }
+
+    public function testFilesNumericNames(): void
+    {
+        // the only case when numeric keys can occur in torrent file
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/4444', version: MetaVersion::V2);
+
+        $files = recursive_iterator_to_array($torrent->v2()->getFileTree());
+
+        self::assertEquals([
+            '2' => [
+                'file2.txt' => new File(
+                    name: 'file2.txt',
+                    path: ['2', 'file2.txt'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                '-22' => new File(
+                    name: '-22',
+                    path: ['2', '-22'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                '0333' => new File(
+                    name: '0333',
+                    path: ['2', '0333'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                // @phpcs:disable PHPCompatibility.Miscellaneous.ValidIntegers.HexNumericStringFound
+                '0x4444' => new File(
+                    name: '0x4444',
+                    path: ['2', '0x4444'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                // @phpcs:enable PHPCompatibility.Miscellaneous.ValidIntegers.HexNumericStringFound
+                '1' => new File(
+                    name: '1',
+                    path: ['2', '1'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+            ],
+            'dir' => [
+                '1111' => new File(
+                    name: '1111',
+                    path: ['dir', '1111'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                '222' => new File(
+                    name: '222',
+                    path: ['dir', '222'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                '33' => new File(
+                    name: '33',
+                    path: ['dir', '33'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                '4' => new File(
+                    name: '4',
+                    path: ['dir', '4'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                'file1.txt' => new File(
+                    name: 'file1.txt',
+                    path: ['dir', 'file1.txt'],
+                    length: 6621359,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+            ],
+        ], $files);
+    }
 }
