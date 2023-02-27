@@ -7,10 +7,11 @@
 
 ### next
 
+* File listings for both versions 1 and 2 via version objects: `$torrent->v1()` and `$torrent->v2()`
+  * getInfoHash() and isDirectory() moved to version objects
+* hasMetadata() to check what metadata versions are present
 * `MetaVersion::HybridV1V2` is no longer a separate case but an alias for an array
   `[MetaVersion::V1, MetaVersion::V2]`
-* getInfoHash() now accepts $version parameter
-  * getInfoHashV1() and getInfoHashV2() were removed
 
 ## 4.x
 
