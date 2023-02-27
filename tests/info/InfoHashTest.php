@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\Tests\Info;
 
 use Arokettu\Bencode\Bencode;
-use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 

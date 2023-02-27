@@ -6,7 +6,6 @@ namespace Arokettu\Torrent\Tests\Info;
 
 use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
-use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
