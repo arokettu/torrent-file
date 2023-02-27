@@ -1,51 +1,18 @@
 Info Fields
 ###########
 
+.. versionchanged:: 5.0 A lot of stuff was moved to version specific namespaces, see :ref:`fileLists`
+
 Fields of the info dictionary of the torrent file.
 The info dictionary is the primary data of the torrent file.
 Using any setters here will change infoHash and the result will be considered a separate torrent file by the trackers.
 
-Directory or File
-=================
-
-.. versionadded:: 2.2
-
-A method to check if a directory or a file is encoded.
-
-.. code-block:: php
-
-    <?php
-    $isDirectory = $torrent->isDirectory();
-
 Info Hash
 =========
 
-Methods to get info hash of the torrent file.
+.. versionchanged:: 5.0 Specific info hashes were moved into version specific namespaces
 
-Single hash
------------
-
-.. versionchanged:: 2.3/3.1
-.. versionchanged:: 5.0 getInfoHashV1 and getInfoHashV2 replaced with the $version param of the getInfoHash()
-
-Get V1 info hash if V1 metadata is present or null if not.
-
-.. code-block:: php
-
-    <?php
-    $infoHash = $torrent->getInfoHash(MetaVersion::V1);
-
-Get V2 info hash if V2 metadata is present or null if not.
-
-.. code-block:: php
-
-    <?php
-    $infoHash = $torrent->getInfoHash(MetaVersion::V2);
-
-Use binary representation instead of hex:
-
-    <?php
-    $infoHashBin = $torrent->getInfoHash(MetaVersion::V2, true);
+A method to get info hashes of the torrent file.
 
 All hashes
 ----------
