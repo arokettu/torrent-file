@@ -5,7 +5,9 @@
 
 ## 5.x
 
-### next
+### 5.0.0
+
+*Mar 1, 2023*
 
 * File listings for both versions 1 and 2 via version objects: `$torrent->v1()` and `$torrent->v2()`
   * getInfoHash() and isDirectory() moved to version objects
