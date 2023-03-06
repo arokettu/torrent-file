@@ -56,10 +56,10 @@ Feel free to ask any questions in our room on Gitter: <https://gitter.im/arokett
 
 Supported versions:
 
-* 2.x (bugfixes, PHP 7.4+)
+* 2.x (bugfixes LTS-ish, PHP 7.4+)
 * 3.x (bugfixes, PHP 8.1+)
-* 4.x (current, PHP 8.1+)
-* 5.x (future, PHP 8.1+)
+* 4.x (bugfixes, PHP 8.1+)
+* 5.x (current, PHP 8.1+)
 
 ## License
 
