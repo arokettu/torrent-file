@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/packagist/l/arokettu/torrent-file.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/sandfox/torrent-file/master.svg?style=flat-square)](https://gitlab.com/sandfox/torrent-file/-/pipelines)
 [![Codecov](https://img.shields.io/codecov/c/gl/sandfox/torrent-file?style=flat-square)](https://codecov.io/gl/sandfox/torrent-file/)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Farokettu%2Ftorrent-file.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Farokettu%2Ftorrent-file?ref=badge_shield)
 
 A PHP Class to work with torrent files
 
@@ -66,3 +67,6 @@ Supported versions:
 The library is available as open source under the terms of the [MIT License].
 
 [MIT License]:  https://opensource.org/licenses/MIT
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Farokettu%2Ftorrent-file.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Farokettu%2Ftorrent-file?ref=badge_large)
