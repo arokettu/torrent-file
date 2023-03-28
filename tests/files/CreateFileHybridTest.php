@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Clock\StaticClock;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
@@ -20,8 +21,8 @@ class CreateFileHybridTest extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files/file1.txt',
             version: MetaVersion::HybridV1V2,
+            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
         ); // approx 6 mb
-        $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
             '598bc421858f96416ac17c399a48af67fa8ffc4c',
@@ -34,6 +35,7 @@ class CreateFileHybridTest extends TestCase
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
             'created by' => 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html',
+            'creation date' => 1_500_000_000,
             'info' => [
                 'file tree' => [
                     'file1.txt' => [
@@ -89,8 +91,8 @@ class CreateFileHybridTest extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
             version: MetaVersion::HybridV1V2,
+            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
         ); // approx 19 mb
-        $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
             '8223a88d2a642b1dfc58c7c6c2e9d43fcbbd0c32',
@@ -104,6 +106,7 @@ class CreateFileHybridTest extends TestCase
         self::assertEquals(
             [
                 'created by' => 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html',
+                'creation date' => 1_500_000_000,
                 'info' => [
                     'file tree' => [
                         'file1.txt' => [
@@ -222,8 +225,8 @@ class CreateFileHybridTest extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/empty_file.txt',
             version: MetaVersion::HybridV1V2,
+            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
         ); // approx 6 mb
-        $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
             '7d5393e3c1a4bf57fe254be62bbd6b900eb0d605',
@@ -236,6 +239,7 @@ class CreateFileHybridTest extends TestCase
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
             'created by' => 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html',
+            'creation date' => 1_500_000_000,
             'info' => [
                 'file tree' => [
                     'empty_file.txt' => [

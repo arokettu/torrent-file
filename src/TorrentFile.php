@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Arokettu\Torrent;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
+use Arokettu\SystemClock\SystemClock;
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
 use Arokettu\Torrent\DataTypes\Internal\Undefined;
 use Arokettu\Torrent\FileSystem\FileData;
+use Psr\Clock\ClockInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 final class TorrentFile implements BencodeSerializable
@@ -31,7 +33,7 @@ final class TorrentFile implements BencodeSerializable
     // handle v1 and v2 torrent data
     use TorrentFile\VersionMethods;
 
-    private const CREATED_BY = 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
+    public const CREATED_BY = 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
     private function __construct(
         private DictObject $data,
@@ -49,6 +51,7 @@ final class TorrentFile implements BencodeSerializable
         bool $detectExec = true,
         bool $detectSymlinks = false,
         bool $forceMultifile = false,
+        ClockInterface $clock = new SystemClock(),
     ): self {
         // generate data for files
 
@@ -72,7 +75,7 @@ final class TorrentFile implements BencodeSerializable
         // set some defaults
 
         $torrent->setCreatedBy(self::CREATED_BY);
-        $torrent->setCreationDate(new \DateTimeImmutable('now'));
+        $torrent->setCreationDate($clock->now());
 
         return $torrent;
     }

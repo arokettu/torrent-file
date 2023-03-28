@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Clock\StaticClock;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
@@ -20,8 +21,8 @@ class CreateFileV2Test extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files/file1.txt',
             version: MetaVersion::V2,
+            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
         ); // approx 6 mb
-        $torrent->setCreationDate(null); // always changes
 
         self::assertNull($torrent->v1());
         self::assertEquals(
@@ -31,6 +32,7 @@ class CreateFileV2Test extends TestCase
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
             'created by' => 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html',
+            'creation date' => 1_500_000_000,
             'info' => [
                 'file tree' => [
                     'file1.txt' => [
@@ -74,8 +76,8 @@ class CreateFileV2Test extends TestCase
             TEST_ROOT . '/data/files/file1.txt',
             version: MetaVersion::V2,
             pieceLength: 16384,
+            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
         ); // approx 6 mb
-        $torrent->setCreationDate(null); // always changes
 
         $raw = raw_torrent_data($torrent);
         $raw['piece layers'] = array_map(fn ($s) => \strlen($s), $raw['piece layers']); // very long with these hashes
@@ -87,6 +89,7 @@ class CreateFileV2Test extends TestCase
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
             'created by' => 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html',
+            'creation date' => 1_500_000_000,
             'info' => [
                 'file tree' => [
                     'file1.txt' => [
@@ -122,8 +125,8 @@ class CreateFileV2Test extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
             version: MetaVersion::V2,
+            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
         ); // approx 19 mb
-        $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
             'ed751104df9a3d16a141aea0e86cc03b0a5d591f18ee0f70162e68ec8c218f97',
@@ -133,6 +136,7 @@ class CreateFileV2Test extends TestCase
         self::assertEquals(
             [
                 'created by' => 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html',
+                'creation date' => 1_500_000_000,
                 'info' => [
                     'file tree' => [
                         'file1.txt' => [
@@ -209,8 +213,8 @@ class CreateFileV2Test extends TestCase
             TEST_ROOT . '/data/files',
             version: MetaVersion::V2,
             pieceLength: 1024 * 1024, // 1mb chunk
+            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
         ); // approx 19 mb
-        $torrent->setCreationDate(null); // always changes
 
         self::assertEquals(
             '81b558cd173dd0645bb243a8db9b326f1b2c3a8e952d0b6401bb64ed757919b0',
@@ -220,6 +224,7 @@ class CreateFileV2Test extends TestCase
         self::assertEquals(
             [
                 'created by' => 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html',
+                'creation date' => 1_500_000_000,
                 'info' => [
                     'file tree' => [
                         'file1.txt' => [
