@@ -107,6 +107,10 @@ Available options:
     This mode fixes some possible incompatibilities between V1 and V2 data in hybrid torrents.
     Always enabled in hybrid torrents, meaningless for pure V2.
     Default: ``false``
+``clock``
+    A parameter to inject a clock component, mostly for debug purposes.
+    To set the creation timestamp normally, use `setCreationDate($timestamp)` on the created torrent object.
+    Default: a clock that returns a current timestamp.
 
 .. _BEP-3:  https://www.bittorrent.org/beps/bep_0003.html
 .. _BEP-52: https://www.bittorrent.org/beps/bep_0052.html
