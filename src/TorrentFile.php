@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Arokettu\Torrent;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
-use Arokettu\SystemClock\SystemClock;
+use Arokettu\Clock\SystemClock;
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
 use Arokettu\Torrent\DataTypes\Internal\Undefined;
 use Arokettu\Torrent\FileSystem\FileData;
