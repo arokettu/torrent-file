@@ -5,6 +5,12 @@
 
 ## 5.x
 
+### 5.0.1
+
+*Jul 14, 2023*
+
+* Allow league/uri-components v7
+
 ### 5.0.0
 
 *Mar 1, 2023*
