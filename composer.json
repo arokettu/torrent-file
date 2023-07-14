@@ -59,7 +59,7 @@
         "arokettu/clock": "^2.2",
         "jetbrains/phpstorm-attributes": "^1.0",
         "league/event": "^3.0",
-        "phpunit/phpunit": "^10.0",
+        "phpunit/phpunit": "^10.2",
         "psy/psysh": "*",
         "sandfox.dev/code-standard": "^1",
         "squizlabs/php_codesniffer": "*",

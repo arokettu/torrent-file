@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          bootstrap="tests/bootstrap.php"
          displayDetailsOnTestsThatTriggerErrors="true"
@@ -6,27 +6,27 @@
          displayDetailsOnTestsThatTriggerWarnings="true"
          displayDetailsOnTestsThatTriggerDeprecations="true"
          executionOrder="random"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd">
-    <testsuites>
-        <testsuite name="fields">
-            <directory>tests/fields</directory>
-        </testsuite>
-        <testsuite name="files">
-            <directory>tests/files</directory>
-        </testsuite>
-        <testsuite name="info">
-            <directory>tests/info</directory>
-        </testsuite>
-        <testsuite name="other">
-            <directory>tests/other</directory>
-        </testsuite>
-        <testsuite name="types">
-            <directory>tests/types</directory>
-        </testsuite>
-    </testsuites>
-    <coverage>
-        <include>
-            <directory>src</directory>
-        </include>
-    </coverage>
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd">
+  <testsuites>
+    <testsuite name="fields">
+      <directory>tests/fields</directory>
+    </testsuite>
+    <testsuite name="files">
+      <directory>tests/files</directory>
+    </testsuite>
+    <testsuite name="info">
+      <directory>tests/info</directory>
+    </testsuite>
+    <testsuite name="other">
+      <directory>tests/other</directory>
+    </testsuite>
+    <testsuite name="types">
+      <directory>tests/types</directory>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory>src</directory>
+    </include>
+  </source>
 </phpunit>
