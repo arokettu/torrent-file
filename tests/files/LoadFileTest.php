@@ -36,8 +36,8 @@ class LoadFileTest extends TestCase
             build_magnet_link([
                 'xt=urn:btih:54259d2fafb1de5b794e449777748eba36236f8c',
                 'dn=CentOS-7-x86_64-NetInstall-1611',
-                'tr=http://torrent.centos.org:6969/announce',
-                'tr=http://ipv6.torrent.centos.org:6969/announce',
+                'tr=' . rawurlencode('http://torrent.centos.org:6969/announce'),
+                'tr=' . rawurlencode('http://ipv6.torrent.centos.org:6969/announce'),
             ]),
             $torrent->getMagnetLink()
         );
