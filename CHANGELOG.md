@@ -5,6 +5,12 @@
 
 ## 5.x
 
+### 5.0.2
+
+*Jul 14, 2023*
+
+* No longer depends on league/uri-components
+
 ### 5.0.1
 
 *Jul 14, 2023*
