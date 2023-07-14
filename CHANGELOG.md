@@ -97,6 +97,12 @@ branched from 2.2.0
 
 ## 2.x
 
+### 2.5.1
+
+*Jul 14, 2023*
+
+* Allow league/uri-components v7
+
 ### 2.5.0
 
 *Feb 23, 2023*
