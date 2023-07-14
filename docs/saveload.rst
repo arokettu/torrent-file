@@ -53,6 +53,7 @@ Create a torrent for existing directory or file
 .. versionadded:: 2.3/3.1 version
 .. versionadded:: 2.5/3.3/4.1 forceMultifile
 .. versionchanged:: 4.1 MetaVersion::HybridV1V2 is now an array [MetaVersion::V1, MetaVersion::V2]
+.. versionadded:: 5.0.1 $clock
 
 The library can create a torrent file from scratch for a file or a directory.
 
