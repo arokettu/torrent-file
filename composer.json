@@ -50,7 +50,7 @@
         "php": "^7.4 | ^8.0",
         "ext-hash": "*",
         "arokettu/bencode": "^1.7.2 | ^2.7.2 | ^3.0.2",
-        "league/uri-components": "^2.0",
+        "league/uri-components": ">=2.0 <8",
         "nikic/iter": "^2.0",
         "psr/event-dispatcher": "^1.0",
         "symfony/deprecation-contracts": "^2.1 | ^3.0",
