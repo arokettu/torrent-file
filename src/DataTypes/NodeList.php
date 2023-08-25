@@ -35,7 +35,7 @@ final class NodeList implements Internal\StorageInterface
 
     public static function create(array|Node ...$nodes): self
     {
-        return new self(...map(fn ($node) => \is_array($node) ? Node::fromArray($node) : $node, $nodes ?? []));
+        return new self(...map(fn ($node) => \is_array($node) ? Node::fromArray($node) : $node, $nodes));
     }
 
     /**
