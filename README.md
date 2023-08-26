@@ -42,6 +42,10 @@ composer require arokettu/torrent-file
 * Torrent file listing
 * Support for torrent files version 1, version 2, Hybrid v1+v2, a lot of BEPs like Nodes, Url Lists, etc
 
+## CLI tool
+
+A CLI tool based on the library: <https://sandfox.dev/php/torrent-file-cli.html>
+
 ## Documentation
 
 Read full documentation here: <https://sandfox.dev/php/torrent-file.html>
