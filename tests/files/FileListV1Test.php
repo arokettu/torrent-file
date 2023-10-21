@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Bencode\Bencode;
+use Arokettu\Torrent\Exception\RuntimeException;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use Arokettu\Torrent\TorrentFile\Common\Attributes;
@@ -207,5 +209,129 @@ class FileListV1Test extends TestCase
             ),
         ], $files);
         self::assertEquals(7, \count($torrent->v1()->getFiles()));
+    }
+
+    public function testLengthMustBePresent(): void
+    {
+        $data = [
+            'info' => [
+                'files' => [
+                    [
+                        'path' => ['dir1', 'file1'],
+                    ],
+                ],
+                'pieces' => '...', // not read here
+            ]
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+        self::expectException(RuntimeException::class);
+        self::expectExceptionMessage('Invalid file: missing length');
+        $torrent->v1()->getFiles();
+    }
+
+    public function testReadSymlink(): void
+    {
+        $data = [
+            'info' => [
+                'files' => [
+                    [
+                        'path' => ['dir1', 'file1'],
+                        'length' => 123456,
+                    ],
+                    [
+                        'path' => ['dir1', 'file2'],
+                        'length' => 0,
+                        'attr' => 'l',
+                        'symlink path' => ['dir1', 'file1'],
+                    ],
+                ],
+                'pieces' => '...', // not read here
+            ]
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+
+        self::assertEquals([
+            new File(
+                path: ['dir1', 'file1'],
+                length: 123456,
+                attributes: new Attributes(''),
+                sha1bin: null,
+                symlinkPath: null,
+            ),
+            new File(
+                path: ['dir1', 'file2'],
+                length: 0,
+                attributes: new Attributes('l'),
+                sha1bin: null,
+                symlinkPath: ['dir1', 'file1'],
+            ),
+        ], [...$torrent->v1()->getFiles()]);
+    }
+
+    public function testSymlinkTolerantToMissingLength(): void
+    {
+        $data = [
+            'info' => [
+                'files' => [
+                    [
+                        'path' => ['dir1', 'file1'],
+                        'length' => 123456,
+                    ],
+                    [
+                        'path' => ['dir1', 'file2'],
+                        'attr' => 'l',
+                        'symlink path' => ['dir1', 'file1'],
+                    ],
+                ],
+                'pieces' => '...', // not read here
+            ]
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+
+        self::assertEquals([
+            new File(
+                path: ['dir1', 'file1'],
+                length: 123456,
+                attributes: new Attributes(''),
+                sha1bin: null,
+                symlinkPath: null,
+            ),
+            new File(
+                path: ['dir1', 'file2'],
+                length: 0,
+                attributes: new Attributes('l'),
+                sha1bin: null,
+                symlinkPath: ['dir1', 'file1'],
+            ),
+        ], [...$torrent->v1()->getFiles()]);
+    }
+
+    public function testSymlinkMustBe0Length(): void
+    {
+        $data = [
+            'info' => [
+                'files' => [
+                    [
+                        'path' => ['dir1', 'file1'],
+                        'length' => 123456,
+                    ],
+                    [
+                        'path' => ['dir1', 'file2'],
+                        'length' => 123,
+                        'attr' => 'l',
+                        'symlink path' => ['dir1', 'file1'],
+                    ],
+                ],
+                'pieces' => '...', // not read here
+            ]
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+        self::expectException(RuntimeException::class);
+        self::expectExceptionMessage('Invalid symlink: must be 0 length');
+        $torrent->v1()->getFiles();
     }
 }
