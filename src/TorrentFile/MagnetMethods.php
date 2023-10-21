@@ -6,7 +6,6 @@ namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Torrent\DataTypes\AnnounceList;
 use Arokettu\Torrent\Exception\RuntimeException;
-use League\Uri\QueryString;
 
 /**
  * @internal
@@ -39,7 +38,7 @@ trait MagnetMethods
 
         $dn = $this->getName() ?? '';
         if ($dn !== '') {
-            $pairs[] = ['dn', $dn];
+            $pairs[] = ['dn', rawurlencode($dn)];
         }
 
         $trackers = [];
@@ -57,11 +56,9 @@ trait MagnetMethods
         }
 
         foreach (array_unique($trackers) as $tr) {
-            $pairs[] = ['tr', $tr];
+            $pairs[] = ['tr', rawurlencode($tr)];
         }
 
-        $query = QueryString::build($pairs);
-
-        return 'magnet:?' . $query;
+        return 'magnet:?' . implode('&', array_map(fn ($pair) => $pair[0] . '=' . $pair[1], $pairs));
     }
 }
