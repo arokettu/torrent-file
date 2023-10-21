@@ -7,8 +7,9 @@
 
 ### 5.0.3
 
-*Oct 21, 2023*
+*Oct 22, 2023*
 
+* Fix symlink handling in v2 torrents
 * Allow Symfony 7
 * nikic/iter dependency was bumped to 2.2 (the lowest with PHP 8.1 support)
 
