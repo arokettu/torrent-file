@@ -10,6 +10,7 @@
 *Oct 21, 2023*
 
 * Allow Symfony 7
+* nikic/iter dependency was bumped to 2.2 (the lowest with PHP 8.1 support)
 
 ### 5.0.2
 
