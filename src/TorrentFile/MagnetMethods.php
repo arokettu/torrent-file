@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SandFox\Torrent\TorrentFile;
 
-use League\Uri\QueryString;
 use SandFox\Torrent\Exception\RuntimeException;
 
 /**
@@ -32,7 +31,7 @@ trait MagnetMethods
 
         $dn = $this->getName() ?? '';
         if ($dn !== '') {
-            $pairs[] = ['dn', $dn];
+            $pairs[] = ['dn', rawurlencode($dn)];
         }
 
         $trackers = [];
@@ -50,11 +49,9 @@ trait MagnetMethods
         }
 
         foreach (array_unique($trackers) as $tr) {
-            $pairs[] = ['tr', $tr];
+            $pairs[] = ['tr', rawurlencode($tr)];
         }
 
-        $query = QueryString::build($pairs);
-
-        return 'magnet:?' . $query;
+        return 'magnet:?' . implode('&', array_map(fn ($pair) => $pair[0] . '=' . $pair[1], $pairs));
     }
 }
