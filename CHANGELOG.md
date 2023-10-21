@@ -68,6 +68,16 @@ branched from 2.2.0
 
 ## 2.x
 
+### 2.5.2
+
+*Oct 21, 2023*
+
+* Backported magnet link code from 5.x to fix problem with invalid magnet links
+  with latest version of league/uri-components
+  * Dependency on league/uri-components dropped entirely
+* Symfony 7 is allowed
+  * This is the last purely dependency related update in the 2.x branch 
+
 ### 2.5.1
 
 *Jul 14, 2023*
