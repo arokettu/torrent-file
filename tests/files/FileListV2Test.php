@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Bencode\Bencode;
+use Arokettu\Torrent\Exception\RuntimeException;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use Arokettu\Torrent\TorrentFile\Common\Attributes;
@@ -251,5 +253,185 @@ class FileListV2Test extends TestCase
             ],
         ], $files);
         self::assertEquals(2, \count($torrent->v2()->getFileTree()));
+    }
+
+    public function testIgnoreDirAttrHash(): void
+    {
+        $data = [
+            'info' => [
+                'meta version' => 2,
+                'file tree' => [
+                    'dir1' => [
+                        '' => [
+                            'some attribute for a directory, never seen one in the wilds but it\'s possible' => 'abc',
+                            // no 'length' - it's important
+                        ],
+                        'file1' => [
+                            '' => [
+                                'length' => 123456,
+                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                            ]
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+        $files = recursive_iterator_to_array($torrent->v2()->getFileTree());
+
+        self::assertEquals([
+            'dir1' => [
+                'file1' => new File(
+                    name: 'file1',
+                    path: ['dir1', 'file1'],
+                    length: 123456,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+            ],
+        ], $files);
+    }
+
+    public function testNoChildFilesInFile(): void
+    {
+        $data = [
+            'info' => [
+                'meta version' => 2,
+                'file tree' => [
+                    'dir1' => [
+                        'file1' => [
+                            '' => [
+                                'length' => 123456,
+                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                            ],
+                            'child file' => [
+                                '' => [
+                                    'length' => 123456,
+                                    'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+        self::expectException(RuntimeException::class);
+        self::expectExceptionMessage('Invalid node: file cannot contain child files');
+        $torrent->v2()->getFileTree();
+    }
+
+    public function testReadSymlink(): void
+    {
+        $data = [
+            'info' => [
+                'meta version' => 2,
+                'file tree' => [
+                    'dir1' => [
+                        'file1' => [
+                            '' => [
+                                'length' => 123456,
+                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                            ]
+                        ],
+                        'file2' => [
+                            '' => [
+                                'length' => 0,
+                                'attr' => 'l',
+                                'symlink path' => ['dir1', 'file1'],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+        $files = recursive_iterator_to_array($torrent->v2()->getFileTree());
+
+        self::assertEquals([
+            'dir1' => [
+                'file1' => new File(
+                    name: 'file1',
+                    path: ['dir1', 'file1'],
+                    length: 123456,
+                    attributes: new Attributes(''),
+                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    symlinkPath: null,
+                ),
+                'file2' => new File(
+                    name: 'file2',
+                    path: ['dir1', 'file2'],
+                    length: 0,
+                    attributes: new Attributes('l'),
+                    piecesRootBin: null,
+                    symlinkPath: ['dir1', 'file1'],
+                ),
+            ],
+        ], $files);
+    }
+
+    public function testSymlinkMustHavePath(): void
+    {
+        $data = [
+            'info' => [
+                'meta version' => 2,
+                'file tree' => [
+                    'dir1' => [
+                        'file1' => [
+                            '' => [
+                                'length' => 123456,
+                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                            ]
+                        ],
+                        'file2' => [
+                            '' => [
+                                'length' => 0,
+                                'attr' => 'l',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+        self::expectException(RuntimeException::class);
+        self::expectExceptionMessage('Invalid symlink: missing link path');
+        recursive_iterator_to_array($torrent->v2()->getFileTree());
+    }
+
+    public function testSymlinkMustBe0Length(): void
+    {
+        $data = [
+            'info' => [
+                'meta version' => 2,
+                'file tree' => [
+                    'dir1' => [
+                        'file1' => [
+                            '' => [
+                                'length' => 123456,
+                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                            ]
+                        ],
+                        'file2' => [
+                            '' => [
+                                'length' => 123,
+                                'attr' => 'l',
+                                'symlink path' => ['dir1', 'file1'],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+        self::expectException(RuntimeException::class);
+        self::expectExceptionMessage('Invalid symlink: must be 0 length');
+        recursive_iterator_to_array($torrent->v2()->getFileTree());
     }
 }

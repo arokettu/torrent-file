@@ -59,7 +59,7 @@ final class FileTree implements \RecursiveIterator, \Countable
                     length: $length,
                     attributes: $attributes,
                     piecesRootBin: $data['pieces root'],
-                    symlinkPath: $link,
+                    symlinkPath: $link?->toArray(),
                 );
                 continue;
             }
