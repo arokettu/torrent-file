@@ -63,7 +63,7 @@ class MagnetLinkTest extends TestCase
             build_magnet_link([
                 'xt=urn:btih:ea190bf5a23adbc91ea29062bf36a6a744b00436',
                 'dn=my%20test%20torrent',
-                'tr=' . rawurlencode('http://example.com'),
+                'tr=http%3A%2F%2Fexample.com', // tr=http://example.com
             ]),
             $torrent->getMagnetLink()
         );
@@ -79,9 +79,9 @@ class MagnetLinkTest extends TestCase
             build_magnet_link([
                 'xt=urn:btih:ea190bf5a23adbc91ea29062bf36a6a744b00436',
                 'dn=my%20test%20torrent',
-                'tr=' . rawurlencode('http://example.net'),
-                'tr=' . rawurlencode('udp://example.org:4321'),
-                'tr=' . rawurlencode('http://example.org'),
+                'tr=http%3A%2F%2Fexample.net', // tr=http://example.net
+                'tr=udp%3A%2F%2Fexample.org%3A4321', // tr=udp://example.org:4321
+                'tr=http%3A%2F%2Fexample.org', // tr=http://example.org
             ]),
             $torrent->getMagnetLink()
         );
@@ -99,10 +99,10 @@ class MagnetLinkTest extends TestCase
             build_magnet_link([
                 'xt=urn:btih:ea190bf5a23adbc91ea29062bf36a6a744b00436',
                 'dn=my%20test%20torrent',
-                'tr=' . rawurlencode('http://example.com'),
-                'tr=' . rawurlencode('http://example.net'),
-                'tr=' . rawurlencode('udp://example.org:4321'),
-                'tr=' . rawurlencode('http://example.org'),
+                'tr=http%3A%2F%2Fexample.com', // tr=http://example.com
+                'tr=http%3A%2F%2Fexample.net', // tr=http://example.net
+                'tr=udp%3A%2F%2Fexample.org%3A4321', // tr=udp://example.org:4321
+                'tr=http%3A%2F%2Fexample.org', // tr=http://example.org
             ]),
             $torrent->getMagnetLink()
         );

@@ -51,8 +51,8 @@
         "nikic/iter": "^2.0",
         "psr/clock": "^1.0",
         "psr/event-dispatcher": "^1.0",
-        "symfony/filesystem": "^5.4 | ^6.0",
-        "symfony/finder": "^5.4 | ^6.0"
+        "symfony/filesystem": "^5.4 | ^6.0 | ^7.0",
+        "symfony/finder": "^5.4 | ^6.0 | ^7.0"
     },
     "require-dev": {
         "arokettu/clock": "^2.2",
