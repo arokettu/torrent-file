@@ -15,6 +15,9 @@ use Arokettu\Torrent\Exception\InvalidArgumentException;
  *
  * @property-read bool $p
  * @property-read bool $pad
+ *
+ * @property-read bool $h
+ * @property-read bool $hidden
  */
 final class Attributes
 {
@@ -26,6 +29,8 @@ final class Attributes
     public readonly bool $symlink;
     public readonly bool $p;
     public readonly bool $pad;
+    public readonly bool $h;
+    public readonly bool $hidden;
 
     public function __construct(string $attr)
     {
@@ -34,6 +39,7 @@ final class Attributes
         $this->x = $this->executable = str_contains($attr, 'x');
         $this->l = $this->symlink = str_contains($attr, 'l');
         $this->p = $this->pad = str_contains($attr, 'p');
+        $this->h = $this->hidden = str_contains($attr, 'h');
     }
 
     public function has(string $attr): bool
