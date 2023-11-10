@@ -68,7 +68,7 @@ Creation Date
 
 .. versionchanged:: 3.0 ``DateTimeImmutable`` is returned instead of ``int``
 
-Optional info about the creator.
+Optional info about the creation date.
 ``DateTimeImmutable``.
 
 .. code-block:: php
