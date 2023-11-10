@@ -38,6 +38,69 @@ class FileListV1Test extends TestCase
         self::assertEquals(1, \count($torrent->v1()->getFiles()));
     }
 
+    public function testSingleFileForceSetAttr(): void
+    {
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V1,
+            forceMultifile: false,
+        ); // approx 6 mb
+
+        // get a writable copy
+        $data = Bencode::decode(Bencode::encode($torrent));
+        $data['info']['attr'] = 'x';
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+
+        $files = iterator_to_array($torrent->v1()->getFiles());
+
+        self::assertEquals([
+            new File(
+                path: ['file1.txt'],
+                length: 6621359,
+                attributes: new Attributes('x'),
+                sha1bin: base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                symlinkPath: null,
+            ),
+        ], $files);
+        self::assertEquals(1, \count($torrent->v1()->getFiles()));
+    }
+
+    public function testSingleFileMissingName(): void
+    {
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V1,
+            forceMultifile: false,
+        );
+
+        // get a writable copy
+        $data = Bencode::decode(Bencode::encode($torrent));
+        unset($data['info']['name']);
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Invalid single-file torrent file: name is not set');
+        $torrent->v1()->getFiles();
+    }
+
+    public function testSingleFileMissingLength(): void
+    {
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/files/file1.txt',
+            version: MetaVersion::V1,
+            forceMultifile: false,
+        );
+
+        // get a writable copy
+        $data = Bencode::decode(Bencode::encode($torrent));
+        unset($data['info']['length']);
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Invalid single-file torrent file: length is not set');
+        $torrent->v1()->getFiles();
+    }
+
     public function testSingleFileForceMulti(): void
     {
         $torrent = TorrentFile::fromPath(
