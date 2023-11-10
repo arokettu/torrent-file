@@ -5,6 +5,10 @@
 
 ## 5.x
 
+### next
+
+* Hidden attribute for files
+
 ### 5.1.0
 
 *Nov 10, 2023*
