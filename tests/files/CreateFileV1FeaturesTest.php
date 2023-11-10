@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
+use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
@@ -428,5 +429,23 @@ class CreateFileV1FeaturesTest extends TestCase
             ],
             $info
         );
+    }
+
+    public function testUnableToDeleteV1(): void
+    {
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', version: MetaVersion::V1);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unable to remove the only remaining metadata');
+        $torrent->removeMetadata(MetaVersion::V1);
+    }
+
+    public function testUnableKeepV2(): void
+    {
+        $torrent = TorrentFile::fromPath(TEST_ROOT . '/data/files2', version: MetaVersion::V1);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unable to keep metadata that is not present');
+        $torrent->keepOnlyMetadata(MetaVersion::V2);
     }
 }
