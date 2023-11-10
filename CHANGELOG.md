@@ -5,6 +5,15 @@
 
 ## 5.x
 
+### 5.1.0
+
+*Nov 11, 2023*
+
+* Force multifile is now default for v1 torrent creation
+* Methods to "unhybridize" hybrid torrents (Note: infohash changes in this process)
+  * ``TorrentFile::removeMetadata(MetaVersion)``
+  * ``TorrentFile::keepOnlyMetadata(MetaVersion)``
+
 ### 5.0.3
 
 *Oct 22, 2023*
