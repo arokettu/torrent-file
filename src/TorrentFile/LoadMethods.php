@@ -49,4 +49,9 @@ trait LoadMethods
     {
         return new self(self::decoder()->decodeStream($stream));
     }
+
+    public function __unserialize(array $data): void
+    {
+        self::__construct(self::decoder()->decode($data['bin']));
+    }
 }

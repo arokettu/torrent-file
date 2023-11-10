@@ -11,12 +11,17 @@ use Arokettu\Bencode\Encoder;
  */
 trait StoreMethods
 {
+    private static function encoder(): Encoder
+    {
+        return new Encoder();
+    }
+
     /**
      * Save torrent to file
      */
     public function store(string $fileName): bool
     {
-        return (new Encoder())->dump($this, $fileName);
+        return self::encoder()->dump($this, $fileName);
     }
 
     /**
@@ -24,7 +29,7 @@ trait StoreMethods
      */
     public function storeToString(): string
     {
-        return (new Encoder())->encode($this);
+        return self::encoder()->encode($this);
     }
 
     /**
@@ -35,6 +40,12 @@ trait StoreMethods
      */
     public function storeToStream($stream = null)
     {
-        return (new Encoder())->encodeToStream($this, $stream);
+        return self::encoder()->encodeToStream($this, $stream);
+    }
+
+    public function __serialize(): array
+    {
+        // normalize data on serialization
+        return ['bin' => $this->storeToString()];
     }
 }

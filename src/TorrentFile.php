@@ -96,17 +96,6 @@ final class TorrentFile implements BencodeSerializable
         return $this->data;
     }
 
-    public function __serialize(): array
-    {
-        // normalize data on serialization
-        return ['bin' => $this->storeToString()];
-    }
-
-    public function __unserialize(array $data): void
-    {
-        $this->data = self::decoder()->decode($data['bin']);
-    }
-
     private function getField(string $key): mixed
     {
         return $this->data[$key];
