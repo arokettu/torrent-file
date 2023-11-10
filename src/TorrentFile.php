@@ -13,6 +13,8 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 
 final class TorrentFile implements BencodeSerializable
 {
+    // main data field
+    use TorrentFile\DataMethods;
     // save & load
     use TorrentFile\LoadMethods;
     use TorrentFile\StoreMethods;
@@ -34,9 +36,10 @@ final class TorrentFile implements BencodeSerializable
 
     public const CREATED_BY = 'Torrent File by Sand Fox https://sandfox.dev/php/torrent-file.html';
 
-    private function __construct(
-        private DictObject $data,
-    ) {}
+    private function __construct(DictObject $data)
+    {
+        $this->data = $data;
+    }
 
     /**
      * Create torrent file for specified path
@@ -88,34 +91,5 @@ final class TorrentFile implements BencodeSerializable
         fclose($stream);
 
         return $rawData;
-    }
-
-    public function bencodeSerialize(): DictObject
-    {
-        return $this->data;
-    }
-
-    private function getField(string $key): mixed
-    {
-        return $this->data[$key];
-    }
-
-    private function setField(string $key, mixed $value): void
-    {
-        $this->data = $this->data->withOffset($key, $value);
-    }
-
-    private function getInfoField(string $key): mixed
-    {
-        return ($this->data['info'] ?? new DictObject([]))[$key];
-    }
-
-    private function setInfoField(string $key, mixed $value): void
-    {
-        $this->resetInfoDict();
-        $this->resetCachedVersionObjects();
-        $info = $this->data['info'] ?? new DictObject([]); // enforce info to be a dictionary
-        $info = $info->withOffset($key, $value);
-        $this->data = $this->data->withOffset('info', $info);
     }
 }
