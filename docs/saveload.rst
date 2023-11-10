@@ -54,6 +54,7 @@ Create a torrent for existing directory or file
 .. versionadded:: 2.5/3.3/4.1 forceMultifile
 .. versionchanged:: 4.1 MetaVersion::HybridV1V2 is now an array [MetaVersion::V1, MetaVersion::V2]
 .. versionadded:: 5.0.1 $clock
+.. versionadded:: 5.1.0 forceMultifile is true by default
 
 The library can create a torrent file from scratch for a file or a directory.
 
@@ -107,7 +108,7 @@ Available options:
     V1 torrents are created in 'directory' mode even when created for a single file.
     This mode fixes some possible incompatibilities between V1 and V2 data in hybrid torrents.
     Always enabled in hybrid torrents, meaningless for pure V2.
-    Default: ``false``
+    Default: ``true``
 ``clock``
     A parameter to inject a clock component, mostly for debug purposes.
     To set the creation timestamp normally, use `setCreationDate($timestamp)` on the created torrent object.

@@ -1,6 +1,8 @@
 Info Fields
 ###########
 
+.. highlight:: php
+
 .. versionchanged:: 5.0 A lot of stuff was moved to version specific namespaces, see :ref:`torrent_versions`
 
 Fields of the info dictionary of the torrent file.
@@ -21,7 +23,7 @@ All hashes
 
 Get all available hashes as array.
 
-.. code-block:: php
+::
 
     <?php
     $infoHashes = $torrent->getInfoHashes();
@@ -33,7 +35,7 @@ Metadata
 
 Checks the version of the torrent.
 
-.. code-block:: php
+::
 
     <?php
     $torrent->hasMetadata(MetaVersion::V1); // simple check, does not create v1 Files object
@@ -43,6 +45,25 @@ Checks the version of the torrent.
     $torrent->hasMetadata(MetaVersion::V2); // simple check, does not create v2 FileTree object
     // or
     $torrent->v2() !== null; // if you plan to iterate over files too
+
+Metadata Removal
+================
+
+.. versionadded:: 5.1
+
+Methods to "unhybridize" hybrid V1+V2 torrents.
+
+Remove a specific version::
+
+    <?php
+
+    $torrent->removeMetadata(MetaVersion::V1);
+
+or keep a specific version::
+
+    <?php
+
+    $torrent->keepOnlyMetadata(MetaVersion::V1);
 
 Name
 ====
@@ -56,7 +77,7 @@ A base name of the encoded file or directory.
 
     However the content of the name field in the parsed file is not guaranteed to exist or be valid.
 
-.. code-block:: php
+::
 
     <?php
     // should be a valid file/dir name
@@ -72,7 +93,7 @@ Private
 
 Get / set / unset the private flag.
 
-.. code-block:: php
+::
 
     <?php
     $isPrivate = $torrent->isPrivate();

@@ -4,6 +4,7 @@
 # dev
 /samples
 /debug
+/venv
 
 # composer
 /vendor
