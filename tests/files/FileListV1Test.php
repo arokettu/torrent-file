@@ -21,6 +21,7 @@ class FileListV1Test extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files/file1.txt',
             version: MetaVersion::V1,
+            forceMultifile: false,
         ); // approx 6 mb
 
         $files = iterator_to_array($torrent->v1()->getFiles());
