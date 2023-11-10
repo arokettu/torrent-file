@@ -7,7 +7,6 @@ namespace Arokettu\Torrent;
 use Arokettu\Bencode\Types\BencodeSerializable;
 use Arokettu\Clock\SystemClock;
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
-use Arokettu\Torrent\DataTypes\Internal\Undefined;
 use Arokettu\Torrent\FileSystem\FileData;
 use Psr\Clock\ClockInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -113,9 +112,8 @@ final class TorrentFile implements BencodeSerializable
 
     private function setInfoField(string $key, mixed $value): void
     {
-        $this->info = null;
-        $this->v1 = Undefined::Undefined;
-        $this->v2 = Undefined::Undefined;
+        $this->resetInfoDict();
+        $this->resetCachedVersionObjects();
         $info = $this->data['info'] ?? new DictObject([]); // enforce info to be a dictionary
         $info = $info->withOffset($key, $value);
         $this->data = $this->data->withOffset('info', $info);

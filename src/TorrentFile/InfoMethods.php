@@ -78,4 +78,9 @@ trait InfoMethods
     {
         return $this->info ??= new InfoDict($this->getField('info') ?? new DictType([]));
     }
+
+    private function resetInfoDict(): void
+    {
+        $this->info = null;
+    }
 }

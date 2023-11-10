@@ -35,4 +35,10 @@ trait VersionMethods
 
         return $this->v2;
     }
+
+    private function resetCachedVersionObjects(): void
+    {
+        $this->v1 = Undefined::Undefined;
+        $this->v2 = Undefined::Undefined;
+    }
 }
