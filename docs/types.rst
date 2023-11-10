@@ -300,3 +300,10 @@ Actual meaningful attributes:
     $isPad = $file->attributes->has('p');
     // or
     $isPad = $file->attributes->pad;
+
+    /* Hidden file: */
+    $isPad = $file->attributes->h;
+    // or
+    $isPad = $file->attributes->has('h');
+    // or
+    $isPad = $file->attributes->hidden;
