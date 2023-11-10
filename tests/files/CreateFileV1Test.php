@@ -23,6 +23,7 @@ class CreateFileV1Test extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files/file1.txt',
             version: MetaVersion::V1,
+            forceMultifile: false,
             clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
         ); // approx 6 mb
 
@@ -48,7 +49,7 @@ class CreateFileV1Test extends TestCase
         self::assertEquals(260, \strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
         self::assertEquals('file1.txt', $torrent->getDisplayName());
         self::assertEquals('file1.txt.torrent', $torrent->getFileName());
-        self::assertFalse($torrent->v1()->isDirectory());
+        self::assertFalse($torrent->v1()?->isDirectory());
 
         self::assertEquals(
             build_magnet_link([

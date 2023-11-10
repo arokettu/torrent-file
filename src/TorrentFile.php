@@ -52,7 +52,7 @@ final class TorrentFile implements BencodeSerializable
         bool|int $pieceAlign = false,
         bool $detectExec = true,
         bool $detectSymlinks = false,
-        bool $forceMultifile = false,
+        bool $forceMultifile = true,
         ClockInterface $clock = new SystemClock(),
     ): self {
         // generate data for files
