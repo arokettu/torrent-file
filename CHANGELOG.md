@@ -51,6 +51,15 @@
 
 ## 4.x
 
+### 4.1.1
+
+*Dec 7, 2023*
+
+* Backported magnet link code from 5.x to fix problem with invalid magnet links
+  with latest version of league/uri-components
+  * Dependency on league/uri-components dropped entirely
+* Symfony 7 is allowed
+
 ### 4.1.0
 
 *Feb 23, 2023*
@@ -79,6 +88,15 @@
   * If you need a real array, use `getRawData()->toArray()`
 
 ## 3.x
+
+### 3.3.1
+
+*Dec 7, 2023*
+
+* Backported magnet link code from 5.x to fix problem with invalid magnet links
+  with latest version of league/uri-components
+  * Dependency on league/uri-components dropped entirely
+* Symfony 7 is allowed
 
 ### 3.3.0
 
@@ -257,6 +275,14 @@ Branched from 1.3.1
 [PSR-14]: https://www.php-fig.org/psr/psr-14/
 
 ## 1.x
+
+### 1.4.2
+
+*Dec 7, 2023*
+
+* Drop dependency on league/uri-components entirely
+* Allow Symfony 7
+* Allow PHP 7.1 again
 
 ### 1.4.1
 
