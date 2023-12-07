@@ -138,12 +138,12 @@ class TorrentFile implements BencodeSerializable
     public function setAnnounceList(array $announceList): self
     {
         foreach ($announceList as &$group) {
-            if (is_string($group)) {
+            if (\is_string($group)) {
                 $group = [$group];
                 continue;
             }
 
-            if (!is_array($group)) {
+            if (!\is_array($group)) {
                 throw new InvalidArgumentException(
                     'announce-list should be an array of strings or an array of arrays of strings'
                 );
@@ -152,7 +152,7 @@ class TorrentFile implements BencodeSerializable
             $group = array_unique($group);
 
             foreach ($group as $announce) {
-                if (!is_string($announce)) {
+                if (!\is_string($announce)) {
                     throw new InvalidArgumentException(
                         'announce-list should be an array of strings or an array of arrays of strings'
                     );

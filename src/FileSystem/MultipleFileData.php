@@ -48,7 +48,7 @@ final class MultipleFileData extends FileData
                 $exploded1 = $path1['explodedPath'];
                 $exploded2 = $path2['explodedPath'];
 
-                $partsCount = min(count($exploded1), count($exploded2));
+                $partsCount = min(\count($exploded1), \count($exploded2));
 
                 for ($i = 0; $i < $partsCount; $i++) {
                     $result = strcmp($exploded1[$i], $exploded2[$i]);
@@ -87,19 +87,19 @@ final class MultipleFileData extends FileData
             $files[] = $fileData;
 
             // create chunk hashes
-            $chunkReadSize = $chunkSize - strlen($currentChunk);
+            $chunkReadSize = $chunkSize - \strlen($currentChunk);
 
             while ($partialChunk = $file->fread($chunkReadSize)) {
                 $currentChunk .= $partialChunk;
 
-                if (strlen($currentChunk) < $chunkSize) {
+                if (\strlen($currentChunk) < $chunkSize) {
                     break; // add next file to the chunk
                 }
 
                 // we have complete chunk here
                 $chunkHashes[] = $this->hashChunk($currentChunk);
 
-                $doneSize += strlen($currentChunk);
+                $doneSize += \strlen($currentChunk);
                 $this->reportProgress($totalSize, $doneSize, $filePath['relativePath']);
 
                 $currentChunk = ''; // start new chunk
@@ -108,10 +108,10 @@ final class MultipleFileData extends FileData
         }
 
         // hash last chunk
-        if (strlen($currentChunk) > 0) {
+        if (\strlen($currentChunk) > 0) {
             $chunkHashes[] = $this->hashChunk($currentChunk);
 
-            $doneSize += strlen($currentChunk);
+            $doneSize += \strlen($currentChunk);
 
             $this->reportProgress($totalSize, $doneSize, $data['name']);
         }

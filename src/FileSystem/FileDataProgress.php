@@ -63,6 +63,6 @@ class FileDataProgress
         $this->done     = $done;
         $this->fileName = $fileName;
 
-        call_user_func($this->callback, $this);
+        \call_user_func($this->callback, $this);
     }
 }
