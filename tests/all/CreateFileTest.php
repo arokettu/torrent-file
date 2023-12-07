@@ -21,7 +21,7 @@ class CreateFileTest extends TestCase
         $this->assertEquals('file1.txt.torrent', $torrent->getFileName());
 
         $this->assertEquals(
-            'magnet:?dn=file1.txt&xt=urn:btih:6CA8FECB8D4C43183307179652FD31A50F99A912',
+            'magnet:?xt=urn:btih:6ca8fecb8d4c43183307179652fd31a50f99a912&dn=file1.txt',
             $torrent->getMagnetLink()
         );
     }
@@ -36,7 +36,7 @@ class CreateFileTest extends TestCase
         $this->assertEquals('files.torrent', $torrent->getFileName());
 
         $this->assertEquals(
-            'magnet:?dn=files&xt=urn:btih:2EFB80C60B42B261D79B777477276E0B18B47081',
+            'magnet:?xt=urn:btih:2efb80c60b42b261d79b777477276e0b18b47081&dn=files',
             $torrent->getMagnetLink()
         );
     }
@@ -48,12 +48,12 @@ class CreateFileTest extends TestCase
         ]); // approx 19 mb
 
         $this->assertEquals('5af63cdfb9cdcc9a09bde3fa4b7a9266d8528b7a', $torrent->getInfoHash());
-        $this->assertEquals(380, strlen($torrent->getRawData()['info']['pieces'])); // 19 chunks
+        $this->assertEquals(380, \strlen($torrent->getRawData()['info']['pieces'])); // 19 chunks
         $this->assertEquals('files', $torrent->getDisplayName());
         $this->assertEquals('files.torrent', $torrent->getFileName());
 
         $this->assertEquals(
-            'magnet:?dn=files&xt=urn:btih:5AF63CDFB9CDCC9A09BDE3FA4B7A9266D8528B7A',
+            'magnet:?xt=urn:btih:5af63cdfb9cdcc9a09bde3fa4b7a9266d8528b7a&dn=files',
             $torrent->getMagnetLink()
         );
     }

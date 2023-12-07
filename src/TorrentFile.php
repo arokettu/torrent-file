@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SandFox\Torrent;
 
 use ArrayObject;
-use League\Uri\QueryString;
 use SandFox\Bencode\Bencode;
 use SandFox\Bencode\Types\BencodeSerializable;
 use SandFox\Torrent\Exception\InvalidArgumentException;
@@ -253,12 +252,12 @@ class TorrentFile implements BencodeSerializable
     {
         $pairs = [];
 
+        $pairs[] = ['xt', 'urn:btih:' . $this->getInfoHash()];
+
         $dn = $this->data['info']['name'] ?? '';
         if ($dn !== '') {
-            $pairs[] = ['dn', $this->getDisplayName()];
+            $pairs[] = ['dn', rawurlencode($dn)];
         }
-
-        $pairs[] = ['xt', 'urn:btih:' . strtoupper($this->getInfoHash())];
 
         $trackers = [];
 
@@ -275,11 +274,11 @@ class TorrentFile implements BencodeSerializable
         }
 
         foreach (array_unique($trackers) as $tr) {
-            $pairs[] = ['tr', $tr];
+            $pairs[] = ['tr', rawurlencode($tr)];
         }
 
-        $query = QueryString::build($pairs);
-
-        return 'magnet:?' . strval($query);
+        return 'magnet:?' . implode('&', array_map(function ($pair) {
+            return $pair[0] . '=' . $pair[1];
+        }, $pairs));
     }
 }
