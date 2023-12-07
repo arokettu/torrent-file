@@ -13,7 +13,6 @@
   with latest version of league/uri-components
   * Dependency on league/uri-components dropped entirely
 * Symfony 7 is allowed
-  * This is the last purely dependency related update in the 2.x branch
 
 ### 3.3.0
 
