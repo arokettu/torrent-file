@@ -183,6 +183,14 @@ Branched from 1.3.1
 
 ## 1.x
 
+### 1.4.2
+
+*Dec 7, 2023*
+
+* Drop dependency on league/uri-components entirely
+* Allow Symfony 7
+* Allow PHP 7.1 again
+
 ### 1.4.1
 
 *Feb 23, 2023*
