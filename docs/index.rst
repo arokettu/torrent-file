@@ -21,6 +21,7 @@ Documentation
    saveload
    fields
    info
+   signing
    versions
    helpers
    types

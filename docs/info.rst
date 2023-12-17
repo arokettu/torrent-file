@@ -4,10 +4,12 @@ Info Fields
 .. highlight:: php
 
 .. versionchanged:: 5.0 A lot of stuff was moved to version specific namespaces, see :ref:`torrent_versions`
+.. versionchanged:: 5.2 Setters will throw RuntimeException if the torrent is signed
 
 Fields of the info dictionary of the torrent file.
 The info dictionary is the primary data of the torrent file.
 Using any setters here will change infoHash and the result will be considered a separate torrent file by the trackers.
+Changing info fields of a signed torrent is forbidden.
 
 Info Hash
 =========
@@ -98,3 +100,25 @@ Get / set / unset the private flag.
     <?php
     $isPrivate = $torrent->isPrivate();
     $torrent->setPrivate(true);
+
+Update Url
+==========
+
+.. note:: BEP-39_ Updating Torrents Via Feed URL
+.. _BEP-39: https://www.bittorrent.org/beps/bep_0039.html
+
+Set / get / unset the update URL and the verification certificate.
+
+::
+
+    <?php
+
+    $cert = openssl_x509_read('file://cert.pem');
+    $torrent->setUpdateUrl('http://example.com/update', $cert);
+
+    $torrent->getUpdateUrl(); // getter for the url
+    $torrent->getOriginator(); // x.509 cert to verify infohash
+
+    $torrent->removeUpdateUrl(); // separate unsetter because it's 2 fields
+
+.. note:: To use this feature you must also sign your torrent with the same certificate

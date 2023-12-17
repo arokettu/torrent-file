@@ -1,6 +1,8 @@
 Data Types
 ##########
 
+.. highlight:: php
+
 .. versionadded:: 5.0 empty()
 
 All data types are immutable.
@@ -18,9 +20,7 @@ It represents the outer list in the ``announce-list`` field in the torrent file.
 Creation
 --------
 
-Announce list can be created from the following structures:
-
-.. code-block:: php
+Announce list can be created from the following structures::
 
     <?php
 
@@ -41,7 +41,7 @@ Announce list can be created from the following structures:
 Modification
 ------------
 
-.. code-block:: php
+::
 
     <?php
 
@@ -67,7 +67,7 @@ Modification
 Array representation
 --------------------
 
-.. code-block:: php
+::
 
     <?php
 
@@ -85,7 +85,7 @@ Node
 Creation
 --------
 
-.. code-block:: php
+::
 
     <?php
 
@@ -101,7 +101,7 @@ Fields
 
 .. versionchanged:: 3.0.1 getters were replaced with readonly properties
 
-.. code-block:: php
+::
 
     <?php
 
@@ -115,7 +115,7 @@ Fields
 Array representation
 --------------------
 
-.. code-block:: php
+::
 
     <?php
 
@@ -134,9 +134,7 @@ It represents the ``nodes`` field in the torrent file.
 Creation
 --------
 
-Node list can be created from the following structures:
-
-.. code-block:: php
+Node list can be created from the following structures::
 
     <?php
 
@@ -157,7 +155,7 @@ Node list can be created from the following structures:
 Modification
 ------------
 
-.. code-block:: php
+::
 
     <?php
 
@@ -183,7 +181,7 @@ Modification
 Array representation
 --------------------
 
-.. code-block:: php
+::
 
     <?php
 
@@ -205,9 +203,7 @@ and the inner lists in the ``announce-list`` field in the torrent file.
 Creation
 --------
 
-Uri list can be created from the following structures:
-
-.. code-block:: php
+Uri list can be created from the following structures::
 
     <?php
 
@@ -227,7 +223,7 @@ Uri list can be created from the following structures:
 Modification
 ------------
 
-.. code-block:: php
+::
 
     <?php
 
@@ -252,7 +248,7 @@ Modification
 Array representation
 --------------------
 
-.. code-block:: php
+::
 
     <?php
 
@@ -266,18 +262,14 @@ Attributes
 ==========
 
 Attributes class represents file attibutes in file lists.
-Any single character attribute may be set for future compatibility:
-
-.. code-block:: php
+Any single character attribute may be set for future compatibility::
 
     <?php
     $isA = $file->attributes->a;
     // or
     $isA = $file->attributes->has('a');
 
-Actual meaningful attributes:
-
-.. code-block:: php
+Actual meaningful attributes::
 
     <?php
     /* Executable file: */
@@ -307,3 +299,16 @@ Actual meaningful attributes:
     $isPad = $file->attributes->has('h');
     // or
     $isPad = $file->attributes->hidden;
+
+Signature
+=========
+
+::
+
+    <?php
+
+    $signature->signature; // signature value
+    $signature->certificate; // cert as an object (if present)
+    $signature->certificatePem; // cert in pem format (if present)
+    $signature->certificateDer; // cert in der format (if present)
+    $signature->info; // info (if present)
