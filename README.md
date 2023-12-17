@@ -41,6 +41,7 @@ composer require arokettu/torrent-file
 * Torrent file creation
 * Torrent file listing
 * Support for torrent files version 1, version 2, Hybrid v1+v2, a lot of BEPs like Nodes, Url Lists, etc
+* Torrent file signing
 
 ## CLI tool
 
