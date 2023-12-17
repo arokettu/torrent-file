@@ -10,9 +10,10 @@ cache:
 .test:
   before_script:
     # install system packages
-    - apt-get update && apt-get install -y git unzip
+    - apt-get update && apt-get install -y git unzip openssl-dev
+    - pecl install openssl && docker-php-ext-enable openssl
     # install extensions
-    - if [ "$INSTALL_XDEBUG" -eq 1 ]; then curl --location https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar --output pickle.phar; php pickle.phar install --defaults xdebug; docker-php-ext-enable xdebug; fi
+    - if [ "$INSTALL_XDEBUG" -eq 1 ]; then pecl install xdebug; docker-php-ext-enable xdebug; fi
     # install composer
     - php -r "copy('https://composer.github.io/installer.sig', '/tmp/composer.sig');"
     - php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
