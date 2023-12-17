@@ -37,6 +37,7 @@
             "Arokettu\\Torrent\\Tests\\Files\\": "tests/files",
             "Arokettu\\Torrent\\Tests\\Info\\": "tests/info",
             "Arokettu\\Torrent\\Tests\\Other\\": "tests/other",
+            "Arokettu\\Torrent\\Tests\\Sign\\": "tests/sign",
             "Arokettu\\Torrent\\Tests\\Types\\": "tests/types"
         },
         "files": [

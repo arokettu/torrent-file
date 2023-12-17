@@ -22,4 +22,13 @@ class ImmutableWhenSignedTest extends TestCase
         $file = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611-signed.torrent');
         $file->setPrivate(true);
     }
+
+    public function testMutableWhenNotSigned(): void
+    {
+        $file = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611-signed.torrent');
+        $file->removeSignatures();
+        $file->setPrivate(true);
+
+        self::assertTrue($file->isPrivate());
+    }
 }

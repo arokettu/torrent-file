@@ -15,7 +15,10 @@ final class CertHelper
     private static function assertOpenSSL(): void
     {
         if (\extension_loaded('openssl') === false) {
+            // @codeCoverageIgnoreStart
+            // coverage is generated with openssl
             throw new RuntimeException('OpenSSL extension is not installed');
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -39,7 +42,9 @@ final class CertHelper
     public static function convertPemToDer(string $pem): string
     {
         if (!preg_match('/-----BEGIN CERTIFICATE-----[\r\n]+(.*)[\r\n]+-----END CERTIFICATE-----/s', $pem, $matches)) {
+            // @codeCoverageIgnoreStart
             throw new \LogicException('Cert not found'); // openssl bug?
+            // @codeCoverageIgnoreEnd
         }
 
         return base64_decode($matches[1]);

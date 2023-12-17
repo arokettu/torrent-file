@@ -52,8 +52,8 @@ trait SignatureMethods
     public function sign(
         OpenSSLAsymmetricKey|OpenSSLCertificate $key,
         OpenSSLCertificate $certificate,
-        bool $includeCertificate = false,
-        ?iterable $info = null,
+        bool $includeCertificate = true,
+        iterable $info = [],
     ): void {
         if (!openssl_x509_check_private_key($certificate, $key)) {
             throw new RuntimeException('The key does not correspond to the certificate');
@@ -63,9 +63,10 @@ trait SignatureMethods
         $commonName = $certData['subject']['CN'] ??
             throw new RuntimeException('The certificate must contain a common name');
 
+        $signInfo = new DictObject($info);
+
         $data = $this->info()->infoString;
         if ($info) {
-            $signInfo = new DictObject($info);
             $data .= self::encoder()->encode($signInfo);
         }
 
@@ -78,15 +79,12 @@ trait SignatureMethods
             $certExport = null;
         }
 
-        $signatureHash = new DictObject([
-            'signature' => $signature,
-            'info' => $info,
-            'certificate' => $certExport,
-        ]);
+        $signatureHash = new Signature($signature, $certExport, $signInfo);
 
-        $signatures = $this->getField('signatures') ?? new DictObject([]);
+        $signatures = $this->getSignatures();
         $signatures = $signatures->withOffset($commonName, $signatureHash);
 
+        $this->signatures = $signatures;
         $this->setField('signatures', $signatures);
     }
 

@@ -17,6 +17,9 @@
     <testsuite name="info">
       <directory>tests/info</directory>
     </testsuite>
+    <testsuite name="sign">
+      <directory>tests/sign</directory>
+    </testsuite>
     <testsuite name="other">
       <directory>tests/other</directory>
     </testsuite>
