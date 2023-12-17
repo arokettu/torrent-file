@@ -16,6 +16,9 @@ use OpenSSLCertificate;
 
 use function iter\map;
 
+/**
+ * @internal
+ */
 trait SignatureMethods
 {
     abstract private function getField(string $key): mixed;

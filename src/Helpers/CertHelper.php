@@ -7,6 +7,9 @@ namespace Arokettu\Torrent\Helpers;
 use Arokettu\Torrent\Exception\RuntimeException;
 use OpenSSLCertificate;
 
+/**
+ * @internal
+ */
 final class CertHelper
 {
     private static function assertOpenSSL(): void
