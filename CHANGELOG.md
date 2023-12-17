@@ -5,7 +5,9 @@
 
 ## 5.x
 
-### next
+### 5.2.0
+
+*Dec 17, 2023*
 
 * Torrent signing (BEP-0035)
 * Update URL (BEP-0039)
