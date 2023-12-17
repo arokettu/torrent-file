@@ -8,6 +8,7 @@
 ### next
 
 * Torrent signing (BEP-0035)
+* Update URL (BEP-0039)
 * Hidden attribute for files
 
 ### 5.1.0
