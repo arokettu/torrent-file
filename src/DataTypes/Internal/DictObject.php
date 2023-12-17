@@ -8,7 +8,8 @@ use Arokettu\Bencode\Types\DictType;
 
 /**
  * @internal
- * @implements StorageInterface<string, mixed>
+ * @template T
+ * @implements StorageInterface<string, T>
  */
 final class DictObject implements StorageInterface
 {

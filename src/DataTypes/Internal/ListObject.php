@@ -8,7 +8,8 @@ use Arokettu\Bencode\Types\ListType;
 
 /**
  * @internal
- * @implements StorageInterface<int, mixed>
+ * @template T
+ * @implements StorageInterface<int, T>
  */
 final class ListObject implements StorageInterface
 {

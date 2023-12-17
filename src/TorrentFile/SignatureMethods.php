@@ -7,10 +7,13 @@ namespace Arokettu\Torrent\TorrentFile;
 use Arokettu\Bencode\Encoder;
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
 use Arokettu\Torrent\DataTypes\Internal\InfoDict;
+use Arokettu\Torrent\DataTypes\Signature;
 use Arokettu\Torrent\Exception\RuntimeException;
 use Arokettu\Torrent\Helpers\CertHelper;
 use OpenSSLAsymmetricKey;
 use OpenSSLCertificate;
+
+use function iter\map;
 
 trait SignatureMethods
 {
@@ -20,21 +23,33 @@ trait SignatureMethods
 
     abstract private static function encoder(): Encoder;
 
+    private ?DictObject $signatures = null;
+
     public function isSigned(): bool
     {
         return $this->getField('signatures') !== null;
     }
 
+    /**
+     * @return DictObject<Signature>
+     */
+    public function getSignatures(): DictObject
+    {
+        return $this->signatures ??
+            new DictObject(map(fn ($s) => Signature::fromInternal($s), $this->getField('signatures') ?? []));
+    }
+
     public function removeSignatures(): void
     {
         $this->setField('signatures', null);
+        $this->signatures = new DictObject([]);
     }
 
     public function sign(
         OpenSSLAsymmetricKey|OpenSSLCertificate $key,
         ?OpenSSLCertificate $certificate,
         bool $includeCertificate = false,
-        ?DictObject $info = null,
+        ?iterable $info = null,
     ): void {
         if (!openssl_x509_check_private_key($certificate, $key)) {
             throw new RuntimeException('The key does not correspond to the certificate');
@@ -46,7 +61,8 @@ trait SignatureMethods
 
         $data = $this->info()->infoString;
         if ($info) {
-            $data .= self::encoder()->encode($this->info());
+            $signInfo = new DictObject($info);
+            $data .= self::encoder()->encode($signInfo);
         }
 
         openssl_sign($data, $signature, $key, OPENSSL_ALGO_SHA1) ?:
@@ -54,7 +70,7 @@ trait SignatureMethods
 
         if ($includeCertificate) {
             openssl_x509_export($certificate, $certPem);
-            $certExport = CertHelper::extractPemCertificate($certPem);
+            $certExport = CertHelper::extractDerFromPem($certPem);
         } else {
             $certExport = null;
         }
