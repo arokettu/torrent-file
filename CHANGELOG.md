@@ -5,6 +5,12 @@
 
 ## 5.x
 
+### 5.2.1
+
+*Dec 17, 2023*
+
+* Fix: remove @internal mark from TorrentFile
+
 ### 5.2.0
 
 *Dec 17, 2023*
