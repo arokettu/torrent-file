@@ -18,6 +18,8 @@ final class TorrentFile implements BencodeSerializable
     // save & load
     use TorrentFile\LoadMethods;
     use TorrentFile\StoreMethods;
+    // signatures
+    use TorrentFile\SignatureMethods;
     // fields
     use TorrentFile\Fields\StringFields;
     use TorrentFile\Fields\AnnounceList;

@@ -7,6 +7,7 @@
 
 ### next
 
+* Torrent signing (BEP-0035)
 * Hidden attribute for files
 
 ### 5.1.0
