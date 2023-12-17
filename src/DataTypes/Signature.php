@@ -39,7 +39,9 @@ final class Signature implements BencodeSerializable
     public function __get(string $name): mixed
     {
         return match ($name) {
-            'certificate' => $this->certificatePem ? openssl_x509_read($this->certificatePem) : null,
+            'certificate' => $this->certificatePem ?
+                CertHelper::readPemToObject($this->certificatePem) :
+                null,
             'certificatePem' => $this->certificatePem = $this->certificateDer ?
                 CertHelper::buildPemFromDer($this->certificateDer) :
                 null,

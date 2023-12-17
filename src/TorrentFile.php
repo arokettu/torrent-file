@@ -29,6 +29,7 @@ final class TorrentFile implements BencodeSerializable
     use TorrentFile\Fields\UrlList;
     // info manipulation
     use TorrentFile\InfoMethods;
+    use TorrentFile\InfoFields\UpdateUrl;
     // file name suggestions
     use TorrentFile\NameMethods;
     // magnet link
