@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
+use Arokettu\Torrent\Exception\RuntimeException;
 
 trait DataMethods
 {
@@ -12,6 +13,7 @@ trait DataMethods
 
     abstract private function resetInfoDict(): void;
     abstract private function resetCachedVersionObjects(): void;
+    abstract public function isSigned(): bool;
 
     public function bencodeSerialize(): DictObject
     {
@@ -35,6 +37,13 @@ trait DataMethods
 
     private function setInfoField(string $key, mixed $value): void
     {
+        if ($this->isSigned()) {
+            throw new RuntimeException(
+                'Unable to modify infohash fields of a signed torrent. ' .
+                'Please remove the signatures first'
+            );
+        }
+
         $this->resetInfoDict();
         $this->resetCachedVersionObjects();
         $info = $this->data['info'] ?? new DictObject([]); // enforce info to be a dictionary
