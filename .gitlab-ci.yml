@@ -10,8 +10,7 @@ cache:
 .test:
   before_script:
     # install system packages
-    - apt-get update && apt-get install -y git unzip openssl-dev
-    - pecl install openssl && docker-php-ext-enable openssl
+    - apt-get update && apt-get install -y git unzip
     # install extensions
     - if [ "$INSTALL_XDEBUG" -eq 1 ]; then pecl install xdebug; docker-php-ext-enable xdebug; fi
     # install composer
