@@ -7,6 +7,9 @@ namespace Arokettu\Torrent\TorrentFile;
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
 use Arokettu\Torrent\Exception\RuntimeException;
 
+/**
+ * @internal
+ */
 trait DataMethods
 {
     private DictObject $data;

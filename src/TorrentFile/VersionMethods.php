@@ -10,6 +10,9 @@ use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile\V1\Info as InfoV1;
 use Arokettu\Torrent\TorrentFile\V2\Info as InfoV2;
 
+/**
+ * @internal
+ */
 trait VersionMethods
 {
     private InfoV1|Undefined|null $v1 = Undefined::Undefined;

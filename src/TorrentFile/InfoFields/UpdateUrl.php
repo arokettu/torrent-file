@@ -7,6 +7,9 @@ namespace Arokettu\Torrent\TorrentFile\InfoFields;
 use Arokettu\Torrent\Helpers\CertHelper;
 use OpenSSLCertificate;
 
+/**
+ * @internal
+ */
 trait UpdateUrl
 {
     abstract private function getInfoField(string $key): mixed;

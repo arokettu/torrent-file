@@ -11,9 +11,6 @@ use Arokettu\Torrent\FileSystem\FileData;
 use Psr\Clock\ClockInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
-/**
- * @internal
- */
 final class TorrentFile implements BencodeSerializable
 {
     // main data field
