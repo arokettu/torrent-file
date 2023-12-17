@@ -40,10 +40,10 @@ final class Signature implements BencodeSerializable
     {
         return match ($name) {
             'certificate' => $this->certificatePem ?
-                CertHelper::readPemToObject($this->certificatePem) :
+                CertHelper::convertPemToObject($this->certificatePem) :
                 null,
             'certificatePem' => $this->certificatePem = $this->certificateDer ?
-                CertHelper::buildPemFromDer($this->certificateDer) :
+                CertHelper::convertDerToPem($this->certificateDer) :
                 null,
         };
     }

@@ -15,7 +15,7 @@ trait UpdateUrl
     public function setUpdateUrl(string $url, OpenSSLCertificate $certificate): void
     {
         $this->setInfoField('update-url', $url);
-        $this->setInfoField('originator', CertHelper::storeObjectToDer($certificate));
+        $this->setInfoField('originator', CertHelper::convertObjectToDer($certificate));
     }
 
     public function removeUpdateUrl(): void
@@ -32,6 +32,6 @@ trait UpdateUrl
     public function getOriginator(): ?OpenSSLCertificate
     {
         $originator = $this->getInfoField('originator');
-        return $originator ? CertHelper::readDerToObject($originator) : null;
+        return $originator ? CertHelper::convertDerToObject($originator) : null;
     }
 }

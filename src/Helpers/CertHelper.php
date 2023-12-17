@@ -9,31 +9,31 @@ use OpenSSLCertificate;
 
 final class CertHelper
 {
-    public static function assertOpenSSL(): void
+    private static function assertOpenSSL(): void
     {
         if (\extension_loaded('openssl') === false) {
             throw new RuntimeException('OpenSSL extension is not installed');
         }
     }
 
-    public static function storeObjectToDer(OpenSSLCertificate $certificate): string
+    public static function convertObjectToDer(OpenSSLCertificate $certificate): string
     {
         openssl_x509_export($certificate, $pem);
-        return self::extractDerFromPem($pem);
+        return self::convertPemToDer($pem);
     }
 
-    public static function readPemToObject(string $pem): OpenSSLCertificate
+    public static function convertPemToObject(string $pem): OpenSSLCertificate
     {
         self::assertOpenSSL();
         return openssl_x509_read($pem);
     }
 
-    public static function readDerToObject(string $der): OpenSSLCertificate
+    public static function convertDerToObject(string $der): OpenSSLCertificate
     {
-        return self::readPemToObject(self::buildPemFromDer($der));
+        return self::convertPemToObject(self::convertDerToPem($der));
     }
 
-    public static function extractDerFromPem(string $pem): string
+    public static function convertPemToDer(string $pem): string
     {
         if (!preg_match('/-----BEGIN CERTIFICATE-----[\r\n]+(.*)[\r\n]+-----END CERTIFICATE-----/s', $pem, $matches)) {
             throw new \LogicException('Cert not found'); // openssl bug?
@@ -42,7 +42,7 @@ final class CertHelper
         return base64_decode($matches[1]);
     }
 
-    public static function buildPemFromDer(string $der): string
+    public static function convertDerToPem(string $der): string
     {
         $encoded = base64_encode($der);
         $lines = str_split($encoded, 80);

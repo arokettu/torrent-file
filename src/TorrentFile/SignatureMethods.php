@@ -70,7 +70,7 @@ trait SignatureMethods
             throw new RuntimeException('Signing failed');
 
         if ($includeCertificate) {
-            $certExport = CertHelper::storeObjectToDer($certificate);
+            $certExport = CertHelper::convertObjectToDer($certificate);
         } else {
             $certExport = null;
         }
