@@ -53,6 +53,8 @@
 
 *Mar 1, 2023*
 
+Branched from 4.1.0
+
 * File listings for both versions 1 and 2 via version objects: `$torrent->v1()` and `$torrent->v2()`
   * getInfoHash() and isDirectory() moved to version objects
 * hasMetadata() to check what metadata versions are present
@@ -87,6 +89,8 @@
 ### 4.0.0
 
 *Dec 30, 2022*
+
+Branched from 3.2.0
 
 * New internal structure makes library more stable on malformed but valid-ish torrent files
   * In general both Bencode and Torrent File libs aim at `save(load(file)) === file` compatibility
