@@ -5,6 +5,14 @@
 
 ## 5.x
 
+### 5.2.2
+
+*Jan 31, 2023*
+
+* Handle hexadecimal sha1 sums in V1 files [[gl#5]]
+
+[gl#5]: https://gitlab.com/sandfox/torrent-file/-/issues/5
+
 ### 5.2.1
 
 *Dec 17, 2023*
