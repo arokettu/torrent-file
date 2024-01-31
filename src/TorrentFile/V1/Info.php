@@ -8,6 +8,7 @@ use Arokettu\Torrent\DataTypes\Internal\DictObject;
 use Arokettu\Torrent\DataTypes\Internal\InfoDict;
 use Arokettu\Torrent\DataTypes\Internal\ListObject;
 use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\Helpers\ParseHelper;
 
 final class Info
 {
@@ -55,7 +56,7 @@ final class Info
             }
             $sha1 = $info['sha1'];
             if ($sha1 !== null) {
-                $file['sha1'] = $sha1;
+                $file['sha1'] = ParseHelper::readSha1($sha1);
             }
 
             $files = new ListObject([new DictObject($file)]);

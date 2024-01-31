@@ -6,6 +6,7 @@ namespace Arokettu\Torrent\TorrentFile\V1;
 
 use Arokettu\Torrent\DataTypes\Internal\ListObject;
 use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\Helpers\ParseHelper;
 use Arokettu\Torrent\TorrentFile\Common\Attributes;
 
 use function iter\map;
@@ -47,7 +48,7 @@ final class Files implements \IteratorAggregate, \Countable
                 path: $file['path']?->toArray() ?? throw new RuntimeException('File is missing path'),
                 length: $length,
                 attributes: $attributes,
-                sha1bin: $file['sha1'],
+                sha1bin: ParseHelper::readSha1($file['sha1']),
                 symlinkPath: $link?->toArray(),
             );
         }, $files)];
