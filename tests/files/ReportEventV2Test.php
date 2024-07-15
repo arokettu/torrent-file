@@ -17,7 +17,7 @@ class ReportEventV2Test extends TestCase implements ListenerProviderInterface
 {
     public function testReportEvent(): void
     {
-        $eventDispatcher = new EventDispatcher($this);
+        $eventDispatcher = @new EventDispatcher($this); // external deprecation
 
         TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
