@@ -32,4 +32,7 @@
             <directory>src</directory>
         </include>
     </source>
+    <php>
+        <ini name="error_reporting" value="E_ALL"/>
+    </php>
 </phpunit>
