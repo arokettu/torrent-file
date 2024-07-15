@@ -7,29 +7,29 @@
          displayDetailsOnTestsThatTriggerDeprecations="true"
          executionOrder="random"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd">
-  <testsuites>
-    <testsuite name="fields">
-      <directory>tests/fields</directory>
-    </testsuite>
-    <testsuite name="files">
-      <directory>tests/files</directory>
-    </testsuite>
-    <testsuite name="info">
-      <directory>tests/info</directory>
-    </testsuite>
-    <testsuite name="sign">
-      <directory>tests/sign</directory>
-    </testsuite>
-    <testsuite name="other">
-      <directory>tests/other</directory>
-    </testsuite>
-    <testsuite name="types">
-      <directory>tests/types</directory>
-    </testsuite>
-  </testsuites>
-  <source>
-    <include>
-      <directory>src</directory>
-    </include>
-  </source>
+    <testsuites>
+        <testsuite name="fields">
+            <directory>tests/fields</directory>
+        </testsuite>
+        <testsuite name="files">
+            <directory>tests/files</directory>
+        </testsuite>
+        <testsuite name="info">
+            <directory>tests/info</directory>
+        </testsuite>
+        <testsuite name="sign">
+            <directory>tests/sign</directory>
+        </testsuite>
+        <testsuite name="other">
+            <directory>tests/other</directory>
+        </testsuite>
+        <testsuite name="types">
+            <directory>tests/types</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
 </phpunit>
