@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
-use Arokettu\Clock\StaticClock;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
@@ -23,7 +22,7 @@ class CreateFileHybridFeaturesTest extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
             version: MetaVersion::HybridV1V2,
-            clock: StaticClock::fromTimestamp(1_500_000_000),
+            creationDate: new \DateTimeImmutable('@' . 1_500_000_000),
         ); // approx 19 mb
 
         $torrent1 = clone $torrent;
@@ -112,7 +111,7 @@ class CreateFileHybridFeaturesTest extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
             version: MetaVersion::HybridV1V2,
-            clock: StaticClock::fromTimestamp(1_500_000_000),
+            creationDate: new \DateTimeImmutable('@' . 1_500_000_000),
         ); // approx 19 mb
 
         $torrent1 = clone $torrent;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
-use Arokettu\Clock\StaticClock;
 use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\Exception\PathNotFoundException;
 use Arokettu\Torrent\MetaVersion;
@@ -24,7 +23,7 @@ class CreateFileV1Test extends TestCase
             TEST_ROOT . '/data/files/file1.txt',
             version: MetaVersion::V1,
             forceMultifile: false,
-            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
+            creationDate: new \DateTimeImmutable('@' . 1_500_000_000),
         ); // approx 6 mb
 
         self::assertEquals('3ab5a1739bd320333898510a6cec900a5e6acb7d', $torrent->v1()->getInfoHash());
@@ -66,7 +65,7 @@ class CreateFileV1Test extends TestCase
             TEST_ROOT . '/data/files/file1.txt',
             version: MetaVersion::V1,
             forceMultifile: true,
-            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
+            creationDate: new \DateTimeImmutable('@' . 1_500_000_000),
         ); // approx 6 mb
 
         self::assertEquals('113581f7f4f4a8acd204cd780c0e3f786c044518', $torrent->v1()->getInfoHash());
@@ -109,7 +108,7 @@ class CreateFileV1Test extends TestCase
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
             version: MetaVersion::V1,
-            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
+            creationDate: new \DateTimeImmutable('@' . 1_500_000_000),
         ); // approx 19 mb
 
         self::assertEquals('e3bfb18c606631c472b7ba1813bc96c7f748b098', $torrent->v1()->getInfoHash());
@@ -177,7 +176,7 @@ class CreateFileV1Test extends TestCase
             TEST_ROOT . '/data/files',
             version: MetaVersion::V1,
             pieceLength: 1024 * 1024, // 1mb chunk
-            clock: new StaticClock(new \DateTimeImmutable('@' . 1_500_000_000)),
+            creationDate: new \DateTimeImmutable('@' . 1_500_000_000),
         ); // approx 19 mb
 
         self::assertEquals('8d7b1593175abfa6563f7c8de082e5c46b3d1292', $torrent->v1()->getInfoHash());

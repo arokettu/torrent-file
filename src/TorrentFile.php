@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Arokettu\Torrent;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
-use Arokettu\Clock\SystemClock;
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
 use Arokettu\Torrent\FileSystem\FileData;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Psr\Clock\ClockInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -57,7 +57,7 @@ final class TorrentFile implements BencodeSerializable
         bool $detectExec = true,
         bool $detectSymlinks = false,
         bool $forceMultifile = true,
-        ClockInterface $clock = new SystemClock(), // todo: remove in 6.0
+        ClockInterface|null $clock = null, // todo: remove in 6.0
         DateTimeInterface|int|null $creationDate = null,
     ): self {
         // generate data for files
@@ -82,7 +82,7 @@ final class TorrentFile implements BencodeSerializable
         // set some defaults
 
         $torrent->setCreatedBy(self::CREATED_BY);
-        $torrent->setCreationDate($creationDate ?? $clock->now());
+        $torrent->setCreationDate($creationDate ?? $clock?->now() ?? new DateTimeImmutable('now'));
 
         return $torrent;
     }
