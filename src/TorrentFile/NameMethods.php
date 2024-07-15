@@ -13,9 +13,9 @@ use Arokettu\Torrent\TorrentFile\V2\Info as InfoV2;
  */
 trait NameMethods
 {
-    abstract public function v1(): ?InfoV1;
-    abstract public function v2(): ?InfoV2;
-    abstract public function getName(): ?string;
+    abstract public function v1(): InfoV1|null;
+    abstract public function v2(): InfoV2|null;
+    abstract public function getName(): string|null;
 
     public function getDisplayName(): string
     {

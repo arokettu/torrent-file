@@ -18,7 +18,7 @@ final class Files implements \IteratorAggregate, \Countable
 {
     /** @var array<File> */
     public readonly array $files;
-    private ?int $countWithoutPads = null;
+    private int|null $countWithoutPads = null;
 
     public function __construct(ListObject $files)
     {

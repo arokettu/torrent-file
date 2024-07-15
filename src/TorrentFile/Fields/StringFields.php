@@ -12,35 +12,35 @@ trait StringFields
     abstract private function getField(string $key): mixed;
     abstract private function setField(string $key, mixed $value): void;
 
-    public function setAnnounce(?string $announce): self
+    public function setAnnounce(string|null $announce): self
     {
         $this->setField('announce', $announce);
         return $this;
     }
 
-    public function getAnnounce(): ?string
+    public function getAnnounce(): string|null
     {
         return $this->getField('announce');
     }
 
-    public function setComment(?string $comment): self
+    public function setComment(string|null $comment): self
     {
         $this->setField('comment', $comment);
         return $this;
     }
 
-    public function getComment(): ?string
+    public function getComment(): string|null
     {
         return $this->getField('comment');
     }
 
-    public function setCreatedBy(?string $comment): self
+    public function setCreatedBy(string|null $comment): self
     {
         $this->setField('created by', $comment);
         return $this;
     }
 
-    public function getCreatedBy(): ?string
+    public function getCreatedBy(): string|null
     {
         return $this->getField('created by');
     }

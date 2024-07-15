@@ -27,7 +27,7 @@ trait SignatureMethods
 
     abstract private static function encoder(): Encoder;
 
-    private ?DictObject $signatures = null;
+    private DictObject|null $signatures = null;
 
     public function isSigned(): bool
     {

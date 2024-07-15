@@ -11,7 +11,7 @@ use Arokettu\Torrent\DataTypes\AnnounceList as AnnounceListType;
  */
 trait AnnounceList
 {
-    private ?AnnounceListType $announceList = null;
+    private AnnounceListType|null $announceList = null;
 
     abstract private function getField(string $key): mixed;
     abstract private function setField(string $key, mixed $value): void;

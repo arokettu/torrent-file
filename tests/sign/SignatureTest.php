@@ -28,22 +28,22 @@ class SignatureTest extends TestCase
 
         self::assertEquals(
             'b0b966cbd7e3293a423442f9b1e7844809e0fb7e',
-            sha1($signatures['com.example']->signature)
+            hash('sha1', $signatures['com.example']->signature)
         );
         self::assertEquals(
             '1034de3e2b8841f6c09aff2356f49b6bbdea0866',
-            sha1($signatures['com.example']->certificateDer)
+            hash('sha1', $signatures['com.example']->certificateDer)
         );
         self::assertEquals(
             '513c4132e8ce4f1002a8c13b146e74a695a89032',
-            sha1($signatures['com.example']->certificatePem)
+            hash('sha1', $signatures['com.example']->certificatePem)
         );
         self::assertInstanceOf(OpenSSLCertificate::class, $signatures['com.example']->certificate);
         self::assertEquals([], $signatures['com.example']->info->toArray());
 
         self::assertEquals(
             'fbd21008b83a2c0eb17abafc48daae71d439ffce',
-            sha1($signatures['org.example']->signature)
+            hash('sha1', $signatures['org.example']->signature)
         );
         self::assertNull($signatures['org.example']->certificateDer);
         self::assertNull($signatures['org.example']->certificatePem);
@@ -98,11 +98,11 @@ class SignatureTest extends TestCase
 
         self::assertEquals(
             'b0b966cbd7e3293a423442f9b1e7844809e0fb7e',
-            sha1($file->getSignatures()['com.example']->signature)
+            hash('sha1', $file->getSignatures()['com.example']->signature)
         );
         self::assertEquals(
             '1034de3e2b8841f6c09aff2356f49b6bbdea0866',
-            sha1($file->getSignatures()['com.example']->certificateDer)
+            hash('sha1', $file->getSignatures()['com.example']->certificateDer)
         );
     }
 
@@ -117,7 +117,7 @@ class SignatureTest extends TestCase
 
         self::assertEquals(
             'b0b966cbd7e3293a423442f9b1e7844809e0fb7e',
-            sha1($file->getSignatures()['com.example']->signature)
+            hash('sha1', $file->getSignatures()['com.example']->signature)
         );
         self::assertNull($file->getSignatures()['com.example']->certificateDer);
     }
@@ -159,7 +159,7 @@ class SignatureTest extends TestCase
 
         self::assertEquals(
             '681b39028439eaebb621694c5393fec2a68afd5e',
-            sha1($file->getSignatures()['com.example']->signature)
+            hash('sha1', $file->getSignatures()['com.example']->signature)
         );
         self::assertEquals(['test' => 'abc'], $file->getSignatures()['com.example']->info->toArray());
 

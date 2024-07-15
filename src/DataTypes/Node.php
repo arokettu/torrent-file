@@ -18,7 +18,8 @@ final class Node implements ArrayAccess, ArrayInterface, BencodeSerializable
     public function __construct(
         public readonly string $host,
         public readonly int $port,
-    ) {}
+    ) {
+    }
 
     /**
      * @internal

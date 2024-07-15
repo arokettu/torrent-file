@@ -12,14 +12,14 @@ use OpenSSLCertificate;
 
 final class Signature implements BencodeSerializable
 {
-    public readonly ?OpenSSLCertificate $certificate;
-    public readonly ?string $certificatePem;
+    public readonly OpenSSLCertificate|null $certificate;
+    public readonly string|null $certificatePem;
     public readonly DictObject $info;
 
     public function __construct(
         public readonly string $signature,
-        public readonly ?string $certificateDer,
-        ?DictObject $info,
+        public readonly string|null $certificateDer,
+        DictObject|null $info,
     ) {
         unset($this->certificate);
         unset($this->certificatePem);

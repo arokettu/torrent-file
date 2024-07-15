@@ -39,7 +39,7 @@ final class AnnounceList implements Internal\StorageInterface
     /**
      * @internal
      */
-    public static function fromInternal(?ListObject $uriLists): self
+    public static function fromInternal(ListObject|null $uriLists): self
     {
         return new self(...map(UriList::fromInternal(...), $uriLists ?? []));
     }
@@ -119,7 +119,7 @@ final class AnnounceList implements Internal\StorageInterface
 
     // BencodeSerializable
 
-    public function bencodeSerialize(): ?ListType
+    public function bencodeSerialize(): ListType|null
     {
         // return null for empty list
         return $this->data === [] ? null : new ListType($this);

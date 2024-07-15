@@ -15,7 +15,7 @@ use Arokettu\Torrent\MetaVersion;
 trait InfoMethods
 {
     // cached objects
-    private ?InfoDict $info = null;
+    private InfoDict|null $info = null;
 
     abstract private function getField(string $key): mixed;
     abstract private function setField(string $key, mixed $value): void;
@@ -47,7 +47,7 @@ trait InfoMethods
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string|null
     {
         return $this->getInfoField('name');
     }

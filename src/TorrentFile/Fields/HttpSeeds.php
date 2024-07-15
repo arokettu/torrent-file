@@ -11,7 +11,7 @@ use Arokettu\Torrent\DataTypes\UriList;
  */
 trait HttpSeeds
 {
-    private ?UriList $httpseeds = null;
+    private UriList|null $httpseeds = null;
 
     abstract private function getField(string $key): mixed;
     abstract private function setField(string $key, mixed $value): void;

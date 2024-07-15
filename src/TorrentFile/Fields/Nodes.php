@@ -12,7 +12,7 @@ use Arokettu\Torrent\DataTypes\NodeList;
  */
 trait Nodes
 {
-    private ?NodeList $nodes = null;
+    private NodeList|null $nodes = null;
 
     abstract private function getField(string $key): mixed;
     abstract private function setField(string $key, mixed $value): void;

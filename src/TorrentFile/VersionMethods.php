@@ -21,7 +21,7 @@ trait VersionMethods
     abstract public function hasMetadata(MetaVersion $version): bool;
     abstract private function info(): InfoDict;
 
-    public function v1(): ?InfoV1
+    public function v1(): InfoV1|null
     {
         if ($this->v1 === Undefined::Undefined) {
             $this->v1 = $this->hasMetadata(MetaVersion::V1) ? new InfoV1($this->info()) : null;
@@ -30,7 +30,7 @@ trait VersionMethods
         return $this->v1;
     }
 
-    public function v2(): ?InfoV2
+    public function v2(): InfoV2|null
     {
         if ($this->v2 === Undefined::Undefined) {
             $this->v2 = $this->hasMetadata(MetaVersion::V2) ? new InfoV2($this->info()) : null;

@@ -15,8 +15,9 @@ use DateTimeImmutable;
 final class DateTimeWrapper implements BencodeSerializable
 {
     private function __construct(
-        public readonly ?DateTimeImmutable $dateTime
-    ) {}
+        public readonly DateTimeImmutable|null $dateTime
+    ) {
+    }
 
     /**
      * From the value that is hinted in setCreationDate()
@@ -39,7 +40,7 @@ final class DateTimeWrapper implements BencodeSerializable
         return self::fromExternal($value);
     }
 
-    public function bencodeSerialize(): ?int
+    public function bencodeSerialize(): int|null
     {
         return $this->dateTime?->getTimestamp();
     }

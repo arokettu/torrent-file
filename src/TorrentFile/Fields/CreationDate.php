@@ -11,7 +11,7 @@ use Arokettu\Torrent\DataTypes\DateTimeWrapper;
  */
 trait CreationDate
 {
-    private ?DateTimeWrapper $creationDate = null;
+    private DateTimeWrapper|null $creationDate = null;
 
     abstract private function getField(string $key): mixed;
     abstract private function setField(string $key, mixed $value): void;
@@ -23,7 +23,7 @@ trait CreationDate
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeImmutable
+    public function getCreationDate(): \DateTimeImmutable|null
     {
         $this->creationDate ??= DateTimeWrapper::fromInternal($this->getField('creation date'));
         return $this->creationDate->dateTime;

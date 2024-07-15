@@ -11,7 +11,7 @@ use Arokettu\Torrent\DataTypes\UriList;
  */
 trait UrlList
 {
-    private ?UriList $urlList = null;
+    private UriList|null $urlList = null;
 
     abstract private function getField(string $key): mixed;
     abstract private function setField(string $key, mixed $value): void;

@@ -27,12 +27,12 @@ trait UpdateUrl
         $this->setInfoField('originator', null);
     }
 
-    public function getUpdateUrl(): ?string
+    public function getUpdateUrl(): string|null
     {
         return $this->getInfoField('update-url');
     }
 
-    public function getOriginator(): ?OpenSSLCertificate
+    public function getOriginator(): OpenSSLCertificate|null
     {
         $originator = $this->getInfoField('originator');
         return $originator ? CertHelper::convertDerToObject($originator) : null;

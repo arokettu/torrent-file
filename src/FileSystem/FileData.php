@@ -23,7 +23,7 @@ abstract class FileData
 
     public static function forPath(
         string $path,
-        ?EventDispatcherInterface $eventDispatcher,
+        EventDispatcherInterface|null $eventDispatcher,
         MetaVersion|array $version,
         int $pieceLength,
         int $pieceAlign,
@@ -66,7 +66,7 @@ abstract class FileData
 
     protected function __construct(
         protected string $path,
-        protected ?EventDispatcherInterface $eventDispatcher,
+        protected EventDispatcherInterface|null $eventDispatcher,
         protected int $pieceLength,
         protected int $pieceAlign,
         protected bool $detectExec,
@@ -94,7 +94,7 @@ abstract class FileData
 
     protected function hashChunkV1(string $chunk): string
     {
-        return sha1($chunk, true);
+        return hash('sha1', $chunk, true);
     }
 
     protected function reportProgress(int $total, int $done, string $fileName): void
@@ -102,7 +102,7 @@ abstract class FileData
         $this->eventDispatcher?->dispatch(new FileDataProgressEvent($total, $done, $fileName));
     }
 
-    protected function detectSymlink(string $path): ?array
+    protected function detectSymlink(string $path): array|null
     {
         if (!$this->detectSymlinks) {
             return null;
@@ -133,7 +133,7 @@ abstract class FileData
         );
     }
 
-    protected function getAttributes(string $path): ?string
+    protected function getAttributes(string $path): string|null
     {
         $attr = null;
 

@@ -34,7 +34,7 @@ final class UriList implements Internal\StorageInterface
     /**
      * @internal
      */
-    public static function fromInternal(?ListObject $uris): self
+    public static function fromInternal(ListObject|null $uris): self
     {
         return self::fromIterable($uris ?? []);
     }
@@ -102,7 +102,7 @@ final class UriList implements Internal\StorageInterface
 
     // BencodeSerializable
 
-    public function bencodeSerialize(): ?ListType
+    public function bencodeSerialize(): ListType|null
     {
         // return null for empty list
         return $this->data === [] ? null : new ListType($this);

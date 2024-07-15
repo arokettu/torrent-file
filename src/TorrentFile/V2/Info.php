@@ -8,12 +8,13 @@ use Arokettu\Torrent\DataTypes\Internal\InfoDict;
 
 final class Info
 {
-    private ?string $infoHash = null;
-    private ?FileTree $fileTree = null;
+    private string|null $infoHash = null;
+    private FileTree|null $fileTree = null;
 
     public function __construct(
         private readonly InfoDict $info,
-    ) {}
+    ) {
+    }
 
     public function getInfoHash(bool $binary = false): string
     {

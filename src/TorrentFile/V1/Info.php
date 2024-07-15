@@ -12,16 +12,17 @@ use Arokettu\Torrent\Helpers\ParseHelper;
 
 final class Info
 {
-    private ?string $infoHash = null;
-    private ?Files $files = null;
+    private string|null $infoHash = null;
+    private Files|null $files = null;
 
     public function __construct(
         private readonly InfoDict $info,
-    ) {}
+    ) {
+    }
 
     public function getInfoHash(bool $binary = false): string
     {
-        $this->infoHash ??= sha1($this->info->infoString, true);
+        $this->infoHash ??= hash('sha1', $this->info->infoString, true);
         return $binary ? $this->infoHash : bin2hex($this->infoHash);
     }
 

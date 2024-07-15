@@ -41,7 +41,7 @@ final class NodeList implements Internal\StorageInterface
     /**
      * @internal
      */
-    public static function fromInternal(?ListObject $nodes): self
+    public static function fromInternal(ListObject|null $nodes): self
     {
         return new self(...map(Node::fromInternal(...), $nodes ?? []));
     }
@@ -100,7 +100,7 @@ final class NodeList implements Internal\StorageInterface
 
     // BencodeSerializable
 
-    public function bencodeSerialize(): ?ListType
+    public function bencodeSerialize(): ListType|null
     {
         // return null for empty list
         return $this->data === [] ? null : new ListType($this);

@@ -104,7 +104,7 @@ final class FileTree implements \RecursiveIterator, \Countable
         return $this->current() instanceof FileTree;
     }
 
-    public function getChildren(): ?FileTree
+    public function getChildren(): FileTree|null
     {
         $current = $this->current();
         return $current instanceof FileTree ? $current : null;
