@@ -43,7 +43,7 @@ test-8.1-lowest:
   stage: test
   image: php:8.1
   script:
-    - composer update --prefer-lowest
+    - composer update --prefer-lowest --fail-on-notice
     - vendor/bin/phpunit
 
 # coverage
