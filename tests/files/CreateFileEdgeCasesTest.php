@@ -20,7 +20,7 @@ class CreateFileEdgeCasesTest extends TestCase
             clock: StaticClock::fromTimestamp(1_600_000_000),
         );
 
-        self::assertEquals(new \DateTimeImmutable('@' . 1_600_000_000), $torrent->getCreationDate());
+        self::assertEquals(new DateTimeImmutable('@' . 1_600_000_000), $torrent->getCreationDate());
     }
 
     public function testCreationDateTakesPrecedenceToClock(): void
@@ -31,6 +31,18 @@ class CreateFileEdgeCasesTest extends TestCase
             creationDate: new DateTimeImmutable('@' . 1_700_000_000),
         );
 
-        self::assertEquals(new \DateTimeImmutable('@' . 1_700_000_000), $torrent->getCreationDate());
+        self::assertEquals(new DateTimeImmutable('@' . 1_700_000_000), $torrent->getCreationDate());
+    }
+
+    public function testSystemTime(): void
+    {
+        $t1 = new DateTimeImmutable('@' . time()); // round to seconds
+        $torrent = TorrentFile::fromPath(
+            TEST_ROOT . '/data/small.txt',
+        );
+        $t2 = new DateTimeImmutable('now');
+
+        self::assertGreaterThanOrEqual($t1, $torrent->getCreationDate());
+        self::assertLessThanOrEqual($t2, $torrent->getCreationDate());
     }
 }
