@@ -53,8 +53,8 @@ Create a torrent for existing directory or file
 .. versionadded:: 2.3/3.1 version
 .. versionadded:: 2.5/3.3/4.1 forceMultifile
 .. versionchanged:: 4.1 MetaVersion::HybridV1V2 is now an array [MetaVersion::V1, MetaVersion::V2]
-.. versionadded:: 5.0.1 $clock
-.. versionadded:: 5.1.0 forceMultifile is true by default
+.. versionadded:: 5.1 forceMultifile is true by default
+.. versionadded:: 5.3 createdBy, creationDate
 
 The library can create a torrent file from scratch for a file or a directory.
 
@@ -109,10 +109,15 @@ Available options:
     This mode fixes some possible incompatibilities between V1 and V2 data in hybrid torrents.
     Always enabled in hybrid torrents, meaningless for pure V2.
     Default: ``true``
-``clock``
-    A parameter to inject a clock component, mostly for debug purposes.
-    To set the creation timestamp normally, use `setCreationDate($timestamp)` on the created torrent object.
-    Default: a clock that returns a current timestamp.
+``createdBy``
+    Override ``created by`` field for the created torrent.
+    Pass ``null`` to unset.
+    Default: the library name and url.
+``creationDate``
+    Override ``creation date`` field for the created torrent.
+    Accepts instances of ``DateTimeInterface`` and ``ClockInterface`` and integer timestamps.
+    Pass ``null`` to unset.
+    Default: the current timestamp.
 
 .. _BEP-3:  https://www.bittorrent.org/beps/bep_0003.html
 .. _BEP-52: https://www.bittorrent.org/beps/bep_0052.html

@@ -6,6 +6,7 @@ namespace Arokettu\Torrent\DataTypes;
 
 use Arokettu\Bencode\Types\BencodeSerializable;
 use DateTimeImmutable;
+use DateTimeInterface;
 
 /**
  * Wrapper for nullable datetime
@@ -22,14 +23,14 @@ final class DateTimeWrapper implements BencodeSerializable
     /**
      * From the value that is hinted in setCreationDate()
      */
-    public static function fromExternal(\DateTimeInterface|int|null $value): self
+    public static function fromExternal(DateTimeInterface|int|null $value): self
     {
         return match (true) {
             \is_null($value)
                 => new self(null),
             \is_integer($value)
                 => new self(new DateTimeImmutable('@' . $value)),
-            default
+            $value instanceof DateTimeInterface,
                 => new self(DateTimeImmutable::createFromInterface($value)),
         };
     }
