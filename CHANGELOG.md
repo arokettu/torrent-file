@@ -11,6 +11,8 @@
 
 * Added `createdBy` and `creationDate` directly to the file creation
 * Removed useless dependency on `psr/clock`
+  * Small BC break: if you used `$clock` param intended only for the development,
+    it's now gone, please use `$creationDate`
 
 ### 5.2.2
 
