@@ -16,7 +16,7 @@
 
 ### 5.2.2
 
-*Jan 31, 2023*
+*Jan 31, 2024*
 
 * Handle hexadecimal sha1 sums in V1 files [[gl#5]]
 
