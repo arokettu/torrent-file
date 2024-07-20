@@ -5,6 +5,13 @@
 
 ## 5.x
 
+### 5.3.0
+
+*Jul 20, 2024*
+
+* Added `createdBy` and `creationDate` directly to the file creation
+* Removed useless dependency on `psr/clock`
+
 ### 5.2.2
 
 *Jan 31, 2023*
