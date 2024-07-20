@@ -19,7 +19,7 @@ class ReportEventV1Test extends TestCase implements ListenerProviderInterface
 
     public function testReportEvent(): void
     {
-        $eventDispatcher = new EventDispatcher($this);
+        $eventDispatcher = @new EventDispatcher($this); // external dev deprecation
 
         $this->done = 0;
 
