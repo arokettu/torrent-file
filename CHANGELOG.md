@@ -406,11 +406,12 @@ Branched from 1.3.1
 
 *Nov 6, 2017*
 
-Update Symfony dependencies to allow Symfony 4
+* Update Symfony dependencies to allow Symfony 4
 
 ### 0.1.0
 
 *Mar 30, 2017*
 
 Initial release
-Basic work with torrent files
+
+* Basic work with torrent files
