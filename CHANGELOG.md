@@ -5,6 +5,15 @@
 
 ## 5.x
 
+### 5.3.1
+
+*Jul 29, 2024*
+
+* Exception rework:
+  * Invalid file creation options now throw `DomainException`
+  * Setters throw `UnexpectedValueException` for invalid input
+  * Invalid operations on infohash data now throw `BadMethodCallException`
+
 ### 5.3.0
 
 *Jul 20, 2024*
