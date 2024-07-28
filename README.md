@@ -8,6 +8,12 @@
 
 A PHP Class to work with torrent files
 
+## Installation
+
+```bash
+composer require arokettu/torrent-file
+```
+
 ## Usage
 
 ```php
@@ -27,12 +33,6 @@ $torrent->setAnnounce('http://tracker.example:1234');
 foreach ($torrent->v1()->getFiles() as $file) {
     echo implode('/', $file->path()) , ': ' , $file->length, PHP_EOL;
 }
-```
-
-## Installation
-
-```bash
-composer require arokettu/torrent-file
 ```
 
 ## Features
