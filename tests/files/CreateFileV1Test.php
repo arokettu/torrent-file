@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
-use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\DomainException;
 use Arokettu\Torrent\Exception\PathNotFoundException;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
@@ -238,7 +238,7 @@ class CreateFileV1Test extends TestCase
 
     public function testChunkTooSmall(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('pieceLength must be a power of 2 and at least 16384');
 
         TorrentFile::fromPath(
@@ -250,7 +250,7 @@ class CreateFileV1Test extends TestCase
 
     public function testChunkNotPow2(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('pieceLength must be a power of 2 and at least 16384');
 
         TorrentFile::fromPath(

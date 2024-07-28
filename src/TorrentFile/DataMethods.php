@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Torrent\DataTypes\Internal\DictObject;
-use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\Exception\BadMethodCallException;
 
 /**
  * @internal
@@ -41,7 +41,7 @@ trait DataMethods
     private function setInfoField(string $key, mixed $value): void
     {
         if ($this->isSigned()) {
-            throw new RuntimeException(
+            throw new BadMethodCallException(
                 'Unable to modify infohash fields of a signed torrent. ' .
                 'Please remove the signatures first'
             );

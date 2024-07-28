@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Files;
 
-use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\UnexpectedValueException;
 use Arokettu\Torrent\TorrentFile\Common\Attributes;
 use PHPUnit\Framework\TestCase;
 
@@ -62,7 +62,7 @@ class AttributesTest extends TestCase
 
     public function testHasOneCharOnly(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(UnexpectedValueException::class);
         $this->expectExceptionMessage('Attribute name must be 1 character long');
 
         (new Attributes('xx'))->has('xx');
@@ -70,7 +70,7 @@ class AttributesTest extends TestCase
 
     public function testAttrOneCharOnly(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(UnexpectedValueException::class);
         $this->expectExceptionMessage('Attribute name must be 1 character long');
 
         (new Attributes('xx'))->xx;

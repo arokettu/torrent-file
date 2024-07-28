@@ -6,7 +6,7 @@ namespace Arokettu\Torrent\Tests\Sign;
 
 use Arokettu\Torrent\DataTypes\Signature;
 use Arokettu\Torrent\DataTypes\SignatureValidatorResult;
-use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\Exception\UnexpectedValueException;
 use Arokettu\Torrent\TorrentFile;
 use OpenSSLCertificate;
 use PHPUnit\Framework\TestCase;
@@ -78,10 +78,10 @@ class SignatureTest extends TestCase
 
     public function testVerifySignaturesMustBeCN(): void
     {
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('The certificate must contain a common name');
-
         $file = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611-signed.torrent');
+
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('The certificate must contain a common name');
 
         $cert1 = openssl_x509_read('file://' . TEST_ROOT . '/data/keys/test1-nocn.crt');
         self::assertEquals(SignatureValidatorResult::NotPresent, $file->verifySignature($cert1));
@@ -124,26 +124,26 @@ class SignatureTest extends TestCase
 
     public function testSignMustHaveCN(): void
     {
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('The certificate must contain a common name');
-
         $file = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 
         $cert = openssl_x509_read('file://' . TEST_ROOT . '/data/keys/test1-nocn.crt');
         $key = openssl_pkey_get_private('file://' . TEST_ROOT . '/data/keys/test1.key');
+
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('The certificate must contain a common name');
 
         $file->sign($key, $cert);
     }
 
     public function testSignCertKeyMatch(): void
     {
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('The key does not correspond to the certificate');
-
         $file = TorrentFile::load(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent');
 
         $cert = openssl_x509_read('file://' . TEST_ROOT . '/data/keys/test2.crt');
         $key = openssl_pkey_get_private('file://' . TEST_ROOT . '/data/keys/test1.key');
+
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('The key does not correspond to the certificate');
 
         $file->sign($key, $cert);
     }

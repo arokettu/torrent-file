@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Tests\Info;
 
-use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
@@ -14,7 +14,7 @@ class ImmutableWhenSignedTest extends TestCase
 {
     public function testImmutableWhenSigned(): void
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage(
             'Unable to modify infohash fields of a signed torrent. Please remove the signatures first'
         );

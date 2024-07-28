@@ -6,7 +6,8 @@ namespace Arokettu\Torrent\TorrentFile;
 
 use Arokettu\Bencode\Types\DictType;
 use Arokettu\Torrent\DataTypes\Internal\InfoDict;
-use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\BadMethodCallException;
+use Arokettu\Torrent\Exception\UnexpectedValueException;
 use Arokettu\Torrent\MetaVersion;
 
 /**
@@ -36,10 +37,10 @@ trait InfoMethods
     public function setName(string $name): self
     {
         if ($name === '') {
-            throw new InvalidArgumentException('$name must not be empty');
+            throw new UnexpectedValueException('$name must not be empty');
         }
         if (str_contains($name, '/') || str_contains($name, "\0")) {
-            throw new InvalidArgumentException('$name must not contain slashes and zero bytes');
+            throw new UnexpectedValueException('$name must not contain slashes and zero bytes');
         }
 
         $this->setInfoField('name', $name);
@@ -102,7 +103,7 @@ trait InfoMethods
     public function removeMetadata(MetaVersion $version): void
     {
         if (array_filter($this->getMetadataVersions(), fn ($v) => $v !== $version) === []) {
-            throw new InvalidArgumentException('Unable to remove the only remaining metadata');
+            throw new BadMethodCallException('Unable to remove the only remaining metadata');
         }
 
         match ($version) {
@@ -114,7 +115,7 @@ trait InfoMethods
     public function keepOnlyMetadata(MetaVersion $version): void
     {
         if (!$this->hasMetadata($version)) {
-            throw new InvalidArgumentException('Unable to keep metadata that is not present');
+            throw new BadMethodCallException('Unable to keep metadata that is not present');
         }
 
         match ($version) {

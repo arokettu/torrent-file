@@ -10,6 +10,7 @@ use Arokettu\Torrent\DataTypes\Internal\InfoDict;
 use Arokettu\Torrent\DataTypes\Signature;
 use Arokettu\Torrent\DataTypes\SignatureValidatorResult;
 use Arokettu\Torrent\Exception\RuntimeException;
+use Arokettu\Torrent\Exception\UnexpectedValueException;
 use Arokettu\Torrent\Helpers\CertHelper;
 use OpenSSLAsymmetricKey;
 use OpenSSLCertificate;
@@ -56,12 +57,12 @@ trait SignatureMethods
         iterable $info = [],
     ): void {
         if (!openssl_x509_check_private_key($certificate, $key)) {
-            throw new RuntimeException('The key does not correspond to the certificate');
+            throw new UnexpectedValueException('The key does not correspond to the certificate');
         }
 
         $certData = openssl_x509_parse($certificate);
         $commonName = $certData['subject']['CN'] ??
-            throw new RuntimeException('The certificate must contain a common name');
+            throw new UnexpectedValueException('The certificate must contain a common name');
 
         $signInfo = new DictObject($info);
 
@@ -92,7 +93,7 @@ trait SignatureMethods
     {
         $certData = openssl_x509_parse($certificate);
         $commonName = $certData['subject']['CN'] ??
-            throw new RuntimeException('The certificate must contain a common name');
+            throw new UnexpectedValueException('The certificate must contain a common name');
 
         $signatures = $this->getSignatures();
         /** @var Signature $signature */

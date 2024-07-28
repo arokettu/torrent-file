@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\TorrentFile\Common;
 
-use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\UnexpectedValueException;
 
 /**
  * @property-read bool $x
@@ -45,7 +45,7 @@ final class Attributes
     public function has(string $attr): bool
     {
         if (\strlen($attr) !== 1) {
-            throw new InvalidArgumentException('Attribute name must be 1 character long');
+            throw new UnexpectedValueException('Attribute name must be 1 character long');
         }
         return str_contains($this->attr, $attr);
     }

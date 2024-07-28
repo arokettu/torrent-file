@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\Tests\Info;
 
 use Arokettu\Bencode\Bencode;
-use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\UnexpectedValueException;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
@@ -37,21 +37,21 @@ class NameTest extends TestCase
 
     public function testNotEmpty(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(UnexpectedValueException::class);
         $torrent = TorrentFile::loadFromString('de');
         $torrent->setName('');
     }
 
     public function testNoZeros(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(UnexpectedValueException::class);
         $torrent = TorrentFile::loadFromString('de');
         $torrent->setName("Test\0");
     }
 
     public function testNoSlashes(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(UnexpectedValueException::class);
         $torrent = TorrentFile::loadFromString('de');
         $torrent->setName('te/st');
     }

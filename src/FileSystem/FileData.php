@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\FileSystem;
 
 use Arokettu\Bencode\Bencode;
-use Arokettu\Torrent\Exception\InvalidArgumentException;
+use Arokettu\Torrent\Exception\DomainException;
 use Arokettu\Torrent\Exception\PathNotFoundException;
 use Arokettu\Torrent\Helpers\MathHelper;
 use Arokettu\Torrent\MetaVersion;
@@ -60,7 +60,7 @@ abstract class FileData
             [MetaVersion::V2, MetaVersion::V1],
                 => new HybridV1V2\FileData(...$params, ...array_values($version)),
             default
-                => throw new InvalidArgumentException('Invalid metadata version'),
+                => throw new DomainException('Invalid metadata version'),
         };
     }
 
@@ -73,7 +73,7 @@ abstract class FileData
         protected bool $detectSymlinks,
     ) {
         if ($pieceLength < self::PIECE_LENGTH_MIN || !MathHelper::isPow2($pieceLength)) {
-            throw new InvalidArgumentException(
+            throw new DomainException(
                 'pieceLength must be a power of 2 and at least ' . self::PIECE_LENGTH_MIN
             );
         }

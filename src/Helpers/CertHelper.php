@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Arokettu\Torrent\Helpers;
 
-use Arokettu\Torrent\Exception\RuntimeException;
 use OpenSSLCertificate;
 
 /**
@@ -17,7 +16,7 @@ final class CertHelper
         if (\extension_loaded('openssl') === false) {
             // @codeCoverageIgnoreStart
             // coverage is generated with openssl
-            throw new RuntimeException('OpenSSL extension is not installed');
+            throw new \LogicException('OpenSSL extension is not installed');
             // @codeCoverageIgnoreEnd
         }
     }
