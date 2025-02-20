@@ -4,9 +4,6 @@ Loading, Saving and Creating
 Load an existing torrent
 ========================
 
-.. versionadded:: 1.2 loadFromString()
-.. versionadded:: 2.1 loadFromStream()
-
 You can load a torrent from file, from string, or from stream.
 
 .. code-block:: php
@@ -24,9 +21,6 @@ You can load a torrent from file, from string, or from stream.
 
 Save torrent
 ============
-
-.. versionadded:: 1.2 storeToString()
-.. versionadded:: 2.1 storeToStream()
 
 You can save your torrent to file, to string, or to stream.
 
@@ -46,13 +40,6 @@ You can save your torrent to file, to string, or to stream.
 Create a torrent for existing directory or file
 ===============================================
 
-.. versionadded:: 1.1 $options
-.. versionadded:: 2.0 $eventDispatcher
-.. versionadded:: 2.2 pieceAlign, detectExec, detectSymlinks
-.. versionchanged:: 2.2 sortFiles, md5sum became noop
-.. versionadded:: 2.3/3.1 version
-.. versionadded:: 2.5/3.3/4.1 forceMultifile
-.. versionchanged:: 4.1 MetaVersion::HybridV1V2 is now an array [MetaVersion::V1, MetaVersion::V2]
 .. versionadded:: 5.1 forceMultifile is true by default
 .. versionadded:: 5.3 createdBy, creationDate
 

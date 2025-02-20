@@ -43,9 +43,6 @@ Raw Data
     Since 2.2 ``getRawData()`` is guaranteed to return the structure as it is encoded in the bencoded torrent file.
     In earlier versions it returned whatever junk TorrentFile stored internally.
 
-.. versionchanged:: 2.2 Consistent return format
-.. versionchanged:: 4.0 Uses ListObject and DictObject instances instead of array
-
 A helper method that dumps raw torrent data as an array-like structure.
 
 .. code-block:: php

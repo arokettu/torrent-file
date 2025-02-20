@@ -99,8 +99,6 @@ Creation
 Fields
 ------
 
-.. versionchanged:: 3.0.1 getters were replaced with readonly properties
-
 ::
 
     <?php

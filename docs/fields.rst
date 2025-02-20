@@ -23,8 +23,6 @@ Announce List
 .. note:: BEP-12_ Multitracker Metadata Extension
 .. _BEP-12: https://www.bittorrent.org/beps/bep_0012.html
 
-.. versionchanged:: 3.0 ``AnnounceList`` object is returned instead of array of arrays
-
 A list of lists of tracker URLs.
 See :ref:`the type section <type_AnnounceList>` for acceptable formats.
 
@@ -65,8 +63,6 @@ Optional info about the creator.
 
 Creation Date
 =============
-
-.. versionchanged:: 3.0 ``DateTimeImmutable`` is returned instead of ``int``
 
 Optional info about the creation date.
 ``DateTimeImmutable``.
