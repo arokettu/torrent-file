@@ -61,7 +61,7 @@
         "psy/psysh": "*",
         "sandfox.dev/code-standard": "^1.2024.07.05",
         "squizlabs/php_codesniffer": "*",
-        "vimeo/psalm": "^5.2"
+        "vimeo/psalm": "^5.2 | ^6"
     },
     "suggest": {
         "ext-openssl": "for signature logic"
