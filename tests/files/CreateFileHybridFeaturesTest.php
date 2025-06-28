@@ -48,7 +48,7 @@ class CreateFileHybridFeaturesTest extends TestCase
                         [
                             'length' => 6621359,
                             'path' => ['file1.txt'],
-                            'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                            'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                         ],
                         [
                             'attr' => 'p',
@@ -58,7 +58,7 @@ class CreateFileHybridFeaturesTest extends TestCase
                         [
                             'length' => 6621341,
                             'path' => ['file2.txt'],
-                            'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                            'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                         ],
                         [
                             'attr' => 'p',
@@ -68,7 +68,7 @@ class CreateFileHybridFeaturesTest extends TestCase
                         [
                             'length' => 6621335,
                             'path' => ['file3.txt'],
-                            'sha1' => base64_decode("WW5Dv31hzse3rO95vQfVTk7M3lg="),
+                            'sha1' => base64_decode('WW5Dv31hzse3rO95vQfVTk7M3lg='),
                         ],
                     ],
                     'name' => 'files',
@@ -135,19 +135,19 @@ class CreateFileHybridFeaturesTest extends TestCase
                         'file1.txt' => [
                             '' => [
                                 'length' => 6621359,
-                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                                'pieces root' => base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                             ],
                         ],
                         'file2.txt' => [
                             '' => [
                                 'length' => 6621341,
-                                'pieces root' => base64_decode("W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk="),
+                                'pieces root' => base64_decode('W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk='),
                             ],
                         ],
                         'file3.txt' => [
                             '' => [
                                 'length' => 6621335,
-                                'pieces root' => base64_decode("5LnSj1BlgMSXaD9sLMbo8odfsnlSx5WVV1KOirR3zPk="),
+                                'pieces root' => base64_decode('5LnSj1BlgMSXaD9sLMbo8odfsnlSx5WVV1KOirR3zPk='),
                             ],
                         ],
                     ],
@@ -156,7 +156,7 @@ class CreateFileHybridFeaturesTest extends TestCase
                     'piece length' => 524288,
                 ],
                 'piece layers' => [
-                    base64_decode("W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk=") => base64_decode(<<<LAYER
+                    base64_decode('W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk=') => base64_decode(<<<LAYER
                         9KpjHwtv1cPE0lXZ772SBAf1uaJCh8rlhXIZG1drJIOH3HNdb5FbTsB8waV4XK/JDdVQziyqj9RPKesx3JdRRHxJDI
                         j989oNALmeiXmHxEhG2gwNNUEXXgg1+CVmEHNofIUG77UVZmqEmx+ZGqjBgBbL1qxcucxNcJWnQqffU1pNeGvZMnNs
                         GhzPCiPDQ7IvAEJW1bYz7At4Jy3aEhTZsXl8prY1Jjg88rTunwd6IRz9+3ms3EQ+D/QTA2XYOEML2eXZAY7ApWSUrE
@@ -165,7 +165,7 @@ class CreateFileHybridFeaturesTest extends TestCase
                         18+85djD+fJsKB1VT1mMyYwHg3jPLZU4JRKg93EPD8AtGkKS9b+Fo6HprySbLvyJ2qyuupiPBqDM2okr6YH4jsCZNY
                         xPDmCGS0yJbkqgw=
                         LAYER),
-                    base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4=") => base64_decode(<<<LAYER
+                    base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4=') => base64_decode(<<<LAYER
                         pJ01IFJm8LryTFwzpd1vteR+/BZrLbmtybsOede13OMmZZosMg5qEWPdWv0RY3t90BC0F6vtjPgFurBi7UC8k2565k
                         vea7/DKrwBOJlBY3RrKcNofSNikmua350/ojuUrjIbw7zgzO0XreeImRK32QWl+WE/nBjyejAGCnH5XDHT+ImER/c3
                         t0vqyzVinCDg9xRjmwwwxBnZozCIeQAGeDeNigw8jPamcDIhTXsORZMuAM6UZT7Za7BsEgykAj3hk95FWYMaX444hs
@@ -174,7 +174,7 @@ class CreateFileHybridFeaturesTest extends TestCase
                         Qz4shvJL702xjm+Pg9XjyEaYTIJ+GGshceSRkcWcDUEzdUMTos4c8sz3Gtywycv+Mn5U2mslfFOW3bIafnwo54feqx
                         +HKXFc6BjmfWtQo=
                         LAYER),
-                    base64_decode("5LnSj1BlgMSXaD9sLMbo8odfsnlSx5WVV1KOirR3zPk=") => base64_decode(<<<LAYER
+                    base64_decode('5LnSj1BlgMSXaD9sLMbo8odfsnlSx5WVV1KOirR3zPk=') => base64_decode(<<<LAYER
                         rXI7o2a3/k6ycX5hVUAtaPX15DpQv/NlHaPSeucpH6Te8UcFtgGNZbPlbyyiS7HW00HWlymu9PGybG9B5uSA5lFa1y
                         BeiTvXVbBSG3g0GnaZ+7IxJraVpWCJaBJ0jQwZxGYOagNigd6mMbWp/iVuYRQJ8Tmp6oSHLu6NkTEmIB8WCYYEzheh
                         061HFk+4vuya5VxgvKVZH/SrHj9pnq8vdLSCma40jQWn1N1+R2udq1RqnOE47Ocdlclkf6/Ur15ZAeVsoyOSFtNTyt

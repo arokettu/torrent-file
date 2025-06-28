@@ -33,7 +33,7 @@ class FileListV2Test extends TestCase
                 path: ['file1.txt'],
                 length: 6621359,
                 attributes: new Attributes(''),
-                piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                 symlinkPath: null,
             ),
         ], $files);
@@ -55,7 +55,7 @@ class FileListV2Test extends TestCase
                 path: ['file1.txt'],
                 length: 6621359,
                 attributes: new Attributes(''),
-                piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                 symlinkPath: null,
             ),
             'file2.txt' => new File(
@@ -63,7 +63,7 @@ class FileListV2Test extends TestCase
                 path: ['file2.txt'],
                 length: 6621341,
                 attributes: new Attributes(''),
-                piecesRootBin: base64_decode("W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk="),
+                piecesRootBin: base64_decode('W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk='),
                 symlinkPath: null,
             ),
             'file3.txt' => new File(
@@ -71,7 +71,7 @@ class FileListV2Test extends TestCase
                 path: ['file3.txt'],
                 length: 6621335,
                 attributes: new Attributes(''),
-                piecesRootBin: base64_decode("5LnSj1BlgMSXaD9sLMbo8odfsnlSx5WVV1KOirR3zPk="),
+                piecesRootBin: base64_decode('5LnSj1BlgMSXaD9sLMbo8odfsnlSx5WVV1KOirR3zPk='),
                 symlinkPath: null,
             ),
         ], $files);
@@ -91,7 +91,7 @@ class FileListV2Test extends TestCase
                     path: ['dir1', 'file1.txt'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 )
             ],
@@ -101,7 +101,7 @@ class FileListV2Test extends TestCase
                     path: ['dir2', 'file1.txt'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 'file2.txt' => new File(
@@ -109,7 +109,7 @@ class FileListV2Test extends TestCase
                     path: ['dir2', 'file2.txt'],
                     length: 6621341,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk="),
+                    piecesRootBin: base64_decode('W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk='),
                     symlinkPath: null,
                 ),
             ],
@@ -119,7 +119,7 @@ class FileListV2Test extends TestCase
                     path: ['dir3', 'file2.txt'],
                     length: 6621341,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk="),
+                    piecesRootBin: base64_decode('W64kU2QHo/iMSgYP6thVUL0nPGqyH4/iZcrYEonjIyk='),
                     symlinkPath: null,
                 ),
             ],
@@ -129,7 +129,7 @@ class FileListV2Test extends TestCase
                     path: ['dir4', 'aligned.txt'],
                     length: 6291456,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("W6hGBiIEQEYDItCxP+pWgIWAOq7+TY5uszEwXru1rmE="),
+                    piecesRootBin: base64_decode('W6hGBiIEQEYDItCxP+pWgIWAOq7+TY5uszEwXru1rmE='),
                     symlinkPath: null,
                 ),
             ],
@@ -139,7 +139,7 @@ class FileListV2Test extends TestCase
                     path: ['dir5', 'file3.txt'],
                     length: 6621335,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("5LnSj1BlgMSXaD9sLMbo8odfsnlSx5WVV1KOirR3zPk="),
+                    piecesRootBin: base64_decode('5LnSj1BlgMSXaD9sLMbo8odfsnlSx5WVV1KOirR3zPk='),
                     symlinkPath: null,
                 ),
             ],
@@ -149,7 +149,7 @@ class FileListV2Test extends TestCase
                     path: ['dir6', 'exec.txt'],
                     length: 6621355,
                     attributes: new Attributes('x'),
-                    piecesRootBin: base64_decode("uIBVltGapcVi0tqV+HSiFcMvYlhJNkU21OCR/3hZamw="),
+                    piecesRootBin: base64_decode('uIBVltGapcVi0tqV+HSiFcMvYlhJNkU21OCR/3hZamw='),
                     symlinkPath: null,
                 ),
             ],
@@ -171,7 +171,7 @@ class FileListV2Test extends TestCase
                     path: ['2', 'file2.txt'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 '-22' => new File(
@@ -179,7 +179,7 @@ class FileListV2Test extends TestCase
                     path: ['2', '-22'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 '0333' => new File(
@@ -187,7 +187,7 @@ class FileListV2Test extends TestCase
                     path: ['2', '0333'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 // @phpcs:disable PHPCompatibility.Miscellaneous.ValidIntegers.HexNumericStringFound
@@ -196,7 +196,7 @@ class FileListV2Test extends TestCase
                     path: ['2', '0x4444'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 // @phpcs:enable PHPCompatibility.Miscellaneous.ValidIntegers.HexNumericStringFound
@@ -205,7 +205,7 @@ class FileListV2Test extends TestCase
                     path: ['2', '1'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
             ],
@@ -215,7 +215,7 @@ class FileListV2Test extends TestCase
                     path: ['dir', '1111'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 '222' => new File(
@@ -223,7 +223,7 @@ class FileListV2Test extends TestCase
                     path: ['dir', '222'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 '33' => new File(
@@ -231,7 +231,7 @@ class FileListV2Test extends TestCase
                     path: ['dir', '33'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 '4' => new File(
@@ -239,7 +239,7 @@ class FileListV2Test extends TestCase
                     path: ['dir', '4'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 'file1.txt' => new File(
@@ -247,7 +247,7 @@ class FileListV2Test extends TestCase
                     path: ['dir', 'file1.txt'],
                     length: 6621359,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
             ],
@@ -269,7 +269,7 @@ class FileListV2Test extends TestCase
                         'file1' => [
                             '' => [
                                 'length' => 123456,
-                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                                'pieces root' => base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                             ]
                         ],
                     ],
@@ -287,7 +287,7 @@ class FileListV2Test extends TestCase
                     path: ['dir1', 'file1'],
                     length: 123456,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
             ],
@@ -304,12 +304,12 @@ class FileListV2Test extends TestCase
                         'file1' => [
                             '' => [
                                 'length' => 123456,
-                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                                'pieces root' => base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                             ],
                             'child file' => [
                                 '' => [
                                     'length' => 123456,
-                                    'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                                    'pieces root' => base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                                 ],
                             ],
                         ],
@@ -334,7 +334,7 @@ class FileListV2Test extends TestCase
                         'file1' => [
                             '' => [
                                 'length' => 123456,
-                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                                'pieces root' => base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                             ]
                         ],
                         'file2' => [
@@ -359,7 +359,7 @@ class FileListV2Test extends TestCase
                     path: ['dir1', 'file1'],
                     length: 123456,
                     attributes: new Attributes(''),
-                    piecesRootBin: base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                    piecesRootBin: base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                     symlinkPath: null,
                 ),
                 'file2' => new File(
@@ -384,7 +384,7 @@ class FileListV2Test extends TestCase
                         'file1' => [
                             '' => [
                                 'length' => 123456,
-                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                                'pieces root' => base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                             ]
                         ],
                         'file2' => [
@@ -414,7 +414,7 @@ class FileListV2Test extends TestCase
                         'file1' => [
                             '' => [
                                 'length' => 123456,
-                                'pieces root' => base64_decode("blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4="),
+                                'pieces root' => base64_decode('blnDZvWzIQDgU4E05AOY3k0fr92/qGjBpKHWM4osCn4='),
                             ]
                         ],
                         'file2' => [

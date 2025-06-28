@@ -159,7 +159,7 @@ function export_test_data(mixed $data): string
                 $export .= ",\n";
             }
         }
-        $export .= "]";
+        $export .= ']';
 
         return $export;
     }

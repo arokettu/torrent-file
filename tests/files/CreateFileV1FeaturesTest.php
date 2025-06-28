@@ -29,38 +29,38 @@ class CreateFileV1FeaturesTest extends TestCase
                     [
                         'length' => 6621359,
                         'path' => ['dir1', 'file1.txt',],
-                        'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                        'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                     ],
                     [
                         'length' => 6621359,
                         'path' => ['dir2', 'file1.txt'],
-                        'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                        'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                     ],
                     [
                         'length' => 6621341,
                         'path' => ['dir2', 'file2.txt'],
-                        'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                        'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                     ],
                     [
                         'length' => 6621341,
                         'path' => ['dir3', 'file2.txt'],
-                        'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                        'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                     ],
                     [
                         'length' => 6291456,
                         'path' => ['dir4', 'aligned.txt'],
-                        'sha1' => base64_decode("8uHdutKp152UxbBUEr66/UNo/I0="),
+                        'sha1' => base64_decode('8uHdutKp152UxbBUEr66/UNo/I0='),
                     ],
                     [
                         'length' => 6621335,
                         'path' => ['dir5', 'file3.txt'],
-                        'sha1' => base64_decode("WW5Dv31hzse3rO95vQfVTk7M3lg="),
+                        'sha1' => base64_decode('WW5Dv31hzse3rO95vQfVTk7M3lg='),
                     ],
                     [
                         'attr' => 'x',
                         'length' => 6621355,
                         'path' => ['dir6', 'exec.txt'],
-                        'sha1' => base64_decode("PLesPfBgCmcfBdyu9k95eUh8sfs="),
+                        'sha1' => base64_decode('PLesPfBgCmcfBdyu9k95eUh8sfs='),
                     ],
                 ],
                 'name' => 'files2',
@@ -155,7 +155,7 @@ class CreateFileV1FeaturesTest extends TestCase
                         // not link!
                         'length' => 6621359,
                         'path' => ['dir1', 'file1.txt'],
-                        'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                        'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                     ],
                     [
                         // link
@@ -175,24 +175,24 @@ class CreateFileV1FeaturesTest extends TestCase
                         // not link!
                         'length' => 6621341,
                         'path' => ['dir3', 'file2.txt'],
-                        'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                        'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                     ],
                     [
                         'length' => 6291456,
                         'path' => ['dir4', 'aligned.txt'],
-                        'sha1' => base64_decode("8uHdutKp152UxbBUEr66/UNo/I0="),
+                        'sha1' => base64_decode('8uHdutKp152UxbBUEr66/UNo/I0='),
                     ],
                     [
                         // not link!
                         'length' => 6621335,
                         'path' => ['dir5', 'file3.txt'],
-                        'sha1' => base64_decode("WW5Dv31hzse3rO95vQfVTk7M3lg="),
+                        'sha1' => base64_decode('WW5Dv31hzse3rO95vQfVTk7M3lg='),
                     ],
                     [
                         'attr' => 'x',
                         'length' => 6621355,
                         'path' => ['dir6', 'exec.txt'],
-                        'sha1' => base64_decode("PLesPfBgCmcfBdyu9k95eUh8sfs="),
+                        'sha1' => base64_decode('PLesPfBgCmcfBdyu9k95eUh8sfs='),
                     ],
                 ],
                 'name' => 'files2',
@@ -240,7 +240,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     [
                         'length' => 6621359,
                         'path' => ['dir1', 'file1.txt'],
-                        'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                        'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                     ],
                     [
                         'attr' => 'p',
@@ -250,7 +250,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     [
                         'length' => 6621359,
                         'path' => ['dir2', 'file1.txt'],
-                        'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                        'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                     ],
                     [
                         'attr' => 'p',
@@ -260,7 +260,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     [
                         'length' => 6621341,
                         'path' => ['dir2', 'file2.txt'],
-                        'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                        'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                     ],
                     [
                         'attr' => 'p',
@@ -270,7 +270,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     [
                         'length' => 6621341,
                         'path' => ['dir3', 'file2.txt'],
-                        'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                        'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                     ],
                     [
                         'attr' => 'p',
@@ -281,12 +281,12 @@ class CreateFileV1FeaturesTest extends TestCase
                         // no padding after when file is already aligned
                         'length' => 6291456,
                         'path' => ['dir4', 'aligned.txt'],
-                        'sha1' => base64_decode("8uHdutKp152UxbBUEr66/UNo/I0="),
+                        'sha1' => base64_decode('8uHdutKp152UxbBUEr66/UNo/I0='),
                     ],
                     [
                         'length' => 6621335,
                         'path' => ['dir5', 'file3.txt'],
-                        'sha1' => base64_decode("WW5Dv31hzse3rO95vQfVTk7M3lg="),
+                        'sha1' => base64_decode('WW5Dv31hzse3rO95vQfVTk7M3lg='),
                     ],
                     [
                         'attr' => 'p',
@@ -297,7 +297,7 @@ class CreateFileV1FeaturesTest extends TestCase
                         'attr' => 'x',
                         'length' => 6621355,
                         'path' => ['dir6', 'exec.txt'],
-                        'sha1' => base64_decode("PLesPfBgCmcfBdyu9k95eUh8sfs="),
+                        'sha1' => base64_decode('PLesPfBgCmcfBdyu9k95eUh8sfs='),
                     ],
                 ],
                 'name' => 'files2',
@@ -354,7 +354,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     [
                         'length' => 6621359,
                         'path' => ['dir1', 'file1.txt'],
-                        'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                        'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                     ],
                     [
                         'attr' => 'p',
@@ -378,18 +378,18 @@ class CreateFileV1FeaturesTest extends TestCase
                         // 'small' file, do not pad
                         'length' => 6621341,
                         'path' => ['dir3', 'file2.txt'],
-                        'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                        'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                     ],
                     [
                         'length' => 6291456,
                         'path' => ['dir4', 'aligned.txt'],
-                        'sha1' => base64_decode("8uHdutKp152UxbBUEr66/UNo/I0="),
+                        'sha1' => base64_decode('8uHdutKp152UxbBUEr66/UNo/I0='),
                     ],
                     [
                         // 'small' file, but next one requires alignment
                         'length' => 6621335,
                         'path' => ['dir5', 'file3.txt'],
-                        'sha1' => base64_decode("WW5Dv31hzse3rO95vQfVTk7M3lg="),
+                        'sha1' => base64_decode('WW5Dv31hzse3rO95vQfVTk7M3lg='),
                     ],
                     [
                         'attr' => 'p',
@@ -400,7 +400,7 @@ class CreateFileV1FeaturesTest extends TestCase
                         'attr' => 'x',
                         'length' => 6621355,
                         'path' => ['dir6', 'exec.txt'],
-                        'sha1' => base64_decode("PLesPfBgCmcfBdyu9k95eUh8sfs="),
+                        'sha1' => base64_decode('PLesPfBgCmcfBdyu9k95eUh8sfs='),
                     ],
                 ],
                 'name' => 'files2',

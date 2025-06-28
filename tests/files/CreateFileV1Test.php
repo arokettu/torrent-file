@@ -42,7 +42,7 @@ class CreateFileV1Test extends TestCase
                     M/8hpiYYegLmNYntD0erSEXD7G9Fy4DT1SOMM4lHtUQsC+7erlN+apGisf4erLaK2bGTgKsbDwETNk115guP75Osx
                     O499nbjEf7uzNnu+SVo3wmeoI5/mx1jV2iihYK4Ow/iJL7yq2CUruoTvVHnSPqq4c3I2T5nT3YPQqLBc=
                     PIECES),
-                'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
             ],
         ], raw_torrent_data($torrent));
         self::assertEquals(260, \strlen($torrent->getRawData()['info']['pieces'])); // 13 chunks
@@ -77,7 +77,7 @@ class CreateFileV1Test extends TestCase
                 'files' => [[
                     'path' => ['file1.txt'],
                     'length' => 6621359,
-                    'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                    'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                 ]],
                 'name' => 'file1.txt',
                 'piece length' => 524288,
@@ -122,17 +122,17 @@ class CreateFileV1Test extends TestCase
                         [
                             'length' => 6621359,
                             'path' => ['file1.txt'],
-                            'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                            'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                         ],
                         [
                             'length' => 6621341,
                             'path' => ['file2.txt'],
-                            'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                            'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                         ],
                         [
                             'length' => 6621335,
                             'path' => ['file3.txt'],
-                            'sha1' => base64_decode("WW5Dv31hzse3rO95vQfVTk7M3lg="),
+                            'sha1' => base64_decode('WW5Dv31hzse3rO95vQfVTk7M3lg='),
                         ],
                     ],
                     'name' => 'files',
@@ -190,17 +190,17 @@ class CreateFileV1Test extends TestCase
                         [
                             'length' => 6621359,
                             'path' => ['file1.txt'],
-                            'sha1' => base64_decode("FLpF01Q+gHDBdrRmIDPqQmKaYgQ="),
+                            'sha1' => base64_decode('FLpF01Q+gHDBdrRmIDPqQmKaYgQ='),
                         ],
                         [
                             'length' => 6621341,
                             'path' => ['file2.txt'],
-                            'sha1' => base64_decode("JToK2HdRS+5VKZCu8WhvbV9a9KY="),
+                            'sha1' => base64_decode('JToK2HdRS+5VKZCu8WhvbV9a9KY='),
                         ],
                         [
                             'length' => 6621335,
                             'path' => ['file3.txt'],
-                            'sha1' => base64_decode("WW5Dv31hzse3rO95vQfVTk7M3lg="),
+                            'sha1' => base64_decode('WW5Dv31hzse3rO95vQfVTk7M3lg='),
                         ],
                     ],
                     'name' => 'files',
