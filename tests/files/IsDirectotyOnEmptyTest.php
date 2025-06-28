@@ -26,4 +26,21 @@ class IsDirectotyOnEmptyTest extends TestCase
 
         self::assertTrue($torrent->v1()->isDirectory());
     }
+
+    public function testV2(): void
+    {
+        $data = [
+            'info' => [
+                'file tree' => [],
+                'name' => 'torrent name',
+                'meta version' => 2,
+                'piece length' => 262144,
+                'private' => 1,
+            ],
+        ];
+
+        $torrent = TorrentFile::loadFromString(Bencode::encode($data));
+
+        self::assertTrue($torrent->v2()->isDirectory());
+    }
 }

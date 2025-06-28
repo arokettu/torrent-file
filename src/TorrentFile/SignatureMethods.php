@@ -72,7 +72,7 @@ trait SignatureMethods
         }
 
         openssl_sign($data, $signature, $key, OPENSSL_ALGO_SHA1) ?:
-            throw new RuntimeException('Signing failed');
+            throw new RuntimeException('Signing failed: ' . openssl_error_string());
 
         if ($includeCertificate) {
             $certExport = CertHelper::convertObjectToDer($certificate);
