@@ -76,7 +76,11 @@ final class Info
 
         $files = $info['files'];
         if ($files !== null) {
-            return \count($files) > 1 || \count($files[0]['path']) > 1;
+            return
+                // single file torrent encodes exactly one file
+                \count($files) !== 1 ||
+                // that is not in a subdirectory
+                \count($files[0]['path']) > 1;
         }
 
         // @codeCoverageIgnoreStart
