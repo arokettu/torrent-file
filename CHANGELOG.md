@@ -5,6 +5,14 @@
 
 ## 5.x
 
+### 5.3.2
+
+*Jun 29, 2025*
+
+* Fixes crash in isDirectory() on an empty torrent file v1 [[#gh8]]
+
+[#gh8]: https://github.com/arokettu/torrent-file/issues/8
+
 ### 5.3.1
 
 *Jul 29, 2024*
