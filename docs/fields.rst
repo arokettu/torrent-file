@@ -113,7 +113,11 @@ See :ref:`the type section <type_NodeList>` for acceptable formats.
     <?php
     // accepts NodeList objects or iterables of valid structure
     //      (same as NodeList::fromIterable())
-    $torrent->setNodes(['udp://example.com/seed']);
+    $torrent->setNodes([
+        ['127.0.0.1', 6881],
+        ['your.router.node', 4804],
+        ['2001:db8:100:0:d5c8:db3f:995e:c0f7', 1941],
+    ]);
     // get Url List as UriList object
     $torrent->getNodes();
     // get Url List as array
