@@ -79,7 +79,7 @@ Optional info about the creation date.
     // get int timestamp
     $creationDate = $torrent->getCreationDate()->getTimestamp();
 
-Http Seeds
+HTTP Seeds
 ==========
 
 .. note:: BEP-17_ HTTP Seeding
@@ -124,7 +124,7 @@ See :ref:`the type section <type_NodeList>` for acceptable formats.
     $torrent->getNodes()->toArray();
 
 
-Url List
+URL List
 ========
 
 .. note:: BEP-19_ WebSeed - HTTP/FTP Seeding
