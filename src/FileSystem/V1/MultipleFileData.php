@@ -41,7 +41,7 @@ final class MultipleFileData extends FileData
         $this->reportProgress($totalSize, 0, $info['name']);
 
         // sort files by binary comparing exploded parts
-        usort($filePaths, function ($path1, $path2): int {
+        usort($filePaths, static function ($path1, $path2): int {
             $exploded1 = $path1['explodedPath'];
             $exploded2 = $path2['explodedPath'];
 
@@ -60,7 +60,7 @@ final class MultipleFileData extends FileData
                 "You can't have two files with the same name: " .
                 $path1['relativePath'] .
                 ' and ' .
-                $path2['relativePath']
+                $path2['relativePath'],
             );
             // @codeCoverageIgnoreEnd
         });

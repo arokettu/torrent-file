@@ -16,7 +16,7 @@ use DateTimeInterface;
 final class DateTimeWrapper implements BencodeSerializable
 {
     private function __construct(
-        public readonly DateTimeImmutable|null $dateTime
+        public readonly DateTimeImmutable|null $dateTime,
     ) {
     }
 

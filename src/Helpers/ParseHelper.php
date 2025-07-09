@@ -22,7 +22,7 @@ final class ParseHelper
                 throw new RuntimeException('Invalid sha1 hex digits');
         }
         throw new RuntimeException(
-            'Invalid sha1 field: must be 20 bytes (standard) or 40 hex digits (legacy)'
+            'Invalid sha1 field: must be 20 bytes (standard) or 40 hex digits (legacy)',
         );
     }
 }

@@ -86,7 +86,7 @@ final class AnnounceList implements Internal\StorageInterface
     {
         $uriLists = array_map(UriList::fromIterableOrString(...), $uriLists);
 
-        return self::fromIterable(filter(fn ($uriList) => !\in_array($uriList, $uriLists), $announceList));
+        return self::fromIterable(filter(static fn ($uriList) => !\in_array($uriList, $uriLists), $announceList));
     }
 
     private function uriListKey(UriList $uriList): string
@@ -99,7 +99,7 @@ final class AnnounceList implements Internal\StorageInterface
      */
     public function toArray(): array
     {
-        return array_map(fn ($uriList) => $uriList->toArray(), $this->data);
+        return array_map(static fn ($uriList) => $uriList->toArray(), $this->data);
     }
 
     /**

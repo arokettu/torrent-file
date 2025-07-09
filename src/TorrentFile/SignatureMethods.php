@@ -41,7 +41,7 @@ trait SignatureMethods
     public function getSignatures(): DictObject
     {
         return $this->signatures ??
-            new DictObject(map(fn ($s) => Signature::fromInternal($s), $this->getField('signatures') ?? []));
+            new DictObject(map(static fn ($s) => Signature::fromInternal($s), $this->getField('signatures') ?? []));
     }
 
     public function removeSignatures(): void

@@ -61,6 +61,6 @@ trait MagnetMethods
             $pairs[] = ['tr', rawurlencode($tr)];
         }
 
-        return 'magnet:?' . implode('&', array_map(fn ($pair) => $pair[0] . '=' . $pair[1], $pairs));
+        return 'magnet:?' . implode('&', array_map(static fn ($pair) => $pair[0] . '=' . $pair[1], $pairs));
     }
 }

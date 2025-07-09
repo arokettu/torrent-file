@@ -102,7 +102,7 @@ trait InfoMethods
 
     public function removeMetadata(MetaVersion $version): void
     {
-        if (array_filter($this->getMetadataVersions(), fn ($v) => $v !== $version) === []) {
+        if (array_filter($this->getMetadataVersions(), static fn ($v) => $v !== $version) === []) {
             throw new BadMethodCallException('Unable to remove the only remaining metadata');
         }
 

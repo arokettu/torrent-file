@@ -74,7 +74,7 @@ abstract class FileData
     ) {
         if ($pieceLength < self::PIECE_LENGTH_MIN || !MathHelper::isPow2($pieceLength)) {
             throw new DomainException(
-                'pieceLength must be a power of 2 and at least ' . self::PIECE_LENGTH_MIN
+                'pieceLength must be a power of 2 and at least ' . self::PIECE_LENGTH_MIN,
             );
         }
 
@@ -128,8 +128,8 @@ abstract class FileData
         return array_values(
             array_filter(
                 explode('/', substr($link, \strlen($this->path))),
-                fn ($s) => $s !== ''
-            )
+                static fn ($s) => $s !== '',
+            ),
         );
     }
 

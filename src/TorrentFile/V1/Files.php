@@ -27,7 +27,7 @@ final class Files implements \IteratorAggregate, \Countable
 
     private function parseList(ListObject $files): void
     {
-        $this->files = [...map(function ($file) {
+        $this->files = [...map(static function ($file) {
             $attributes = new Attributes($file['attr'] ?? '');
             $length = $file['length'];
             if ($attributes->symlink) {
@@ -74,7 +74,7 @@ final class Files implements \IteratorAggregate, \Countable
 
         return $this->countWithoutPads ??= \count(array_filter(
             $this->files,
-            fn (File $file) => !$file->attributes->pad
+            static fn (File $file) => !$file->attributes->pad,
         ));
     }
 }

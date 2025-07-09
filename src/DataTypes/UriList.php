@@ -82,7 +82,7 @@ final class UriList implements Internal\StorageInterface
 
     public static function remove(self $uriList, string ...$uris): self
     {
-        return self::fromIterable(filter(fn ($uri) => !\in_array($uri, $uris), $uriList));
+        return self::fromIterable(filter(static fn ($uri) => !\in_array($uri, $uris), $uriList));
     }
 
     /**

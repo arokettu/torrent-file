@@ -43,7 +43,7 @@ trait DataMethods
         if ($this->isSigned()) {
             throw new BadMethodCallException(
                 'Unable to modify infohash fields of a signed torrent. ' .
-                'Please remove the signatures first'
+                'Please remove the signatures first',
             );
         }
 

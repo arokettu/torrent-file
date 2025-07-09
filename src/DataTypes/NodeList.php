@@ -35,7 +35,7 @@ final class NodeList implements Internal\StorageInterface
 
     public static function create(array|Node ...$nodes): self
     {
-        return new self(...map(fn ($node) => \is_array($node) ? Node::fromArray($node) : $node, $nodes));
+        return new self(...map(static fn ($node) => \is_array($node) ? Node::fromArray($node) : $node, $nodes));
     }
 
     /**
@@ -66,8 +66,8 @@ final class NodeList implements Internal\StorageInterface
 
     public static function remove(self $nodeList, array|Node ...$nodes): self
     {
-        $nodes = array_map(fn ($node) => \is_array($node) ? Node::fromArray($node) : $node, $nodes);
-        return self::fromIterable(filter(fn ($node) => !\in_array($node, $nodes), $nodeList));
+        $nodes = array_map(static fn ($node) => \is_array($node) ? Node::fromArray($node) : $node, $nodes);
+        return self::fromIterable(filter(static fn ($node) => !\in_array($node, $nodes), $nodeList));
     }
 
     private function nodeKey(Node $node): string
@@ -80,7 +80,7 @@ final class NodeList implements Internal\StorageInterface
      */
     public function toArray(): array
     {
-        return array_map(fn ($node) => $node->toArray(), $this->data);
+        return array_map(static fn ($node) => $node->toArray(), $this->data);
     }
 
     /**
