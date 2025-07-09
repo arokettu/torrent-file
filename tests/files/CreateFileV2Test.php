@@ -79,7 +79,10 @@ final class CreateFileV2Test extends TestCase
         ); // approx 6 mb
 
         $raw = raw_torrent_data($torrent);
-        $raw['piece layers'] = array_map(static fn ($s) => \strlen($s), $raw['piece layers']); // very long with these hashes
+        $raw['piece layers'] = array_map(
+            static fn ($s) => \strlen($s),
+            $raw['piece layers'],
+        ); // very long with these hashes
 
         self::assertEquals(
             '684bdfc6d44d85e55f6cf292efd2349273d3bab5cadb951fd38102bdc0a45c06',

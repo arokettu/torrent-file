@@ -88,6 +88,7 @@ abstract class FileData
 
     protected function init(): void
     {
+        // overridable
     }
 
     abstract protected function process(): array;
