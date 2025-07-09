@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 use function Arokettu\Torrent\Tests\raw_torrent_data;
 
-class HttpSeedsTest extends TestCase
+final class HttpSeedsTest extends TestCase
 {
     public function testSetHttpSeeds(): void
     {

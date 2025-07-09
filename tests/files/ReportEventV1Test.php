@@ -13,7 +13,7 @@ use Psr\EventDispatcher\ListenerProviderInterface;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class ReportEventV1Test extends TestCase implements ListenerProviderInterface
+final class ReportEventV1Test extends TestCase implements ListenerProviderInterface
 {
     private int $done;
 
@@ -25,7 +25,7 @@ class ReportEventV1Test extends TestCase implements ListenerProviderInterface
 
         TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
-            eventDispatcher:  $eventDispatcher,
+            eventDispatcher: $eventDispatcher,
             version: MetaVersion::V1,
         );
     }

@@ -21,7 +21,7 @@ function generate_files1(): void
             continue;
         }
 
-        $words = $words ?? get_words();
+        $words ??= get_words();
 
         $file = fopen($path, 'w');
 
@@ -186,7 +186,7 @@ function recursive_iterator_to_array(\Traversable $iterator, bool $preserveKeys 
         return iterator_to_array($iterator, $preserveKeys);
     }
 
-    return iterator_to_array((function (\RecursiveIterator $iterator) {
+    return iterator_to_array((static function (\RecursiveIterator $iterator) {
         $iterator->rewind();
 
         while ($iterator->valid()) {

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class SerializiationTest extends TestCase
+final class SerializiationTest extends TestCase
 {
     public function testSerialization(): void
     {

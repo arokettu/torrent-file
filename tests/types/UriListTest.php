@@ -9,7 +9,7 @@ use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
-class UriListTest extends TestCase
+final class UriListTest extends TestCase
 {
     private function getUriList(): UriList
     {

@@ -15,7 +15,7 @@ use function Arokettu\Torrent\Tests\raw_torrent_data;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class CreateFileV1Test extends TestCase
+final class CreateFileV1Test extends TestCase
 {
     public function testSingleFile(): void
     {
@@ -55,7 +55,7 @@ class CreateFileV1Test extends TestCase
                 'xt=urn:btih:3ab5a1739bd320333898510a6cec900a5e6acb7d',
                 'dn=file1.txt',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -99,7 +99,7 @@ class CreateFileV1Test extends TestCase
                 'xt=urn:btih:113581f7f4f4a8acd204cd780c0e3f786c044518',
                 'dn=file1.txt',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -166,7 +166,7 @@ class CreateFileV1Test extends TestCase
                 'xt=urn:btih:e3bfb18c606631c472b7ba1813bc96c7f748b098',
                 'dn=files',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -215,7 +215,7 @@ class CreateFileV1Test extends TestCase
                         PIECES),
                 ],
             ],
-            raw_torrent_data($torrent)
+            raw_torrent_data($torrent),
         );
         self::assertEquals(380, \strlen($torrent->getRawData()['info']['pieces'])); // 19 chunks
         self::assertEquals('files', $torrent->getDisplayName());
@@ -226,7 +226,7 @@ class CreateFileV1Test extends TestCase
                 'xt=urn:btih:8d7b1593175abfa6563f7c8de082e5c46b3d1292',
                 'dn=files',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 

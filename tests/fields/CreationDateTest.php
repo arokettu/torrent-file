@@ -8,7 +8,7 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class CreationDateTest extends TestCase
+final class CreationDateTest extends TestCase
 {
     public function testSetCreationDate(): void
     {

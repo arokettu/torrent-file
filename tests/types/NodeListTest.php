@@ -10,7 +10,7 @@ use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
-class NodeListTest extends TestCase
+final class NodeListTest extends TestCase
 {
     private function getNodeList(): NodeList
     {

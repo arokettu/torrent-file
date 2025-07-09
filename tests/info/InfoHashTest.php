@@ -9,7 +9,7 @@ use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class InfoHashTest extends TestCase
+final class InfoHashTest extends TestCase
 {
     public function testInfoHashes(): void
     {
@@ -37,7 +37,7 @@ class InfoHashTest extends TestCase
         ]));
         self::assertEquals(
             [2 => '11f789319884160645bb421bfdfca60fac20c932cacea32c7757dd300a3765fd'],
-            $torrent->getInfoHashes()
+            $torrent->getInfoHashes(),
         );
         self::assertEquals(
             '11f789319884160645bb421bfdfca60fac20c932cacea32c7757dd300a3765fd',

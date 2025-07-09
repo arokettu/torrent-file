@@ -13,7 +13,7 @@ use function Arokettu\Torrent\Tests\raw_torrent_data;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class CreateFileV1FeaturesTest extends TestCase
+final class CreateFileV1FeaturesTest extends TestCase
 {
     public function testFiles2(): void
     {
@@ -93,7 +93,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     SGuLrNX7IOfcMFBsSOmcEzxO4Qa1kc+f9y42rkssQgYWt54AgXGlnOMBZvmWVRn16K0=
                     PIECES),
             ],
-            $info
+            $info,
         );
     }
 
@@ -219,7 +219,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     rCx1NK
                     PIECES),
             ],
-            $info
+            $info,
         );
     }
 
@@ -332,7 +332,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     6Eihnq8O
                     PIECES),
             ],
-            $info
+            $info,
         );
     }
 
@@ -427,7 +427,7 @@ class CreateFileV1FeaturesTest extends TestCase
                     7ruloFsiLpYEt5t9rgRapTz9PoSKGerw4=
                     PIECES),
             ],
-            $info
+            $info,
         );
     }
 

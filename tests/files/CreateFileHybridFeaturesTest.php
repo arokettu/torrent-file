@@ -13,7 +13,7 @@ use function Arokettu\Torrent\Tests\raw_torrent_data;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class CreateFileHybridFeaturesTest extends TestCase
+final class CreateFileHybridFeaturesTest extends TestCase
 {
     public function testKeepOnlyV1(): void
     {
@@ -35,7 +35,7 @@ class CreateFileHybridFeaturesTest extends TestCase
 
         self::assertEquals(
             '2d88913a8f48fe6353bd1ed6cdc97378f098a7a5',
-            $torrent1->v1()->getInfoHash()
+            $torrent1->v1()->getInfoHash(),
         );
         self::assertNull($torrent1->v2());
 //        echo export_test_data($torrent1->getRawData());
@@ -100,7 +100,7 @@ class CreateFileHybridFeaturesTest extends TestCase
                 'xt=urn:btih:2d88913a8f48fe6353bd1ed6cdc97378f098a7a5',
                 'dn=files',
             ]),
-            $torrent1->getMagnetLink()
+            $torrent1->getMagnetLink(),
         );
     }
 
@@ -123,7 +123,7 @@ class CreateFileHybridFeaturesTest extends TestCase
         self::assertNull($torrent1->v1());
         self::assertEquals(
             'ed751104df9a3d16a141aea0e86cc03b0a5d591f18ee0f70162e68ec8c218f97',
-            $torrent1->v2()->getInfoHash()
+            $torrent1->v2()->getInfoHash(),
         );
 //        echo export_test_data($torrent1->getRawData());
         self::assertEquals(
@@ -196,7 +196,7 @@ class CreateFileHybridFeaturesTest extends TestCase
                 'xt=urn:btmh:1220ed751104df9a3d16a141aea0e86cc03b0a5d591f18ee0f70162e68ec8c218f97',
                 'dn=files',
             ]),
-            $torrent1->getMagnetLink()
+            $torrent1->getMagnetLink(),
         );
     }
 }

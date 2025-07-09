@@ -8,7 +8,7 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class PrivateTest extends TestCase
+final class PrivateTest extends TestCase
 {
     public function testSetPrivate(): void
     {

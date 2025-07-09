@@ -13,7 +13,7 @@ use Psr\EventDispatcher\ListenerProviderInterface;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class ReportEventV2Test extends TestCase implements ListenerProviderInterface
+final class ReportEventV2Test extends TestCase implements ListenerProviderInterface
 {
     public function testReportEvent(): void
     {

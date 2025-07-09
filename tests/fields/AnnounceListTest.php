@@ -8,7 +8,7 @@ use Arokettu\Torrent\DataTypes\AnnounceList;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class AnnounceListTest extends TestCase
+final class AnnounceListTest extends TestCase
 {
     public function testEmpty(): void
     {

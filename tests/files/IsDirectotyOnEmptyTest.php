@@ -8,7 +8,7 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class IsDirectotyOnEmptyTest extends TestCase
+final class IsDirectotyOnEmptyTest extends TestCase
 {
     public function testV1(): void
     {

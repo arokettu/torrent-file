@@ -8,7 +8,7 @@ use Arokettu\Torrent\Exception\UnexpectedValueException;
 use Arokettu\Torrent\TorrentFile\Common\Attributes;
 use PHPUnit\Framework\TestCase;
 
-class AttributesTest extends TestCase
+final class AttributesTest extends TestCase
 {
     public function testMisc(): void
     {

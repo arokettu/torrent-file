@@ -7,7 +7,7 @@ namespace Arokettu\Torrent\Tests\Other;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class EncodingStabilityTest extends TestCase
+final class EncodingStabilityTest extends TestCase
 {
     public function testEmptyDictNotBecomingList(): void
     {

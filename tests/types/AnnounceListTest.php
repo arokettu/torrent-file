@@ -10,7 +10,7 @@ use Arokettu\Torrent\Exception\BadMethodCallException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
-class AnnounceListTest extends TestCase
+final class AnnounceListTest extends TestCase
 {
     private function getAnnounceList(): AnnounceList
     {

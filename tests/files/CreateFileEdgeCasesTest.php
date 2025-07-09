@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class CreateFileEdgeCasesTest extends TestCase
+final class CreateFileEdgeCasesTest extends TestCase
 {
     public function testSystemTime(): void
     {
@@ -47,7 +47,7 @@ class CreateFileEdgeCasesTest extends TestCase
     {
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/small.txt',
-            createdBy: 'me'
+            createdBy: 'me',
         );
 
         self::assertEquals('me', $torrent->getCreatedBy());

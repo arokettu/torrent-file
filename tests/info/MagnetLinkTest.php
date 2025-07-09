@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 use function Arokettu\Torrent\Tests\build_magnet_link;
 
-class MagnetLinkTest extends TestCase
+final class MagnetLinkTest extends TestCase
 {
     public function testDN(): void
     {
@@ -25,7 +25,7 @@ class MagnetLinkTest extends TestCase
                 'xt=urn:btih:ea190bf5a23adbc91ea29062bf36a6a744b00436',
                 'dn=my%20test%20torrent',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
 
         // unicode
@@ -38,7 +38,7 @@ class MagnetLinkTest extends TestCase
                 'xt=urn:btih:ded9d4a1598b648359de7665fa13b2714248723f',
                 'dn=%E3%83%88%E3%83%AC%E3%83%B3%E3%83%88',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
 
         // empty
@@ -65,7 +65,7 @@ class MagnetLinkTest extends TestCase
                 'dn=my%20test%20torrent',
                 'tr=http%3A%2F%2Fexample.com', // tr=http://example.com
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
 
         // add list of trackers
@@ -83,7 +83,7 @@ class MagnetLinkTest extends TestCase
                 'tr=udp%3A%2F%2Fexample.org%3A4321', // tr=udp://example.org:4321
                 'tr=http%3A%2F%2Fexample.org', // tr=http://example.org
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
 
         // mixed
@@ -104,7 +104,7 @@ class MagnetLinkTest extends TestCase
                 'tr=udp%3A%2F%2Fexample.org%3A4321', // tr=udp://example.org:4321
                 'tr=http%3A%2F%2Fexample.org', // tr=http://example.org
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -117,7 +117,7 @@ class MagnetLinkTest extends TestCase
         ]));
         self::assertEquals(
             'magnet:?xt=urn:btih:d38308ebeda8a85e730b9393f0bb37970c57e78f',
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
 
         // v2
@@ -127,7 +127,7 @@ class MagnetLinkTest extends TestCase
         ]));
         self::assertEquals(
             'magnet:?xt=urn:btmh:122011f789319884160645bb421bfdfca60fac20c932cacea32c7757dd300a3765fd',
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
 
         // v1 + v2

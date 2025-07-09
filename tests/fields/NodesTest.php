@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 use function Arokettu\Torrent\Tests\raw_torrent_data;
 
-class NodesTest extends TestCase
+final class NodesTest extends TestCase
 {
     public function testSetByObject(): void
     {

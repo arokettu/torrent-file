@@ -13,7 +13,7 @@ use function Arokettu\Torrent\Tests\raw_torrent_data;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class CreateFileHybridTest extends TestCase
+final class CreateFileHybridTest extends TestCase
 {
     public function testSingleFile(): void
     {
@@ -25,11 +25,11 @@ class CreateFileHybridTest extends TestCase
 
         self::assertEquals(
             '598bc421858f96416ac17c399a48af67fa8ffc4c',
-            $torrent->v1()->getInfoHash()
+            $torrent->v1()->getInfoHash(),
         );
         self::assertEquals(
             '79cce7c3c5adaa1dabe47cb808b0eabd8c0a9de2076533e9ee2e2cdec7819db6',
-            $torrent->v2()->getInfoHash()
+            $torrent->v2()->getInfoHash(),
         );
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
@@ -81,7 +81,7 @@ class CreateFileHybridTest extends TestCase
                 'xt=urn:btmh:122079cce7c3c5adaa1dabe47cb808b0eabd8c0a9de2076533e9ee2e2cdec7819db6',
                 'dn=file1.txt',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -95,11 +95,11 @@ class CreateFileHybridTest extends TestCase
 
         self::assertEquals(
             '8223a88d2a642b1dfc58c7c6c2e9d43fcbbd0c32',
-            $torrent->v1()->getInfoHash()
+            $torrent->v1()->getInfoHash(),
         );
         self::assertEquals(
             '3531223d5ac920e55fa32510253dfa2f5bcd9d2d836c482e65ca1aecbab0b9eb',
-            $torrent->v2()->getInfoHash()
+            $torrent->v2()->getInfoHash(),
         );
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals(
@@ -215,7 +215,7 @@ class CreateFileHybridTest extends TestCase
                 'xt=urn:btmh:12203531223d5ac920e55fa32510253dfa2f5bcd9d2d836c482e65ca1aecbab0b9eb',
                 'dn=files',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -229,11 +229,11 @@ class CreateFileHybridTest extends TestCase
 
         self::assertEquals(
             '7d5393e3c1a4bf57fe254be62bbd6b900eb0d605',
-            $torrent->v1()->getInfoHash()
+            $torrent->v1()->getInfoHash(),
         );
         self::assertEquals(
             '3d053755a83a4f287358f0a2d50880047202ab04c70dcf6e3786dccf53cd95c8',
-            $torrent->v2()->getInfoHash()
+            $torrent->v2()->getInfoHash(),
         );
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
@@ -271,7 +271,7 @@ class CreateFileHybridTest extends TestCase
                 'xt=urn:btmh:12203d053755a83a4f287358f0a2d50880047202ab04c70dcf6e3786dccf53cd95c8',
                 'dn=empty_file.txt',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 }

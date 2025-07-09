@@ -8,7 +8,7 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class FileNameSuggestionTest extends TestCase
+final class FileNameSuggestionTest extends TestCase
 {
     public function testDisplayName(): void
     {
@@ -47,11 +47,11 @@ class FileNameSuggestionTest extends TestCase
 
         self::assertEquals(
             '11f789319884160645bb421bfdfca60fac20c932cacea32c7757dd300a3765fd',
-            $torrent->getDisplayName()
+            $torrent->getDisplayName(),
         );
         self::assertEquals(
             '11f789319884160645bb421bfdfca60fac20c932cacea32c7757dd300a3765fd.torrent',
-            $torrent->getFileName()
+            $torrent->getFileName(),
         );
     }
 }

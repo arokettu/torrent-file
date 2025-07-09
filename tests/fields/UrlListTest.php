@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 use function Arokettu\Torrent\Tests\raw_torrent_data;
 
-class UrlListTest extends TestCase
+final class UrlListTest extends TestCase
 {
     public function testSet(): void
     {

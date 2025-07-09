@@ -8,7 +8,7 @@ use Arokettu\Bencode\Bencode;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class CloningImmutabilityTest extends TestCase
+final class CloningImmutabilityTest extends TestCase
 {
     public function testClonedObjectDoesNotAffectTheSource(): void
     {

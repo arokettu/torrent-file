@@ -7,7 +7,7 @@ namespace Arokettu\Torrent\Tests\Fields;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class SimpleFieldsTest extends TestCase
+final class SimpleFieldsTest extends TestCase
 {
     public function testComment(): void
     {

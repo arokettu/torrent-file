@@ -10,7 +10,7 @@ use Arokettu\Torrent\Exception\InvalidArgumentException;
 use Arokettu\Torrent\Exception\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 
-class NodeTest extends TestCase
+final class NodeTest extends TestCase
 {
     public function testNoInvalidArrayStructure(): void
     {

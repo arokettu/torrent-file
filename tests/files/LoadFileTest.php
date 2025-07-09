@@ -11,7 +11,7 @@ use function Arokettu\Torrent\Tests\build_magnet_link;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class LoadFileTest extends TestCase
+final class LoadFileTest extends TestCase
 {
     public function testLoadFields(): void
     {
@@ -41,7 +41,7 @@ class LoadFileTest extends TestCase
                 // tr=http://ipv6.torrent.centos.org:6969/announce
                 'tr=http%3A%2F%2Fipv6.torrent.centos.org%3A6969%2Fannounce',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
 
         // reencoded file should be exactly same
@@ -52,7 +52,7 @@ class LoadFileTest extends TestCase
 
         self::assertFileEquals(
             TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent',
-            stream_get_meta_data($tmpfile)['uri']
+            stream_get_meta_data($tmpfile)['uri'],
         );
     }
 
@@ -72,7 +72,7 @@ class LoadFileTest extends TestCase
     public function testStream(): void
     {
         $torrent = TorrentFile::loadFromStream(
-            fopen(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', 'r')
+            fopen(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent', 'r'),
         );
 
         $stream = $torrent->storeToStream();
@@ -80,7 +80,7 @@ class LoadFileTest extends TestCase
 
         self::assertEquals(
             file_get_contents(TEST_ROOT . '/data/CentOS-7-x86_64-NetInstall-1611.torrent'),
-            stream_get_contents($stream)
+            stream_get_contents($stream),
         );
     }
 }

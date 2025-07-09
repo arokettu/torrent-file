@@ -13,7 +13,7 @@ use function Arokettu\Torrent\Tests\raw_torrent_data;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class CreateFileV2Test extends TestCase
+final class CreateFileV2Test extends TestCase
 {
     public function testSingleFile(): void
     {
@@ -26,7 +26,7 @@ class CreateFileV2Test extends TestCase
         self::assertNull($torrent->v1());
         self::assertEquals(
             '9744050ac753ffb072da78ae4c804c52fafa1943c17ac045dd1e794a3a86018f',
-            $torrent->v2()->getInfoHash()
+            $torrent->v2()->getInfoHash(),
         );
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
@@ -65,7 +65,7 @@ class CreateFileV2Test extends TestCase
                 'xt=urn:btmh:12209744050ac753ffb072da78ae4c804c52fafa1943c17ac045dd1e794a3a86018f',
                 'dn=file1.txt',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -79,11 +79,11 @@ class CreateFileV2Test extends TestCase
         ); // approx 6 mb
 
         $raw = raw_torrent_data($torrent);
-        $raw['piece layers'] = array_map(fn ($s) => \strlen($s), $raw['piece layers']); // very long with these hashes
+        $raw['piece layers'] = array_map(static fn ($s) => \strlen($s), $raw['piece layers']); // very long with these hashes
 
         self::assertEquals(
             '684bdfc6d44d85e55f6cf292efd2349273d3bab5cadb951fd38102bdc0a45c06',
-            $torrent->v2()->getInfoHash()
+            $torrent->v2()->getInfoHash(),
         );
 //        echo export_test_data($torrent->getRawData());
         self::assertEquals([
@@ -115,7 +115,7 @@ class CreateFileV2Test extends TestCase
                 'xt=urn:btmh:1220684bdfc6d44d85e55f6cf292efd2349273d3bab5cadb951fd38102bdc0a45c06',
                 'dn=file1.txt',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -202,7 +202,7 @@ class CreateFileV2Test extends TestCase
                 'xt=urn:btmh:1220ed751104df9a3d16a141aea0e86cc03b0a5d591f18ee0f70162e68ec8c218f97',
                 'dn=files',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 
@@ -270,7 +270,7 @@ class CreateFileV2Test extends TestCase
                         LAYER),
                 ],
             ],
-            raw_torrent_data($torrent)
+            raw_torrent_data($torrent),
         );
         self::assertEquals('files', $torrent->getDisplayName());
         self::assertEquals('files.torrent', $torrent->getFileName());
@@ -280,7 +280,7 @@ class CreateFileV2Test extends TestCase
                 'xt=urn:btmh:122081b558cd173dd0645bb243a8db9b326f1b2c3a8e952d0b6401bb64ed757919b0',
                 'dn=files',
             ]),
-            $torrent->getMagnetLink()
+            $torrent->getMagnetLink(),
         );
     }
 }

@@ -9,7 +9,7 @@ use Arokettu\Torrent\Exception\UnexpectedValueException;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
 
-class NameTest extends TestCase
+final class NameTest extends TestCase
 {
     public function testNameSet(): void
     {

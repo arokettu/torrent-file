@@ -11,7 +11,7 @@ use Arokettu\Torrent\TorrentFile\Common\Attributes;
 use Arokettu\Torrent\TorrentFile\V1\File;
 use PHPUnit\Framework\TestCase;
 
-class V1BrokenSha1Test extends TestCase
+final class V1BrokenSha1Test extends TestCase
 {
     public function testHexSha1SingleFile(): void
     {

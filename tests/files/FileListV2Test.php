@@ -16,7 +16,7 @@ use function Arokettu\Torrent\Tests\recursive_iterator_to_array;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class FileListV2Test extends TestCase
+final class FileListV2Test extends TestCase
 {
     public function testSingleFile(): void
     {
@@ -44,7 +44,7 @@ class FileListV2Test extends TestCase
     {
         $torrent = TorrentFile::fromPath(
             TEST_ROOT . '/data/files',
-            version: MetaVersion::V2
+            version: MetaVersion::V2,
         ); // approx 19 mb
 
         $files = recursive_iterator_to_array($torrent->v2()->getFileTree());

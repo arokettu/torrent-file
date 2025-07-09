@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 use const Arokettu\Torrent\Tests\TEST_ROOT;
 
-class FileListV1Test extends TestCase
+final class FileListV1Test extends TestCase
 {
     public function testSingleFile(): void
     {
