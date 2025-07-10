@@ -93,7 +93,7 @@ See :ref:`the type section <type_UriList>` for acceptable formats.
     <?php
     // accepts UriList objects or iterables of valid structure
     //      (same as UriList::fromIterable())
-    $torrent->setHttpSeeds(['udp://example.com/seed']);
+    $torrent->setHttpSeeds(['https://www.whatever.com/seed.php']);
     // get Http Seeds as UriList object
     $torrent->getHttpSeeds();
     // get Http Seeds as array
@@ -138,7 +138,7 @@ See :ref:`the type section <type_UriList>` for acceptable formats.
     <?php
     // accepts UriList objects or iterables of valid structure
     //      (same as UriList::fromIterable())
-    $torrent->setUrlList(['udp://example.com/seed']);
+    $torrent->setUrlList(['https://mirror.com/pub/']);
     // get Url List as UriList object
     $torrent->setUrlList();
     // get Url List as array
