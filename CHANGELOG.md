@@ -5,6 +5,12 @@
 
 ## 5.x
 
+### 5.3.3
+
+*Oct 10, 2025*
+
+* PathNotFoundException was replaced with ValueError
+
 ### 5.3.2
 
 *Jun 29, 2025*
