@@ -10,10 +10,10 @@ declare(strict_types=1);
 namespace Arokettu\Torrent\Tests\Files;
 
 use Arokettu\Torrent\Exception\DomainException;
-use Arokettu\Torrent\Exception\PathNotFoundException;
 use Arokettu\Torrent\MetaVersion;
 use Arokettu\Torrent\TorrentFile;
 use PHPUnit\Framework\TestCase;
+use ValueError;
 
 use function Arokettu\Torrent\Tests\build_magnet_link;
 use function Arokettu\Torrent\Tests\raw_torrent_data;
@@ -237,7 +237,10 @@ final class CreateFileV1Test extends TestCase
 
     public function testNotFoundException(): void
     {
-        $this->expectException(PathNotFoundException::class);
+        $this->expectException(ValueError::class);
+        $this->expectExceptionMessage(
+            "Path '" . TEST_ROOT . "/data/files/nosuchfile.txt' doesn't exist or is not a regular file or a directory",
+        );
         TorrentFile::fromPath(TEST_ROOT . '/data/files/nosuchfile.txt');
     }
 
