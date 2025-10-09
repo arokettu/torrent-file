@@ -24,7 +24,7 @@ cache:
     - composer config -g cache-dir "$(pwd)/.composer-cache"
   script:
     - composer update
-    - vendor/bin/phpunit --fail-on-deprecation --fail-on-notice --fail-on-warning
+    - vendor/bin/phpunit
 
 # main matrix
 test:
@@ -35,6 +35,9 @@ test:
     matrix:
       - PHP_VERSION:
           - '8.1' # lowest version
+          - '8.2'
+          - '8.3'
+          - '8.4'
           - '8' # latest 8
 
 # lowest version with lowest dependencies

@@ -1,30 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          bootstrap="tests/bootstrap.php"
-         displayDetailsOnTestsThatTriggerErrors="true"
-         displayDetailsOnTestsThatTriggerNotices="true"
-         displayDetailsOnTestsThatTriggerWarnings="true"
-         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnAllIssues="true"
+         failOnDeprecation="true"
+         failOnEmptyTestSuite="true"
+         failOnIncomplete="true"
+         failOnNotice="true"
+         failOnRisky="true"
+         failOnWarning="true"
          executionOrder="random"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd">
     <testsuites>
-        <testsuite name="fields">
-            <directory>tests/fields</directory>
-        </testsuite>
-        <testsuite name="files">
-            <directory>tests/files</directory>
-        </testsuite>
-        <testsuite name="info">
-            <directory>tests/info</directory>
-        </testsuite>
-        <testsuite name="sign">
-            <directory>tests/sign</directory>
-        </testsuite>
-        <testsuite name="other">
-            <directory>tests/other</directory>
-        </testsuite>
-        <testsuite name="types">
-            <directory>tests/types</directory>
+        <testsuite name="all">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <source>
