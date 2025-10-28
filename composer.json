@@ -50,8 +50,8 @@
         "arokettu/bencode": "^2.8 || ^3.1 || ^4.0",
         "nikic/iter": "^2.2",
         "psr/event-dispatcher": "^1.0",
-        "symfony/filesystem": "^5.4 || ^6.0 || ^7.0",
-        "symfony/finder": "^5.4 || ^6.0 || ^7.0"
+        "symfony/filesystem": ">=5.4 <9",
+        "symfony/finder": ">=5.4 <9"
     },
     "require-dev": {
         "ext-openssl": "*",
