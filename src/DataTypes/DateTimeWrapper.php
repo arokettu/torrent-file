@@ -33,7 +33,7 @@ final class DateTimeWrapper implements BencodeSerializable
         return match (true) {
             \is_null($value)
                 => new self(null),
-            \is_integer($value)
+            \is_int($value)
                 => new self(new DateTimeImmutable('@' . $value)),
             $value instanceof DateTimeInterface,
                 => new self(DateTimeImmutable::createFromInterface($value)),
