@@ -60,8 +60,7 @@
         "phpunit/phpunit": "^10.5.58",
         "psy/psysh": "*",
         "sandfox.dev/code-standard": "^1.2025.09.17",
-        "squizlabs/php_codesniffer": "*",
-        "vimeo/psalm": "^5.2 || ^6"
+        "squizlabs/php_codesniffer": "*"
     },
     "suggest": {
         "ext-openssl": "for signature logic"
